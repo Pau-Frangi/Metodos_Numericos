@@ -1,0 +1,485 @@
+\usepackage[utf8]{inputenc}
+
+%Colors:
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+%Math
+\usepackage[makeroom]{cancel}%cancel lines math
+\usepackage{dsfont}%fonts
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{bigints}
+\usepackage{amsfonts}
+\usepackage{amsmath,xparse}%matrices
+\usepackage{amssymb}%math symbols
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xhfill}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[most]{tcolorbox}
+\usepackage{lipsum}
+\usepackage{pgfplots}
+\usetikzlibrary{3d, arrows}
+\pgfplotsset{compat=1.18}
+%Hyperlinks
+
+\usepackage{graphicx}  % Add this to the preamble
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\usepackage{comment}
+
+\usepackage{url}
+
+\usetikzlibrary{patterns}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{math}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\usepackage{hyperref}
+
+% CC license
+%\usepackage{doclicense}
+
+\usetikzlibrary{calc}
+\newcommand{\s}{\text{ }}%Space in math mode
+\newcommand{\trace}{\text{trace}\,}%Trace command
+\newcommand{\rank}{\text{rank}\,}%Rank command
+\newcommand{\R}{\mathbb{R}}%Real Numbers
+\newcommand{\Z}{\mathbb{Z}}%Integers
+\newcommand{\Q}{\mathbb{Q}}%Rational Numbers
+\newcommand{\Hbt}{\mathcal{H}}%Hilbert Space
+\newcommand{\F}{\mathcal{F}}%Hilbert Space
+\newcommand{\C}{\mathbb{C}}%Complex Numbers
+\newcommand{\N}{\mathbb{N}}%Natural Numbers
+\newcommand{\Imat}{\mathds{1}}%Identity Matrix
+
+\newcommand{\uni}{\bigcup_{i=1}^{\infty}}%Union i=1 to infinity
+\newcommand{\unj}{\bigcup_{j=1}^{\infty}}%Union j=1 to infinity
+\newcommand{\unk}{\bigcup_{k=1}^{\infty}}%Union k=1 to infinity
+\newcommand{\inti}{\bigcap_{i=1}^{\infty}}%Intersection i=1 to infinity
+\newcommand{\intj}{\bigcap_{j=1}^{\infty}}%Intersection j=1 to infinity
+\newcommand{\intk}{\bigcap_{k=1}^{\infty}}%Intersection k=1 to infinity
+\newcommand{\si}{\sum_{i=1}^{\infty}}%Sum i=1 to infinity
+\newcommand{\sj}{\sum_{j=1}^{\infty}}%Sum j=1 to infinity
+\newcommand{\sk}{\sum_{k=1}^{\infty}}%Sum k=1 to infinity
+
+\newcommand{\rn} {\mathbb{R}^n}%R^n
+\newcommand{\inr} {\in \mathbb{R}} %in R
+\newcommand{\inrn} {\in \mathbb{R}^n} %in R^n
+\newcommand{\vol} {\text{vol}} %Volume
+
+% \newcommand{\ket}[1]{\left|#1\right\rangle}%Prints |#1⟩
+% \newcommand{\bra}[1]{\left\langle#1\right|}%Prints ⟨#1|
+% \newcommand{\braket}[2]{\langle#1|#2\rangle}%Prints ⟨#1|#2⟩
+% \newcommand{\Braket}[2]{\left\langle#1\left|#2\right.\right\rangle}%Prints ⟨#1|#2⟩
+% \newcommand{\braopket}[3]{\left\langle#1\left|#2\left|#3\right.\right.\right\rangle}%Prints ⟨#1|#2|#3⟩
+\newcommand{\expected}[1]{\left\langle#1\right\rangle}%Prints ⟨#1⟩
+\newcommand{\naturalset}[2]{#1=1,\;2,\;...,\;#2}%Prints #1= #1= 1, 2, ..., #2 in math mode
+\newcommand{\vectorset}[3]{#1=\{#2_1,\;#2_2,\;...,\;#2_{#3}\}}%Prints #1= {#2_1,#2_2, ..., #2_{#3}} in math mode
+\newcommand{\diagmatrix}[9]{%
+  \begin{pmatrix}
+    \lambda_1 & 1 & 0 & 0 & 0 \\0&\lambda_1&0&0&0\\0&0&\lambda_3&1&0\\0&0&0&\lambda_4&1\\0&0&0&0&\lambda_4
+  \end{pmatrix}
+}%Matrix with diagonal entries specified
+
+% New Operators
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Long}{Long}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Ext}{Ext}
+
+% Setup matha font (mathabx.sty) for extracting specific symbols:
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+  <5> <6> <7> <8> <9> <10> gen * matha
+  <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+}{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+% Define a plus/minus character from that font (from mathabx.dcl):
+\DeclareMathSymbol{\PM}{2}{matha}{"08}% to completely replace the \pm character, replace \PM with \pm
+\input{Preamble/Diagonal Matrix Command}
+
+%Page Margins:
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+
+%paragraph Indent and Spacing
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+%Images:
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{eso-pic}
+\usepackage{wrapfig}%Wrapping Functionality
+\usepackage{float}
+\usepackage{chngcntr}% Count Figures as below v v v
+\counterwithout{figure}{section}%          CONTINUOUS
+\counterwithout{table}{section}%           CONTINUOUS
+
+%Enumerate
+\usepackage{enumitem}
+
+%Language
+\usepackage[english]{babel}
+
+%Environments
+\usepackage{amsthm, amsfonts}
+\usepackage{thmtools}
+\usepackage{float}
+\usepackage{framed}
+\usepackage{tcolorbox}
+
+\colorlet{LightGray}{gray!15}
+\colorlet{LightOrange}{orange!15}
+\colorlet{LightGreen}{green!15}
+\colorlet{LightBlue}{blue!15}
+\colorlet{LightRed}{red!15}
+\colorlet{veccol}{green!70!black}
+\colorlet{vcol}{green!70!black}
+\colorlet{xcol}{blue!85!black}
+\colorlet{projcol}{xcol!60}
+\colorlet{unitcol}{xcol!60!black!85}
+\colorlet{unitcol2}{vcol!60!black!85}
+\colorlet{myblue}{blue!70!black}
+\colorlet{myred}{red!70!black}
+\tikzstyle{vector}=[->,very thick,xcol]
+\tikzstyle{mydashed}=[dash pattern=on 2pt off 2pt]
+\def\tick#1#2{\draw[thick] (#1) ++ (#2:0.1) --++ (#2-180:0.2)} %0.03*\xmax
+
+
+\usetikzlibrary{angles,quotes} % for pic
+\usepackage{contour}
+\contourlength{1.3pt}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amsthm}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+%notefont=\bfseries,
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow=5pt,
+spaceabove=10pt,
+mdframed={
+    backgroundcolor=LightRed,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myTheoremStyle}
+
+
+% example environment - thmtools
+\declaretheorem[
+  style=myTheoremStyle,
+  numberwithin=subsection
+]{teorema}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow= 5pt,
+spaceabove= 10pt,
+mdframed={
+    backgroundcolor=LightOrange,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myPropositionStyle}
+
+% example environment - thmtools
+\declaretheorem[
+  style=myPropositionStyle,
+  numberwithin=subsection
+]{proposición}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow= 5pt,
+spaceabove= 10pt,
+mdframed={
+    backgroundcolor=LightOrange,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myCorollaryStyle}
+
+% example environment - thmtools
+\declaretheorem[
+  style=myCorollaryStyle,
+  numberwithin=subsection
+]{corolario}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow= 5pt,
+spaceabove= 10pt,
+mdframed={
+    backgroundcolor=LightOrange,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myLemmaStyle}
+
+% example environment - thmtools
+\declaretheorem[
+  style=myLemmaStyle,
+  numberwithin=subsection
+]{lema}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow= 5pt,
+spaceabove= 10pt,
+mdframed={
+    backgroundcolor=LightBlue,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myDefinitionStyle}
+
+% example environment - thmtools
+\declaretheorem[
+  style=myDefinitionStyle,
+  numberwithin=subsection
+]{definición}
+
+\declaretheoremstyle[
+headfont=\bfseries,
+notebraces={[}{]},
+bodyfont=\normalfont\itshape,
+headpunct={},
+postheadspace=\newline,
+postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{0.4pt}}\\},
+spacebelow= 5pt,
+spaceabove= 10pt,
+mdframed={
+    backgroundcolor=LightGreen,
+    innertopmargin=6pt,
+    roundcorner=5pt,
+    innerbottommargin=6pt,
+    linewidth=0.7pt, % <---- Add or change this value
+    skipabove=1\baselineskip,
+    skipbelow=\medskipamount, }
+]{myObservationStyle}
+
+% example environment - thmtools
+\declaretheorem[
+  style=myObservationStyle,
+  numberwithin=subsection
+]{observación}
+
+
+
+% theoremstyle shortcut commands
+\newcommand{\observacion}[1]{\begin{observación}#1\end{observación}}
+\newcommand{\definicion}[1]{\begin{definición}#1\end{definición}}
+\newcommand{\proposicion}[1]{\begin{proposición}#1\end{proposición}}
+\newcommand{\teo}[1]{\begin{teorema}#1\end{teorema}}
+\newcommand{\lem}[1]{\begin{lema}#1\end{lema}}
+\newcommand{\cor}[1]{\begin{corolario}#1\end{corolario}}
+\newcommand{\obs}[1]{\begin{observación}#1\end{observación}}
+\newcommand{\defi}[1]{\begin{definición}#1\end{definición}}
+\newcommand{\prop}[1]{\begin{proposición}#1\end{proposición}}
+
+%TOC: Fill Table of Contents with Dots
+\usepackage{tocloft} %Fill ToC with dotted line
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for sections
+
+% Multiple Tables of Contents
+\usepackage{etoc}
+\usepackage{tocbibind} % Para incluir bibliografía, índices, etc. en TOC
+
+% Create a new command
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+
+% Create a new command to write text in between two lines
+\newcommand{\nc}[2][]{%
+  \tikz \draw [draw=black, ultra thick, #1]
+  ($(current page.center)-(0.5\linewidth,0)$) --
+  ($(current page.center)+(0.5\linewidth,0)$)
+  node [midway, fill=white] {#2};
+}% tomado de https://tex.stackexchange.com/questions/179425/a-new-command-of-the-form-tex
+
+\newtcolorbox{mybox}[2][]{%
+  colback=white,
+  colframe=black,
+  colbacktitle=black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  enhanced,
+  boxrule=0.7pt, % <--- Changed from 0.5pt to 2pt
+  left=10pt, right=10pt, top=10pt, bottom=10pt,
+  breakable,
+  overlay first ={%
+      \node[draw=blue!50!black, thick,
+        fill=black, rounded corners=1mm, yshift=0pt, xshift=1cm, left,
+        text=white, anchor=west, font=\bfseries] at (frame.north west) {#2};
+    },
+  overlay unbroken ={%
+      \node[draw=blue!50!black, thick,
+        fill=black, rounded corners=1mm, yshift=0pt, xshift=1cm, left,
+        text=white, anchor=west, font=\bfseries] at (frame.north west) {#2};
+    },
+  #1
+}
+
+\newcommand{\ejemplo}[1]{%
+  \vspace{0.5em}
+  \begin{mybox}{Ejemplo}
+    #1
+  \end{mybox}
+  \vspace{0.5em}
+}
+
+\addto\captionsenglish{\renewcommand{\proofname}{Demostración}}
+
+
+
+% Define \dem to take an argument and wrap it in proof environment
+\newcommand{\dem}[1]{\begin{proof}#1\end{proof}}
+
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+% Configure cleveref to recognize your custom theorem styles
+\crefname{teorema}{Teorema}{Teoremas}
+\crefname{proposición}{Proposición}{Proposiciones}
+\crefname{definición}{Definición}{Definiciones}
+\crefname{lema}{Lema}{Lemas}
+\crefname{corolario}{Corolario}{Corolarios}
+\crefname{observación}{Observación}{Observaciones}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\footnotesize{%
+  \href{https://github.com/Pau-Frangi}{Pau F.}\, \
+  \href{https://github.com/DIEGOROCU}{Diego R.}\ y \ 
+  \href{https://github.com/Jaimito1243}{Jaime N.}
+}}
+
+% Contador para ejercicios, se reinicia por documento
+\newcounter{ejercicio}
+\renewcommand{\theejercicio}{\arabic{ejercicio}}
+
+% Comando para ejercicios con enunciado y desarrollo usando solo \newcommand
+\newcommand{\ejercicio}[2]{%
+  \refstepcounter{ejercicio}%
+  \vspace{0.25em}
+  \begin{mybox}{Ejercicio~\theejercicio}%
+    	\textbf{Enunciado:} #1
+    \par\medskip
+    \hrulefill
+    \par\medskip
+    	\textbf{Desarrollo:} #2
+  \end{mybox}%
+  \vspace{0.25em}
+}
+
+% Contador para hojas de ejercicios
+\newcounter{hoja}
+\renewcommand{\thehoja}{\arabic{hoja}}
+
+% Comando personalizado para título de hoja de ejercicios
+\newcommand{\hojaejercicio}[1]{%
+  \refstepcounter{hoja}%
+  \section*{Hoja de Ejercicios \thehoja: #1}%
+  \addcontentsline{toc}{section}{Hoja \thehoja: #1}%
+  \setcounter{ejercicio}{0}% Reiniciar contador de ejercicios para cada hoja
+}
+
+% Contador para apéndices
+\newcounter{apendice}
+\renewcommand{\theapendice}{\Alph{apendice}}
+
+% Comando personalizado para título de apéndice
+\newcommand{\apendice}[1]{%
+  \refstepcounter{apendice}%
+  \section*{Apéndice \theapendice: #1}%
+  \addcontentsline{toc}{section}{Apéndice \theapendice: #1}%
+  % Reiniciar contador de subsecciones y configurar su formato
+  \setcounter{subsection}{0}%
+  \renewcommand{\thesubsection}{\theapendice.\arabic{subsection}}%
+}
+
+% Comando para incluir un agradecimiento resaltando el nombre de la persona
+% y para que cada agradecimiento aparezca como entrada en el índice del apéndice.
+% Uso: \agradecimiento{Nombre Apellido}{Texto del agradecimiento.}
+\newcommand{\agradecimiento}[2]{%
+  % Aumentar el contador de subsección del apéndice y mostrar el título numerado
+  \refstepcounter{subsection}%
+  % Mostrar una cabecera visible con número de subsección y nombre
+  \subsection*{\thesubsection\quad #1}%
+  % Añadir entrada al índice (TOC) como subsección dentro del apéndice
+  \addcontentsline{toc}{subsection}{\thesubsection\quad #1}%
+  % Mostrar el contenido del agradecimiento dentro de un recuadro visual
+  \begin{tcolorbox}[colback=LightGray,colframe=myblue!60!black,sharp corners,boxrule=0.7pt,enhanced]
+    #2
+  \end{tcolorbox}
+}
+
+% Contador para exámenes
+\newcounter{examen}
+\renewcommand{\theexamen}{\arabic{examen}}
+
+% Comando personalizado para título de examen
+\newcommand{\examen}[1]{%
+  \refstepcounter{examen}%
+  \section*{Examen \theexamen: #1}%
+  \addcontentsline{toc}{section}{Examen \theexamen: #1}%
+  \setcounter{ejercicio}{0}% Reiniciar contador de ejercicios para cada examen
+}

@@ -1,0 +1,159 @@
+\documentclass[a4paper,11pt,final]{article}
+
+\include{Preamble/Preamble}
+\title{ASIGNATURA}
+\date{Ciencias Matemáticas, 2026}
+\author{Pau Frangi Mahiques, Diego Rodríguez Cubero y Jaime Nieto Petinal}
+
+% CC license
+\usepackage[
+    type={CC},
+    modifier={by-nc-nd},
+    version={3.0},
+]{doclicense}
+
+\begin{document}
+
+%Title Page:
+\begin{titlepage}
+    
+    \newcommand{\TopRule}{\rule{\linewidth}{0.3mm}}   % thinner
+    \newcommand{\BottomRule}{\rule{\linewidth}{0.5mm}} % thicker
+    
+    \center % Center everything on the page
+     
+    %----------------------------------------------------------------------------------------
+    %	HEADING SECTIONS
+    %----------------------------------------------------------------------------------------
+    
+    % Add some space between the top of the page and image
+    \vspace*{1cm}
+    \includegraphics[scale=.15]{images/logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+    %----------------------------------------------------------------------------------------
+    %	TITLE SECTION
+    %----------------------------------------------------------------------------------------
+    
+    \TopRule \\[0.4cm]
+    { \huge \bfseries NOMBRE ASIGNATURA \footnote{Basado en los apuntes de NOMBRE PROFESOR}}\\[0.4cm]
+    \BottomRule \\[0.5cm]    
+    \textsc{\large Ciencias Matemáticas e Ingeniería Informática}\\[0.5cm] % Minor heading such as course title
+      
+    %----------------------------------------------------------------------------------------
+    %	AUTHOR SECTION
+    %----------------------------------------------------------------------------------------
+    
+    \vspace{0.5cm}
+    \begin{minipage}{0.7\textwidth}
+    \begin{flushleft} \large
+    \emph{Autores:}\\
+    \href{https://github.com/Pau-Frangi}{Pau Frangi Mahiques}, \href{https://github.com/DIEGOROCU}{Diego Rodríguez Cubero} y \href{https://github.com/Jaimito1243}{Jaime Nieto Petinal}
+    \end{flushleft}
+    
+    \end{minipage}\\[2cm]
+    
+
+    %----------------------------------------------------------------------------------------
+    %	DATE SECTION
+    %----------------------------------------------------------------------------------------
+    
+    Primer Cuatrimestre 2025-2026\\[2cm] 
+    \vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\newpage
+
+\input{Preamble/Introduction.tex}
+\newpage
+
+% =====================================
+% TABLA DE CONTENIDOS GENERAL
+% =====================================
+\renewcommand{\contentsname}{Índice General}
+\tableofcontents
+\newpage
+
+% =====================================
+% PARTE I: TEORÍA
+% =====================================
+\part{Teoría}\label{part:teoria}
+
+% Tabla de contenidos específica para teoría
+\renewcommand{\contentsname}{Índice de Teoría}
+\etocsettocstyle{\section*{\contentsname}}{}
+\etocsettocdepth{subsection}
+\localtableofcontents{}
+\newpage
+
+% Incluir la teoría
+\input{Theory/Theory.tex}
+
+\newpage
+
+% =====================================
+% PARTE II: EJERCICIOS
+% =====================================
+\part{Ejercicios}\label{part:ejercicios}
+
+% Reiniciar contadores de secciones y ejercicios (mantener numeración de páginas continua)
+\setcounter{section}{0}
+\setcounter{ejercicio}{0}
+
+% Tabla de contenidos específica para ejercicios
+\renewcommand{\contentsname}{Índice de Ejercicios}
+\etocsettocstyle{\section*{\contentsname}}{}
+\etocsettocdepth{section}
+\localtableofcontents{}
+\newpage
+
+% Incluir las hojas de ejercicios
+\input{Exercises/Hojas.tex}
+
+\newpage
+
+% =====================================
+% PARTE III: EXÁMENES
+% =====================================
+\part{Exámenes}\label{part:examenes}
+
+% Reiniciar contadores de secciones (mantener numeración de páginas continua)
+\setcounter{section}{0}
+
+% Tabla de contenidos específica para exámenes
+\renewcommand{\contentsname}{Índice de Exámenes}
+\etocsettocstyle{\section*{\contentsname}}{}
+\etocsettocdepth{section}
+\localtableofcontents{}
+\newpage
+
+% Incluir los exámenes
+\input{Exams/Examenes Resueltos.tex}
+
+\newpage
+
+% =====================================
+% PARTE IV: APÉNDICE
+% =====================================
+\part{Apéndice}\label{part:apendice}
+
+% Reiniciar contadores de secciones (mantener numeración de páginas continua)
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+% Configurar numeración de subseccaciones para apéndices
+\renewcommand{\thesubsection}{\Alph{apendice}.\arabic{subsection}}
+
+% Tabla de contenidos específica para apéndice
+\renewcommand{\contentsname}{Índice de Apéndice}
+\etocsettocstyle{\section*{\contentsname}}{}
+\etocsettocdepth{subsection}
+\localtableofcontents{}
+\newpage
+
+% Incluir el apéndice
+\input{Appendix/Appendix.tex}
+
+% License info
+\doclicenseThis
+
+\end{document}
