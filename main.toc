@@ -3,15 +3,15 @@
 \contentsline {section}{Índice General}{2}{section*.2}%
 \contentsline {part}{I\hspace {1em}Teoría}{3}{part.1}%
 \etoc@startlocaltoc {2}
-\contentsline {section}{\numberline {1}Ejemplo titulo primer tema}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Ejemplo subtema primer tema}{4}{subsection.1.1}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{5}{part.2}%
+\contentsline {section}{\numberline {1}Matrices y sus propiedades}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Tipos de matrices}{4}{subsection.1.1}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{12}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Hoja primera}{6}{section*.5}%
-\contentsline {part}{III\hspace {1em}Exámenes}{7}{part.3}%
+\contentsline {section}{Hoja 1: Hoja primera}{13}{section*.5}%
+\contentsline {part}{III\hspace {1em}Exámenes}{14}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{8}{section*.7}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{9}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{15}{section*.7}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{16}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Agradecimientos}{10}{section*.9}%
-\contentsline {subsection}{A.1\hskip 1em\relax Varios compañeros}{10}{section*.10}%
+\contentsline {section}{Apéndice A: Agradecimientos}{17}{section*.9}%
+\contentsline {subsection}{A.1\hskip 1em\relax Varios compañeros}{17}{section*.10}%

@@ -1,0 +1,329 @@
+\section{Matrices y sus propiedades}
+\subsection{Tipos de matrices}
+
+Veamos algunos tipos de matrices que nos encontraremos a lo largo del curso:
+\begin{definición}[Matrices introductorias]
+    \begin{itemize}
+        \item \textbf{Matriz fila:} Una matriz que tiene una sola fila. Por ejemplo, la matriz \( A = [a_1, a_2, a_3] \) es una matriz fila de tamaño \( 1 \times 3 \).
+        \item \textbf{Matriz columna:} Una matriz que tiene una sola columna. Por ejemplo, la matriz \( B = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} \) es una matriz columna de tamaño \( 3 \times 1 \).
+        \item \textbf{Matriz cuadrada:} Una matriz que tiene el mismo número de filas y columnas. Por ejemplo, la matriz \( C = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \end{bmatrix} \) es una matriz cuadrada de tamaño \( 2 \times 2 \).
+        \item \textbf{Matriz diagonal:} Una matriz cuadrada en la que todos los elementos fuera de la diagonal principal son cero. Por ejemplo, la matriz \( D = \begin{bmatrix} d_{11} & 0 \\ 0 & d_{22} \end{bmatrix} \) es una matriz diagonal.
+        \item \textbf{Matriz identidad:} Una matriz diagonal en la que todos los elementos de la diagonal principal son uno. Por ejemplo, la matriz \( I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \) es una matriz identidad de tamaño \( 2 \times 2 \).
+        \item \textbf{Matriz nula:} Una matriz en la que todos los elementos son cero. Por ejemplo, la matriz \( O = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \) es una matriz nula de tamaño \( 2 \times 2 \).
+        \item \textbf{Matriz transpuesta:} La matriz obtenida al intercambiar las filas por las columnas de una matriz dada. Si \( A \) es una matriz de tamaño \( m \times n \), su transpuesta \( A^T \) será de tamaño \( n \times m \). Por ejemplo, si \( A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \), entonces su transpuesta es \( A^T = \begin{bmatrix} a_{11} & a_{21} \\ a_{12} & a_{22} \end{bmatrix} \).
+        \item \textbf{Matriz simétrica:} Una matriz cuadrada que es igual a su transpuesta. Es decir, \( A = A^T \). Por ejemplo, la matriz \( S = \begin{bmatrix} s_{11} & s_{12} \\ s_{12} & s_{22} \end{bmatrix} \) es simétrica.
+        \item \textbf{Matriz antisimétrica:} Una matriz cuadrada que es igual a la negativa de su transpuesta. Es decir, \( A = -A^T \). Por ejemplo, la matriz \( T = \begin{bmatrix} 0 & t_{12} \\ -t_{12} & 0 \end{bmatrix} \) es antisimétrica.
+        \item \textbf{Matriz triangular:} Una matriz cuadrada que tiene todos los elementos por encima (o por debajo) de la diagonal principal iguales a cero. Si los elementos por debajo de la diagonal son cero, se llama matriz triangular superior; si los elementos por encima son cero, se llama matriz triangular inferior. Por ejemplo, la matriz \( U = \begin{bmatrix} u_{11} & u_{12} \\ 0 & u_{22} \end{bmatrix} \) es triangular superior.
+        \item \textbf{Matriz ortogonal:} Una matriz cuadrada \( Q \) es ortogonal si su transpuesta es igual a su inversa, es decir, \( Q^T = Q^{-1} \). Esto implica que \( Q Q^T = Q^T Q = I \), donde \( I \) es la matriz identidad. Tambien se caracteriza porque sus columnas (y filas) forman un conjunto ortonormal en el espacio euclídeo. Por ejemplo, la matriz \( Q = \begin{bmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix} \) es ortogonal.
+        \item \textbf{Traspuesto conjugado:} Denotado como \( A^* \), es la matriz obtenida al tomar la transpuesta de una matriz y luego tomar el conjugado complejo de cada uno de sus elementos. Por ejemplo, si \( A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \), entonces su traspuesto conjugado es \( A^* = \begin{bmatrix} \overline{a_{11}} & \overline{a_{21}} \\ \overline{a_{12}} & \overline{a_{22}} \end{bmatrix} \), donde \( \overline{a_{ij}} \) denota el conjugado complejo de \( a_{ij} \).
+        \item \textbf{Matriz definida positiva/negativa:} Una matriz cuadrada \( A \) es definida positiva si para cualquier vector no nulo \( x \), se cumple que \( x^T A x > 0 \). De manera similar, \( A \) es definida negativa si para cualquier vector no nulo \( x \), se cumple que \( x^T A x < 0 \).
+        \item \textbf{Matriz semidefinida positiva/negativa:} Una matriz cuadrada \( A \) es semidefinida positiva si para cualquier vector \( x \), se cumple que \( x^T A x \geq 0 \). De manera similar, \( A \) es semidefinida negativa si para cualquier vector \( x \), se cumple que \( x^T A x \leq 0 \).
+        \item \textbf{Matriz indefinida:} Una matriz cuadrada \( A \) es indefinida si existen vectores \( x \) y \( y \) tales que \( x^T A x > 0 \) y \( y^T A y < 0 \).
+    \end{itemize}
+\end{definición}
+
+Ahora definamos algunos tipos de matrices más avanzados:
+\begin{definición}[Matriz hermitiana]
+    Una matriz cuadrada \( A \) es hermitiana si es igual a su traspuesto conjugado, es decir, \( A = A^* \).\\
+    En el caso de matrices con entradas reales, una matriz hermitiana es simplemente una matriz simétrica, es decir:
+    \[
+        A \in \mathbb{R}^{n \times n} \text{ es hermitiana } \iff A = A^T
+    \]
+\end{definición}
+
+Veamos un par de ejemplos de matrices hermitianas:
+\ejemplo{
+    \begin{itemize}
+        \item La matriz \( A = \begin{bmatrix} 2 & 3 + i \\ 3 - i & 4 \end{bmatrix} \) es hermitiana, ya que su traspuesto conjugado es \( A^* = \begin{bmatrix} 2 & 3 - i \\ 3 + i & 4 \end{bmatrix} \), que es igual a \( A \).
+        \item La matriz \( B = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix} \) es hermitiana, ya que su traspuesto conjugado es \( B^* = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix} \), que es igual a \( B \).
+    \end{itemize}
+}
+    
+\begin{definición}[Matriz unitaria]
+    Una matriz cuadrada \( U \) es unitaria si su traspuesto conjugado es igual a su inversa, es decir, \( U^* = U^{-1} \). Esto implica que \( U U^* = U^* U = I \), donde \( I \) es la matriz identidad.
+\end{definición}
+
+Veamos un par de ejemplos de matrices unitarias:
+\ejemplo{
+    \begin{itemize}
+        \item La matriz \( U = \begin{bmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix} \) es unitaria, ya que su traspuesto conjugado es \( U^* = \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix} \), y se cumple que \( U U^* = I \).
+        \item La matriz \( V = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \) es unitaria, ya que su traspuesto conjugado es \( V^* = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \), y se cumple que \( V V^* = I \).
+    \end{itemize}
+}
+
+\begin{observación}
+    Se puede apreciar que si $U$ es una matriz unitaria compleja:
+    \[
+        U^* = U^{-1} \implies 
+        U^* U = I \implies
+        U^* U =
+        \begin{pmatrix}
+            u_1^* \\
+            \vdots \\
+            u_n^* \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            u_1 & \dots & u_n \\
+        \end{pmatrix} =
+        \begin{pmatrix}
+            u_1^* u_1 & \dots & u_1^* u_n \\
+            \vdots & \ddots & \vdots \\
+            u_n^* u_1 & \dots & u_n^* u_n
+        \end{pmatrix} =
+        \begin{pmatrix}
+            1 & \dots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \dots & 1
+        \end{pmatrix}
+    \]
+    De lo cual se deduce que los vectores columna de $U$ forman un conjunto ortonormal en el espacio complejo, es decir, $u_i^* u_j = \delta_{ij}$, ya que el producto $u_i^* u_j$ representa el producto interno entre los vectores $u_i$ y $u_j$ en el espacio complejo, y hemos visto que $u_i^* u_j = 0$ si $i \neq j$ y $u_i^* u_i = ||u_i||^2 = 1$.
+\end{observación}
+
+\begin{definición}[Matriz normal]
+    Una matriz cuadrada \( A \) es normal si conmuta con su traspuesto conjugado, es decir, si se cumple que \( A A^* = A^* A \).
+\end{definición}
+
+Veamos un par de ejemplos de matrices normales:
+\ejemplo{
+    \begin{itemize}
+        \item La matriz \( A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix} \) es normal, ya que su traspuesto conjugado es \( A^* = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix} \), y se cumple que \( A A^* = A^* A = \begin{bmatrix} 4 & 0 \\ 0 & 9 \end{bmatrix} \).
+        \item La matriz \( B = \begin{bmatrix} 1 & i \\ -i & 1 \end{bmatrix} \) es normal, ya que su traspuesto conjugado es \( B^* = \begin{bmatrix} 1 & i \\ -i & 1 \end{bmatrix} \), y se cumple que \( B B^* = B^* B = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} \).
+    \end{itemize}
+}
+
+\begin{observación}
+    Notese que si $A$ es hermitiana, entonces $A = A^*$, por lo que:
+    \[
+        A A^* = A A = A^2 = A^* A
+    \]
+    Por lo tanto, toda matriz hermitiana es normal.\\
+    Algo similar ocurre con las matrices unitarias, ya que si $U$ es unitaria, entonces $U^* = U^{-1}$, por lo que:
+    \[
+        U U^* = U U^{-1} = I = U^{-1} U = U^* U
+    \]
+    Por lo tanto, toda matriz unitaria es normal.
+\end{observación}
+
+\begin{proposición}[Porducto de matrices triangulares]
+    Sean $A, B \in \mathbb{C}^{n \times n}$ dos matrices triangulares inferiores (superiores). Entonces, el producto \( C = AB \) es también una matriz triangular inferior (superior).
+\end{proposición}
+
+\begin{proof}
+    Podemos aplicar una induccion sencilla sobre el tamaño de las matrices.\\
+    \textbf{Caso base:} Para \( n = 1 \), las matrices son simplemente escalares, y el producto de dos escalares es un escalar, que puede considerarse como una matriz triangular inferior (superior) trivialmente.\\
+    \textbf{Paso inductivo:} Supongamos que la proposición es cierta para matrices de tamaño \( (n-1) \times (n-1) \). Consideremos dos matrices triangulares inferiores \( A, B \in \mathbb{C}^{n \times n} \):
+    \[
+    A =
+    \begin{array}{c|c}
+        a_11 & 0 \\
+        \hline
+        \alpha & A_{(n-1)}
+    \end{array}
+    , \quad
+    B =
+    \begin{array}{c|c}
+        b_11 & 0 \\
+        \hline
+        \beta & B_{(n-1)}
+    \end{array}
+    \]
+    Y su producto:
+    \[
+    C = AB =
+    \begin{array}{c|c}
+        a_{11} b_{11} & 0 \\
+        \hline
+        \alpha b_{11} + A_{(n-1)} \beta & A_{(n-1)} B_{(n-1)}
+    \end{array}
+    \]
+    Por la hipótesis inductiva, \( A_{(n-1)} B_{(n-1)} \) es una matriz triangular inferior de tamaño \( (n-1) \times (n-1) \). Además, el elemento en la posición \( (n, 1) \) de \( C \) es \( \alpha b_{11} + A_{(n-1)} \beta \), que es un vector columna. Por lo tanto, todos los elementos por encima de la diagonal principal de \( C \) son cero, lo que demuestra que \( C \) es una matriz triangular inferior.\\
+    Por lo tanto, por el principio de inducción matemática, la proposición es cierta para todas las matrices triangulares inferiores (superiores) de tamaño \( n \times n \).
+\end{proof}
+
+\begin{definición}[Matriz banda]
+    Se define una matriz banda como una matriz cuadrada en la que los elementos no nulos se encuentran dentro de una franja diagonal alrededor de la diagonal principal. Esta franja está determinada por dos enteros no negativos \( k_1 \) y \( k_2 \), que representan el número de subdiagonales y superdiagonales, respectivamente. Formalmente, una matriz \( A \in \mathbb{R}^{n \times n} \) es una matriz banda si:
+    \[
+        a_{ij} = 0 \quad \text{si } |i - j| > k
+    \]
+    donde \( k = \max(k_1, k_2) \).\\
+\end{definición}
+
+Veamos un par de ejemplos de matrices banda:
+\ejemplo{
+    \begin{itemize}
+        \item Una matriz tridiagonal es una matriz banda con \( k_1 = k_2 = 1 \). Por ejemplo, la matriz \( A = \begin{bmatrix} a_{11} & a_{12} & 0 & 0 \\ a_{21} & a_{22} & a_{23} & 0 \\ 0 & a_{32} & a_{33} & a_{34} \\ 0 & 0 & a_{43} & a_{44} \end{bmatrix} \) es tridiagonal.
+        \item Una matriz pentadiagonal es una matriz banda con \( k_1 = k_2 = 2 \). Por ejemplo, la matriz \( B = \begin{bmatrix} b_{11} & b_{12} & b_{13} & 0 & 0 \\ b_{21} & b_{22} & b_{23} & b_{24} & 0 \\ b_{31} & b_{32} & b_{33} & b_{34} & b_{35} \\ 0 & b_{42} & b_{43} & b_{44} & b_{45} \\ 0 & 0 & b_{53} & b_{54} & b_{55} \end{bmatrix} \) es pentadiagonal.
+    \end{itemize}
+}
+
+\begin{definición}[Matriz de diagonal estrictamente dominante]
+    Una matriz cuadrada \( A = [a_{ij}] \in \mathbb{R}^{n \times n} \) se dice que es de diagonal estrictamente dominante si para cada fila \( i \) se cumple que:
+    \[
+        |a_{ii}| > \sum_{\substack{j=1 \\ j \neq i}}^{n} |a_{ij}|
+    \]
+    Es decir, el valor absoluto del elemento en la diagonal principal de cada fila es mayor que la suma de los valores absolutos de los demás elementos en esa fila.
+\end{definición}
+
+Veamos un par de ejemplos de matrices de diagonal estrictamente dominante:
+\ejemplo{
+    \begin{itemize}
+        \item La matriz \( A = \begin{bmatrix} 4 & 1 & 2 \\ 3 & 5 & 1 \\ 1 & 1 & 6 \end{bmatrix} \) es de diagonal estrictamente dominante, ya que:
+        \[
+            |4| > |1| + |2|, \quad |5| > |3| + |1|, \quad |6| > |1| + |1|
+        \]
+        \item La matriz \( B = \begin{bmatrix} 10 & 2 & 1 \\ 1 & 8 & 2 \\ 2 & 1 & 9 \end{bmatrix} \) es de diagonal estrictamente dominante, ya que:
+        \[
+            |10| > |2| + |1|, \quad |8| > |1| + |2|, \quad |9| > |2| + |1|
+        \]
+    \end{itemize}
+}
+
+\begin{definición}[Traza de una matriz]
+    La traza de una matriz cuadrada \( A = [a_{ij}] \in \mathbb{R}^{n \times n} \) se define como la suma de los elementos en la diagonal principal de la matriz. Matemáticamente, se expresa como:
+    \[
+        \text{tr}(A) = \sum_{i=1}^{n} a_{ii}
+    \]
+    donde \( a_{ii} \) son los elementos en la diagonal principal de la matriz \( A \).    
+\end{definición}
+
+Veamos un par de ejemplos de cálculo de la traza de una matriz:
+\ejemplo{
+    \begin{itemize}
+        \item Para la matriz \( A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} \), la traza es:
+        \[
+            \text{tr}(A) = 1 + 5 + 9 = 15
+        \]
+        \item Para la matriz \( B = \begin{bmatrix} 2 & 0 & 1 \\ 0 & 3 & 4 \\ 5 & 6 & 7 \end{bmatrix} \), la traza es:
+        \[
+            \text{tr}(B) = 2 + 3 + 7 = 12
+        \]
+    \end{itemize}
+}
+
+\begin{proposición}[Propiedades de la traza]
+    Veamos algunas propiedades importantes de la traza de una matriz:
+    \begin{itemize}
+        \item \textbf{Linealidad:} La traza es una función lineal, es decir, para dos matrices cuadradas \( A \) y \( B \) del mismo tamaño y un escalar \( c \), se cumple que:
+        \[
+            \text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)
+        \]
+        \[
+            \text{tr}(cA) = c \cdot \text{tr}(A)
+        \]
+        \item \textbf{Invarianza bajo trasposición:} La traza de una matriz es igual a la traza de su transpuesta:
+        \[
+            \text{tr}(A) = \text{tr}(A^T)
+        \]
+        \item \textbf{Invarianza bajo conjugación:} La traza de una matriz es igual a la traza de su traspuesto conjugado:
+        \[
+            \text{tr}(\overline{A}) = \text{tr}(A^*)
+        \]
+        \item \textbf{Cyclicidad:} La traza del producto de dos matrices es invariante bajo el cambio de orden:
+        \[
+            \text{tr}(AB) = \text{tr}(BA)
+        \]
+    \end{itemize}
+    Las propiedades anteriores se prueban directamente a partir de la definición de traza y las propiedades básicas de las operaciones matriciales, veamos solo la ultima:
+    \[
+        C = AB \implies
+        c_{ii} = \sum_{k=1}^{n} a_{ik} b_{ki} \implies
+        \text{tr}(C) = \sum_{i=1}^{n} c_{ii} = 
+        \sum_{i=1}^{n} \sum_{k=1}^{n} a_{ik} b_{ki}
+    \]
+    \[
+        D = BA \implies
+        d_{ii} = \sum_{k=1}^{n} b_{ik} a_{ki} \implies
+        \text{tr}(D) = \sum_{i=1}^{n} d_{ii} = 
+        \sum_{i=1}^{n} \sum_{k=1}^{n} b_{ik} a_{ki}
+    \]
+    Cambiando el orden de las sumas en ambos casos, se llega a la igualdad:
+    \[
+        \text{tr}(C) = \text{tr}(D)
+    \]
+\end{proposición}
+
+\begin{definición}[Determinante]
+    El determinante de una matriz cuadrada \( A \in \mathbb{R}^{n \times n} \) es un valor escalar que se asocia a la matriz y que proporciona información sobre ciertas propiedades de la misma, como su invertibilidad y el volumen de transformación lineal que representa. El determinante se denota como \( \det(A) \) o \( |A| \), y se calcula como:
+    \[
+        \det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^{n} a_{i, \sigma(i)}
+    \]
+    donde \( S_n \) es el conjunto de todas las permutaciones de los números \( 1, 2, \ldots, n \), y \( \text{sgn}(\sigma) \) es el signo de la permutación \( \sigma \).
+\end{definición}
+
+\begin{proposición}[Propiedades del determinante]
+    Veamos algunas propiedades importantes del determinante de una matriz:
+    \begin{itemize}
+        \item \textbf{Multiplicatividad:} El determinante del producto de dos matrices es igual al producto de sus determinantes:
+        \[
+            \det(AB) = \det(A) \cdot \det(B)
+        \]
+        \item \textbf{Determinante de matrices diagonales:} El determinante de una matriz diagonal es igual al producto de los elementos en la diagonal principal:
+        \[
+            \det(D) = \prod_{i=1}^{n} d_{ii}
+        \]
+        \item \textbf{Transposición:} El determinante de una matriz es igual al determinante de su transpuesta:
+        \[
+            \det(A) = \det(A^T)
+        \]
+        \item \textbf{Escalar:} Si \( c \) es un escalar y \( A \) es una matriz cuadrada de tamaño \( n \times n \), entonces:
+        \[
+            \det(cA) = c^n \cdot \det(A)
+        \]
+        \item \textbf{Inversión:} Si \( A \) es una matriz invertible, entonces:
+        \[
+            \det(A^{-1}) = \frac{1}{\det(A)}
+        \]
+    \end{itemize}
+    Todas estas propiedades se pueden demostrar utilizando la definición del determinante y las propiedades básicas de las operaciones matriciales.
+\end{proposición}
+
+\begin{proposición}[Determinante de una matriz unitaria]
+    Sea \( U \in \mathbb{C}^{n \times n} \) una matriz unitaria. Entonces, el valor absoluto de su determinante es igual a 1, es decir:
+    \[
+        |\det(U)| = 1
+    \]
+\end{proposición}
+
+\begin{proof}
+    Sea \( U \) una matriz unitaria, por definición, se cumple que \( U^* = U^{-1} \). Aplicando la propiedad de multiplicatividad del determinante, tenemos:
+    \[
+    U U^* = I \implies
+    \det(U U^*) = \det(I) = 1 \implies 
+    \det(U) \cdot \det(U^*) =
+    \det(U) \cdot \overline{\det(U)} =
+    |\det(U)|^2 = 1
+    \]
+    De donde se deduce que:
+    \[
+        |\det(U)| = 1
+    \]
+\end{proof}
+
+\begin{teorema}[Caracterización de las matrices invertibles]
+    Sea \( A \in \mathbb{R}^{n \times n} \) una matriz cuadrada. Entonces, las siguientes afirmaciones son equivalentes:
+    \begin{enumerate}
+        \item \( A \) es invertible, es decir $\exists A^{-1}$ tal que \( AA^{-1} = A^{-1}A = I \).
+        \item El determinante de \( A \) es diferente de cero, es decir, \( \det(A) \neq 0 \).
+        \item El espectro de \( A \) no contiene el valor cero, es decir, \( 0 \notin \sigma(A) \).
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    Veamos las implicaciones:
+    \begin{itemize}
+        \item[$2) \iff 3)$] Sabemos que el espectro de una matriz \( A \) está dado por los valores propios de la matriz, que son las soluciones de la ecuación característica \( \det(A - \lambda I) = 0 \). Si \( 0 \in \sigma(A) \), entonces existe un valor propio \( \lambda = 0 \) tal que \( \det(A - 0 \cdot I) = \det(A) = 0 \). Por lo tanto, si \( \det(A) \neq 0 \), entonces \( 0 \notin \sigma(A) \), y viceversa.
+        \item[$1) \implies 2)$] Si \( A \) es invertible, entonces existe una matriz \( A^{-1} \) tal que \( AA^{-1} = I \). Aplicando la propiedad de multiplicatividad del determinante, tenemos:
+        \[
+            \det(AA^{-1}) = \det(I) = 1 \implies
+            \det(A) \cdot \det(A^{-1}) = 1 \implies
+            \det(A) = (\det(A^{-1}))^{-1} \neq 0
+        \]
+        De donde se deduce que \( \det(A) \neq 0 \).
+        \item[$2) \implies 1)$] Si \( \det(A) \neq 0 \), entonces la ecuación característica \( \det(A - \lambda I) = 0 \) no tiene \( \lambda = 0 \) como solución, lo que implica que \( A \) no tiene un núcleo no trivial. Por lo tanto, la transformación lineal asociada a \( A \) es inyectiva y, dado que \( A \) es cuadrada, también es sobreyectiva. Por el teorema de la inversa, esto implica que \( A \) es invertible.\\
+        Otra forma de demostrarlo es utilizando la descomposición LU o la eliminación de Gauss. Si \( \det(A) \neq 0 \), entonces \( A \) puede ser reducida a la matriz identidad mediante operaciones elementales, es decir, $\exists E_1, E_2, \dots, E_k$ matrices elementales tales que:
+        \[
+            A E =
+            A E_1 E_2 \dots E_k = I
+        \]
+    \end{itemize}
+\end{proof}
