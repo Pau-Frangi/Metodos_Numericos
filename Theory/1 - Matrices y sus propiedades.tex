@@ -325,5 +325,144 @@ Veamos un par de ejemplos de cálculo de la traza de una matriz:
             A E =
             A E_1 E_2 \dots E_k = I
         \]
+        Donde \( E = E_1 E_2 \dots E_k \) es una matriz invertible, ya que es el producto de matrices elementales. Por lo tanto, podemos escribir:
+        \[
+            A = E^{-1} I = E^{-1}
+        \]
+        Y se deduce que \( A \) es invertible, con \( A^{-1} = E \).
     \end{itemize}
 \end{proof}
+
+Veamos ahora varias propiedades interesantes del calculo de determinantes.
+
+\begin{corolario}[Determinante de una matriz triangular]
+    El determinante de una matriz triangular (superior o inferior) es igual al producto de los elementos en la diagonal principal. Es decir, si$( A $ es una matriz triangular, entonces:
+    \[
+        \det(A) = \prod_{i=1}^{n} a_{ii}
+    \]
+    Esto se da ya que si en una permutacion tenemos un elemento fuera de la diagonal principal, entonces el producto de los elementos correspondientes a esa permutacion sera cero, ya que si el elemento esta por debajo de la diagonal principal (en una triangular superior) o por encima de la diagonal principal (en una triangular inferior), entonces ese elemento es cero, lo que hace que el producto de los elementos correspondientes a esa permutacion sea cero, esta en el otro lado de la diagonal, debe haber un elemento fuera de la diagonal principal, lo que hace que el producto de los elementos correspondientes a esa permutacion sea cero, y asi sucesivamente para todas las permutaciones que tengan un elemento fuera de la diagonal principal, lo que hace que el unico producto no nulo sea el producto de los elementos en la diagonal principal, que corresponde a la permutacion identidad.
+\end{corolario}
+
+\begin{corolario}
+    Sea $M = \left( \begin{array}{c|c} A & 0 \\ \hline 0 & B \end{array} \right)$ una matriz con "solo 2 esquinas", entonces ocurre lo siguiente:
+    \[
+        \det(M) =
+        \begin{array}{|c|c|}
+            A & 0 \\
+            \hline
+            0 & B
+        \end{array} =
+        \begin{array}{|c|c|}
+            A & 0 \\
+            \hline
+            0 & I
+        \end{array}
+        \cdot
+        \begin{array}{|c|c|}
+            I & 0 \\
+            \hline
+            0 & B
+        \end{array} =
+        \det(A) \cdot \det(B)
+    \]
+\end{corolario}
+
+\begin{corolario}
+    Sea $M = \left( \begin{array}{c|c} A & C \\ \hline 0 & B \end{array} \right)$ una matriz con "solo 3 esquinas", entonces ocurre lo siguiente:
+    \[
+        \begin{array}{|c|c|}
+            I & \Gamma \\
+            \hline
+            0 & I
+        \end{array}
+        \cdot
+        \begin{array}{|c|c|}
+            A & C \\
+            \hline
+            0 & B
+        \end{array} =
+        \begin{array}{|c|c|}
+            A & C + \Gamma B \\
+            \hline
+            0 & B
+        \end{array}
+    \]
+    Ahora si tomamos $\Gamma = -CB^{-1}$, entonces:
+    \[
+        \begin{array}{|c|c|}
+            I & -CB^{-1} \\
+            \hline
+            0 & I
+        \end{array}
+        \cdot
+        \begin{array}{|c|c|}
+            A & C \\
+            \hline
+            0 & B
+        \end{array} =
+        \begin{array}{|c|c|}
+            A & 0 \\
+            \hline
+            0 & B
+        \end{array}
+    \]
+    Esto lo podemos hacer ya que si $B$ no es invertible, entonces habria una combinación lineal de las filas de $B$ que daria como resultado la fila nula, la cual al replicarse en la esquina inferior derecha de $M$ haria que $M$ no sea invertible, lo que implicaria que $\det(M) = 0$, y por lo tanto, $\det(A) \cdot \det(B) = 0$, lo que implica que $\det(B) = 0$.\\
+    Por lo tanto, si $B$ es invertible, entonces podemos realizar la operación anterior para obtener una matriz con "solo 2 esquinas", y aplicar el resultado del corolario anterior para concluir que:
+    \[
+        \det(M) = \det(A) \cdot \det(B)
+    \]
+    Ya que el primer determinante $\begin{array}{|c|c|}
+            I & \Gamma \\
+            \hline
+            0 & I
+        \end{array} $ es igual a 1, por ser una matriz triangular superior con 1's en la diagonal principal.
+\end{corolario}
+
+\subsection{Autovalores y autovectores}
+
+Para definir los autovalores y autovectores de una matriz, primero necesitamos definir el concepto de espectro de una matriz, y el polinomio característico de una matriz.\\
+
+\begin{definición}[Espectro de una matriz]
+    El espectro de una matriz cuadrada $ A \in \mathbb{R}^{n \times n} $ es el conjunto de todos los valores propios de la matriz, es decir, el conjunto de todos los escalares $ \lambda $ para los cuales existe un vector no nulo $ v $ tal que:
+    \[
+        Av = \lambda v
+    \]
+    El espectro se denota como $\sigma(A) = sp(A)$.
+\end{definición}
+
+\begin{definición}[Polinomio característico de una matriz]
+    El polinomio característico de una matriz cuadrada $ A \in \mathbb{R}^{n \times n} $ es un polinomio en la variable $ \lambda $ definido como:
+    \[
+        p_A(\lambda) = \det(A - \lambda I)
+    \]
+    donde $ I $ es la matriz identidad de tamaño $ n \times n $.\\
+    Los valores propios de la matriz $ A $ son las raíces del polinomio característico, es decir, los valores de $ \lambda $ para los cuales $ p_A(\lambda) = 0 $.
+\end{definición}
+
+Ahora sí, podemos definir formalmente los autovalores y autovectores de una matriz:
+
+\begin{definición}[Autovalores y autovectores de una matriz]
+    Dada una matriz cuadrada $ A \in \mathbb{R}^{n \times n} $, un escalar $ \lambda $ se llama autovalor de $ A $ si existe un vector no nulo $ v \in \mathbb{R}^n $ tal que:
+    \[
+        Av = \lambda v
+    \]
+    En este caso, el vector $ v $ se llama autovector asociado al autovalor $ \lambda $.\\
+    El conjunto de todos los autovectores asociados a un autovalor $ \lambda $ forma un subespacio vectorial llamado espacio propio o eigenspace correspondiente a $ \lambda $. Este espacio se denota como $ E_\lambda = \{ v \in \mathbb{R}^n : Av = \lambda v \} $.
+\end{definición}
+
+Notese que a los autovalores también se les conoce como valores propios, y a los autovectores como vectores propios.\\
+
+Una forma de calcular los autovalores de una matriz es utilizando el polinomio característico, ya que los autovalores son las raíces de dicho polinomio. Para calcular los autovectores asociados a un autovalor $ \lambda $, se puede resolver el sistema de ecuaciones lineales dado por:
+\[
+    (A - \lambda I)v = 0
+\]
+que corresponde a encontrar el núcleo de la matriz $ A - \lambda I $. El espacio propio $ E_\lambda $ es precisamente el núcleo de esta matriz, y sus elementos son los autovectores asociados al autovalor $ \lambda $.\\
+
+Notese también que el espectro es el conjunto de autovalores, y que cada autovalor puede tener uno o más autovectores asociados, dependiendo de su multiplicidad algebraica y geométrica.
+
+\begin{definición}[Multiplicidad algebraica y geométrica de un autovalor]
+    Dado un autovalor $ \lambda $ de una matriz $ A \in \mathbb{R}^{n \times n} $, se define la multiplicidad algebraica de $ \lambda $ como el número de veces que $ \lambda $ aparece como raíz del polinomio característico $ p_A(\lambda) $.\\
+    Por otro lado, la multiplicidad geométrica de $ \lambda $ se define como la dimensión del espacio propio $ E_\lambda $, es decir, el número máximo de autovectores linealmente independientes asociados al autovalor $ \lambda $.\\
+    Es importante destacar que la multiplicidad geométrica de un autovalor siempre es menor o igual a su multiplicidad algebraica.
+\end{definición}
+
