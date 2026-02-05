@@ -242,6 +242,14 @@ Veamos un par de ejemplos de cálculo de la traza de una matriz:
     \]
 \end{proposición}
 
+\begin{definición}[Rango de una matriz]
+    El rango de una matriz \( A \in \mathbb{R}^{m \times n} \) es el número máximo de columnas linealmente independientes que tiene la matriz. Se denota como \( \text{rg}(A) \). El rango también puede ser interpretado como la dimensión del espacio generado por las columnas de la matriz, o como el número de filas no nulas en la forma escalonada reducida por filas de la matriz.
+\end{definición}
+
+\begin{observación}
+    Notese que el rango de una matriz \( A \) es igual al rango de su transpuesta \( A^T \), es decir, \( \text{rg}(A) = \text{rg}(A^T) \). Esto se debe a que el número de columnas linealmente independientes en \( A \) es igual al número de filas linealmente independientes en \( A^T \), ya que las filas de \( A^T \) corresponden a las columnas de \( A \).
+\end{observación}
+
 \begin{definición}[Determinante]
     El determinante de una matriz cuadrada \( A \in \mathbb{R}^{n \times n} \) es un valor escalar que se asocia a la matriz y que proporciona información sobre ciertas propiedades de la misma, como su invertibilidad y el volumen de transformación lineal que representa. El determinante se denota como \( \det(A) \) o \( |A| \), y se calcula como:
     \[
@@ -540,5 +548,106 @@ Veamos ahora como el espectro de una matriz se traslada al de sus potencias.
     \]
 \end{proof}
 
-PONER TEOREMA QUE FALTA AQUI
+\subsection{Teoremas importantes}
 
+\begin{teorema}[Descomposición QR]
+    Sea $A \in \mathbb{K}^{m \times n}$ una matriz de rango máximo.\\
+    Entonces existen una matriz unitaria (ortogonal) $Q \in \mathbb{K}^{m \times m}$ y una matriz triangular superior $R \in \mathbb{K}^{m \times n}$ tal que:
+    \[
+        A = QR \underbrace{\iff}_{Q^{-1} = Q^*}
+        Q^* A = R
+    \]
+\end{teorema}
+
+Antes de la demostración, conviene definir el operador de proyección ortogonal de un vector sobre otro.
+
+\begin{definición}[Proyección ortogonal de un vector sobre otro]
+    Dados dos vectores $ u, a \in \mathbb{K}^n $, la proyección ortogonal de $ a $ sobre $ u $ se define como el vector:
+    \[
+        \begin{array}{rccl}
+            p : & \mathbb{K}^n \times \mathbb{K}^n & \to & \mathbb{K}^n \\
+            & (u, a) & \mapsto & p(u, a) = 
+            \frac{\langle u, a \rangle}{\|u\|^2} u =
+            \langle \frac{u}{\|u\|}, a \rangle \frac{u}{\|u\|}
+        \end{array}
+    \]
+    Teniendo en cuenta que:
+    \[
+        \langle u, a \rangle = u^* a = a^* u
+    \]
+    \[
+        \|u\|^2 = \langle u, u \rangle = u^* u
+    \]
+\end{definición}
+
+\begin{proof}
+    Vamos a realizar una demostración constructiva utilizando el proceso de Gram-Schmidt para ortogonalizar las columnas de la matriz $ A $, es decir, queremos contruir una base ortogonal tal que $Q = (q_1, q_2, \dots, q_n)$, y para ello haremos lo siguiente:\\
+    Iremos tomando vectores $u_i$ que sean ortogonales entre sí, y luego los normalizaremos para obtener los vectores $q_i$ que formarán la matriz unitaria $Q$.\\
+    Para el primer vector, tomamos $ u_1 = a_1 $, donde $a_1$ es la primera columna de $A$. Luego, normalizamos $u_1$ para obtener $ q_1 = \frac{u_1}{\|u_1\|} $.\\
+    Ahora para obtener el segundo vector, tomamos $ u_2 = a_2 - p(u_1, a_2) $, donde $ p(u_1, a_2) $ es la proyección ortogonal de $ a_2 $ sobre $ u_1 $. Luego, normalizamos $ u_2 $ para obtener $ q_2 = \frac{u_2}{\|u_2\|} $.\\
+    Para el tercer vector, tomamos $ u_3 = a_3 - p(u_1, a_3) - p(u_2, a_3) $, donde $ p(u_1, a_3) $ y $ p(u_2, a_3) $ son las proyecciones ortogonales de $ a_3 $ sobre $ u_1 $ y $ u_2 $, respectivamente. Luego, normalizamos $ u_3 $ para obtener $ q_3 = \frac{u_3}{\|u_3\|} $.\\
+    Continuando de esta manera, para el $ k $-ésimo vector, tomamos:
+    \[
+        u_k = a_k - \sum_{j=1}^{k-1} p(u_j, a_k)
+    \]
+    Luego, normalizamos $ u_k $ para obtener $ q_k = \frac{u_k}{\|u_k\|} $.\\
+    De esta forma, obtenemos una base ortonormal $ Q = (q_1, q_2, \dots, q_n) $ que forma una matriz unitaria.\\
+    Todo esto se puede entender geometricamente como ir proyectando cada columna de $ A $ sobre el espacio generado por las columnas anteriores, quitandole la parte que esta en ese espacio, y luego normalizando el resultado para obtener un vector unitario, vease el siguiente dibujo:
+    \begin{center}
+        \begin{tikzpicture}
+            % Coordenadas
+            % Inicial
+            \coordinate (O) at (0, 0);
+            % Final de q_1
+            \coordinate (Q1) at (3, 1);
+            % Final de a
+            \coordinate (A) at (1, 2);
+
+            % Dibujo de los vectores
+            \draw[->, thick, red] (O) -- (Q1) node[below] {$q_1$};
+            \draw[->, thick, blue] (O) -- (A) node[midway, above] {$a$};
+            % Proyección de a sobre u
+            \coordinate (P) at ($(Q1)!(A)!(O)$);
+            \draw[->, thick, dashed] (O) -- (P) node[below] {$p(q_1, a)$};
+            % Vector resultante de u_2
+            \draw[->, thick, dotted, orange] (P) -- (A) node[midway, above] {$u_2$};
+        \end{tikzpicture}
+    \end{center}
+    Así, hemos construido la matriz unitaria $ Q $ a partir de las columnas de $ A $, ya que los vectores $ q_i $ son ortonormales y forman una base del espacio generado por las columnas de $ A $, es decir, de $\mathbb{K}^n$.\\
+    Gracias a esta construcción, podemos definir la matriz triangular superior $ R $ como:
+    \[
+        R = Q^* A =
+        \begin{pmatrix}
+            q_1^* \\
+            q_2^* \\
+            \vdots \\
+            q_n^*
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+            a_1 & a_2 & \cdots & a_n
+        \end{pmatrix} =
+        \begin{pmatrix}
+            \color{blue} q_1^* a_1 & \color{blue}q_1^* a_2 & \cdots & \color{blue}q_1^* a_n \\
+            \color{red} 0 & \color{blue} q_2^* a_2 & \cdots & \color{blue} q_2^* a_n \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \color{red} 0 & \color{red} 0 & \cdots & \color{blue} q_n^* a_n
+        \end{pmatrix}
+    \]
+    Estos $0$ aparecen ya que:
+    \[
+        q_m^* a_k =
+        \langle q_m, a_k \rangle =
+        \langle q_m, u_k + \sum_{j=1}^{k-1} p(u_j, a_k) \rangle =
+        \langle q_m, u_k \rangle + \sum_{j=1}^{k-1} \langle q_m, p(u_j, a_k) \rangle
+    \]
+    Y ahora:
+    \[
+        \langle q_m, u_k \rangle =
+        \begin{cases}
+            0 & \text{si } m < k \\
+            \|u_k\| & \text{si } m = k
+        \end{cases}
+    \]
+    Por lo que si 
+\end{proof}
