@@ -466,3 +466,79 @@ Notese también que el espectro es el conjunto de autovalores, y que cada autova
     Es importante destacar que la multiplicidad geométrica de un autovalor siempre es menor o igual a su multiplicidad algebraica.
 \end{definición}
 
+\begin{definición}[Radio espectral de una matriz]
+    El radio espectral de una matriz cuadrada $ A \in \mathbb{R}^{n \times n} $ se define como el máximo valor absoluto de los autovalores de la matriz. Matemáticamente, se expresa como:
+    \[
+        \rho(A) = \max_{\lambda \in \sigma(A)} |\lambda|
+    \]
+    El radio espectral proporciona información sobre el comportamiento asintótico de las potencias de la matriz $ A $, ya que si $ \rho(A) < 1 $, entonces las potencias de $ A $ tienden a cero, mientras que si $ \rho(A) > 1 $, entonces las potencias de $ A $ crecen sin límite.
+\end{definición}
+
+Veamos ahora como el espectro se mantiene ante la conmutación del producto de matrices.
+
+\begin{proposición}
+    Si $ A, B \in \mathbb{R}^{n \times n} $ son dos matrices cuadradas, entonces el espectro de $ AB $ es igual al espectro de $ BA $, es decir:
+    \[
+        \sigma(AB) = \sigma(BA)
+    \]
+\end{proposición}
+
+\begin{proof}
+    Para ver esto, veamos como $ \forall \lambda \in \sigma(AB) $, entonces existe un vector no nulo $ v $ tal que:
+    \[
+        BAv = \lambda v
+    \]
+    Es decir, que $ \lambda $ es un autovalor de $ BA $ (la implicacion contraria es análoga). Para ello distingamos dos casos:
+    \begin{itemize}
+        \item[$\lambda = 0$] En este caso:
+        \[
+            0 \in \sigma(AB) \iff
+            \det(AB) = 0 \det(BA) \iff 
+            0 \in \sigma(BA)
+        \]
+        \item[$\lambda \neq 0$] En este caso, como $ v \neq 0 $ es un autovector asociado al autovalor $ \lambda $ de $ AB $, entonces $ ABv = \lambda v $. Multiplicando ambos lados por $ B $, obtenemos:
+        \[
+            BA(Bv) =
+            B(ABv) = 
+            \lambda (Bv)
+        \]
+        Por lo que $ Bv $ es un autovector asociado al autovalor $ \lambda $ de $ BA $. Además, como $ v $ es un vector no nulo y $ \lambda \neq 0 $, entonces $ Bv $ también es un vector no nulo, lo que garantiza que $ \lambda \in \sigma(BA) $, ya que ademas $\det(B) \neq 0$ (si $B$ no es invertible, entonces $0 \in \sigma(B)$, lo que implica que $0 \in \sigma(BA)$, lo que contradice la suposición de que $\lambda \neq 0$).
+    \end{itemize}
+\end{proof}
+
+Veamos ahora como el espectro de una matriz se traslada al de sus potencias.
+
+\begin{proposición}
+    Si $ A \in \mathbb{R}^{n \times n} $ es una matriz cuadrada, entonces el espectro de $ A^k $ es igual al conjunto de los autovalores de $ A $ elevados a la potencia $ k $, es decir:
+    \[
+        \sigma(A^k) = \{ \lambda^k : \lambda \in \sigma(A) \}
+    \]
+\end{proposición}
+
+\begin{proof}
+    Para ver esto, veamos como $ \forall \lambda \in \sigma(A) $, entonces existe un vector no nulo $ v $ tal que:
+    \[
+        Av = \lambda v
+    \]
+    Ahora apliquemos inducción sobre $ k $ para demostrar que $ A^k v = \lambda^k v $:
+    \begin{itemize}
+        \item \textbf{Caso base:} Para $ k = 1 $, se cumple que $ A^1 v = Av = \lambda v $, lo que es cierto por la definición de autovalor y autovector.
+        \item \textbf{Paso inductivo:} Supongamos que para algún $ k \geq 1 $, se cumple que $ A^k v = \lambda^k v $. Entonces, para $ k + 1 $, tenemos:
+        \[
+            A^{k+1} v =
+            A(A^k v) =
+            A(\lambda^k v) =
+            \lambda^k (Av) =
+            \lambda^k (\lambda v) =
+            \lambda^{k+1} v
+        \]
+        Por lo tanto, por el principio de inducción matemática, se cumple que $ A^k v = \lambda^k v $ para todo $ k \geq 1 $.
+    \end{itemize}
+    De donde se deduce que $ \lambda^k $ es un autovalor de $ A^k $ con el mismo autovector $ v $. Además, como $ v $ es un vector no nulo, entonces $ \lambda^k $ también es un valor propio de $ A^k $. Por lo tanto, se concluye que:
+    \[
+        \sigma(A^k) = \{ \lambda^k : \lambda \in \sigma(A) \}
+    \]
+\end{proof}
+
+PONER TEOREMA QUE FALTA AQUI
+
