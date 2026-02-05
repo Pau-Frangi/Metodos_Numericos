@@ -649,5 +649,22 @@ Antes de la demostración, conviene definir el operador de proyección ortogonal
             \|u_k\| & \text{si } m = k
         \end{cases}
     \]
-    Por lo que si 
+    Por lo que si $ m > k $, entonces $ q_m^* a_k = 0 $, y si $ m = k $, entonces $ q_m^* a_k = \|u_k\| $.\\
+    De esta forma, obtenemos una matriz triangular superior $ R $ con los elementos de la diagonal principal dados por $ \|u_k\| $, y los elementos por encima de la diagonal dados por $ q_m^* a_k $ para $ m < k $.\\
+    Finalmente, como $ Q $ es una matriz unitaria, se cumple que $ Q^{-1} = Q^* $, por lo que podemos escribir:
+    \[
+        A = QR \iff
+        Q^* A = R
+    \]
+    Y con esto, hemos demostrado la existencia de la descomposición QR para cualquier matriz de rango máximo.
 \end{proof}
+
+Veamos ahora otra descomposición importante, la descomposición de Schur.
+
+\begin{teorema}[Descomposición de Schur]
+    Sea $ A \in \mathbb{C}^{n \times n} $ una matriz cuadrada. Entonces, existe una matriz unitaria $ U \in \mathbb{C}^{n \times n} $ y una matriz triangular superior $ T \in \mathbb{C}^{n \times n} $ tal que:
+    \[
+        A = UTU^* \underbrace{\iff}_{U^{-1} = U^*}
+        U^* A U = T
+    \]
+\end{teorema}
