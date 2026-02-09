@@ -908,7 +908,18 @@ Veamos que se cumplen las propiedades de una norma matricial para la norma subor
     \item \textbf{Norma de una matriz nula:} Para la matriz nula $ 0 \in \mathbb{K}^{m \times n} $, se cumple que $ \|0\|_p = 0 $ para cualquier $ p \in [1, \infty] $, ya que $ Av = 0 $ para cualquier vector $ v $, lo que implica que $ \|Av\|_p = 0 $ y por lo tanto, el supremum es cero.
     \item \textbf{Norma bajo escala:} Para cualquier matriz $ A \in \mathbb{K}^{m \times n} $ y cualquier escalar $ \alpha \in \mathbb{K} $, se cumple que $ \|\alpha A\|_p = |\alpha| \cdot \|A\|_p $, lo que se deduce directamente de la homogeneidad de la norma vectorial.
     \item \textbf{Norma bajo la suma:} Para cualquier matriz $ A, B \in \mathbb{K}^{m \times n} $, se cumple que $ \|A + B\|_p \leq \|A\|_p + \|B\|_p $, lo que se deduce directamente de la desigualdad triangular de la norma vectorial.
-    \item \textbf{Norma bajo el producto:} Para cualquier matriz $ A \in \mathbb{K}^{m \times p} $ y cualquier matriz $ B \in \mathbb{K}^{p \times n} $, se cumple que $ \|AB\|_p \leq \|A\|_p \cdot \|B\|_p $, lo que se deduce directamente de la submultiplicatividad de la norma matricial.
+    \item \textbf{Norma bajo el producto:} Para cualquier matriz $ A \in \mathbb{K}^{m \times p} $ y cualquier matriz $ B \in \mathbb{K}^{p \times n} $, se cumple que $ \|AB\|_p \leq \|A\|_p \cdot \|B\|_p $, lo que se deduce directamente de la submultiplicatividad de la norma matricial.\\
+    Otra forma de probar esto es usando que:
+    \[
+        \| AB \| =
+        \sup_{\|v\|_p = 1} \| AB v \|_p =
+        \sup_{\|v\|_p = 1} \left( \frac{\| AB v \|_p \| B v\|_p}{\|B v\|_p} \right) =
+        \sup_{\|v\|_p = 1} \left( \| A \frac{B v}{\|B v\|_p} \|_p \cdot \| B v\|_p \right) \leq
+    \]
+    \[
+        \sup_{\|v\|_p = 1} \| Av \|_p \cdot \sup_{\|v\|_p = 1} \| B v\|_p =
+        \|A\|_p \cdot \|B\|_p
+    \]
 \end{itemize}
 
 Y como se ha demostrado que se cumplen las propiedades de una norma matricial, entonces la norma subordinada de una matriz es una norma matricial válida.\\
@@ -956,6 +967,9 @@ Veamos ahora algunas propiedades de las matrices de covarianzas, tras haber defi
 \end{proof}
 
 \begin{teorema}
-    Sea $A \in \mathbb{K}^{n \times n}$ una matriz cuadrada, entonces su norma $p = 1$
-    PEDIR A DANI
+    Sea $A \in \mathbb{K}^{m \times n}$ una matriz, entonces su norma 1 es:
+    \[
+        \|A\|_1 = \max_{1 \leq j \leq n} \| a_j \|_1
+    \]
+    Siendo $ a_j $ la $ j $-ésima columna de $ A $.
 \end{teorema}
