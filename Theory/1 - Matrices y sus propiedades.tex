@@ -668,3 +668,294 @@ Veamos ahora otra descomposición importante, la descomposición de Schur.
         U^* A U = T
     \]
 \end{teorema}
+
+\begin{proof}
+    Sea $\lambda \in sp(A)$ un autovalor de $A$, y sea $v$ un autovector asociado a $\lambda$, al cual imponemos ser unitario, es decir, $\|v\| = 1$.\\
+    Ahora completamos a una base ortonormal $(v, w_2, w_3, \dots, w_n)$ de $\mathbb{C}^n$, y formamos la matriz unitaria $U_1 = (v, w_2, w_3, \dots, w_n)$.\\
+    La idea a partir de aquí es ir aplicando el proceso de Gram-Schmidt a las columnas de $A$ para obtener una matriz triangular superior, pero en lugar de empezar con la primera columna, empezamos con la columna correspondiente al autovector $v$, que es la primera columna de $U_1$, y finalmente obtendremos una matriz triangular superior $T$ tal que $U_1^* A U_1 = T$.\\
+    La demostración no se va a realizar.
+\end{proof}
+
+Veamos ahora varias proposiciones interesantes.
+
+\begin{corolario}[Determinante de una matriz triangular]
+    El determinante de una matriz triangular (superior o inferior) es igual al producto de los elementos en la diagonal principal. Es decir, si $ A $ es una matriz triangular, entonces:
+    \[
+        \det(A) = \prod_{i=1}^{n} a_{ii}
+    \]
+    Esto ya se probó anteriormente, solo lo recordamos, pero ahora lo podemos entender como una consecuencia directa de la descomposición de Schur, ya que si $ A = UTU^* $, entonces:
+    \[
+        \det(A) = \det(UTU^*) =
+        \det(U) \cdot \det(T) \cdot \det(U^*) =
+        |\det(U)|^2 \cdot \prod_{i=1}^{n} t_{ii} =
+        \prod_{i=1}^{n} t_{ii}
+    \]
+    Donde $ t_{ii} $ son los elementos de la diagonal principal de $ T $, y se ha utilizado el hecho de que $ U $ es una matriz unitaria, por lo que $ |\det(U)| = 1 $.
+\end{corolario}
+
+\begin{corolario}[Espectro de una matriz triangular]
+    El espectro de una matriz triangular (superior o inferior) es igual al conjunto de los elementos en la diagonal principal. Es decir, si $ A $ es una matriz triangular, entonces:
+    \[
+        \sigma(A) = \{ a_{11}, a_{22}, \dots, a_{nn} \}
+    \]
+\end{corolario}
+
+\begin{corolario}[Espectro de una matriz bajo la descomposición de Schur]
+    Si $ A \in \mathbb{C}^{n \times n} $ es una matriz cuadrada, y $ A = UTU^* $ es su descomposición de Schur, entonces el espectro de $ A $ es igual al conjunto de los elementos en la diagonal principal de $ T $. Es decir:
+    \[
+        \sigma(A) = \{ t_{11}, t_{22}, \dots, t_{nn} \}
+    \]
+    Esto se ve facilmente tomando $\lambda \in \sigma(A)$ y $v$ un autovector asociado a $\lambda$, entonces:
+    \[
+        Av =
+        UTU^* v \implies
+        \lambda v =
+        UTU^* v \implies
+        \lambda U^* v =
+        TU^* v \underbrace{\implies}_{u = U^* v \neq 0}
+        \lambda u =
+        Tu
+    \]
+\end{corolario}
+
+\begin{corolario}[La traza de una matriz es igual a la suma de sus autovalores]
+    Si $ A \in \mathbb{C}^{n \times n} $ es una matriz cuadrada, y $ A = UTU^* $ es su descomposición de Schur, entonces la traza de $ A $ es igual a la suma de los elementos en la diagonal principal de $ T $, que a su vez es igual a la suma de los autovalores de $ A $. Es decir:
+    \[
+        \text{tr}(A) =
+        \text{tr}(AUU^*) \underbrace{=}_{\text{tr}(AB) = \text{tr}(BA)}
+        \text{tr}(U^*AU) =
+        \text{tr}(T) =
+        \sum_{i=1}^{n} t_{ii} =
+        \sum_{\lambda \in \sigma(A)} \lambda
+    \]
+\end{corolario}
+
+\begin{corolario}[Espectro de la inversa de una matriz]
+    Si $ A \in \mathbb{C}^{n \times n} $ es una matriz cuadrada invertible, entonces el espectro de $ A^{-1} $ es igual al conjunto de los inversos de los elementos en la diagonal principal de $ T $. Es decir:
+    \[
+        \sigma(A) = \{\lambda_i \} \implies
+        \sigma(A^{-1}) = \{ \lambda_i^{-1} \} = \{ \frac{1}{\lambda_i} \}
+    \]
+    Esto se ve facilmente tomando $\lambda \in \sigma(A)$ y $v$ un autovector asociado a $\lambda$, entonces:
+    \[
+        Av = \lambda v \implies
+        A^{-1} Av = A^{-1} \lambda v \implies
+        v = \lambda A^{-1} v \implies
+        A^{-1} v = \frac{1}{\lambda} v
+    \]
+    
+\end{corolario}
+
+\begin{corolario}[Espectro de una matriz hermítica]
+    Si $ A \in \mathbb{C}^{n \times n} $ es una matriz hermítica, entonces el espectro de $ A $ es un conjunto de números reales. Es decir:
+    \[
+        A = A^* \implies
+        \sigma(A) \subseteq \mathbb{R}
+    \]
+    Esto se ve facilmente tomando $\lambda \in \sigma(A)$ y $v$ un autovector asociado a $\lambda$, entonces:
+    \[
+        Av = \lambda v \implies
+        (Av)^* = (\lambda v)^* \implies
+        v^* A^* = v^* \lambda^* \implies
+        v^* A = \lambda^* v^* \implies
+        v^* Av = \lambda^* \| v\|^2 \implies
+    \]
+    \[
+        v^* \lambda v = \lambda v^* v \implies
+        \lambda \| v\|^2 = \lambda^* \| v\|^2 \implies
+        \lambda = \lambda^*
+    \]
+    De donde se deduce que como $ \lambda^* = \lambda $, implica que $ \lambda $ es un número real.
+\end{corolario}
+
+\subsection{Matrices hermiticas definidas positivas}
+
+\begin{definición}[Matriz hermítica definida positiva]
+    Una matriz $ A \in \mathbb{C}^{n \times n} $ se dice que es hermítica definida positiva, o h.d.p., si cumple las siguientes condiciones:
+    \begin{itemize}
+        \item $ A $ es hermítica, es decir, $ A = A^* $.
+        \item Para todo vector no nulo $ x \in \mathbb{C}^n $, se cumple que $ x^* A x > 0 $.
+    \end{itemize}
+\end{definición}
+
+\begin{proposición}[Espectro de una matris h.d.p.]
+    Las siguientes afirmaciones son equivalentes para una matriz $ A \in \mathbb{C}^{n \times n} $:
+    \begin{itemize}
+        \item $ A $ es hermítica definida positiva.
+        \item $ A $ es hermítica y su espectro $ \sigma(A) $ está contenido en el conjunto de los números reales positivos, es decir, $ \sigma(A) \subseteq \mathbb{R}_{>0} $.
+    \end{itemize}
+\end{proposición}
+
+\begin{proof}
+    Para demostrar la equivalencia, veamos cada implicación por separado:
+
+    \textbf{(1) $ \Rightarrow $ (2):} Supongamos que $ A $ es hermítica definida positiva. Entonces, por definición, para todo vector no nulo $ x \in \mathbb{C}^n $, se cumple que $ x^* A x > 0 $. En particular, si tomamos un autovector $ v $ asociado a un autovalor $ \lambda $, entonces:
+    \[
+        v^* A v = v^* (\lambda v) = \lambda v^* v = \lambda \|v\|^2 \implies
+        \lambda = \frac{v^* A v}{\|v\|^2} > 0
+    \]
+    Dado que $ v $ es un vector no nulo, entonces $ \|v\|^2 > 0 $, lo que implica que $ \lambda > 0 $. Por lo tanto, todos los autovalores de $ A $ son positivos, y como $ A $ es hermítica, su espectro está contenido en el conjunto de los números reales positivos.
+
+    \textbf{(2) $ \Rightarrow $ (1):} Supongamos que $ A $ es hermítica y su espectro está contenido en el conjunto de los números reales positivos. Entonces, por la descomposición de Schur, existe una matriz unitaria $ U $ y una matriz triangular superior $ T $ tal que:
+    \[
+        A = UTU^*
+    \]
+    Donde los elementos de la diagonal principal de $ T $, que son los autovalores de $ A $, son todos positivos. Ahora, para cualquier vector no nulo $ x \in \mathbb{C}^n $, tenemos:
+    \[
+        x^* A x = x^* UTU^* x = (U^* x)^* T (U^* x) =
+        w^* D w =
+        \sum_{i=1}^{n} t_{ii} |w_i|^2 =
+        \sum_{i=1}^{n} \lambda_i |w_i|^2
+    \]
+    Notese que hemos podido tomar una matriz diagonal $ D $ en lugar de la matriz triangular $ T $, ya que el producto $ w^* T w $ solo depende de los elementos de la diagonal principal de $ T $, que son los autovalores de $ A $.\\
+    Dado que $ \lambda_i > 0 $ para todo $ i $, y que $ w = U^* x $ es un vector no nulo (ya que $ U $ es una matriz unitaria), entonces al menos uno de los términos $ |w_i|^2 $ es positivo, lo que implica que la suma es estrictamente mayor que cero. Por lo tanto:
+    \[
+        x^* A x > 0
+    \]
+    Por lo tanto, se concluye que $ A $ es hermítica definida positiva.
+\end{proof}
+
+\subsection{Normas matriciales}
+
+Empecemos recordando que es una norma vectorial.
+
+\begin{definición}[Norma vectorial general]
+    Una norma vectorial es una función que asigna a cada vector $ v \in \mathbb{K}^n $ un número real no negativo, y que satisface las siguientes propiedades:
+    \[
+        \begin{array}{rccl}
+            \| \cdot \| : & \mathbb{K}^n & \to & \mathbb{R}_{\geq 0} \\
+            & v & \mapsto & \|v\|
+        \end{array}
+    \]
+    \begin{itemize}
+        \item \textbf{Positividad:} $ \|v\| \geq 0 $ para todo $ v \in \mathbb{K}^n $, y $ \|v\| = 0 $ si y solo si $ v = 0 $.
+        \item \textbf{Definitud:} $ \|v\| = 0 $ si y solo si $ v = 0 $.
+        \item \textbf{Homogeneidad:} $ \|\alpha v\| = |\alpha| \cdot \|v\| $ para todo $ v \in \mathbb{K}^n $ y todo escalar $ \alpha \in \mathbb{K} $.
+        \item \textbf{Desigualdad triangular:} $ \|u + v\| \leq \|u\| + \|v\| $ para todo $ u, v \in \mathbb{K}^n $.
+    \end{itemize}
+\end{definición}
+
+Recordemos como se define la equivalencia entre normas vectoriales.
+
+\begin{definición}[Equivalencia entre normas vectoriales]
+    Dos normas vectoriales $ \|\cdot\|_a $ y $ \|\cdot\|_b $ en $ \mathbb{K}^n $ se dicen equivalentes si existen constantes positivas $ C_1, C_2 > 0 $ tales que:
+    \[
+        C_1 \|v\|_a \leq \|v\|_b \leq C_2 \|v\|_a
+    \]
+    para todo $ v \in \mathbb{K}^n $.\\
+    Esto significa que ambas normas definen la misma topología en $ \mathbb{K}^n $, es decir, los conjuntos abiertos y cerrados son los mismos para ambas normas, y por lo tanto, las propiedades de convergencia, continuidad y demás conceptos topológicos son equivalentes bajo ambas normas.
+\end{definición}
+
+Ahora veamos la definición de norma matricial.
+
+\begin{definición}[Norma matricial]
+    Una norma matricial es una función que asigna a cada matriz $ A \in \mathbb{K}^{m \times n} $ un número real no negativo, y que satisface las siguientes propiedades:
+    \[
+        \begin{array}{rccl}
+            \|\cdot\| : & \mathbb{K}^{m \times n} & \to & \mathbb{R}_{\geq 0} \\
+            & A & \mapsto & \|A\|
+        \end{array}
+    \]
+    \begin{itemize}
+        \item \textbf{Positividad:} $ \|A\| \geq 0 $ para todo $ A \in \mathbb{K}^{m \times n} $, y $ \|A\| = 0 $ si y solo si $ A = 0 $.
+        \item \textbf{Definitud:} $ \|A\| = 0 $ si y solo si $ A = 0 $.
+        \item \textbf{Homogeneidad:} $ \|\alpha A\| = |\alpha| \cdot \|A\| $ para todo $ A \in \mathbb{K}^{m \times n} $ y todo escalar $ \alpha \in \mathbb{K} $.
+        \item \textbf{Desigualdad triangular:} $ \|A + B\| \leq \|A\| + \|B\| $ para todo $ A, B \in \mathbb{K}^{m \times n} $.
+        \item \textbf{Submultiplicatividad:} $ \|AB\| \leq \|A\| \cdot \|B\| $ para todo $ A \in \mathbb{K}^{m \times p} $ y todo $ B \in \mathbb{K}^{p \times n} $.
+    \end{itemize}
+\end{definición}
+
+Algunas normas particulares son las siguientes (para vectores):
+
+\begin{itemize}
+    \item \textbf{Normas p-ésimas:} Para $ 1 \leq p < \infty $, la norma p-ésima de un vector $ v \in \mathbb{K}^n $ se define como:
+    \[
+        \|v\|_p = \left( \sum_{i=1}^{n} |v_i|^p \right)^{\frac{1}{p}}
+    \]
+    \item \textbf{Norma p-1-ésima:} Para $p=1$, la norma p-1-ésima de un vector $ v \in \mathbb{K}^n $ se define como:
+    \[
+        \|v\|_1 = \sum_{i=1}^{n} |v_i|
+    \]
+    \item \textbf{Norma p-2-ésima o euclidea:} Para $p=2$, la norma p-2-ésima de un vector $ v \in \mathbb{K}^n $ se define como:
+    \[
+        \|v\|_2 = \sqrt{\sum_{i=1}^{n} |v_i|^2}
+    \]
+    \item \textbf{Norma p-infinito-ésima:} Para $p=\infty$, la norma p-infinito-ésima de un vector $ v \in \mathbb{K}^n $ se define como:
+    \[
+        \|v\|_\infty =
+        \lim_{p \to \infty} \|v\|_p =
+        \max_{1 \leq i \leq n} |v_i|
+    \]
+\end{itemize}
+
+\subsection{Normas subordinadas}
+
+Definamos ahora la norma subordinada de una matriz, que es una norma matricial que se define a partir de una norma vectorial.
+
+\begin{definición}[Norma subordinada de una matriz]
+    Sea $A \in \mathbb{K}^{m \times n}$ una matriz, y sea $p \in [1, \infty]$. La norma subordinada de $A$ con respecto a la norma p-ésima se define como:
+    \[
+        | \|A\| |_p =
+        \sup_{\forall v \neq 0} \frac{\|Av\|_p}{\|v\|_p} =
+        \sup_{\forall v \neq 0} \| A \frac{v}{\|v\|_p} \|_p =
+        \sup_{\|v\|_p = 1} \|Av\|_p
+    \]
+\end{definición}
+
+Veamos que se cumplen las propiedades de una norma matricial para la norma subordinada de una matriz.
+
+\begin{itemize}
+    \item \textbf{Norma de una matriz nula:} Para la matriz nula $ 0 \in \mathbb{K}^{m \times n} $, se cumple que $ \|0\|_p = 0 $ para cualquier $ p \in [1, \infty] $, ya que $ Av = 0 $ para cualquier vector $ v $, lo que implica que $ \|Av\|_p = 0 $ y por lo tanto, el supremum es cero.
+    \item \textbf{Norma bajo escala:} Para cualquier matriz $ A \in \mathbb{K}^{m \times n} $ y cualquier escalar $ \alpha \in \mathbb{K} $, se cumple que $ \|\alpha A\|_p = |\alpha| \cdot \|A\|_p $, lo que se deduce directamente de la homogeneidad de la norma vectorial.
+    \item \textbf{Norma bajo la suma:} Para cualquier matriz $ A, B \in \mathbb{K}^{m \times n} $, se cumple que $ \|A + B\|_p \leq \|A\|_p + \|B\|_p $, lo que se deduce directamente de la desigualdad triangular de la norma vectorial.
+    \item \textbf{Norma bajo el producto:} Para cualquier matriz $ A \in \mathbb{K}^{m \times p} $ y cualquier matriz $ B \in \mathbb{K}^{p \times n} $, se cumple que $ \|AB\|_p \leq \|A\|_p \cdot \|B\|_p $, lo que se deduce directamente de la submultiplicatividad de la norma matricial.
+\end{itemize}
+
+Y como se ha demostrado que se cumplen las propiedades de una norma matricial, entonces la norma subordinada de una matriz es una norma matricial válida.\\
+
+Veamos ahora algunas propiedades de las matrices de covarianzas, tras haber definido las normas necesarias.
+
+\begin{proposición}[Matriz de covarianza es h.d.p.]
+    Si $ X $ es una matriz de datos en $m$ variables y $n$ medidas con $n >> m$:
+    \[
+        X =
+        (x_1, \ldots, x_n) 
+        \begin{pmatrix}
+            m \text{ variables}
+        \end{pmatrix}
+        n \text{ medidas}
+    \]
+    Siendo $\mu$ las medidas o promedios y $\widetilde{x_i} = x_i - \mu_i$, entonces la matriz de covarianza de $X$ se define como:
+    \[
+        C =
+        \widetilde{X}^t \widetilde{X} \in \mathbb{R}^{m \times m}
+    \]
+\end{proposición}
+
+\begin{proof}
+    Tomando $\widetilde{X} = (\widetilde{x_1}, \ldots, \widetilde{x_n})$, entonces $C$ es una matriz hermítica definida positiva, ya que en primer lugar es simetrica:
+    \[
+        C^t =
+        (\widetilde{X}^t \widetilde{X})^t =
+        \widetilde{X}^t \widetilde{X} = C
+    \]
+    Y como pertenece a $\mathbb{R}^{m \times m}$, entonces $C$ es hermítica (ya que en $\mathbb{R}$, la conjugación no afecta a los elementos de la matriz).\\
+    Ahora para ver que es h.d.p., tenemos que comprobar que $sp(C) \subseteq \mathbb{R}_{>0}$ (ya sabemos que es real). Para ello, tomemos $\lambda \in \sigma(C)$ un autovalor de $C$, y sea $v$ un autovector asociado a $\lambda$:
+    \[
+        Cv = \lambda v \implies
+        \widetilde{X}^t \widetilde{X} v = \lambda v \implies
+        v^t \widetilde{X}^t \widetilde{X} v = \lambda v^t v = \lambda \|v\|^2 = \lambda \implies
+    \]
+    \[
+        \left( \widetilde{X} v \right)^t \left( \widetilde{X} v \right) =\| \widetilde{X} v \|^2_2 = \lambda \| v\|^2_2 \implies
+    \]
+    Usando ahora que $v^t v = \langle v, v \rangle = \|v\|^2_2$, entonces en particular, $ \|v\|^2_2 = 1 $, por lo que $ \| v \|^2_2 = v^* v = 1 $, y por lo tanto:
+    \[
+        \lambda = \| \widetilde{X} v \|^2_2 \geq 0
+    \]
+\end{proof}
+
+\begin{teorema}
+    Sea $A \in \mathbb{K}^{n \times n}$ una matriz cuadrada, entonces su norma $p = 1$
+    PEDIR A DANI
+\end{teorema}

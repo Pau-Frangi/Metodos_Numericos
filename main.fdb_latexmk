@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1770286471.23355 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770286475.65018 0
+["pdflatex"] 1770630725.06107 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770630730.27435 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
   "Appendix/Appendix.tex" 1770195712 80 072075db3cd79a9a4ec2d1ec5c616218 ""
   "C:/Users/diego/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1770192545 81276 82814892251e64a73dcb66aaa6e103a7 ""
@@ -68,6 +68,7 @@
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
+  "C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb" 1247596666 35660 fb24af7afbadb71801619f1415838111 ""
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1769449634 147019 1fabca301093d77224bb1248a25f1278 ""
@@ -359,14 +360,14 @@
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1770195712 14900 2c8c10488739d2f9993cea603f8aa392 ""
-  "Theory/1 - Matrices y sus propiedades.tex" 1770286465 39446 611c52c1a70cfce643ab5472b3a68a20 ""
+  "Theory/1 - Matrices y sus propiedades.tex" 1770630718 55343 d99352878645efca1fa21c8e5c3e06d0 ""
   "Theory/Theory.tex" 1770196354 95 255728d4d338a1e3bcf731242d09c7c6 ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1770286475 11036 ff815041c9e2f58c1968444df23d9076 "pdflatex"
-  "main.out" 1770286475 1910 a867a65187d28bf57c5ea998578b0fce "pdflatex"
+  "main.aux" 1770630729 15569 6a1e02c8f8e0e2433e766090f605ae81 "pdflatex"
+  "main.out" 1770630729 2479 fd0b2bc6a403d7cc71d17be52d47f869 "pdflatex"
   "main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1770286475 1211 92da50e127cebd22f073bf2202f02714 "pdflatex"
+  "main.toc" 1770630729 1488 60bc30b3fd4f56680f2f4696d03ce1c6 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
