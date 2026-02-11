@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1770798572.87525 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770798578.50394 0
+["pdflatex"] 1770803549.67627 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770803555.47529 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -361,14 +361,14 @@
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1770195712 14900 2c8c10488739d2f9993cea603f8aa392 ""
-  "Theory/1 - Matrices y sus propiedades.tex" 1770798458 57051 11ae07b2736edb0915f726d0eee9ea15 ""
+  "Theory/1 - Matrices y sus propiedades.tex" 1770803548 64681 332c3224fc4f921bdf3b74ad380732f9 ""
   "Theory/Theory.tex" 1770196354 95 255728d4d338a1e3bcf731242d09c7c6 ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1770798578 18289 fe4628bd6c82ce2b6d120be7b63fa7ab "pdflatex"
-  "main.out" 1770798578 2674 8c4e99c5a24494335d0a44b0bd81f29e "pdflatex"
+  "main.aux" 1770803555 19517 d22951841c53dbcfa0f9cd4aef70d5fe "pdflatex"
+  "main.out" 1770803555 3047 c6b28a94b4a529e9a20cad9eb2599c45 "pdflatex"
   "main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1770798578 1559 a9cff196a53453b1b65830a6a3d8b06e "pdflatex"
+  "main.toc" 1770803555 1742 6dbab522490ac2b7b2e425291a56618d "pdflatex"
   (generated)
   "main.aux"
   "main.log"

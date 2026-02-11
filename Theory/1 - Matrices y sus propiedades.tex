@@ -667,6 +667,11 @@ Veamos ahora otra descomposición importante, la descomposición de Schur.
         A = UTU^* \underbrace{\iff}_{U^{-1} = U^*}
         U^* A U = T
     \]
+    Si además $ A $ es hermítica, entonces $ T $ es diagonal, es decir:
+    \[
+        A = UDU^* \underbrace{\iff}_{U^{-1} = U^*}
+        U^* A U = D
+    \]
 \end{teorema}
 
 \begin{proof}
@@ -981,20 +986,180 @@ Algunas normas matriciales particulares son las siguientes (normas subordinadas)
     \[
         \|A\|_2 = \sup_{\|v\|_2 = 1} \|Av\|_2
     \]
-    Y también se puede calcular como la raíz cuadrada del máximo autovalor de $ A^* A $, es decir:
-    \[
-        \|A\|_2 = \sqrt{\lambda_{\max}(A^* A)}
-    \]
     \item \textbf{Norma infinito:} La norma infinito de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como (que es la norma infinito subordinada):
     \[
         \|A\|_\infty = \sup_{\|v\|_\infty = 1} \|Av\|_\infty   
     \]
 \end{itemize}
 
-\begin{teorema}
-    Sea $A \in \mathbb{K}^{m \times n}$ una matriz, entonces su norma 1 es:
-    \[
-        \|A\|_1 = \max_{1 \leq j \leq n} \| a_j \|_1
-    \]
-    Siendo $ a_j $ la $ j $-ésima columna de $ A $.
+\begin{teorema}[Calculo simplificado de normas subordinadas]
+    Sea $A \in \mathbb{K}^{m \times n}$ una matriz, entonces sus normas subordinadas se pueden calcular de la siguiente forma:
+    \begin{itemize}
+        \item La norma 1 subordinada de $A$ es igual al máximo valor absoluto de la suma de los elementos de cada columna de $A$. Es decir:
+        \[
+            \|A\|_1 = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|
+        \]
+        \item La norma infinito subordinada de $A$ es igual al máximo valor absoluto de la suma de los elementos de cada fila de $A$. Es decir:
+        \[
+            \|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|
+        \]
+        \item La norma 2 subordinada de $A$ es igual a la raíz cuadrada del máximo autovalor de $ A^* A $. Es decir:    
+        \[
+            \|A\|_2 = \sqrt{\lambda_{\max}(A^* A)} =
+            \sqrt{\rho (A^*A)}
+        \]
+    \end{itemize}
 \end{teorema}
+
+\begin{proof}
+    Las dos primeras formulas son triviales de demostrar, ya que se pueden obtener directamente de la definición de la norma subordinada y de la forma en que se calcula el producto $ Av $.\\
+    Para la tercera formula, hagamos los siguientes cálculos:
+    \[
+        \|A\|_2^2 =
+        \left( \sup_{\|v\|_2 = 1} \|Av\|_2 \right)^2 =
+        \sup_{\|v\|_2 = 1} \|Av\|_2^2 =
+        \sup_{\|v\|_2 = 1} (Av)^* (Av) =
+        \sup_{\|v\|_2 = 1} v^* A^* A v \underbrace{=}_{H=A^*A \text{ es hermítica}}
+    \]
+    \[
+        \sup_{\|v\|_2 = 1} v^* H v \underbrace{=}_{\text{Schur}}
+        \sup_{\|v\|_2 = 1} v^* U D U^* u \underbrace{=}_{z = U^* v}
+        \sup_{\|z\|_2 = 1} z^* D z =^*
+    \]
+    Ahora hemos usado que como $U$ es una matriz unitaria, entonces $ \|z\|_2 = \|v\|_2 = 1 $, por lo que el supremum se puede tomar sobre $ z $ en lugar de sobre $ v $, con fórmula $ \| z \|_2^2 = z^* z = v^* U U^* v = v^* v = \|v\|_2^2 $.\\
+    Continuando con el cálculo, y denotando:
+    \[
+        D =
+        \begin{pmatrix}
+            \lambda_1 & 0 & \cdots & 0 \\
+            0 & \lambda_2 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \lambda_n
+        \end{pmatrix}
+        \implies
+    \]
+    \[
+        z^* D z =
+        \begin{pmatrix}
+            \overline{z_1} & \overline{z_2} & \cdots & \overline{z_n}
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+            \lambda_1 & 0 & \cdots & 0 \\
+            0 & \lambda_2 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \lambda_n
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+            z_1 \\
+            z_2 \\
+            \vdots \\
+            z_n
+        \end{pmatrix} =
+        \sum_{i=1}^{n} \lambda_i |z_i|^2
+    \]
+    Y ahora podemos usar que como $ \| z \|_2^2 = 1 $, entonces $ \sum_{i=1}^{n} |z_i|^2 = 1 $, por lo que $z^* D z$ es una combinación convexa de los autovalores de $H$ (y de $D$ por tanto), lo que implica que el supremum de $ z^* D z $ es igual al máximo autovalor de $D$, que es el máximo autovalor de $H$. Por lo tanto:
+    \[
+        =^*
+        \lambda_{\max}(D) =
+        \lambda_{\max}(H) =
+        \lambda_{\max}(A^* A) \implies
+        \|A\|_2 = \sqrt{\lambda_{\max}(A^* A)}
+    \]
+    Y si denotamos el operador $\rho(M)$ como el máximo valor absoluto de los autovalores de $M$, podemos tener el resultado como $ \|A\|_2 = \sqrt{\rho(A^* A)} $.
+\end{proof}
+
+\begin{definición}[Norma de Frobenius]
+    La norma de Frobenius de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como:
+    \[
+        \|A\|_F = \sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} |a_{ij}|^2}
+    \]
+\end{definición}
+
+\subsection{Potencias de matrices}
+
+Veamos algunas propiedades de las potencias de matrices, que son muy útiles para el cálculo de autovalores y autovectores.
+
+\begin{teorema}[Convergencia a $0$ de las potencias de una matriz con espectro menor que $1$]
+    Si $ A \in \mathbb{C}^{n \times n} $, entonces son equivalentes las siguientes afirmaciones:
+    \begin{enumerate}
+        \item $A$ tiende a $0$, es decir:
+        \[
+            \lim_{k \to \infty} A^k = 0
+        \]
+        \item La imagen de todo vector bajo $A^k$ tiende a $0$, es decir:
+        \[
+            \lim_{k \to \infty} A^k v = 0 \quad \forall v \in \mathbb{C}^n
+        \]
+        \item El espectro de $A$ está acotado por $1$, es decir:
+        \[
+            \rho(A) < 1
+        \]
+        \item Existe una norma matricial $ \|\cdot\| $ tal que $ \|A\| < 1 $.
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    Veamos las implicaciones por separado:
+    \textbf{(1) $ \Rightarrow $ (2):} Si $ A^k \to 0 $, entonces para cualquier vector $ v \in \mathbb{C}^n $, se cumple que:
+    \[
+        \| A^k v\| \leq \|A^k\| \cdot \|v\| \to 0
+    \]
+    \textbf{(2) $ \Rightarrow $ (3):} Si hubiera un autovalor $ \lambda $ de $ A $ tal que $ |\lambda| \geq 1 $, entonces tomando un autovector asociado a $ \lambda $, se tendría que:
+    \[
+        A^k v = \lambda^k v \implies
+        \| A^k v \| = |\lambda|^k \|v\| \not\to 0
+    \]
+    Lo que contradice la hipótesis, por lo que todos los autovalores de $ A $ deben tener módulo menor que $ 1 $, es decir, $ \rho(A) < 1 $.\\
+    También se puede usar que $\| A^k v \| = \| \lambda |^k \|v\| $ para cualquier autovalor $ \lambda $ y su autovector asociado $ v $, por lo que como debe converger a $0$ para todo $v$, entonces $|\lambda|^k \|v\| \to 0$ para todo autovalor $ \lambda $, lo que implica que $|\lambda| < 1$ para todo autovalor $ \lambda $.\\
+\end{proof}
+
+\subsection{Condicionamiento de matrices}
+
+Veamos un teorema importante sonbre sistemas de ecuaciones lineales
+
+\begin{teorema}[Existencia de solución unica para sistemas de ecuaciones lineales]
+    Si $ A \in \mathbb{C}^{n \times n} $ es una matriz cuadrada, entonces el sistema de ecuaciones lineales $ Ax = b $ tiene una solución única para cada $ b \in \mathbb{C}^n $ si y solo si $ A $ es invertible. Es decir:
+    \[
+        \text{El sistema } Ax = b \text{ tiene solución única para cada } b \in \mathbb{C}^n \iff
+        A \text{ es invertible} \iff \det(A) \neq 0
+    \]
+\end{teorema}
+
+Ahora nos podemos preguntar como de estable es la solución de un sistema de ecuaciones lineales ante pequeñas perturbaciones en los datos.\\
+
+Si modificamos $\overline{b} = b + \delta$ podemos ver que el error de $b$ es:
+
+\[
+    E_b = \frac{\| \overline{b} - b \|}{\|b\|} =
+    \frac{\|\delta\|}{\|b\|}
+\]
+
+Ahora podemos definir $\overline{x} = A^{-1} \overline{b} = x + \epsilon$, y por tanto podemos hacer el siguiente despeje:
+
+\[
+    A \overline{x} = \overline{b} \iff
+    A (x + \epsilon) = b + \delta \iff
+    A \epsilon = \delta \implies
+    \epsilon = A^{-1} \delta
+\]
+
+Y por tanto el error de $x$ es:
+
+\[
+    E_x = \frac{\| \overline{x} - x \|}{\|x\|} =
+    \frac{\|\epsilon\|}{\|x\|} =
+    \frac{\|A^{-1} \delta\|}{\|x\|} \leq
+    \frac{\|A^{-1}\| \cdot \|\delta\|}{\|x\|} =
+    \frac{\|A^{-1}\| \cdot \|b\|}{\|x\|} \cdot \frac{\|\delta\|}{\|b\|} =
+\]
+
+\[
+    = \frac{\|A^{-1}\| \cdot \|b\|}{\|x\|} \cdot E_b =
+    \frac{\|A^{-1}\| \cdot \|Ax\|}{\|x\|} \cdot E_b \leq
+    \|A^{-1}\| \cdot \|A\| \cdot E_b =
+    \text{cond}(A) \cdot E_b
+\]
+
+Donde $ \text{cond}(A) = \|A^{-1}\| \cdot \|A\| $ es el número de condición de la matriz $ A $, el cual si es muy grande, significara que el sistema de ecuaciones lineales es muy sensible a pequeñas perturbaciones en los datos, lo que se conoce como un sistema mal condicionado. Por otro lado, si $ \text{cond}(A) $ es pequeño, entonces el sistema de ecuaciones lineales es estable ante pequeñas perturbaciones en los datos, lo que se conoce como un sistema bien condicionado.\\

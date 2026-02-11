@@ -10,14 +10,16 @@
 \contentsline {subsection}{\numberline {1.4}Matrices hermiticas definidas positivas}{19}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Normas matriciales}{20}{subsection.1.5}%
 \contentsline {subsection}{\numberline {1.6}Normas subordinadas}{21}{subsection.1.6}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{24}{part.2}%
+\contentsline {subsection}{\numberline {1.7}Potencias de matrices}{24}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Condicionamiento de matrices}{25}{subsection.1.8}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{27}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Hoja primera}{25}{section*.5}%
-\contentsline {part}{III\hspace {1em}Exámenes}{26}{part.3}%
+\contentsline {section}{Hoja 1: Hoja primera}{28}{section*.5}%
+\contentsline {part}{III\hspace {1em}Exámenes}{29}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{27}{section*.7}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{28}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{30}{section*.7}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{31}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{29}{section*.9}%
-\contentsline {section}{Apéndice B: Agradecimientos}{31}{section*.10}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{31}{section*.11}%
+\contentsline {section}{Apéndice A: Normas comunes}{32}{section*.9}%
+\contentsline {section}{Apéndice B: Agradecimientos}{34}{section*.10}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{34}{section*.11}%
