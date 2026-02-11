@@ -966,6 +966,31 @@ Veamos ahora algunas propiedades de las matrices de covarianzas, tras haber defi
     \]
 \end{proof}
 
+Algunas normas matriciales particulares son las siguientes (normas subordinadas):
+
+\begin{itemize}
+    \item \textbf{Norma p-ésima subordinada:} La norma p-ésima subordinada de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como (que es la norma p-ésima subordinada):
+    \[
+        \|A\|_p = \sup_{\|v\|_p = 1} \|Av\|_p
+    \]
+    \item \textbf{Norma 1:} La norma 1 de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como (que es la norma 1 subordinada):
+    \[
+        \|A\|_1 = \sup_{\|v\|_1 = 1} \|Av\|_1
+    \]
+    \item \textbf{Norma 2 o espectral:} La norma 2 de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como (que es la norma 2 subordinada):
+    \[
+        \|A\|_2 = \sup_{\|v\|_2 = 1} \|Av\|_2
+    \]
+    Y también se puede calcular como la raíz cuadrada del máximo autovalor de $ A^* A $, es decir:
+    \[
+        \|A\|_2 = \sqrt{\lambda_{\max}(A^* A)}
+    \]
+    \item \textbf{Norma infinito:} La norma infinito de una matriz $ A \in \mathbb{K}^{m \times n} $ se define como (que es la norma infinito subordinada):
+    \[
+        \|A\|_\infty = \sup_{\|v\|_\infty = 1} \|Av\|_\infty   
+    \]
+\end{itemize}
+
 \begin{teorema}
     Sea $A \in \mathbb{K}^{m \times n}$ una matriz, entonces su norma 1 es:
     \[
