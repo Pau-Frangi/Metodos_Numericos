@@ -1,0 +1,60 @@
+\apendice{Normas comunes}
+
+\begin{definición}[Norma euclidea de un vector]
+    Dado un vector $x \in \mathbb{R}^n$, su norma euclidea se define como
+    \[
+        \|x\|_2 = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.
+    \] 
+\end{definición}
+
+\begin{definición}[Norma 1 de un vector]
+    Dado un vector $x \in \mathbb{R}^n$, su norma 1 se define como
+    \[
+        \|x\|_1 = \sum_{i=1}^n |x_i|.
+    \]
+\end{definición}
+
+\begin{definición}[Norma infinito de un vector]
+    Dado un vector $x \in \mathbb{R}^n$, su norma infinito se define como
+    \[
+        \|x\|_\infty = \max_{1 \le i \le n} |x_i|.
+    \]
+\end{definición}
+
+\begin{definición}[Norma $p$ de un vector]
+    Dado un vector $x \in \mathbb{R}^n$ y $p \ge 1$, su norma $p$ se define como
+    \[
+        \|x\|_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}.
+    \]
+\end{definición}
+
+\begin{definición}[Norma 1 de una matriz]
+    Dada una matriz $A \in \mathbb{R}^{m \times n}$, su norma 1 se define como
+    \[
+        \|A\|_1 = \max_{1 \le j \le n} \sum_{i=1}^m |a_{ij}|.
+    \]
+    Es decir, el máximo de las sumas absolutas de las columnas.
+\end{definición}
+
+\begin{definición}[Norma infinito de una matriz]
+    Dada una matriz $A \in \mathbb{R}^{m \times n}$, su norma infinito se define como
+    \[
+        \|A\|_\infty = \max_{1 \le i \le m} \sum_{j=1}^n |a_{ij}|.
+    \]
+    Es decir, el máximo de las sumas absolutas de las filas.
+\end{definición}
+
+\begin{definición}[Norma de Frobenius]
+    Dada una matriz $A \in \mathbb{R}^{m \times n}$, su norma de Frobenius se define como
+    \[
+        \|A\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n |a_{ij}|^2}.
+    \]
+\end{definición}
+
+\begin{definición}[Norma 2 o espectral de una matriz]
+    Dada una matriz $A \in \mathbb{R}^{m \times n}$, su norma 2 (o espectral) se define como
+    \[
+        \|A\|_2 = \sqrt{\lambda_{\max}(A^T A)},
+    \]
+    donde $\lambda_{\max}(A^T A)$ es el mayor valor propio de $A^T A$. Equivalentemente, es el mayor valor singular de $A$.
+\end{definición}

@@ -1,7 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1770631628.61613 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770631632.03563 0
+["pdflatex"] 1770715689.34451 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1770715694.94193 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
-  "Appendix/Appendix.tex" 1770195712 80 072075db3cd79a9a4ec2d1ec5c616218 ""
+  "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
+  "Appendix/Normas.tex" 1770715690 2063 ad76fed0673319d8d3757003756d6bb5 ""
   "C:/Users/diego/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1770192545 81276 82814892251e64a73dcb66aaa6e103a7 ""
   "C:/Users/diego/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk" 1770051876 12668 e69c1198f1bc20fc1de0b9eaa41e9e8a ""
   "C:/Users/diego/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha10.tfm" 1770051863 1372 84a1ef28ab0d13263326e8d7d854aaa0 ""
@@ -364,10 +365,10 @@
   "Theory/Theory.tex" 1770196354 95 255728d4d338a1e3bcf731242d09c7c6 ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1770631631 15569 56fe33acd606982119f89b8c343c5bd2 "pdflatex"
-  "main.out" 1770631631 2479 fd0b2bc6a403d7cc71d17be52d47f869 "pdflatex"
+  "main.aux" 1770715694 17992 11ba7c183a292b87ce49f4037c72cea7 "pdflatex"
+  "main.out" 1770715694 2674 8c4e99c5a24494335d0a44b0bd81f29e "pdflatex"
   "main.tex" 1770195712 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1770631631 1488 60bc30b3fd4f56680f2f4696d03ce1c6 "pdflatex"
+  "main.toc" 1770715694 1559 a9cff196a53453b1b65830a6a3d8b06e "pdflatex"
   (generated)
   "main.aux"
   "main.log"

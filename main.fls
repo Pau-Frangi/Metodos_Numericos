@@ -657,6 +657,9 @@ INPUT Exams\Examen 1.tex
 INPUT .\Appendix\Appendix.tex
 INPUT .\Appendix\Appendix.tex
 INPUT Appendix\Appendix.tex
+INPUT .\Appendix\Normas.tex
+INPUT .\Appendix\Normas.tex
+INPUT Appendix\Normas.tex
 INPUT .\Appendix\Agradecimientos.tex
 INPUT .\Appendix\Agradecimientos.tex
 INPUT Appendix\Agradecimientos.tex
