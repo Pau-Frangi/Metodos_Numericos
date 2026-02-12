@@ -1,1 +1,105 @@
-\hojaejercicio{Hoja primera}
+\hojaejercicio{Hoja 1}
+
+% Ejercicio 1
+\ejercicio{}{}
+
+% Ejercicio 2
+\ejercicio{}{}
+
+% Ejercicio 3
+\ejercicio{}{}
+
+% Ejercicio 4
+\ejercicio{}{}
+
+% Ejercicio 5
+\ejercicio{}{}
+
+% Ejercicio 6
+\ejercicio{}{}
+
+% Ejercicio 7
+\ejercicio{}{}
+
+% Ejercicio 8
+\ejercicio{}{}
+
+% Ejercicio 9
+\ejercicio{}{}
+
+% Ejercicio 10
+\ejercicio{}{}
+
+% Ejercicio 11
+\ejercicio{}{}
+
+% Ejercicio 12
+\ejercicio{}{}
+
+% Ejercicio 13
+\ejercicio{}{}
+
+% Ejercicio 14
+\ejercicio{}{}
+
+% Ejercicio 15
+\ejercicio{}{}
+
+% Ejercicio 16
+\ejercicio{}{}
+
+% Ejercicio 17
+\ejercicio{
+    Sea $A \in M_n$ una matriz hermítica (resp. simétrica) definida positiva.
+\begin{itemize}
+    \item[a)] Probar que existe $B \in M_n$ hermítica (resp. simétrica) definida positiva tal que $A = B^2$.
+    \item[b)] Demostrar que si $\text{cond}_2(A) > 1$ entonces $\text{cond}_2(B) < \text{cond}_2(A)$.
+\end{itemize}
+}
+{
+    \textbf{a)} Primero podemos aplicar el teorema de Schur para descomponer $A=UTU^*$, donde $U$ es una matriz unitaria (resp. ortogonal) y $T$ es triangular superior. Luego, como $A$ es h.d.p., $T$ debe ser diagonal con entradas positivas. Por lo tanto, podemos definir $\sqrt{D}$ como la matriz diagonal con las raíces cuadradas de las entradas de $D=T$:
+    \[
+        A=U\sqrt{D}\sqrt{D}U^*=(U\sqrt{D}U^*)^2 = B^2
+    \]
+    Por tanto, $B=U\sqrt{D}U^*$ es la matriz que buscamos, y es hermítica (resp. simétrica) y definida positiva, ya que $\sqrt{D}$ es diagonal con entradas positivas y $U$ es unitaria (resp. ortogonal).\\
+    \textbf{b)} Ahora, como $U$ es unitaria (resp. ortogonal) y $\sqrt{D}$ es diagonal con entradas positivas, $B$ también es hermítica (resp. simétrica) y definida positiva, y además:
+    \[
+        \text{cond}_2(B) = 
+        \| B\|_2 \| B^{-1} \|_2 = 
+        \| U\sqrt{D}U^* \|_2 \| (U\sqrt{D}U^*)^{-1} \|_2 = 
+        \| \sqrt{D} \|_2 \| \sqrt{D}^{-1} \|_2 = 
+        \sqrt{\text{cond}_2(A)}
+    \]
+    Otra forma es darse cuenta de que:
+    \[
+        \| A \|_2^2 = \rho(A^*A) = \rho(A^2) = \rho^2(A) = \lambda_{\max}^2(A)
+    \]
+    Y la de su inversa:
+    \[
+        \| A^{-1} \|_2^2 = 
+        \rho((A^{-1})^*A^{-1}) = 
+        \rho((A^{-1})^2) = 
+        \rho^2(A^{-1}) = 
+        \lambda_{\max}^2(A^{-1}) =
+        \lambda_{\min}^{-2}(A)
+    \]
+    Y por tanto su condición es: 
+    \[
+        \text{cond}_2(A) =
+        \| A \|_2 \| A^{-1} \|_2 =
+        \frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}
+    \]
+    Análogamente para $B$, su condición es:
+    \[
+        \text{cond}_2(B) =
+        \| B \|_2 \| B^{-1} \|_2 =
+        \frac{\lambda_{\max}(B)}{\lambda_{\min}(B)} =
+        \frac{\sqrt{\lambda_{\max}(A)}}{\sqrt{\lambda_{\min}(A)}} =
+        \sqrt{\text{cond}_2(A)}
+    \] 
+    Por tanto, si $\text{cond}_2(A) > 1$ entonces $\text{cond}_2(B) < \text{cond}_2(A)$, ya que:
+    \[
+        \sqrt{\text{cond}_2(A)} < \text{cond}_2(A) \iff
+        \text{cond}_2(A) > 1
+    \]
+}

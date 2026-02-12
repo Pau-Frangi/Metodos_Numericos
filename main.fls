@@ -642,6 +642,9 @@ INPUT Theory\1 - Matrices y sus propiedades.tex
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti8.tfm
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
+INPUT .\Theory\2 - Resolución de sistemas lineales.tex
+INPUT .\Theory\2 - Resolución de sistemas lineales.tex
+INPUT Theory\2 - Resolución de sistemas lineales.tex
 INPUT .\Exercises\Hojas.tex
 INPUT .\Exercises\Hojas.tex
 INPUT Exercises\Hojas.tex

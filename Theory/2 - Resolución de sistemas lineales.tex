@@ -1,0 +1,86 @@
+\section{Resolución de sistemas lineales}
+\subsection{Introducción a los sistemas lineales}
+
+Sea $A \in \mathbb{K}^{n \times n}$ y $b \in \mathbb{K}^n$. Un sistema lineal es la búsqueda de $x \in \mathbb{K}^n$ tal que $S \equiv Ax=b$. En este apartado se estudiarán diferentes métodos para resolver sistemas lineales, así como sus propiedades y análisis de convergencia.\\
+
+Es fácil ver que si $A$ es invertible, entonces el sistema tiene una única solución dada por $x=A^{-1}b$. Sin embargo, calcular la inversa de una matriz puede ser computacionalmente costoso y numéricamente inestable. Por ello, se han desarrollado diversos métodos para resolver sistemas lineales sin necesidad de calcular la inversa de la matriz.\\
+
+\begin{teorema}[Metodo de Cramer]
+    Sea el sistema $S \equiv Ax=b$ con $A \in \mathbb{K}^{n \times n}$ invertible. Entonces, si denotamos:
+    \[
+        A_i = \begin{bmatrix}
+            a_{11} & \cdots & a_{1,i-1} & b_1 & a_{1,i+1} & \cdots & a_{1n} \\
+            a_{21} & \cdots & a_{2,i-1} & b_2 & a_{2,i+1} & \cdots & a_{2n} \\
+            \vdots  &  & \vdots  & \vdots  & \vdots  &  & \vdots  \\
+            a_{n1} & \cdots & a_{n,i-1} & b_n & a_{n,i+1} & \cdots & a_{nn}
+        \end{bmatrix} =
+        \left( a_1, \ldots, a_{i-1}, b, a_{i+1}, \ldots, a_n \right)
+    \]
+    Dónde $a_j$ es la $j$-ésima columna de $A$, entonces la solución del sistema es:
+    \[
+        x_i = \frac{\det(A_i)}{\det(A)} \quad \forall i=1, \ldots, n
+    \]
+\end{teorema}
+
+Sin embargo, el método de Cramer es computacionalmente ineficiente para matrices grandes, ya que el cálculo de determinantes tiene una complejidad factorial. Por ello, se utilizan otros métodos como el método de Gauss, que es mucho más eficiente y estable para resolver sistemas lineales, se pueden apreciar los tiempos necesarios en la siguiente tabla:
+
+\[
+\begin{array}{|c|c|c|c|}
+    \hline
+    n & 10 & 100 & 10^3 \\
+    \hline
+    \text{Cramer} & 10^8 & 10^{162} & 10^{2573} \\
+    \hline
+    \text{Gauss} & 800 & 10^6 & 10^9 \\
+    \hline
+\end{array}
+\]
+
+Siendo $n$ el tamaño de la matriz $A$, el metodo de Cramer tiene una complejidad de $O(n^2 \cdot n!)$ mientras que el método de Gauss tiene una complejidad de $O(n^3)$.\\
+
+En los siguientes apartados se estudiarán diferentes métodos para resolver sistemas lineales, así como sus propiedades y análisis de convergencia.\\
+
+Un caso particular de sistemas lineales es el caso de sistemas diagonales, que tienen esta forma:
+
+\[
+    \begin{pmatrix}
+        a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} 
+    \end{pmatrix}
+    \cdot x = b
+\]
+
+De lo que se deduce trivialmente que la solución es $x_i = \frac{b_i}{a_{ii}}$ para $i=1, \ldots, n$.\\
+
+Estos sistemas diagonales tiene  una complejidad de $O(n)$, ya que se necesitan $n$ operaciones para calcular la solución.\\
+
+Otro sistema particular es el sistema triangular superior, que tiene esta forma:
+
+\[ 
+\begin{pmatrix} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 0 & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} 
+\end{pmatrix} 
+\cdot x = b 
+\] 
+
+En este caso, se puede resolver el sistema mediante sustitución hacia atrás, comenzando por la última ecuación y avanzando hacia la primera, es decir:
+
+\[
+    x_i = 
+    \frac{1}{a_{ii}} \left( b_i - \sum_{j=i+1}^n a_{ij} x_j \right) 
+    \quad \forall i \in \{n, n-1, \ldots, 1\} \
+\]
+
+Analogamente, un sistema triangular inferior tiene esta forma: 
+\[ 
+    \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ a_{21} & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} 
+    \end{pmatrix} 
+    \cdot x = b 
+\] 
+
+Y se puede resolver mediante sustitución hacia adelante, comenzando por la primera ecuación y avanzando hacia la última, es decir: 
+\[ 
+x_i = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j \right) 
+\quad \forall i \in \{1, 2, \ldots, n\}
+\]
+
+Estos sistemas triangulares tienen una complejidad de $O(n^2)$, ya que se necesitan $n$ operaciones para calcular cada $x_i$, y hay $n$ variables.\\
