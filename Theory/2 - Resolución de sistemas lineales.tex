@@ -84,3 +84,167 @@ x_i = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j \right)
 \]
 
 Estos sistemas triangulares tienen una complejidad de $O(n^2)$, ya que se necesitan $n$ operaciones para calcular cada $x_i$, y hay $n$ variables.\\
+
+Ahora veamos algunos metodos de resolución de sistemas lineales más generales.
+
+\begin{proposición}[Método de eliminación Gaussiana]
+    El método de eliminación Gaussiana es un algoritmo para resolver sistemas lineales que consiste en transformar la matriz $A$ en una matriz triangular superior mediante operaciones elementales de fila, es decir:
+
+    \[
+    Ax = b \longrightarrow
+    Tx = b'
+    \]
+
+    Para pasar a una matriz triangular superior $T$, usaremos una matriz $E$ cuyo determinante no sea nula, de tal forma que tengamos el siguiente sistema equivalente:
+
+    \[
+    \underbrace{E \cdot A}_{T} x = \underbrace{E \cdot b}_{b'}
+    \]
+    
+    Para ver quien es esta matriz $E$, se pueden usar matrices de permutación para intercambiar filas, matrices de escala para multiplicar una fila por un escalar distinto de cero, y matrices de eliminación para sumar un múltiplo de una fila a otra fila. Denotemos:
+
+    \[
+    E = E_k \cdot E_{k-1} \cdots E_1
+    \]
+
+    Siendo $E_i$ una matriz elemental que representa una de las operaciones mencionadas anteriormente, y siendo:
+
+    \[
+        E_i \cdot A_{i-1} = A_i \, \quad b_i = E_i \cdot b_{i-1} \longrightarrow
+        A_i x = b_i
+    \]
+
+    Y por tanto el algoritmo se basara en llegar a un $k$ que cumpla:
+
+    \[
+        A_k = E_k \cdot E_{k-1} \cdots E_1 \cdot A = E \cdot A = T
+    \]
+
+    Ahora veamos como encontrar una matriz $E_i$ que nos permita hacer cada una de las operaciones elementales descritas anteriormente:
+    \begin{itemize}
+        \item \textbf{Multiplicar una fila por un escalar distinto de cero:} Para multiplicar la fila $i$ por un escalar $\lambda \neq 0$, se puede usar la matriz de escala $E_i$ que tiene la forma:
+        \[
+            E_i = \begin{pmatrix}
+                1 & \cdots & 0 \\ 
+                0 & \ddots & \cdots & 0 
+                \\ \vdots & 0 & \lambda & 0 
+                \\ 0 & 0 & \cdots & 1 
+            \end{pmatrix}
+        \]
+        Donde el elemento en la posición $(i,i)$ es $\lambda$ y el resto de los elementos son $1$ en la diagonal y $0$ en el resto de la matriz, y transforma $A_{i-1}$ en $A_i$ multiplicando la fila $i$ por $\lambda$:
+        \[
+            E_i \cdot A_{i-1} =
+            \begin{pmatrix}
+                1 & 0 & \cdots & 0 \\ 
+                0 & \ddots & \cdots & 0 
+                \\ \vdots & 0 & \lambda & 0 
+                \\ 0 & 0 & \cdots & 1
+            \end{pmatrix}
+            \cdot \begin{pmatrix}
+                a_i^T \\ \vdots \\ a_i^T \\ \vdots \\ a_n^T 
+            \end{pmatrix} =
+            \begin{pmatrix}
+                a_i^T \\ \vdots \\ \lambda a_i^T \\ \vdots \\ a_n^T
+            \end{pmatrix}
+        \]
+        \item \textbf{Intercambiar dos filas:} Para intercambiar las filas $i$ y $j$, se puede usar la matriz de permutación $E_i$ que tiene la forma:
+        \[
+            E_i = \begin{pmatrix}
+                1 & \cdots & 0 & \cdots & 0 \\ 
+                \vdots & \ddots & \vdots & \ddots & \vdots 
+                \\ 0 & \cdots & 0 & \cdots & 1 
+                \\ \vdots & \ddots & \vdots & \ddots & \vdots 
+                \\ 0 & \cdots & 1 & \cdots & 0
+            \end{pmatrix}
+        \]
+        Donde el elemento en la posición $(i,j)$ es $1$, el elemento en la posición $(j,i)$ es $1$, y el resto de los elementos son $1$ en la diagonal y $0$ en el resto de la matriz, y transforma $A_{i-1}$ en $A_i$ intercambiando las filas $i$ y $j$:
+        \[
+            E_i \cdot A_{i-1} =
+            \begin{pmatrix}
+                1 & 0 & \cdots & 0 & \cdots & 0 \\ 
+                0 & \ddots & \vdots & \ddots & \vdots & \vdots 
+                \\ \vdots & 0 & 0 & \cdots & 1 & 0 
+                \\ 0 & \cdots & 1 & \cdots & 0 & 0 
+                \\ \vdots & \ddots & \vdots & \ddots & \vdots & \vdots 
+                \\ 0 & \cdots & 0 & \cdots & 0 & 1
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix}
+                a_1^T \\ \vdots \\ a_i^T \\ \vdots \\ a_j^T \\ \vdots \\ a_n^T
+            \end{pmatrix} =
+            \begin{pmatrix}
+                a_1^T \\ \vdots \\ a_j^T \\ \vdots \\ a_i^T \\ \vdots \\ a_n^T
+            \end{pmatrix}
+        \]
+        \item \textbf{Suma de dos filas:} Para sumar una fila $i$ a otra fila $j$, se puede usar la matriz de eliminación $E_i$ que tiene la forma:
+        \[
+            E_i = \begin{pmatrix}
+                1 & \cdots & 0 & \cdots & 0 \\ 
+                \vdots & \ddots & \vdots & \ddots & \vdots 
+                \\ 0 & \cdots & 1 & \cdots & 1
+                \\ \vdots & \ddots & \vdots & \ddots & \vdots 
+                \\ 0 & \cdots & 0 & \cdots & 1 
+            \end{pmatrix}
+        \]
+        Donde el elemento en la posición $(j,i)$ es $1$, el elemento en la posición $(j,j)$ es $1$, y el resto de los elementos son $1$ en la diagonal y $0$ en el resto de la matriz, y transforma $A_{i-1}$ en $A_i$ sumando la fila $i$ a la fila $j$:
+        \[
+            E_i \cdot A_{i-1} =
+            \begin{pmatrix}
+                1 & 0 & \cdots & 0 & \cdots & 0 \\ 
+                0 & \ddots & \vdots & \ddots & \vdots & \vdots 
+                \\ 0 & \cdots & 1 & \cdots & 1 & 0 
+                \\ 0 & \cdots & 0 & \cdots & 1 & 0 
+                \\ \vdots & \ddots & \vdots & \ddots & \vdots & \vdots 
+                \\ 0 & \cdots & 0 & \cdots & 0 & 1
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix}
+                a_1^T \\ \vdots \\ a_i^T \\ \vdots \\ a_j^T \\ \vdots \\ a_n^T
+            \end{pmatrix} =
+            \begin{pmatrix}
+                a_1^T \\ \vdots \\ a_i^T + a_j^T \\ \vdots \\ a_j^T \\ \vdots \\ a_n^T
+            \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Tras comprobar esto, veamos como aplicarlo a un sistema lineal, suponiendo que $\det(A) \neq 0$, entonces el sistema tiene una única solución, y podemos aplicar el método de eliminación Gaussiana para resolverlo.\\
+
+    \begin{enumerate}
+        \item Como $\det(A) \neq 0$, entonces $\exists i \in \{1, \ldots, n\}$ tal que $a_{i1} \neq 0$, entonces podemos usar la matriz de permutación $E_1$ para intercambiar la fila $i$ con la fila $1$, y obtener una nueva matriz $A_1$ con un elemento $a$ no nulo en la posición $(1,1)$:
+        \[
+            E_1 \cdot A = A_1 =
+            \left(
+            \begin{array}{c|c}
+                a & \beta^T \\ \hline
+                \alpha & A_{n-1}
+            \end{array}
+            \right)
+        \]
+        \item Despues, multiplicamos la fila $1$ por $\frac{1}{a}$ usando la matriz de escala $E_2$, y obtenemos una nueva matriz $A_2$ con un elemento $1$ en la posición $(1,1)$:
+        \[
+            E_2 \cdot A_1 = A_2 =
+            \left(
+            \begin{array}{c|c}
+                1 & \frac{\beta^T}{a} \\ \hline
+                \alpha & A_{n-1}
+            \end{array}
+            \right)
+        \]
+        \item Finalmente, sumamos un múltiplo de la fila $1$ a cada una de las filas $2, \ldots, n$ segun los elementos de $\alpha$ usando las matrices de eliminación $E_{l1}, \ldots, E_{ln}$, las cuales componen $E_3$, y obtenemos una nueva matriz $A_3$ con ceros en la primera columna excepto en la posición $(1,1)$:
+        \[
+            E_n \cdots E_3 \cdot A_2 = A_n =
+            \left(
+            \begin{array}{c|c}
+                1 & \frac{\beta^T}{a} \\ \hline
+                0 & A_{n-1} - \frac{\alpha \cdot \beta^T}{a}
+            \end{array}
+            \right)
+        \]
+        \item Si ahora denotamos $B_{n-1} = A_{n-1} - \frac{\alpha \cdot \beta^T}{a}$, entonces podemos repetir este proceso con la matriz $B_{n-1}$, y así sucesivamente hasta obtener una matriz triangular superior $T$:
+        \[
+            E_k \cdots E_3 \cdot A_2 = T
+        \]
+    \end{enumerate}
+    Tras aplicar estos pasos, obtenemos una matriz triangular superior $T$ y un vector $b'$ tal que el sistema $Tx = b'$ es equivalente al sistema original $Ax = b$. Luego, podemos resolver el sistema triangular superior $Tx = b'$ mediante sustitución hacia atrás para obtener la solución del sistema original.\\
+\end{proposición}
+
