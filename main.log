@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  16 FEB 2026 10:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  18 FEB 2026 10:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1282,7 +1282,7 @@ Package etoc Info: Setting (or re-setting) the options `maintoctotoc' and
 (etoc)             `localtoctotoc' to true as tocbibind was detected and
 (etoc)             found to be configured for `TOC to toc'.
 (etoc)             Reported at begin document on input line 15.
-<images/logo.png, id=126, 1585.81029pt x 1585.81029pt>
+<images/logo.png, id=130, 1585.81029pt x 1585.81029pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 31.
@@ -1968,7 +1968,29 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
 
-[30])
+[30]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 251.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.251 \begin{teorema}[Descomposición Gaussiana]
+                                                
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 264.
+
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.264     S
+           i además $\det(A) = 0$, entonces podemos encontrar $T$ cuya diag...
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 272.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.4521pt, for example:
@@ -1976,7 +1998,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
 
-[31])
+[31]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 297.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.297 ...stemas lineales con la factorización LU]
+                                                  )
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.4521pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.4521pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
+
+[32])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1984,7 +2023,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[32] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja1.tex
+[33] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja1.tex
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1992,15 +2031,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[33]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[34])
+[34]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -2016,7 +2047,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[36] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex)
+[36] (Exercises/Hoja3.tex
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 }
+      
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -2024,7 +2064,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[37])
+[37]
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.69 \ejercicio{}{}
+                   
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -2032,7 +2077,122 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[38] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+[38]
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.72 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.75 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.78 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.81 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.84 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.87 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.90 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.93 \ejercicio{}{}
+                   
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[39]
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.96 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.99 \ejercicio{}{}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.102 \ejercicio{}{}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.105 \ejercicio{}{}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.15}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.108 \ejercicio{}{}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.111 \ejercicio{}{}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.17}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.114 \ejercicio{}{}
+                    )
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[40])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[41] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[42])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[43] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
@@ -2098,7 +2258,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[39]
+[44]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 47.
@@ -2133,7 +2293,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[40] (Appendix/Agradecimientos.tex
+[45] (Appendix/Agradecimientos.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 10.95003pt
@@ -2147,8 +2307,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[41])
-<doclicense-CC-by-nc-nd-88x31.pdf, id=618, 90.3375pt x 31.61812pt>
+[46])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=670, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
@@ -2165,26 +2325,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [42 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+) [47 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F6EE88758B93259E662409874F2F6206;3487.
+(rerunfilecheck)             Checksum: D433323288AFC8377086BFF2D80BFD5D;3707.
  ) 
 Here is how much of TeX's memory you used:
- 50183 strings out of 467866
- 1170252 string characters out of 5418326
- 1894890 words of memory out of 5000000
- 77930 multiletter control sequences out of 15000+600000
+ 50236 strings out of 467866
+ 1171275 string characters out of 5418326
+ 1895124 words of memory out of 5000000
+ 77964 multiletter control sequences out of 15000+600000
  648020 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,13n,112p,1035b,1231s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (43 pages, 1007076 bytes).
+Output written on main.pdf (48 pages, 1034649 bytes).
 PDF statistics:
- 765 PDF objects out of 1000 (max. 8388607)
- 190 named destinations out of 1000 (max. 500000)
- 339 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 819 PDF objects out of 1000 (max. 8388607)
+ 206 named destinations out of 1000 (max. 500000)
+ 347 words of extra memory for PDF output out of 10000 (max. 10000000)
 

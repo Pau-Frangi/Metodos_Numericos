@@ -1,0 +1,114 @@
+\hojaejercicio{Método de Gauss Jordan}
+
+% Ejercicio 1
+\ejercicio{
+    Sea $A \in M_n$ una matriz invertible.
+    \begin{itemize}
+        \item[a)] Adaptar el método de Gauss Jordan para calcular $\widetilde{M}$ que cumpla que $\widetilde{M}A=I$.
+        \item[b)] Usando el apartado anterior, explicar como calcular $A^{-1}$ con el método de Gauss Jordan.
+    \end{itemize}
+}{
+    Veamos ambas partes por separado:
+    \begin{itemize}
+        \item[a)] Primero, según el método de Gauss Jordan, podemos realizar operaciones elementales sobre las filas de $A$ para llevarla a la forma escalonada reducida, es decir, encontrar matrices $E$ y $T$ (triangular superior) tal que $EA=T$. Luego, podemos aplicar operaciones elementales sobre las filas de $T$ para llevarla a la forma identidad, es decir, encontrar matrices $R$ y $I$ tal que $RT=I$. Combinando ambas partes, tenemos que $R(EA)=I$, lo que implica que $\widetilde{M}=RE$ cumple la condición $\widetilde{M}A=I$.\\
+        Para el cálculo de $R$, podremos ir descompiniendola como el producto de $n$ matrices elementales, cada una de las cuales corresponde a una operación elemental sobre las filas de $T$, y de manera análoga al método de Gauss, vamos a ir aplicando estas operaciones sobre la última columna de $T$, dejando una submatriz con la que repetir el proceso:
+        \[
+            R_1 \underbrace{T_0}_{=T} =
+            \left(
+            \begin{array}{c|c}
+                I & - \beta \\
+                \hline
+                0 & 1
+            \end{array}
+            \right)
+            \left(
+            \begin{array}{c|c}
+                T_1 & \beta \\
+                \hline
+                0 & 1
+            \end{array}
+            \right) =
+            \left(
+            \begin{array}{c|c}
+                T_1 & 0 \\
+                \hline
+                0 & 1
+            \end{array}
+            \right)
+        \]
+        Y podemos repetir el proceso con $T_1$ y así sucesivamente hasta llegar a la forma identidad, obteniendo $R$ como el producto de las matrices elementales correspondientes a cada operación elemental sobre las filas de $T$.\\
+        \item[b)] Para calcular $A^{-1}$ con el método de Gauss Jordan, podemos aplicar el método de Gauss Jordan a la matriz, primero escogiendo un numero distinto de cero en cada columna, de la forma $\alpha_{ij}$ donde $ i \geq j$, que debe existir al ser $A$ invertible, y luego eliminando los elementos de esa columna, y asi sucesivamente hasta llegar a la forma identidad. Veamos una iteración del proceso:
+        \[
+            \left(
+            \begin{array}{c|c|c}
+                I & \alpha_1 & \beta_1 \\
+                \hline
+                0 & 1 & \beta_2 \\
+                \hline
+                0 & \alpha_2 & \beta_3
+            \end{array}
+            \right)
+            \xrightarrow{R_i}
+            \left(
+            \begin{array}{c|c|c}
+                I & 0 & \beta'_1 \\
+                \hline
+                0 & 1 & \beta'_2 \\
+                \hline
+                0 & 0 & \beta'_3
+            \end{array}
+            \right)
+        \]
+        Notese que si realizamos este proceso sobre la matriz aumentada $[A | I]$, al llegar a la forma identidad en la parte izquierda, la parte derecha de la matriz aumentada se habrá transformado en $A^{-1}$, es decir, $[I | A^{-1}]$.\\
+        Esto es debido a que las operaciones elementales sobre las filas de $A$ se corresponden con multiplicar $A$ por matrices elementales, y estas mismas operaciones aplicadas a la parte derecha de la matriz aumentada se corresponden con multiplicar $I$ por las mismas matrices elementales, lo que da como resultado $A^{-1}$ al llegar a la forma identidad en la parte izquierda, ya que al haber multiplicado $A$ por las matrices elementales correspondientes a cada operación elemental sobre las filas de $A$, se habrá obtenido la forma identidad, lo que implica que $I$ se habrá multiplicado por las mismas matrices elementales, dando como resultado $A^{-1} = R_n \cdots R_1 E A = R_n \cdots R_1 E = \widetilde{M}$.\\
+        En resumen, para calcular $A^{-1}$ con el método de Gauss Jordan, podemos aplicar el método de Gauss Jordan a la matriz aumentada $[A | I]$, realizando operaciones elementales sobre las filas de $A$ para llevarla a la forma identidad, y aplicando las mismas operaciones elementales sobre las filas de $I$ para obtener $A^{-1}$ en la parte derecha de la matriz aumentada.
+        \end{itemize}     
+}
+
+% Ejercicio 2
+\ejercicio{}{}
+
+% Ejercicio 3
+\ejercicio{}{}
+
+% Ejercicio 4
+\ejercicio{}{}
+
+% Ejercicio 5
+\ejercicio{}{}
+
+% Ejercicio 6
+\ejercicio{}{}
+
+% Ejercicio 7
+\ejercicio{}{}
+
+% Ejercicio 8
+\ejercicio{}{}
+
+% Ejercicio 9
+\ejercicio{}{}
+
+% Ejercicio 10
+\ejercicio{}{}
+
+% Ejercicio 11
+\ejercicio{}{}
+
+% Ejercicio 12
+\ejercicio{}{}
+
+% Ejercicio 13
+\ejercicio{}{}
+
+% Ejercicio 14
+\ejercicio{}{}
+
+% Ejercicio 15
+\ejercicio{}{}
+
+% Ejercicio 16
+\ejercicio{}{}
+
+% Ejercicio 17
+\ejercicio{}{}

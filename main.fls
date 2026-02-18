@@ -651,6 +651,9 @@ INPUT Exercises\Hojas.tex
 INPUT .\Exercises\Hoja1.tex
 INPUT .\Exercises\Hoja1.tex
 INPUT Exercises\Hoja1.tex
+INPUT .\Exercises\Hoja3.tex
+INPUT .\Exercises\Hoja3.tex
+INPUT Exercises\Hoja3.tex
 INPUT .\Exams\Examenes Resueltos.tex
 INPUT .\Exams\Examenes Resueltos.tex
 INPUT Exams\Examenes Resueltos.tex

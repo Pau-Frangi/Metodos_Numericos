@@ -248,3 +248,114 @@ Ahora veamos algunos metodos de resolución de sistemas lineales más generales.
     Tras aplicar estos pasos, obtenemos una matriz triangular superior $T$ y un vector $b'$ tal que el sistema $Tx = b'$ es equivalente al sistema original $Ax = b$. Luego, podemos resolver el sistema triangular superior $Tx = b'$ mediante sustitución hacia atrás para obtener la solución del sistema original.\\
 \end{proposición}
 
+\begin{teorema}[Descomposición Gaussiana]
+    Sea $A \in \mathbb{K}^{n \times n}$ arbitraria, entonces $\exists E \in \mathbb{K}^{n \times n}$ con $\det(E) \neq 0$ tal que:
+    \[
+        E \cdot A = T
+    \]
+    Donde $T$ es una matriz triangular superior.
+\end{teorema}
+
+\begin{proof}
+    La demostración es seguir el proceso descrito en el método de eliminación Gaussiana, aplicando operaciones elementales de fila para transformar la matriz $A$ en una matriz triangular superior $T$, visto en la proposición anterior.\\
+\end{proof}
+
+\begin{observación}
+    Si además $\det(A) = 0$, entonces podemos encontrar $T$ cuya diagonal esté compuesta por $0$ y $1$.
+\end{observación}
+
+\begin{proof}
+    Para ver esto, como $\det(T) = \det(E) \cdot \det(A)$, entonces $\det(T) = 0$, lo que implica que al menos un elemento de la diagonal de $T$ es $0$ (recordemos que el determinante de una matriz triangular es el producto de los elementos de su diagonal).\\
+    El proceso de eliminacion gaussiana seguirá igual hasta llegar a una columna $j$ tal que este compuesta de ceros, en esa situacion, pasamos a la siguiente submatriz $A_{n-j}$, y repetimos el proceso hasta llegar a una matriz triangular superior $T$ cuya diagonal este compuesta por $0$ y $1$ (los $0$ vienen de las columnas compuestas por ceros, y los $1$ vienen de las columnas con elementos no nulos en la diagonal, que se convierten en $1$ al multiplicar la fila por el inverso del elemento no nulo).\\
+\end{proof}
+
+\begin{teorema}[Factorización LU]
+    Sea $A \in \mathbb{K}^{n \times n}$, entonces $\exists L \in \mathbb{K}^{n \times n}$ una matriz triangular inferior con $1$ en la diagonal, y $\exists U \in \mathbb{K}^{n \times n}$ una matriz triangular superior tal que:
+    \[
+        A = LU
+    \]
+\end{teorema}
+
+Notese que con esta descomposición:
+\[
+    \det(A) = \det(L) \cdot \det(U) = 1 \cdot \prod_{i=1}^n u_{ii} = \prod_{i=1}^n u_{ii}
+\]
+
+Lo que implica que:
+\[
+    \det(A) \neq 0 \iff u_{ii} \neq 0 \, \forall i=1, \ldots, n
+\]
+\[
+    \iff
+\]
+\[
+    \det(A) = 0 \iff \exists i \in \{1, \ldots, n\} : u_{ii} = 0
+\]
+
+Esta descomposición es muy útil para resolver sistemas lineales, ya que si $A = LU$, entonces el sistema $Ax = b$ se puede transformará en $LUx = b$.
+
+\begin{proposición}[Resolución de sistemas lineales con la factorización LU]
+    Si $A = LU$, entonces el sistema $Ax = b$ se puede resolver en dos pasos:
+    \begin{enumerate}
+        \item Descomponemos $A$ en $L$ y $U$, por lo que:
+        \[
+            Ax = b \longrightarrow
+            LUx = b
+        \]
+        \item Denotamos $Ux = w \in \mathbb{K}^n$.
+        \item Resolvemos aplicando el método de remonte:
+        \[
+            Lw = b \longrightarrow
+            \exists ! w \in \mathbb{K}^n : \quad
+            w = L^{-1}b
+        \]
+        \item Resolvemos tambien aplicando el método de remonte:
+        \[
+            Ux = w \longrightarrow
+            \exists ! x \in \mathbb{K}^n : \quad
+            x = U^{-1}w
+        \]
+    \end{enumerate}
+    Además, podemos resumir el cálculo de $x$ como:
+    \[
+        x = U^{-1}L^{-1}b
+    \]
+\end{proposición}
+
+Para ver como hacer la factorización veamos que:
+
+\[
+    A_n =
+    \left(
+    \begin{array}{c|c}
+        a_{11} & \beta^T \\ \hline
+        \alpha & A_{n-1}
+    \end{array}
+    \right) =
+    L_n \cdot U_n =
+    \left(
+    \begin{array}{c|c}
+        1 & 0 \\ \hline
+        v & L_{n-1}
+    \end{array}
+    \right) \cdot
+    \left(
+    \begin{array}{c|c}
+        u_{11} & w^T \\ \hline
+        0 & U_{n-1}
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{c|c}
+        u_{11} & w^T \\ \hline
+        vu_{11} & v w^T + L_{n-1} U_{n-1}
+    \end{array}
+    \right)
+\]
+
+De lo que deducimos que:
+
+\[
+    u_{11} = a_{11} \quad w^T = \beta^T \quad v u_{11} = \alpha \quad v w^T + L_{n-1} U_{n-1} = A_{n-1}
+\]
