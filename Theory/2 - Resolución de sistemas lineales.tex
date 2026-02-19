@@ -357,5 +357,140 @@ Para ver como hacer la factorización veamos que:
 De lo que deducimos que:
 
 \[
-    u_{11} = a_{11} \quad w^T = \beta^T \quad v u_{11} = \alpha \quad v w^T + L_{n-1} U_{n-1} = A_{n-1}
+    u_{11} = a_{11} \qquad w = \beta \qquad v = \frac{\alpha}{a_{11}} \qquad v w^T + L_{n-1} U_{n-1} = A_{n-1}
 \]
+
+De lo que podemos definir:
+
+\[
+    L_{n-1}U_{n-1} = A_{n-1} - \frac{\alpha \cdot \beta^T}{a_{11}} = B_{n-1}
+\]
+
+Notese que necesariamente $a_{11} \neq 0$ para poder hacer esta factorización, lo que implica que $\det(A) \neq 0$.\\
+
+\begin{observación}
+    Notese que:
+    \[
+        \exists A^{-1} \nleftrightarrow \exists L^{-1} \text{ y } U^{-1}
+    \]
+\end{observación}
+
+Notese que la primera iteración tiene coste $(n-1) + 2(n-1)^2$, y la 2 iteración tiene coste $\frac{(n-2) + 2(n-2)^2}{\frac{2}{3}n^3}$, y asi sucesivamente, por lo que el coste total de la factorización es $O(n^3)$.\\
+
+\begin{teorema}[Permisibilidad de la factorización LU]
+    Sea $A \in \mathbb{K}^{n \times n}$, que además cumple que $\delta_k = det(A_k) = det((a_{ij})_{i,j=1}^k) \neq 0$ para $k=1, \ldots, n-1$, siendo ademas $\delta_n = det(A)$, pudiendo ser $0$ o no, entonces $A$ admite una factorización LU.\\
+    Además, si $\delta_n = 0$, entonces $u_nn = 0$.
+\end{teorema}
+
+Antes de la demostración veamos un lema interesante.
+
+\begin{lema}[Inversas de matrices triangulares]
+    Si $T$ es una matriz triangular superior/inferior e invertible, entonces $T^{-1}$ es una matriz triangular superior/inferior.
+\end{lema}
+
+\begin{proof}
+    Primero probaremos la existencia y despues la unicidad de la factorización.\\
+    \begin{itemize}
+    \item[$\boldsymbol{\exists}$] Demostraremos la existencia por inducción sobre $n$.\\
+    \begin{enumerate}
+    \item Primero si $\delta_1 = a_{11} \neq 0$, entonces podemos hacer la primera iteración de la factorización, y obtener $L_1$ y $U_1$ como:
+    \[
+        A_1 = 1 \cdot a_{11} \qquad L_1 = 1 \qquad U_1 = a_{11}
+    \]
+    Por lo tanto el caso base se cumple.\\
+    \item Ahora supongamos que $\exists A_{k-1} = L_{k-1} U_{k-1}$ con la descomposición buscada, entonces podemos encontrar $L_k$ y $U_k$, para calcular $A_k$ como:
+    \[
+    A_k =
+    \left(
+    \begin{array}{c|c}
+        A_{k-1} & \beta^T \\ \hline
+        \alpha & a_{kk}
+    \end{array}
+    \right) =
+    L_k \cdot U_k =
+    \left(
+    \begin{array}{c|c}
+        L_{k-1} & 0 \\ \hline
+        v & 1
+    \end{array}
+    \right) \cdot
+    \left(
+    \begin{array}{c|c}
+        U_{k-1} & w^T \\ \hline
+        0 & a_{kk}
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{c|c}
+        L_{k-1} U_{k-1} & L_{k-1} w^T \\ \hline
+        v U_{k-1} & v w^T + a_{kk}
+    \end{array}
+    \right)
+    \]
+    De lo que deducimos que:
+    \[
+        L_k = 
+        \left(
+        \begin{array}{c|c}
+            L_{k-1} & 0 \\ \hline
+            v & 1
+        \end{array}
+        \right) 
+    \qquad
+    U_k = 
+    \left(
+    \begin{array}{c|c}
+            U_{k-1} & w^T \\ \hline
+            0 & a_{kk}
+    \end{array}
+    \right)
+    \]
+    Ahora hagamos las comprobaciones necesarias:
+    \begin{enumerate}
+        \item Primero, veamos que existe $w$:
+        \[
+        L_{k-1} w^T = \beta^T \xlongrightarrow{\det(L_{k-1}) = 1 \neq 0} \exists ! w^T = L_{k-1}^{-1} \beta^T
+        \]
+        \item Ahora veamos que existe $v$:
+        \[
+        v U_{k-1} = \alpha 
+        \xlongrightarrow{\det(U_{k}) = \det(A_k) \neq 0} 
+        \exists ! v = \alpha U_{k-1}^{-1}
+        \]
+        \item Finalmente, veamos que $v w^T + a_{kk} = a_{kk}$:
+        \[
+        u_{kk} =
+        a_{kk} - v w^T =
+        a_{kk} - \alpha U_{k-1}^{-1} L_{k-1}^{-1} \beta^T =
+        a_{kk} - \alpha A_{k-1}^{-1} \beta^T =
+        \frac{det(A_k)}{det(A_{k-1})} = \frac{\delta_k}{\delta_{k-1}} \neq 0
+        \]
+        Y así $u_{kk} \neq 0 \, \quad \forall k=1, \ldots, n-1$, y $u_{nn} = \frac{\delta_n}{\delta_{n-1}}$, que puede ser $0$ o no, dependiendo de si $\delta_n = \det(A)$ es $0$ o no.\\
+    \end{enumerate}
+    Y tras hacer las comprobaciones necesarias, obtenemos que $A_k = L_k U_k$, por lo que el paso inductivo se cumple.\\
+    \end{enumerate}
+    Por lo tanto, por inducción, el teorema se cumple para todo $n$.\\
+    \item[$\textbf{!}$] Ahora probaremos la unicidad de la factorización, pero solo en el caso de que $\delta_n = \det(A) \neq 0$, ya que si $\delta_n = 0$, entonces $u_{nn} = 0$, y por lo tanto $A$ no es invertible, lo que implica que la factorización no es única, ya que podemos elegir cualquier valor para $u_{nn}$, y ajustar el valor de $l_{nn}$ para que se cumpla la igualdad $A = LU$.\\
+    En el caso de que existieran 2 descomposiciones para $A$:
+    \[
+        A = L_1 U_1 = L_2 U_2
+    \]
+    De tal forma que $L_1 \neq L_2$ y $U_1 \neq U_2$, entonces:
+    \[
+    L_1 U_1 = L_2 U_2 \implies
+    U_1 = L_1^{-1} L_2 U_2 \implies
+    U_1 U_2^{-1} = L_1^{-1} L_2
+    \]
+    Ahora aplicando el lema anterior, y que el producto de dos matrices triangulares superiores/inferiores es una matriz triangular superior/inferior (visto anteriormente), entonces tenemos que:
+    \[
+        \underbrace{U_1 U_2^{-1}}_{\text{triangular superior}} = \underbrace{L_1^{-1} L_2}_{\text{triangular inferior}} \implies
+        U_1 U_2^{-1} = L_1^{-1} L_2 = D = I
+    \]
+    De lo que deducimos que por ser inversas entre si, entonces $U_1 = U_2$ y $L_1 = L_2$, lo que contradice la suposición de que $L_1 \neq L_2$ y $U_1 \neq U_2$.\\
+    Por lo tanto, la factorización es única en el caso de que $\delta_n = \det(A) \neq 0$.\\
+    En el caso de que $\delta_n = 0$, entonces como se ha mencionado anteriormente, la factorización no es única, ya que podemos elegir cualquier valor para $u_{nn}$, y ajustar el valor de $l_{nn}$ para que se cumpla la igualdad $A = LU$.\\
+    Por lo tanto, la factorización no es única en el caso de que $\delta_n = 0$.\\
+    Y así, hemos demostrado la unicidad de la factorización en el caso de que $\delta_n \neq 0$, y la no unicidad en el caso de que $\delta_n = 0$.\\
+    \end{itemize}
+\end{proof}
