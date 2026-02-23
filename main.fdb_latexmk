@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1771494786.20251 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1771494795.93332 0
+["pdflatex"] 1771840168.38913 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1771840177.5193 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -373,20 +373,20 @@
   "Exams/Examen 1.tex" 1770195712 22 c3b8c901dd17622f5b4426fbc487dd13 ""
   "Exams/Examenes Resueltos.tex" 1770195712 70 317808e8fe84b70602496018a36d25b1 ""
   "Exercises/Hoja1.tex" 1770888329 3000 cf5ce6e1ab42ef4a015f767693a403b8 ""
-  "Exercises/Hoja3.tex" 1771407584 5090 98597b9a3669b3c237f3b6c8791fdba7 ""
+  "Exercises/Hoja3.tex" 1771840157 7423 95e76ff3b942568493306495c1decdf0 ""
   "Exercises/Hojas.tex" 1771407184 114 84432dfa7c80c8931797ac098f573254 ""
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1771494443 14921 2de19769d7725ff0a7ecfde8eb174cfb ""
   "Theory/1 - Matrices y sus propiedades.tex" 1770979489 64681 332c3224fc4f921bdf3b74ad380732f9 ""
-  "Theory/2 - Resolución de sistemas lineales.tex" 1771494776 22365 9e48aecafc0dc0f8bbec46a9787eb890 ""
+  "Theory/2 - Resolución de sistemas lineales.tex" 1771840030 29820 66de0624f5a58799f1298c86de27552e ""
   "Theory/Theory.tex" 1770889243 162 0c911c9a6bc683586d9184f3539fbcf8 ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1770979430 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1771494795 22518 fdb66494e2ee6874673bafd297ec2445 "pdflatex"
-  "main.out" 1771494795 3707 d433323288afc8377086bff2d80bfd5d "pdflatex"
+  "main.aux" 1771840176 23091 9b278b70708e8794bb686089fa32c9c1 "pdflatex"
+  "main.out" 1771840176 3707 d433323288afc8377086bff2d80bfd5d "pdflatex"
   "main.tex" 1770979430 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1771494795 2004 42097390debad290f33376494a0af79e "pdflatex"
+  "main.toc" 1771840176 2004 1e62a084b99abea84f70178c2af4d4fe "pdflatex"
   (generated)
   "main.aux"
   "main.log"

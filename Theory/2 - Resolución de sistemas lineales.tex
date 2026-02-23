@@ -494,3 +494,186 @@ Antes de la demostración veamos un lema interesante.
     Y así, hemos demostrado la unicidad de la factorización en el caso de que $\delta_n \neq 0$, y la no unicidad en el caso de que $\delta_n = 0$.\\
     \end{itemize}
 \end{proof}
+
+\begin{teorema}[Factorización LUP]
+    Sea $A \in \mathbb{K}^{n \times n}$ arbitraria, entonces $\exists L, U, P \in \mathbb{K}^{n \times n}$ con $L$ una matriz triangular inferior con $1$ en la diagonal, $U$ una matriz triangular superior, y $P$ una matriz de permutación tal que:
+    \[
+        PA = LU
+    \]
+\end{teorema}
+
+\begin{proof}
+    Veamos los siguientes pasos para demostrar este teorema:
+    \begin{enumerate}
+        \item Veamos como encontrar las matrices $L$, $U$ y $P$ para la factorización LUP.\\
+        \[
+            P_1
+            \underbrace{
+                \left(
+                    \begin{array}{c|c}
+                        a_{11} & w^T \\ \hline
+                        \alpha & A_{n-1}
+                    \end{array}
+                \right)
+            }_{A_n} =
+            \left(
+                \begin{array}{c|c}
+                    1 & 0 \\ \hline
+                    v & I_{n-1}
+                \end{array}
+            \right) \cdot
+            \left(
+                \begin{array}{c|c}
+                    a & \widetilde{w}^T \\ \hline
+                    0 & B_{n-1}
+                \end{array}
+            \right) =
+            L_1 \cdot U_1
+        \]
+        \item Ahora dependiendo del valor de $a$, tenemos dos casos:
+        \begin{itemize}
+            \item[$a=0$] En este caso tenemos que $v=0$ y también $B_{n-1} = A_{n-1}$, dejando así la primera permutación $P_1 = I_n$, quedando:
+            \[
+                \left(
+                    \begin{array}{c|c}
+                        1 & 0 \\ \hline
+                        0 & I_{n-1}
+                    \end{array}
+                \right) \cdot
+                \left(
+                    \begin{array}{c|c}
+                        0 & w^T \\ \hline
+                        0 & A_{n-1}
+                    \end{array}
+                \right)
+            \]
+            \item[$a \neq 0$] En este caso $\exists i \in \{1, \ldots, n\}$ tal que $a_{i1} \neq 0$, entonces podemos usar la matriz de permutación $P_1$ para intercambiar la fila $i$ con la fila $1$, y obtener una nueva matriz $A_1$ con un elemento $a$ no nulo en la posición $(1,1)$, denotando finalmente $v = \frac{\alpha}{a_{i1}}$ y $B_{n-1} = A_{n-1} - \frac{\alpha \cdot w^T}{a_{i1}}$, quedando:
+            \[
+                \left(
+                    \begin{array}{c|c}
+                        1 & 0 \\ \hline
+                        v & I_{n-1}
+                    \end{array}
+                \right) \cdot
+                \left(
+                    \begin{array}{c|c}
+                        a_{i1} & \widetilde{w}^T \\ \hline
+                        0 & B_{n-1}
+                    \end{array}
+                \right)
+            \]
+        \end{itemize}
+        \item Ahora podemos definir la siguiente permutación $P_2$ como:
+        \[
+            P_2 P_1 A =
+            \left(
+                \begin{array}{c|c}
+                    1 & 0 \\ \hline
+                    0 & \widetilde{P_2}
+                \end{array}
+            \right) \cdot
+            \left(
+                \begin{array}{c|c}
+                    1 & 0 \\ \hline
+                    v & I_{n-1}
+                \end{array}
+            \right) \cdot
+            \left(
+                \begin{array}{c|c}
+                    a_{i1} & \widetilde{w}^T \\ \hline
+                    0 & B_{n-1}
+                \end{array}
+            \right) =
+        \]
+        \[
+                \left(
+                    \begin{array}{c|c}
+                        1 & 0 \\ \hline
+                        \widetilde{P_2} v & \widetilde{P_2}
+                    \end{array}
+                \right) \cdot
+                \left(
+                    \begin{array}{c|c}
+                        a_{i1} & \widetilde{w}^T \\ \hline
+                        0 & B_{n-1}
+                    \end{array}
+                \right) =
+                \left(
+                    \begin{array}{c|c}
+                        1 & 0 \\ \hline
+                        \widetilde{P_2} v & L_{n-1}
+                    \end{array}
+                \right) \cdot
+                \left(
+                    \begin{array}{c|c}
+                        a_{i1} & \widetilde{w}^T \\ \hline
+                        0 & U_{n-1}
+                    \end{array}
+                \right) 
+        \]
+        Y así sucesivamente, hasta llegar a la factorización LUP completa.\\
+        Notese también que:
+        \[
+            \widetilde{P_2} v \widetilde{w}^T + \widetilde{P_2} B_{n-1} = 
+            \widetilde{P_2} v \widetilde{w}^T + L_{n-1} U_{n-1} \implies
+            \widetilde{P_2} B_{n-1} = L_{n-1} U_{n-1}
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{teorema}[Factorización de Cholesky]
+    Sea $A \in \mathbb{K}^{n \times n}$ una matriz h.d.p. (hermitiana definida positiva), entonces $\exists B \in \mathbb{K}^{n \times n}$ una matriz triangular inferior tal que:
+    \[
+        A = BB^*
+    \]
+    Además si imponemos que $b_{ii} > 0$ para todo $i=1, \ldots, n$, entonces la factorización es única.
+\end{teorema}
+
+\begin{proof}
+    Como $A$ es h.d.p., entonces $\delta_k = det(A_k) > 0$ para todo $k=1, \ldots, n$, siendo estos todos los determinantes menores de $A$. Por lo tanto, por la factoización LU, $A$ admite una factorización LU, es decir, $\exists L \in \mathbb{K}^{n \times n}$ una matriz triangular inferior con $1$ en la diagonal, y $\exists U \in \mathbb{K}^{n \times n}$ una matriz triangular superior tal que:
+    \[
+        A = LU
+    \]
+    Además, $u_{11} = \delta_1 > 0$, y $u_{kk} = \frac{\delta_k}{\delta_{k-1}} > 0$ para todo $k=2, \ldots, n$, por lo que $U$ tiene elementos positivos en la diagonal.\\
+    Ahora definimos:
+    \[
+        D = \begin{pmatrix}
+            \sqrt{u_{11}} & 0 & \cdots & 0 \\
+            0 & \sqrt{u_{22}} & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \sqrt{u_{nn}}
+        \end{pmatrix} \iff
+        D^{-1} = \begin{pmatrix}
+            \frac{1}{\sqrt{u_{11}}} & 0 & \cdots & 0 \\
+            0 & \frac{1}{\sqrt{u_{22}}} & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \frac{1}{\sqrt{u_{nn}}}
+        \end{pmatrix}
+    \]
+    Y por tanto:
+    \[
+        A =
+        LU =
+        \underbrace{L D}_{B} \cdot \underbrace{D^{-1} U}_{C} =
+        B C
+    \]
+    Siendo $B$ una matriz triangular inferior con elementos positivos en la diagonal, y $C$ una matriz triangular superior con elementos positivos en la diagonal, y además:
+    \[
+        b_{ii} = c_{ii} = \sqrt{u_{ii}} > 0 \, \quad \forall i=1, \ldots, n
+    \]
+    Ahora veamos que $C = B^*$, lo que implica que $A = BB^*$:
+    \[
+        A =
+        B C \underbrace{=}_{A \text{ h.d.p.}}
+        A^* =
+        (B C)^* =
+        C^* B^* \implies
+        B^{-1} | BC = C^* B^* \implies
+        C = B^{-1} C^* B^* | = B^{-1^{*}} \implies
+    \]
+    \[
+        \underbrace{C B^{*^{-1}}}_{\text{triang. superior}} = \underbrace{B^{-1} C^*}_{\text{triang. inferior}} \implies
+        C B^{*^{-1}} = B^{-1} C^* = D = I
+    \]
+    Siendo ademas los elementos de la diagonal de $B^{*^{-1}}$ iguales a $\delta_{ii} = \sqrt{u_{ii}} \frac{1}{\sqrt{u_{ii}}} = 1 \forall i$. Deduciendo finalmente que $C = B^*$, y por lo tanto $A = BB^*$.\\
+\end{proof}

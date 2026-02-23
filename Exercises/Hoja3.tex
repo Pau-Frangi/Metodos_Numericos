@@ -81,7 +81,62 @@
 \ejercicio{}{}
 
 % Ejercicio 7
-\ejercicio{}{}
+\ejercicio{
+    Algoritmo para la resolución de sistemas tridiagonales. Se considera el sistema lineal $Ax = d$ para una matriz tridiagonal
+    \[
+        A = \begin{pmatrix}
+            b_1 & c_1 & & & \\
+            a_2 & b_2 & c_2 & & \\
+            & \ddots & \ddots & \ddots & \\
+            & & a_{n-1} & b_{n-1} & c_{n-1} \\
+            & & & a_n & b_n
+        \end{pmatrix}.
+    \]
+    \begin{itemize}
+        \item[a)] Llamando $\delta_0 = 1$ y $\delta_k$ al menor principal de orden $k$ de $A$ ($k = 1, 2, \ldots, n$), probar, desarrollando el determinante por la última columna, que $\delta_1 = b_1$ y
+        \[
+            \delta_k = b_k \delta_{k-1} - a_k c_{k-1} \delta_{k-2}, \quad k = 2, 3, \ldots, n.
+        \]
+        \item[b)] Definimos las sucesiones
+        \[
+            \begin{cases}
+                m_1 = b_1 \\
+                m_k = b_k - \dfrac{c_{k-1}}{m_{k-1}} a_k, \quad k = 2, 3, \ldots, n
+            \end{cases}
+            \qquad \text{y} \qquad
+            \begin{cases}
+                g_1 = \dfrac{d_1}{m_1} \\[6pt]
+                g_k = \dfrac{d_k - g_{k-1} a_k}{m_k}, \quad k = 2, 3, \ldots, n.
+            \end{cases}
+        \]
+        Probar que $m_k = \dfrac{\delta_k}{\delta_{k-1}}$ y deducir que si $\delta_k \neq 0$, $k = 1, 2, \ldots, n$, entonces $m_k \neq 0$ y, por tanto, los números $m_k$ y $g_k$, $k = 1, 2, \ldots, n$, están bien definidos.
+        \item[c)] Demostrar que la solución del sistema viene dada por
+        \[
+            \begin{cases}
+                x_n = g_n \\
+                x_k = g_k - \dfrac{c_k}{m_k} x_{k+1}, \quad k = n-1, n-2, \ldots, 1.
+            \end{cases}
+        \]
+        \item[d)] Comprobar que
+        \[
+            \begin{pmatrix}
+                1 & & & & \\
+                \dfrac{a_2}{m_1} & 1 & & & \\
+                & \ddots & \ddots & & \\
+                & & \dfrac{a_{n-1}}{m_{n-2}} & 1 & \\
+                & & & \dfrac{a_n}{m_{n-1}} & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                m_1 & c_1 & & & \\
+                & m_2 & c_2 & & \\
+                & & \ddots & \ddots & \\
+                & & & m_{n-1} & c_{n-1} \\
+                & & & & m_n
+            \end{pmatrix}
+        \]
+        es la factorización $LU$ de la matriz $A$.
+    \end{itemize}
+}{}
 
 % Ejercicio 8
 \ejercicio{}{}
