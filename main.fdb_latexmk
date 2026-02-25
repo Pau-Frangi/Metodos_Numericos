@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1772012714.6261 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1772012721.25045 0
+["pdflatex"] 1772013057.44866 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1772013064.66315 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -366,17 +366,17 @@
   "Exams/Examen 1.tex" 1770195712 22 c3b8c901dd17622f5b4426fbc487dd13 ""
   "Exams/Examenes Resueltos.tex" 1770195712 70 317808e8fe84b70602496018a36d25b1 ""
   "Exercises/Hoja1.tex" 1770888329 3000 cf5ce6e1ab42ef4a015f767693a403b8 ""
-  "Exercises/Hoja3.tex" 1772012706 9500 274cc71720fae4e01ffcb2b61652328c ""
+  "Exercises/Hoja3.tex" 1772013056 9865 abd3995d9760fde13353173261ff0432 ""
   "Exercises/Hojas.tex" 1771407184 114 84432dfa7c80c8931797ac098f573254 ""
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1771494443 14921 2de19769d7725ff0a7ecfde8eb174cfb ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772011872 4943 c226d129d27e1e0f6e75e5d226724c0d ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1772012720 4916 1b44d82745af2398afeb8e7b0c0d1c23 "pdflatex"
-  "main.out" 1772012720 1602 df5a62fca5c8c38ecc0102248f62a2a4 "pdflatex"
+  "main.aux" 1772013063 4916 1b44d82745af2398afeb8e7b0c0d1c23 "pdflatex"
+  "main.out" 1772013063 1602 df5a62fca5c8c38ecc0102248f62a2a4 "pdflatex"
   "main.tex" 1772011872 4943 c226d129d27e1e0f6e75e5d226724c0d ""
-  "main.toc" 1772012720 1003 2d61580bc434375833093abbaa9e2b63 "pdflatex"
+  "main.toc" 1772013063 1003 2d61580bc434375833093abbaa9e2b63 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
