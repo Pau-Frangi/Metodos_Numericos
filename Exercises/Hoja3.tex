@@ -136,7 +136,37 @@
         \]
         es la factorización $LU$ de la matriz $A$.
     \end{itemize}
-}{}
+}{
+    Podemos aplicar la descomposición LU a la matriz tridiagonal $A$, obteniendo matrices $L$ y $U$ de la forma:
+        \[
+            A = LU = 
+            \begin{pmatrix}
+                1 & 0 & 0 & \cdots & 0 \\
+                \dfrac{a_2}{m_1} & 1 & 0 & \cdots & 0 \\
+                0 & \dfrac{a_3}{m_2} & 1 & \cdots & 0 \\
+                \vdots & & & \ddots & \\
+                0 & 0 & 0 & \dfrac{a_n}{m_{n-1}} & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                m_1 & c_1 & 0 & \cdots & 0 \\
+                0 & m_2 & c_2 & \cdots & 0 \\
+                0 & 0 & m_3 & \cdots & 0 \\
+                \vdots & & & \ddots & c_{n-1} \\
+                0 & 0 & 0 & 0 & m_n
+            \end{pmatrix}
+        \]
+    Donde $m_k$ se define como dicta el en el enunciado del ejercicio. Este resultado se prueba trivialmente por inducción sobre $n$, comprobando que la multiplicación de las matrices $L$ y $U$ da como resultado la matriz $A$.\\
+    Ahora lo que podemos hacer es aplicar la descomposición LU al sistema lineal $Ax = d$, obteniendo:
+    \[
+    Ax = d \implies
+    LUx = d \underbrace{\implies}_{Ux = w}
+    Lw = d
+    \]
+    Donde $w$ es un vector que se obtiene al resolver el sistema lineal $Lw = d$. Este sistema se resuelve fácilmente por remonte.\\
+    Ahora podemos definir $x_n = \frac{w_n}{m_n}$, y luego ir definiendo $x_k$ para $k = n-1, n-2, \ldots, 1$ de la forma $x_{k-1} = \frac{w_{k-1} - c_{k-1} x_k}{m_{k-1}}$. De esta forma, obtenemos la solución del sistema lineal $Ax = d$ de la forma que dicta el enunciado del ejercicio.\\
+    Por último, para probar la relación entre $m_k$ y $\delta_k$, podemos observar que $\delta_k$ se puede calcular como el producto de los elementos de la diagonal de la matriz $U$, es decir, $\delta_k = m_1 m_2 \cdots m_k$. Por lo tanto, $m_k = \frac{\delta_k}{\delta_{k-1}}$, lo que implica que si $\delta_k \neq 0$ para $k = 1, 2, \ldots, n$, entonces $m_k \neq 0$ para $k = 1, 2, \ldots, n$, y por tanto, los números $m_k$ y $g_k$ están bien definidos.\\
+    En resumen, el algoritmo para la resolución de sistemas tridiagonales consiste en aplicar la descomposición LU a la matriz tridiagonal $A$, obteniendo las matrices $L$ y $U$, y luego resolver el sistema lineal $Lw = d$ por remonte, y finalmente obtener la solución del sistema lineal $Ax = d$ utilizando las fórmulas dadas en el enunciado del ejercicio.
+}
 
 % Ejercicio 8
 \ejercicio{}{}
