@@ -1,7 +1,7 @@
 \section{Métodos iterativos para resolver sistemas lineales}
 \subsection{Motivación}
 
-Si tenemos un sistema lineal $Ax = b$ con $A \in \mathbb{R}^{n \times n}$, $b \in \mathbb{R}^n$ y $x \in \mathbb{R}^n$, suficientemente grande, el método de eliminación gaussiana puede resultar ineficiente, tanto en términos de tiempo de cálculo como de memoria. En estos casos, los métodos iterativos pueden ser una alternativa más adecuada.\\
+Si tenemos un sistema lineal $Ax = b$ con $A \in \mathbb{R}^{n \times n}$, $b \in \mathbb{R}^n$ y $x \in \mathbb{R}^n$, suficientemente grande, el método de eliminación gaussiana puede resultar ineficiente, al tener coste $O(n^3)$ en términos de tiempoº. En estos casos, los métodos iterativos pueden ser una alternativa más adecuada.\\
 
 La idea de este tipo de metodos va a ser escoger una matriz $M$:
 
@@ -110,3 +110,150 @@ Veamos ahora algunos criterios de convergencia.
             \end{itemize}
     \end{itemize}
 \end{proposición}
+
+\begin{teorema}[Metodo de Jacobi]
+    Sea la descomposición de $A=M-N$, y sea tambien su dscomposición en bloques:
+    \[
+        A = D - E - F
+    \]
+    \begin{center}
+    \[
+        \left(
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            % Triangulo superior
+            \draw[thick, green] (-1.5, 2.5) -- (2.5,2.5) -- (2.5,-1.5) -- (-1.5,2.5);
+            % Triangulo inferior
+            \draw[thick, blue] (-2.5,-2.5) -- (-2.5,1.5) -- (1.5,-2.5) -- (-2.5,-2.5);
+            % Diagonal
+            \draw[thick, red] (-2, 2.5) -- (2.5, -2) -- (2, -2.5) -- (-2.5, 2) -- (-2, 2.5);
+            % Etiquetas
+            \node at (0, 0) {D};
+            \node at (-1.25, -1.25) {E};
+            \node at (1.25, 1.25) {F};
+        \end{tikzpicture}
+        \right)
+    \]
+    \end{center}
+    Es decir, que:
+    \[
+        D = \text{diag}(a_{11}, a_{22}, \dots, a_{nn})
+    \]
+    \[
+        E = (e_{ij})_{i,j=1}^n, \quad \begin{cases}
+            e_{ij} = a_{ij} & \text{si } i > j \\
+            e_{ij} = 0 & \text{si } i \leq j
+        \end{cases}
+    \]
+    \[
+        F = (f_{ij})_{i,j=1}^n, \quad \begin{cases}
+            f_{ij} = a_{ij} & \text{si } i < j \\
+            f_{ij} = 0 & \text{si } i \geq j
+        \end{cases}
+    \]
+    El método de Jacobi se define como el método iterativo generado por la matriz $M = D$, es decir:
+    \[
+    \begin{cases}
+        x_0 \in \mathbb{K}^n \\
+        Dx_k = (E + F)x_{k-1} + b \quad k \in \mathbb{N}
+    \end{cases}
+    \]
+    Y la matriz del método de Jacobi es:
+    \[
+        J = \underbrace{D^{-1}}_{M^{-1}} \underbrace{(E+F)}_{N} = D^{-1}(D - A) = I - D^{-1}A
+    \]
+    Para que el método este bien planteado, es necesario que $D$ sea invertible, es decir, que $a_{ii} \neq 0$ para todo $i = 1, \dots, n$, si alguno es cero pero $\det(D) \neq 0$, entonces permutamos.\\
+    Para iterar definimos el operador de iteración del método de Jacobi:
+    \[
+        x_i^{(k)} =
+        \left(b_i - \sum_{j \neq i} a_{ij} x_j^{(k-1)}\right) / a_{ii}  
+        \quad i \in \{1, \dots, n\}
+    \]
+    Que tiene complejidad $O(n^2)$, ya que cada iteración requiere calcular $n$ sumas de $n-1$ elementos.\\
+\end{teorema}
+
+Veamos ahora varios criterios de convergencia del método de Jacobi.
+
+\begin{proposición}[Convergencia del método de Jacobi]
+    El método de Jacobi converge si:
+    \[
+        \rho(J) < 1
+    \]
+\end{proposición}
+
+\ejemplo{
+    Tengamos el sistema:
+    \[
+    \begin{pmatrix}
+        -1 & 3 \\
+        -2 & 1
+    \end{pmatrix}
+    x =
+    \begin{pmatrix}
+        1 \\
+        2
+    \end{pmatrix}
+    \]
+    Podemos tomar:
+    \[
+        M = D =
+        \begin{pmatrix}
+            -1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        \,\text{y} \, \quad
+        N = E + F =
+        \begin{pmatrix}
+            0 & -3 \\
+            2 & 0
+        \end{pmatrix}
+    \]
+    Si definimos ahora:
+    \[
+        J = D^{-1}(E + F) =
+        \begin{pmatrix}
+            0 & 3 \\
+            2 & 0
+        \end{pmatrix} \implies
+        \det(J - \lambda I) =
+        \begin{vmatrix}
+            -\lambda & 3 \\
+            2 & -\lambda
+        \end{vmatrix} =
+        \lambda^2 - 6 = 0 \implies
+        \lambda = \pm \sqrt{6} > 1
+    \]
+    Por lo que el método de Jacobi no converge para este sistema lineal.
+}
+
+\begin{definición}[Matriz d.e.d.]
+    Una matriz $A \in \mathbb{K}^{n \times n}$ es diagonal estrictamente dominante (d.e.d.) si:
+    \[
+        |a_{ii}| > \sum_{j \neq i} |a_{ij}| \quad \forall i = 1, \dots, n
+    \]
+\end{definición}
+
+\begin{teorema}[Convergencia del método de Jacobi para matrices d.e.d.]
+    Sea $A$ una matriz d.e.d., entonces el método de Jacobi converge.
+\end{teorema}
+
+\begin{lema}
+    Sea $A$ una matriz d.e.d., entonces:
+    \[
+        \exists A^{-1}
+    \]
+\end{lema}
+
+\begin{proof}
+    Supongamos que $A$ no es invertible, entonces el sistema $Ax = 0$ tiene infinitas soluciones. Sea $x \neq 0$ solucion del sistema, por lo que $\exists i \in \{1, \dots, n\}$ tal que $|x_i| = \max_{j} |x_j| > 0$. Entonces:
+    \[
+        a_{ii} x_i + \sum_{j \neq i} a_{ij} x_j = 0 \implies
+        - a_{ii} x_i = \sum_{j \neq i} a_{ij} x_j \implies
+        |a_{ii}| |x_i| \leq \sum_{j \neq i} |a_{ij}| |x_j| \implies
+    \]
+    \[
+        |a_{ii}| \leq \sum_{j \neq i} |a_{ij}| \frac{ \| x_j \| }{ \| x_i \| } \implies
+        |a_{ii}| \leq \sum_{j \neq i} |a_{ij}| \implies
+        \text{Contradicción!!}
+    \]
+    Por lo que necesariamente $A$ es invertible.
+\end{proof}

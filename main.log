@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  26 FEB 2026 10:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  2 MAR 2026 10:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1371,6 +1371,45 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 75.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 114.
+Package hyperref Info: bookmark level for unknown teorema defaults to 0 on input line 114.
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--172
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.4521pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.4521pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
+
+[5]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 176.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.4521pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.4521pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
+
+[6]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 228.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 235.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 240.
+Package hyperref Info: bookmark level for unknown lema defaults to 0 on input line 240.
 )
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1379,7 +1418,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.4521pt}.
 
-[5])
+[7])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1387,7 +1426,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[6] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja1.tex
+[8] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja1.tex
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1395,7 +1434,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[7]
+[9]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1403,7 +1442,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[8])
+[10])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1411,7 +1450,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[9] (Exercises/Hoja3.tex
+[11] (Exercises/Hoja3.tex
 pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1428,7 +1467,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[10]
+[12]
 pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1441,7 +1480,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[11]
+[13]
 pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1474,7 +1513,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[12]
+[14]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1482,7 +1521,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[13]
+[15]
 pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1535,7 +1574,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[14
+[16
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.17}) has been already used, duplicate ignored
@@ -1543,22 +1582,6 @@ pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.17})
                    \relax 
 l.199 \ejercicio{}{}
                     )
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[15])
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[16] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1574,7 +1597,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[18] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+[18] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[19])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[20] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
@@ -1604,7 +1643,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[19]
+[21]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 47.
@@ -1622,7 +1661,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[20] (Appendix/Agradecimientos.tex
+[22] (Appendix/Agradecimientos.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 10.95003pt
@@ -1636,8 +1675,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[21])
-<doclicense-CC-by-nc-nd-88x31.pdf, id=365, 90.3375pt x 31.61812pt>
+[23])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=389, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
@@ -1654,7 +1693,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [22 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+) [24 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1663,17 +1702,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F4023EF2BCDF6561B0E9B51C32DD68B6;2271.
  ) 
 Here is how much of TeX's memory you used:
- 50009 strings out of 467866
- 1164773 string characters out of 5418326
+ 50056 strings out of 467866
+ 1165807 string characters out of 5418326
  1847185 words of memory out of 5000000
- 77834 multiletter control sequences out of 15000+600000
+ 77869 multiletter control sequences out of 15000+600000
  654158 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,12n,112p,898b,1228s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (23 pages, 819629 bytes).
+Output written on main.pdf (25 pages, 838277 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 95 named destinations out of 1000 (max. 500000)
+ 517 PDF objects out of 1000 (max. 8388607)
+ 107 named destinations out of 1000 (max. 500000)
  283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
