@@ -232,10 +232,6 @@ Veamos ahora varios criterios de convergencia del método de Jacobi.
     \]
 \end{definición}
 
-\begin{teorema}[Convergencia del método de Jacobi para matrices d.e.d.]
-    Sea $A$ una matriz d.e.d., entonces el método de Jacobi converge.
-\end{teorema}
-
 \begin{lema}
     Sea $A$ una matriz d.e.d., entonces:
     \[
@@ -257,3 +253,84 @@ Veamos ahora varios criterios de convergencia del método de Jacobi.
     \]
     Por lo que necesariamente $A$ es invertible.
 \end{proof}
+
+\begin{teorema}[Convergencia del método de Jacobi para matrices d.e.d.]
+    Sea $A$ una matriz d.e.d., entonces el método de Jacobi converge.
+\end{teorema}
+
+\begin{proof}
+    Para ver que converge, comprobemos que $\rho(J) < 1$. Para ello, probemos por absurdo que si $\exists \lambda \in \sigma(J)$ tal que $|\lambda| \geq 1$, entonces se llega a una contradicción, ahora:
+    \[
+        \det(J - \lambda I) = 
+        0 = 
+        \det(D^{-1}(E + F) - \lambda D^{-1}D) =
+        \det(D^{-1}) \det(E + F - \lambda D) \implies 
+    \]
+    Como $\det(D^{-1}) \neq 0$, al ser $A$ d.e.d., entonces:
+    \[
+        \det(E + F - \lambda D) = 0 \implies
+        \underbrace{(E + F - \lambda D)}_{B} \text{ no es d.e.d.} \implies
+        \exists k \in \{1, \dots, n\} : \| b_{kk} \| \leq \sum_{j \neq k} \| b_{kj} \| \implies
+    \]
+    Ahora como $b_{kk} = -\lambda a_{kk}$ y $b_{kj} = - a_{kj}$, entonces:
+    \[
+        |a_{kk}| \leq |\lambda| |a_{kk}| \leq \sum_{j \neq k} |a_{kj}| \implies
+        |a_{kk}| \leq \sum_{j \neq k} |a_{kj}| \implies
+        \text{Contradicción!!}
+    \]
+    Por lo que necesariamente $\rho(J) < 1$, y el método de Jacobi converge.
+\end{proof}
+
+Veamos ahora otro método iterativo, el método de Gauss-Seidel.
+
+\begin{teorema}[Método de Gauss-Seidel]
+    Usando la misma descomposición de $A$ que en el método de Jacobi, es decir, $A = D - E - F$, que dejaba:
+    \begin{center}
+    \[
+        \left(
+        \begin{tikzpicture}[baseline=(current bounding box.center)]
+            % Triangulo superior
+            \draw[thick, green] (-1.5, 2.5) -- (2.5,2.5) -- (2.5,-1.5) -- (-1.5,2.5);
+            % Triangulo inferior
+            \draw[thick, blue] (-2.5,-2.5) -- (-2.5,1.5) -- (1.5,-2.5) -- (-2.5,-2.5);
+            % Diagonal
+            \draw[thick, red] (-2, 2.5) -- (2.5, -2) -- (2, -2.5) -- (-2.5, 2) -- (-2, 2.5);
+            % Etiquetas
+            \node at (0, 0) {D};
+            \node at (-1.25, -1.25) {E};
+            \node at (1.25, 1.25) {F};
+        \end{tikzpicture}
+        \right)
+    \]
+    \end{center}
+    El método de Gauss-Seidel se define como el método iterativo generado por:
+    \[
+    \begin{cases}
+        x_0 \in \mathbb{K}^n \\
+        a_{ii} x_i^{(k)} =
+        b_i - \underbrace{\sum_{j < i} a_{ij} x_j^{(k)}}_{Ex_k} - \underbrace{\sum_{j > i} a_{ij} x_j^{(k-1)}}_{Fx_{k-1}} \quad i = 1, \dots, n, k \in \mathbb{N}
+    \end{cases}
+    \]
+    Y lla convergencia estará dada segun la distancia al resultado:
+    \[
+        \|x_k - \xi\| = d_k \sim \rho(J)^{k}
+    \]
+    La complejidad de este método sigue siendo $O(n^2)$, al igual que el método de Jacobi, ya que cada iteración requiere calcular $n$ sumas de $n-1$ elementos.\\
+    Notese que se pueden juntar en la notación $D-E$ y $F$, para obtener $A = M - N$ con $M = D - E$ y $N = F$, por lo que la matriz del método de Gauss-Seidel es:
+    \[
+        (D-E) x_k = Fx_{k-1} + b \implies
+        x_k = (D-E)^{-1} Fx_{k-1} + (D-E)^{-1} b
+    \]
+    Que cambiando la notación, se puede escribir como:
+    \[
+        x_k = Lx_{k-1} + C \quad \text{con} \quad
+        L = (D-E)^{-1} F \quad \text{y} \quad
+        C = (D-E)^{-1} b
+    \]
+    Donde ahora el radio espectral del método de Gauss-Seidel es:
+    \[
+        \rho(L) = \rho((D-E)^{-1} F)
+    \]
+\end{teorema}
+
+Notese que el método de Gauss-Seidel no siempre es mejor que el método de Jacobi, muchas veces lo será pero no siempre.

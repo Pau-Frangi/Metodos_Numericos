@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1772445081.8508 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1772445086.68407 0
+["pdflatex"] 1772617668.72364 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1772617673.24567 0
   "Appendix/Agradecimientos.tex" 1770195712 628 99fc62e09a551f1ea508feb8630e6ea1 ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -377,14 +377,14 @@
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1771494443 14921 2de19769d7725ff0a7ecfde8eb174cfb ""
-  "Theory/3 - Métodos iterativos.tex" 1772445079 9441 84014512d65cf9dae6b8783675a291e7 ""
+  "Theory/3 - Métodos iterativos.tex" 1772617663 12788 1144aa63b7eba8e43dd51ee813d8e4e3 ""
   "Theory/Theory.tex" 1772097322 220 a2147bf606b5ed56ce2c92a9182a243b ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1772445086 7605 30f035797ed098f1152ac6403fc3b3da "pdflatex"
-  "main.out" 1772445086 2271 f4023ef2bcdf6561b0e9b51c32dd68b6 "pdflatex"
+  "main.aux" 1772617672 7874 618034cad9547b6fe9004b3206dfcfb3 "pdflatex"
+  "main.out" 1772617672 2271 f4023ef2bcdf6561b0e9b51c32dd68b6 "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1772445086 1289 c0f62fb2be15199131588bbd21522fd3 "pdflatex"
+  "main.toc" 1772617672 1291 962fd9ee2ba8c158eac840570ce5777e "pdflatex"
   (generated)
   "main.aux"
   "main.log"
