@@ -111,6 +111,8 @@ Veamos ahora algunos criterios de convergencia.
     \end{itemize}
 \end{proposición}
 
+\subsection{Método de Jacobi y método de Gauss-Seidel}
+
 \begin{teorema}[Metodo de Jacobi]
     Sea la descomposición de $A=M-N$, y sea tambien su dscomposición en bloques:
     \[
@@ -334,3 +336,101 @@ Veamos ahora otro método iterativo, el método de Gauss-Seidel.
 \end{teorema}
 
 Notese que el método de Gauss-Seidel no siempre es mejor que el método de Jacobi, muchas veces lo será pero no siempre.
+
+\subsection{Métodos de relajación}
+
+La idea de los métodos de relajación es modificar los métodos mediante parametros que nos ayuden a mejorar la convergencia. Normalmente usaremos $\omega \in \mathbb{R}$ como parametro de relajación, cuyo significado es el siguiente:
+\[
+    x_k = \omega \overline{x}_k + (1-\omega) x_{k-1}
+\]
+
+\begin{teorema}[Método de relajación de Jacobi]
+    El método de relajación de Jacobi se define como el método iterativo, con un punto $\omega \in \mathbb{R}$:
+    \[
+    \begin{cases}
+        x_0 \in \mathbb{K}^n \\
+        \frac{D}{\omega} x_k = D \overline{x}_k + \frac{1-\omega}{\omega} D x_{k-1} =
+        \left( E + F + \frac{1-\omega}{\omega} D \right) x_{k-1} + b \quad k \in \mathbb{N}
+    \end{cases}
+    \]
+    De lo que sacamos la matriz del método de relajación de Jacobi:
+    \[
+        J_R = \omega D^{-1} \left( E + F + \frac{1-\omega}{\omega} D \right) 
+    \]
+    Y su convergencia estará dada por el radio espectral de esta matriz, es decir:
+    \[
+        \rho(J_R) < 1
+    \]
+    Notese que si $\omega = 1$, entonces el método de relajación de Jacobi coincide con el método de Jacobi, por lo que el método de relajación de Jacobi es una generalización del método de Jacobi.\\
+    El método tambien se puede ver de la forma $A = M - N$ con:
+    \[
+        M = \frac{D}{\omega}
+    \]
+    \[
+        N = \left( E + F + \frac{1-\omega}{\omega} D \right)
+    \]
+    De donde queda:
+    \[
+        A = M - N =
+        \frac{D}{\omega} - \left( E + F + \frac{1-\omega}{\omega} D \right) =
+        D - E - F
+    \]
+\end{teorema}
+
+Sin embargo este método no es muy utilizado en la práctica, ya que no se sabe a priori qué valor de $\omega$ es el óptimo para cada sistema lineal, por lo que se suele utilizar el método de relajación de Gauss-Seidel.
+
+\begin{teorema}[Método de relajación de Gauss-Seidel]
+    El método de relajación de Gauss-Seidel se define como el método iterativo, con un punto $\omega \in [0,1]$, y multiplicando $\frac{D}{\omega}$ a ambos lados de la ecuación del método de Gauss-Seidel:
+    \[
+    \begin{cases}
+        x_0 \in \mathbb{K}^n \\
+        \frac{D}{\omega} x_k = E x_k + F x_{k-1} + b + \frac{1-\omega}{\omega} D x_{k-1} \implies \\
+        \left( \frac{D}{\omega} - E \right) x_k = \left( F + \frac{1-\omega}{\omega} D \right) x_{k-1} + b
+    \end{cases}
+    \]
+    De lo que sacamos la matriz del método de relajación de Gauss-Seidel:
+    \[
+        L_R = (D - \omega E)^{-1} ((1-\omega) D + \omega F)
+    \]
+    Y su convergencia estará dada por el radio espectral de esta matriz, es decir:
+    \[
+        \rho(L_R) < 1
+    \]
+    Notese de nuevo que si $\omega = 1$, entonces el método de relajación de Gauss-Seidel coincide con el método de Gauss-Seidel, por lo que el método de relajación de Gauss-Seidel es una generalización del método de Gauss-Seidel.\\
+\end{teorema}
+
+\begin{teorema}[Convergencia del método de relajación de Gauss-Seidel]
+    Si $\omega \notin (0,2)$ entonces el método de relajación de Gauss-Seidel no converge.
+\end{teorema}
+
+\begin{proof}
+    Veamos:
+    \[
+        \det(L_R) =
+        \det( \left( \frac{D}{\omega} - E \right)^{-1} ) \cdot \det( \left( F + \frac{1-\omega}{\omega} D \right) ) =
+        \frac{ \det( \overbrace{F + \frac{1-\omega}{\omega} D}^{\triangle}) }{ \det( \frac{D}{\omega} - E ) } =
+    \]
+    \[
+        \frac{ \left( \frac{1-\omega}{\omega} \right)^n \det(D) }{ \left( \frac{1}{\omega} \right)^n \det(D) } =
+        (1-\omega)^n
+    \]
+    Ahora, recordemos que $\det(L_R) = \prod_{\lambda \in \sigma(L_R)} \lambda$, por lo que igualando:
+    \[
+        \prod_{\lambda \in \sigma(L_R)} \lambda = (1-\omega)^n \implies
+    \]
+    \[
+    \| 1 - \omega \|^n =
+    \| (1 - \omega)^n \| =
+    \left\| \prod_{\lambda \in \sigma(L_R)} \lambda \right\| =
+    \prod_{\lambda \in \sigma(L_R)} \| \lambda \| \leq
+    \rho(L_R)^n \implies
+    \| 1 - \omega \| \leq \rho(L_R)
+    \]
+    Por lo que finalmente:
+    \[
+        \begin{cases}
+            \rho \geq \omega -1 \implies \boxed{\omega \geq 2 \implies \rho \geq 1 \implies \text{Divergencia}} \\
+            \rho \geq 1 - \omega \implies \boxed{\omega \leq 0 \implies \rho \geq 1 \implies \text{Divergencia}}
+        \end{cases}
+    \]
+\end{proof}

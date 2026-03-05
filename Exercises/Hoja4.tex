@@ -1,0 +1,36 @@
+\hojaejercicio{Hoja 4}
+
+% Ejercicio 1
+\ejercicio{}{}
+
+% Ejercicio 2
+\ejercicio{}{}
+
+% Ejercicio 3
+\ejercicio{}{}
+
+% Ejercicio 4
+\ejercicio{Método de relajación para matrices de diagonal estrictamente dominante.\\
+\begin{enumerate}[label=\alph*)]
+    \item Probar que si $0 < w \leq 1$ y $\lambda \in \mathbb{C}$ con $|\lambda| \geq 1$ entonces
+    \[
+        \left| \frac{1 - w - \lambda}{\lambda w} \right| \geq 1.
+    \]
+    \textit{Indicación: Utilizar que $|x - y| \geq \big||x| - |y|\big|$, $x, y \in \mathbb{C}$.}
+
+    \item Demostrar que si $A$ es de diagonal estrictamente dominante entonces el método de relajación para $A$ es convergente si $0 < w \leq 1$.
+\end{enumerate}
+}{
+    El apartado $a)$ está probado en clase, veamos el apartado $b)$.\\
+    Probemoslo por absurdo, es decir, supongamos que:
+    \[
+        \exists \lambda \in \sigma(L_R) \text{ tal que } |\lambda| \geq 1 \implies
+        \rho(L_R) \geq 1.
+    \]
+    Ahora entonces:
+    \[
+        \det(L_R - \lambda I) =
+        0 =
+        \det( \left( \frac{D}{\omega} - E \right)^{-1} \left( F + \left( \frac{1 - \omega}{\omega} \right) D \right) - \lambda I ) 
+    \]
+}
