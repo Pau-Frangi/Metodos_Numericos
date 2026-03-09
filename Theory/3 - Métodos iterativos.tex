@@ -434,3 +434,85 @@ Sin embargo este método no es muy utilizado en la práctica, ya que no se sabe 
         \end{cases}
     \]
 \end{proof}
+
+Ahora veamos un caso en el que este método converge.
+
+\begin{teorema}[Convergencia del método de relajación de Gauss-Seidel para matrices d.e.d.]
+    Si $A$ es una matriz d.e.d., entonces el método de relajación de Gauss-Seidel converge para todo $\omega \in (0,1]$.
+\end{teorema}
+
+\begin{proof}
+    Supongamos que $\exists \lambda \in \sigma(L_R)$ tal que $|\lambda| \geq 1$, por lo que $\rho(L_R) \geq 1$ y el método no converge. Entonces:
+    \[
+        \det(L_R - \lambda I) =
+        0 \implies
+    \]
+    \[
+    0 =
+    \det( \left(\frac{D}{\omega} - E \right)^{-1} \left( F + \left( \frac{1-\omega}{\omega} \right) D \right) - \lambda \underbrace{\left( \frac{D}{\omega} - E \right)^{-1} \left( \frac{D}{\omega} - E \right)}_{I} ) =
+    \]
+    \[
+        \det( F + \left( \frac{1-\omega}{\omega} \right) D - \lambda \left( \frac{D}{\omega} - E \right) ) =
+        \det( B )
+    \]
+    Por lo que esta nueva matriz $B$ no es d.e.d., por lo que $\exists k \in \{1, \dots, n\}$ tal que:
+    \[
+        b_{kk} \leq
+        \sum_{j \neq k} |b_{kj}| \implies
+    \]
+    \[
+        \left| \frac{1-\omega - \lambda}{\omega} a_{kk} \right| \leq
+        \underbrace{\sum_{i = k + 1}^n |-a_{ki}|}_{F} + 
+        \underbrace{\sum_{i = 1}^{k-1} |- \lambda a_{ki}|}_{E} =
+        \sum_{i = k + 1}^n |a_{ki}| + |\lambda| \sum_{i = 1}^{k-1} |a_{ki}| \leq
+        | \lambda | \sum_{i \neq k} |a_{ki}| \implies
+    \]
+    \[
+        |a_{kk}| \leq
+        \left| \frac{\lambda \omega}{1-\omega - \lambda} \right| \sum_{i \neq k} |a_{ki}| \leq
+        \sum_{i \neq k} |a_{ki}| \implies
+        A \text{ no es d.e.d. !!}
+    \]
+\end{proof}
+
+Veamos un nuevo teorema que no demostraremos, pero que es interesante conocer.
+
+\begin{teorema}[Criterio de convergencia para métodos iterativos]
+    Sea $A = M - N$ una matriz h.d.p.\\
+    Ahora podemos definir:
+    \[
+        B = M^* + N^* \quad \text{ ó } \quad B = M + N^*
+    \]
+    Si $B$ es h.d.p., entonces $\rho(M^{-1}N) < 1$, por lo que el método iterativo generado por $M$ converge.
+\end{teorema}
+
+\begin{teorema}[Convergencia del método de relajación de Gauss-Seidel para matrices h.d.p.]
+    Sea $A$ una matriz h.d.p. y $\omega \in (0,2)$ entonces el método de relajación de Gauss-Seidel converge.
+\end{teorema}
+
+\begin{observación}
+    Notese que si $\omega = 1$, entonces el método de relajación de Gauss-Seidel coincide con el método de Gauss-Seidel, por lo que el método de Gauss-Seidel también converge para matrices h.d.p.
+\end{observación}
+
+\begin{proof}
+    Veamos que se cumple el teorema anterior, para ello definamos:
+    \[
+        B = M^* + N =
+        \left( \frac{D}{\omega} - E \right)^* + \left( F + \frac{1-\omega}{\omega} D \right) =
+        \frac{D^*}{\omega} - E^* + F + \frac{1-\omega}{\omega} D
+    \]
+    Ahora podemos usar que como $A$ es h.d.p., entonces $D^* = D$, al ser matrices diagonales. Ademas, como $A$ es h.d.p., podemos deducir que las matrices triangulares $E^*=F$ y $F^* = E$, al trasponer al hacer la traspuesta de $A$. Todo esto se aprecia en la siguiente igualdad:
+    \[
+        A = \color{green} D \color{black} - \color{red} E \color{black} - \color{blue} F \color{black} =
+        \]
+        \[
+        = A^* = \color{green} D^* \color{black} - \color{blue} E^* \color{black} - \color{red} F^*
+    \]
+    Por lo que llegamos a que:
+    \[
+        B =
+        \frac{2 - \omega}{\omega} D  - E^* + F =
+        \frac{2 - \omega}{\omega} D
+    \]
+    Para que $B$ sea h.d.p., es necesario que $\frac{2 - \omega}{\omega} > 0$, lo cual se cumple para todo $\omega \in (0,2)$, por lo que $B$ es h.d.p., y por el teorema anterior, el método de relajación de Gauss-Seidel converge al tener $\rho(L_R) < 1$.
+\end{proof}

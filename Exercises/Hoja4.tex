@@ -34,3 +34,45 @@
         \det( \left( \frac{D}{\omega} - E \right)^{-1} \left( F + \left( \frac{1 - \omega}{\omega} \right) D \right) - \lambda I ) 
     \]
 }
+
+% Ejercicio 5
+\ejercicio{Teorema de los círculos de Gershgorin y matrices de diagonal estrictamente dominante.\\
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Teorema de los círculos de Gershgorin:} Si $A = (a_{ij})_{i,j=1}^n \in \mathcal{M}_n$, demostrar que
+    \[
+        \mathrm{sp}(A) \subset \bigcup_{i=1}^n \overline{B}_{r_i}(a_{ii})
+        \quad \text{siendo} \quad
+        r_i = \sum_{\substack{j=1\\j \neq i}}^n |a_{ij}|,
+    \]
+    donde
+    \[
+        \overline{B}_{r_i}(a_{ii}) = \{z \in \mathbb{C} : |z - a_{ii}| \leq r_i\}
+    \]
+    es la bola cerrada de centro $a_{ii}$ y radio $r_i$.
+    
+    \textit{Indicación: Téngase en cuenta que las matrices de diagonal estrictamente dominante son inversibles.}
+
+    \item Sea $A = (a_{ij})_{i,j=1}^n \in \mathcal{M}_n$ una matriz de diagonal estrictamente dominante con $a_{ii} > 0$, $i = 1, \ldots, n$ y $\mathrm{sp}(A) \subset \mathbb{R}$.
+    
+    Utilizar el apartado a) para probar que sus autovalores son estrictamente positivos.
+
+    \item Sea $A = (a_{ij})_{i,j=1}^n \in \mathcal{M}_n$ una matriz hermítica, de diagonal estrictamente dominante con $a_{ii} > 0$, $i = 1, \ldots, n$.
+    
+    Probar que el método de relajación para $A$ es convergente si, y sólo si, $0 < \omega < 2$.
+\end{enumerate}
+}{
+    Veamos los diferentes apartados.\\
+    \begin{enumerate}[label=\alph*)]
+        \item Si $\det(A - \lambda I) = 0$ entonces $A - \lambda I$ no es d.e.d., por lo que existe $k \in \{1, \ldots, n\}$ tal que:
+        \[
+            |b_{kk}| \leq \sum_{\substack{j=1\\j \neq k}}^n |b_{kj}| \implies
+            |\lambda - a_{kk}| \leq \sum_{\substack{j=1\\j \neq k}}^n |a_{kj}| =
+            r_k. \implies
+        \]
+        \[
+            \lambda \in \overline{B}_{r_k}(a_{kk}) \subset \bigcup_{i=1}^n \overline{B}_{r_i}(a_{ii}).
+        \]
+        \item Dado que $a_{ii} > 0$ y $r_i < a_{ii}$, al ser una matriz d.e.d., entonces $a_{ii} - r_i > 0$ y por lo tanto $\lambda \in \overline{B}_{r_i}(a_{ii})$ implica que $\lambda > 0$.
+        \item Visto en teoría.
+    \end{enumerate}
+}
