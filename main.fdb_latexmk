@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1773049845.81772 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1773049852.30606 0
+["pdflatex"] 1773222665.13523 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1773222670.31778 0
   "Appendix/Agradecimientos.tex" 1773048039 694 0ffa8f78c17e6d7479433e5965f7ceec ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -371,19 +371,20 @@
   "Exams/Examenes Resueltos.tex" 1770195712 70 317808e8fe84b70602496018a36d25b1 ""
   "Exercises/Hoja1.tex" 1770888329 3000 cf5ce6e1ab42ef4a015f767693a403b8 ""
   "Exercises/Hoja3.tex" 1772013056 9865 abd3995d9760fde13353173261ff0432 ""
-  "Exercises/Hoja4.tex" 1773049844 3299 e7a54acd4cb618f95d143acc6b9aebbc ""
+  "Exercises/Hoja4.tex" 1773222109 7463 c86e058271fdbccebefc2acd9c0b34f2 ""
   "Exercises/Hojas.tex" 1772704110 197 d50809d482a3ef69126cfcd43647c49c ""
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1772701913 15031 2870dfeb217e2b694eada17f8ad250b5 ""
   "Theory/3 - Métodos iterativos.tex" 1773049035 21018 18319975389fbf79abb76dc05ffa7efe ""
-  "Theory/Theory.tex" 1773047088 218 90bb5eb8fea10be51dbc463bb362802b ""
+  "Theory/4 - Interpolación polinómica.tex" 1773222664 566 19e43c9f8570ac14029851a158f755f0 ""
+  "Theory/Theory.tex" 1773222158 281 049ddda7bbf7fd61d6bfdd3bf15e67fa ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1773049851 10313 e49c06e276f20def4b03eff43398b69b "pdflatex"
-  "main.out" 1773049851 2863 be85f41f0db60e9a2f97569c4131b6ae "pdflatex"
+  "main.aux" 1773222669 10556 bd330d74d3784b89431816f78745b9a8 "pdflatex"
+  "main.out" 1773222669 3153 2b713a0d6068368431a5b14f779bdef8 "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1773049851 1546 0cc9313e4e19c1a709ae1496a5d7982d "pdflatex"
+  "main.toc" 1773222669 1707 77fcca089df79cc0044af40b9cc79080 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

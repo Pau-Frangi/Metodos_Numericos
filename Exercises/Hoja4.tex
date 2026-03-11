@@ -76,3 +76,86 @@
         \item Visto en teoría.
     \end{enumerate}
 }
+
+% Ejercicio 6
+\ejercicio{}{}
+
+% Ejercicio 7
+\ejercicio{Método iterativo para el cálculo de la inversa de una matriz.\\
+Sea $A \in \mathcal{M}_n$ una matriz inversible. A partir de $A_0 \in \mathcal{M}_n$ se consideran las sucesiones de matrices
+\[
+    E_k = I - A A_{k-1}
+    \quad \text{y} \quad
+    A_k = A_{k-1}(I + E_k + E_k^2)
+    \quad \text{para } k \in \mathbb{N}.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que $E_k = (E_1)^{3^{k-1}}$, $k \in \mathbb{N}$.
+    
+    \item Probar que si $\rho(E_1) < 1$ entonces $\displaystyle\lim_{k \to +\infty} A_k = A^{-1}$.
+    
+    \item Estudiar la convergencia cuando se toma $\displaystyle A_0 = \frac{A^*}{\mathrm{tr}(AA^*)}$.
+\end{enumerate}
+}{
+    Veamos los diferentes apartados.\\
+    \begin{enumerate}[label=\alph*)]
+        \item Para $k = 1$ se cumple que $E_1 = (E_1)^{3^0}$. Supongamos que $E_k = (E_1)^{3^{k-1}}$ para algún $k \in \mathbb{N}$, entonces, nuestro objetivo es probar que $E_{k+1} = (E_k )^3$. Para ello, veamos que:
+        \[
+            E_{k+1} =
+            I - A A_k =
+            \underbrace{I - A A_{k-1}}_{E_k} (I + E_k + E_k^2) =
+            \underbrace{E_k - A A_{k-1}}_{E_k} (I + E_k) E_k =
+            E_k^3.
+        \]
+        Por lo tanto, por el principio de inducción, $E_k = (E_1)^{3^{k-1}}$ para todo $k \in \mathbb{N}$.
+        \item Dado que $\varrho(E_1) < 1$ entonces $ \exists \| \cdot \|$ tal que $\|E_1\| < 1$, por lo que:
+        \[
+            \|E_k\| = \|(E_1)^{3^{k-1}}\| \leq \|E_1\|^{3^{k-1}} \xrightarrow[k \to +\infty]{} 0.
+        \]
+        Por lo tanto, $E_k \xrightarrow[k \to +\infty]{} 0$, es decir, $I - A A_k \xrightarrow[k \to +\infty]{} 0$, lo que implica que $A A_k \xrightarrow[k \to +\infty]{} I$, es decir, $A_k \xrightarrow[k \to +\infty]{} A^{-1}$.
+        \item Empezemos por calcular $E_1$:
+        \[
+            E_1 =
+            I - A A_0 =
+            I - \frac{A A^*}{\mathrm{tr}(AA^*)} =
+            I - \frac{C}{\mathrm{tr}(C)},
+        \]
+        Donde $C = AA^*$. Dado que $C^* = (AA^*)^* = AA^* = C$, entonces $C$ es hermítica, por lo que su espectro es real. Tomemos ahora $\lambda_i \in \sigma(C)$, y su autovector asociado $u_i$, entonces:
+        \[
+            \begin{cases}
+                \begin{array}{ccc}
+                    u^* C u & = & u^* \lambda_i u \\
+                    (u^* A)(A^* u) & = & \lambda_i \underbrace{\| u \|_2}_{=u^*u} \\
+                    (A^* u)^* (A^* u) & = & \lambda_i \| u \|_2^2 \\
+                    \| A^* u \|_2^2 & = & \lambda_i \| u \|_2^2
+                \end{array}
+            \end{cases}
+            \implies
+            \lambda_i = \frac{\| A^* u \|_2^2}{\| u \|_2^2} > 0.
+        \]
+        Por lo tanto, $C$ es h.d.p. (hermitica definida positiva), por lo que $\mathrm{tr}(C) = \sum_{i=1}^n \lambda_i > 0$. Por lo tanto:
+        \[
+            \begin{cases}
+                \begin{array}{ccc}
+                    \frac{Cu}{\mathrm{tr}(C)} & = & \frac{\lambda_i u}{\mathrm{tr}(C)} \\
+                    u - \frac{Cu}{\mathrm{tr}(C)} & = & u - \frac{\lambda_i u}{\mathrm{tr}(C)} \\
+                    \underbrace{\left( I - \frac{C}{\mathrm{tr}(C)} \right)}_{E_1} u 
+                    & = & 
+                    \underbrace{\left( 1 - \frac{\lambda_i}{\mathrm{tr}(C)} \right)}_{\mu_i} u \\
+                    E_1 u & = & \mu_i u
+                \end{array}
+            \end{cases}
+        \]
+        De lo que deducimos que $E_1$ tiene los mismos autovectores que $C$ y sus autovalores son $\mu_i = 1 - \frac{\lambda_i}{\mathrm{tr}(C)}$. Además (recordando que $\lambda_i > 0$ y $\mathrm{tr}(C) > 0$):
+        \[
+            \begin{cases}
+                \mu_i < 1 \iff 1 - \frac{\lambda_i}{\mathrm{tr}(C)} < 1 \iff \lambda_i > 0 \\
+                \mu_i > 0 \iff 1 - \frac{\lambda_i}{\mathrm{tr}(C)} > 0 \iff \lambda_i < \mathrm{tr}(C)
+            \end{cases}
+            \implies
+            0 < \mu_i < 1.
+        \]
+        Y por tanto, hemos visto que $\rho(E_1) = \max_{i} |\mu_i| < 1$, por lo que $A_k \xrightarrow[k \to +\infty]{} A^{-1}$.
+    \end{enumerate}
+
+}

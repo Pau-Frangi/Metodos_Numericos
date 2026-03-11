@@ -8,16 +8,18 @@
 \contentsline {subsection}{\numberline {1.2}Convergencia de métodos iterativos}{4}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Método de Jacobi y método de Gauss-Seidel}{5}{subsection.1.3}%
 \contentsline {subsection}{\numberline {1.4}Métodos de relajación}{9}{subsection.1.4}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{13}{part.2}%
+\contentsline {section}{\numberline {2}Interpolación polinómica}{13}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Motivación}{13}{subsection.2.1}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{14}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Hoja 1}{14}{section*.5}%
-\contentsline {section}{Hoja 2: Método de Gauss Jordan}{17}{section*.6}%
-\contentsline {section}{Hoja 3: Hoja 4}{23}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{25}{part.3}%
+\contentsline {section}{Hoja 1: Hoja 1}{15}{section*.5}%
+\contentsline {section}{Hoja 2: Método de Gauss Jordan}{18}{section*.6}%
+\contentsline {section}{Hoja 3: Hoja 4}{24}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{27}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{26}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{27}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{28}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{29}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{28}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{30}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{30}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{30}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{32}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{32}{section*.13}%

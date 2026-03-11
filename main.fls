@@ -663,6 +663,9 @@ INPUT Theory\3 - Métodos iterativos.tex
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti8.tfm
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
+INPUT .\Theory\4 - Interpolación polinómica.tex
+INPUT .\Theory\4 - Interpolación polinómica.tex
+INPUT Theory\4 - Interpolación polinómica.tex
 INPUT .\Exercises\Hojas.tex
 INPUT .\Exercises\Hojas.tex
 INPUT Exercises\Hojas.tex
