@@ -3,23 +3,18 @@
 \contentsline {section}{Índice General}{2}{section*.2}%
 \contentsline {part}{I\hspace {1em}Teoría}{3}{part.1}%
 \etoc@startlocaltoc {2}
-\contentsline {section}{\numberline {1}Métodos iterativos para resolver sistemas lineales}{4}{section.1}%
+\contentsline {section}{\numberline {1}Interpolación polinómica}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Motivación}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Convergencia de métodos iterativos}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Método de Jacobi y método de Gauss-Seidel}{5}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Métodos de relajación}{9}{subsection.1.4}%
-\contentsline {section}{\numberline {2}Interpolación polinómica}{13}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Motivación}{13}{subsection.2.1}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{14}{part.2}%
+\contentsline {subsection}{\numberline {1.2}Problema de la interpolación polinómica}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Polinomios de Lagrange}{5}{subsection.1.3}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{7}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Hoja 1}{15}{section*.5}%
-\contentsline {section}{Hoja 2: Método de Gauss Jordan}{18}{section*.6}%
-\contentsline {section}{Hoja 3: Hoja 4}{24}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{27}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{8}{section*.5}%
+\contentsline {part}{III\hspace {1em}Exámenes}{10}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{28}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{29}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{11}{section*.7}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{12}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{30}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{32}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{32}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{13}{section*.9}%
+\contentsline {section}{Apéndice B: Agradecimientos}{15}{section*.10}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{15}{section*.11}%

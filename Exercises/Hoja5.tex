@@ -1,0 +1,54 @@
+\hojaejercicio{Interpolación e integración numérica}
+
+% Ejercicio 1
+\ejercicio{
+    Hallar el polinomio $P$ que interpola la función $f(x) = \cos(\pi x)$ en los puntos $x_0 = 0$, $x_1 = \dfrac{1}{2}$, $x_2 = 1$, $x_3 = \dfrac{3}{2}$.
+}{
+    Si tenemos la función $f(x) = \cos(\pi x)$ y los puntos $x_0 = 0$, $x_1 = \dfrac{1}{2}$, $x_2 = 1$, $x_3 = \dfrac{3}{2}$, entonces construimos la tabla de valores:
+    \begin{center}
+        \begin{tabular}{|c|cccc|}
+            \hline
+            $x$ & $0$ & $\dfrac{1}{2}$ & $1$ & $\dfrac{3}{2}$ \\
+            \hline
+            $y$ & $1$ & $0$ & $-1$ & $0$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Ahora para construir el polinomio de interpolación, podemos usar la fórmula de Lagrange:
+    \[
+        P(x) = \sum_{i=0}^3 y_i L_i(x)
+    \]
+    Donde:
+    \[
+        L_i(x) = \prod_{j=0, j \neq i}^3 \frac{x - x_j}{x_i - x_j}
+    \]
+    Procedamos a calcular cada $L_i(x)$:
+    \begin{itemize}
+        \item Para $i=0$:
+        \[
+            L_0(x) = \frac{(x - \frac{1}{2})(x - 1)(x - \frac{3}{2})}{(0 - \frac{1}{2})(0 - 1)(0 - \frac{3}{2})} = \frac{(x - \frac{1}{2})(x - 1)(x - \frac{3}{2})}{\frac{3}{4}} = \frac{4}{3}(x - \frac{1}{2})(x - 1)(x - \frac{3}{2})
+        \]
+        \item Para $i=1$ no es necesario ya que:
+        \[
+            y_1 = 0 \implies y_1 L_1(x) = 0
+        \]
+        \item Para $i=2$:
+        \[
+            L_2(x) = \frac{(x - 0)(x - \frac{1}{2})(x - \frac{3}{2})}{(1 - 0)(1 - \frac{1}{2})(1 - \frac{3}{2})} = \frac{x(x - \frac{1}{2})(x - \frac{3}{2})}{-\frac{1}{4}} = -4x(x - \frac{1}{2})(x - \frac{3}{2})
+        \]
+        \item Para $i=3$ no es necesario ya que:
+        \[
+            y_3 = 0 \implies y_3 L_3(x) = 0
+        \]
+    \end{itemize}
+    Dejando el polinomio:
+    \[
+        P(x) = 1 \cdot L_0(x) + (-1) \cdot L_2(x) = \frac{4}{3}(x - \frac{1}{2})(x - 1)(x - \frac{3}{2}) + 4x(x - \frac{1}{2})(x - \frac{3}{2})
+    \]
+}
+
+% Ejercicio 2
+\ejercicio{}{}
+
+% Ejercicio 3
+\ejercicio{}{}

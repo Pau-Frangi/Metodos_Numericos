@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  11 MAR 2026 10:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  12 MAR 2026 10:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1292,7 +1292,7 @@ Package etoc Info: Setting (or re-setting) the options `maintoctotoc' and
 (etoc)             `localtoctotoc' to true as tocbibind was detected and
 (etoc)             found to be configured for `TOC to toc'.
 (etoc)             Reported at begin document on input line 15.
-<images/logo.png, id=118, 1585.81029pt x 1585.81029pt>
+<images/logo.png, id=98, 1585.81029pt x 1585.81029pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 31.
@@ -1323,281 +1323,40 @@ l.67 \newpage
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [2] [3] (Theory/Theory.tex Excluding 'comment' comment. (Theory/3 - Métodos iterativos.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
+ [2] [3] (Theory/Theory.tex Excluding 'comment' comment. (Theory/4 - Interpolación polinómica.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 28.
-Package hyperref Info: bookmark level for unknown definición defaults to 0 on input line 28.
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-
- []
-
+(mdframed)              on input line 8.
+Package hyperref Info: bookmark level for unknown definición defaults to 0 on input line 8.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 48.
-Package hyperref Info: bookmark level for unknown proposición defaults to 0 on input line 48.
-Package mdframed Info: Box was splittet wrong
- starting loop to iterate the splitting point
-(mdframed)              on input line 73.
-[4]
+(mdframed)              on input line 39.
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.85 \]
+       ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 75.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 116.
-Package hyperref Info: bookmark level for unknown teorema defaults to 0 on input line 116.
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
-
- []
-
-[5]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 178.
-
-pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.178 ...ión}[Convergencia del método de Jacobi]
-                                                   [6]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 230.
+(mdframed)              on input line 145.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.230 \begin{definición}[Matriz d.e.d.]
-                                        
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 238.
-Package hyperref Info: bookmark level for unknown lema defaults to 0 on input line 238.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 259.
- [7]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 288.
- [8]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 347.
-
-pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.347 ...eorema}[Método de relajación de Jacobi]
-                                                  
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 382.
-
-pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.382 ...}[Método de relajación de Gauss-Seidel]
-                                                  
-Underfull \hbox (badness 10000) in paragraph at lines 398--400
-
- []
-
-[9]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 402.
-
-pdfTeX warning (ext4): destination with the same identifier (name{teorema.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.402 ...l método de relajación de Gauss-Seidel]
-                                                  
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 440.
- [10]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 480.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 489.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 494.
-Package hyperref Info: bookmark level for unknown observación defaults to 0 on input line 494.
- [11]) [12] (Theory/4 - Interpolación polinómica.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 4--14
-
- []
-
-[13]) [14] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja1.tex [15] [16]) [17] (Exercises/Hoja3.tex
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.66 }
-      
-Underfull \hbox (badness 10000) in paragraph at lines 66--66
-
- []
-
-[18]
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.69 \ejercicio{}{}
-                    [19]
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.72 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.75 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.78 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.6}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.81 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.7}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.169 }
-        [20] [21]
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.8}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.172 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.9}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.175 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.10}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.178 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.11}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.181 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.12}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.184 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.13}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.187 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.14}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.190 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.15}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.193 \ejercicio{}{}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.16}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.196 \ejercicio{}{}
-                     [22
-
-]
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.17}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.199 \ejercicio{}{}
-                    ) [23] (Exercises/Hoja4.tex
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4 \ejercicio{}{}
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7 \ejercicio{}{}
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.10 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.36 }
-      
-Underfull \hbox (badness 10000) in paragraph at lines 36--36
-
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.78 }
-      
-Underfull \hbox (badness 10000) in paragraph at lines 78--78
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 78--78
-
- []
-
-[24]
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.6}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.81 \ejercicio{}{}
-                   
-pdfTeX warning (ext4): destination with the same identifier (name{ejercicio.7}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.161 }
-       
-Underfull \hbox (badness 10000) in paragraph at lines 161--161
-
- []
-
-[25] [26])) [27
-
-] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [28]) [29] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+l.145 \begin{definición}[Polinomios de Lagrange]
+                                                 
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 177.
+ [5]) [6]) [7] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja5.tex [8]) [9]) [10] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [11]) [12] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
-
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3 ...n{definición}[Norma euclidea de un vector]
-                                                  
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 10.
@@ -1616,7 +1375,7 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 45.
- [30]
+ [13]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 47.
@@ -1626,14 +1385,14 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 62.
-) [31] (Appendix/Agradecimientos.tex
+) [14] (Appendix/Agradecimientos.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 10.95003pt
 (hyperref)                replaced by space on input line 15.
 
-) [32])
-<doclicense-CC-by-nc-nd-88x31.pdf, id=508, 90.3375pt x 31.61812pt>
+) [15])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=302, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
@@ -1642,26 +1401,26 @@ Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 15
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [33 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+) [16 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2B713A0D6068368431A5B14F779BDEF8;3153.
+(rerunfilecheck)             Checksum: CDFE1F977A43AAA82AF27A178742720B;2282.
  ) 
 Here is how much of TeX's memory you used:
- 50154 strings out of 467866
- 1167998 string characters out of 5418326
- 1847177 words of memory out of 5000000
- 77923 multiletter control sequences out of 15000+600000
- 653805 words of font info for 141 fonts, out of 8000000 for 9000
+ 49938 strings out of 467866
+ 1163698 string characters out of 5418326
+ 1840177 words of memory out of 5000000
+ 77791 multiletter control sequences out of 15000+600000
+ 653446 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,24n,112p,898b,1228s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (34 pages, 891965 bytes).
+ 109i,13n,112p,898b,1230s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (17 pages, 747245 bytes).
 PDF statistics:
- 640 PDF objects out of 1000 (max. 8388607)
- 146 named destinations out of 1000 (max. 500000)
- 323 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 410 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
