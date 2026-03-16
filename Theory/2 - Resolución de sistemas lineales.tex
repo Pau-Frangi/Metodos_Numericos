@@ -269,6 +269,8 @@ Ahora veamos algunos metodos de resolución de sistemas lineales más generales.
     El proceso de eliminacion gaussiana seguirá igual hasta llegar a una columna $j$ tal que este compuesta de ceros, en esa situacion, pasamos a la siguiente submatriz $A_{n-j}$, y repetimos el proceso hasta llegar a una matriz triangular superior $T$ cuya diagonal este compuesta por $0$ y $1$ (los $0$ vienen de las columnas compuestas por ceros, y los $1$ vienen de las columnas con elementos no nulos en la diagonal, que se convierten en $1$ al multiplicar la fila por el inverso del elemento no nulo).\\
 \end{proof}
 
+\subsection{Factorización LU}
+
 \begin{teorema}[Factorización LU]
     Sea $A \in \mathbb{K}^{n \times n}$, entonces $\exists L \in \mathbb{K}^{n \times n}$ una matriz triangular inferior con $1$ en la diagonal, y $\exists U \in \mathbb{K}^{n \times n}$ una matriz triangular superior tal que:
     \[
@@ -602,6 +604,8 @@ Notese que la primera iteración tiene coste $(n-1) + 2(n-1)^2$, y la 2 iteraci�
     \end{enumerate}
 \end{proof}
 
+\subsection{Factorización de Cholesky}
+
 \begin{teorema}[Factorización de Cholesky]
     Sea $A \in \mathbb{K}^{n \times n}$ una matriz h.d.p. (hermitiana definida positiva), entonces $\exists B \in \mathbb{K}^{n \times n}$ una matriz triangular inferior tal que:
     \[
@@ -658,4 +662,3 @@ Notese que la primera iteración tiene coste $(n-1) + 2(n-1)^2$, y la 2 iteraci�
     \]
     Siendo ademas los elementos de la diagonal de $B^{*^{-1}}$ iguales a $\delta_{ii} = \sqrt{u_{ii}} \frac{1}{\sqrt{u_{ii}}} = 1 \forall i$. Deduciendo finalmente que $C = B^*$, y por lo tanto $A = BB^*$.\\
 \end{proof}
-
