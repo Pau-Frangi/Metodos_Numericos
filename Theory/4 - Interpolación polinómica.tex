@@ -321,3 +321,88 @@ Podemos preguntarnos ahora, dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ 
         E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
     \]
 \end{proof}
+
+\subsection{Método de Newton}
+\subsubsection{Diferencias divididas}
+
+\begin{definición}[Diferencias divididas]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, definimos las diferencias divididas de $f$ en los puntos $x_0, x_1, \ldots, x_n$ de la siguiente forma:
+    \[
+        f[x_i] = f(x_i) = y_i
+    \]
+    \[
+        f[x_i, x_j] = \frac{f[x_i] - f[x_j]}{x_i - x_j} \quad \text{para } i \neq j
+    \]
+    Y así sucesivamente, definiendo las diferencias divididas de orden $n$ como:
+    \[
+        f[x_i, x_{i+1}, \ldots, x_{i+m}] = 
+        \frac{f[x_{i+1}, x_{i+2}, \ldots, x_{i+m-1}] - f[x_i, x_{i+1}, \ldots, x_{i+m}]}{x_i - x_{i+m}}
+    \]
+\end{definición}
+
+\ejemplo{
+    Si queremos calcular las diferencias divididas con $x_0, x_1, x_2$, entonces tenemos que:
+    \[
+        f[x_0] = f(x_0) = y_0
+    \]
+    \[
+        f[x_0, x_1] = \frac{f[x_0] - f[x_1]}{x_0 - x_1} = \frac{y_0 - y_1}{x_0 - x_1}
+    \]
+    \[
+        f[x_0, x_1, x_2] = \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} = \frac{\frac{y_0 - y_1}{x_0 - x_1} - \frac{y_1 - y_2}{x_1 - x_2}}{x_0 - x_2}
+    \]
+}
+
+Veamos ahora algunas propiedades interesantes de las diferencias divididas:
+\begin{proposición}[Simetría de las diferencias divididas]
+    Las diferencias divididas son simétricas respecto a sus argumentos, es decir, si permutamos los puntos $x_i$ en la definición de las diferencias divididas, el valor de las diferencias divididas no cambia. Por ejemplo:
+        \[
+            f[x_0, x_1] =
+            \frac{f[x_0] - f[x_1]}{x_0 - x_1} =
+            \frac{f[x_1] - f[x_0]}{x_1 - x_0} =
+            f[x_1, x_0]
+        \]
+        E incluso para diferencias divididas de orden superior, como:
+        \[
+            f[x_0, x_1, x_2] =
+            \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} =
+            \frac{f[x_1, x_2] - f[x_0, x_1]}{x_1 - x_0} =
+            f[x_1, x_2, x_0]
+        \]
+        En general, si $\sigma$ es una permutación de $\{ 0, 1, \ldots, n \}$, entonces:
+        \[
+            f[x_0, x_1, \ldots, x_n] = 
+            f[x_{\sigma(0)}, x_{\sigma(1)}, \ldots, x_{\sigma(n)}]
+        \]
+\end{proposición}
+
+\subsubsection{Definición del método de Newton}
+
+La idea del método de Newton es construir el polinomio de interpolación de Lagrange de forma progressiva, es decir, primero construimos el polinomio de interpolación de Lagrange de grado $0$, luego el de grado $1$, y así sucesivamente, hasta llegar al polinomio de interpolación de Lagrange de grado $n$, es decir, la construcción se hará:
+
+\[
+    p_0(x) = f(x_0) \implies
+    p_1(x) = N(p_0(x)) \implies
+    p_2(x) = N(p_1(x)) \implies
+    \ldots \implies
+    p_n(x) = N(p_{n-1}(x))
+\]
+
+\begin{definición}[Construcción del método de Newton]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, podemos empezar a construir el polinomio de interpolación de la siguiente forma:
+    \begin{itemize}
+        \item \textbf{$n = 0$:} En este caso, el polinomio de interpolación es simplemente el polinomio constante que toma el valor $y_0$ en todo el intervalo, es decir:
+        \[
+            p_0(x) = f(x_0) = f[x_0]
+        \]
+        Esto nos deja el error:
+        \[
+            E_0(x) =
+            f(x) - p_0(x) =
+            \frac{f[x] - f[x_0]}{x - x_0} \cdot (x - x_0) =
+            f[x, x_0] \cdot (x - x_0) =
+            f[x_0, x] \cdot (x - x_0)
+        \]
+    \end{itemize}
+    
+\end{definición}

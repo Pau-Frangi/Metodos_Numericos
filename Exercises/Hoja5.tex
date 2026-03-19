@@ -51,4 +51,219 @@
 \ejercicio{}{}
 
 % Ejercicio 3
-\ejercicio{}{}
+\ejercicio{
+    Sean $\{x_0, x_1, \ldots, x_n\} \subset \mathbb{R}$ puntos distintos. Demostrar:
+    \begin{enumerate}[label=(\alph*)]
+        \item
+        \[
+            \sum_{i=0}^{n} L_i(x) = 1, \quad x \in \mathbb{R}.
+        \]
+        \item
+        \[
+            E_n(x) = f(x) - P_n(x) = \sum_{i=0}^{n} \bigl(f(x) - f(x_i)\bigr)L_i(x).
+        \]
+    \end{enumerate}
+}{
+    Recordemos que los polinomios básicos de Lagrange están dados por
+    \[
+        L_i(x)=\prod_{\substack{j=0 \\ j\neq i}}^{n}\frac{x-x_j}{x_i-x_j},\qquad i=0,\dots,n,
+    \]
+    y satisfacen la propiedad
+    \[
+        L_i(x_k)=\delta_{ik}=\begin{cases}
+            1, & i=k,\\
+            0, & i\neq k.
+        \end{cases}
+    \]
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Consideremos
+        \[
+            S(x)=\sum_{i=0}^{n}L_i(x).
+        \]
+        Como cada $L_i$ tiene grado a lo sumo $n$, también $S$ tiene grado a lo sumo $n$.
+
+        Evaluamos en los nodos $x_k$ ($k=0,\dots,n$):
+        \[
+            S(x_k)=\sum_{i=0}^{n}L_i(x_k)=\sum_{i=0}^{n}\delta_{ik}=1.
+        \]
+        Es decir, $S$ y el polinomio constante $1$ (de grado $\le n$) coinciden en los $n+1$ puntos distintos $x_0,\dots,x_n$.
+
+        Por unicidad del polinomio interpolador de grado $\le n$, se concluye que
+        \[
+            \sum_{i=0}^{n}L_i(x)=S(x)=1,\qquad \forall x\in\mathbb{R}.
+        \]
+
+        \item Partimos de la expresión de Lagrange del interpolador:
+        \[
+            P_n(x)=\sum_{i=0}^{n}f(x_i)L_i(x).
+        \]
+        Entonces
+        \[
+            E_n(x)=f(x)-P_n(x)=f(x)-\sum_{i=0}^{n}f(x_i)L_i(x).
+        \]
+        Usando el apartado anterior, $\sum_{i=0}^{n}L_i(x)=1$, podemos escribir
+        \[
+            f(x)=f(x)\sum_{i=0}^{n}L_i(x)=\sum_{i=0}^{n}f(x)L_i(x).
+        \]
+        Sustituyendo en la expresión del error:
+        \[
+            E_n(x)=\sum_{i=0}^{n}f(x)L_i(x)-\sum_{i=0}^{n}f(x_i)L_i(x)
+            =\sum_{i=0}^{n}\bigl(f(x)-f(x_i)\bigr)L_i(x).
+        \]
+        Por tanto,
+        \[
+            E_n(x)=f(x)-P_n(x)=\sum_{i=0}^{n}\bigl(f(x)-f(x_i)\bigr)L_i(x).
+        \]
+    \end{enumerate}
+}
+
+% Ejercicio 4
+\ejercicio{
+    Sean $P\in\mathbb{P}_n$ y $n+1$ puntos distintos $\{x_0,x_1,\ldots,x_n\}$. Hallar el valor de
+    \[
+        P[x_0,x_1,\ldots,x_n].
+    \]
+}{}
+
+% Ejercicio 5
+\ejercicio{
+    Sean $\{x_0,x_1,\ldots,x_n\}$ con $x_i\neq x_j$ si $i\neq j$ y $f(x)=x^{n+1}$. Calcular el polinomio de
+    interpolaci\'on de Lagrange de $f$ en los puntos $\{x_0,x_1,\ldots,x_n\}$ y determinar su t\'ermino independiente.
+}{
+    Sabemos que el polinomio de interpolación de Lagrange de $f(x) = x^{n+1}$ en los puntos $\{x_0, x_1, \ldots, x_n\}$ es:
+    \[
+        P_n(x) = 
+        \sum_{i=0}^{n} f(x_i) L_i(x) = 
+        \sum_{i=0}^{n} x_i^{n+1} \cdot \prod_{\substack{j=0 \\ j \neq i}}^{n} \frac{x - x_j}{x_i - x_j}.
+    \]
+    Ahora podemos calcular el error de interpolación, que es:
+    \[
+        E_n(x) = 
+        f(x) - P_n(x) = 
+        \frac{(x^{n+1})^{(n+1)}}{(n+1)!} \prod_{i=0}^{n} (x - x_i) = 
+        \frac{(n+1)!}{(n+1)!} \prod_{i=0}^{n} (x - x_i) = 
+        \prod_{i=0}^{n} (x - x_i).
+    \]
+    Despejando nos queda:
+    \[
+        P_n(x) = f(x) - E_n(x) = x^{n+1} - \prod_{i=0}^{n} (x - x_i).
+    \]
+    Para determinar el término independiente de $P_n$, evaluamos en $x=0$:
+    \[
+        P_n(0) = 0^{n+1} - \prod_{i=0}^{n} (0 - x_i) = -(-1)^{n+1} \prod_{i=0}^{n} x_i = (-1)^n \prod_{i=0}^{n} x_i.
+    \]
+    Y por tanto, el término independiente de $P_n$ es $(-1)^n \prod_{i=0}^{n} x_i$.
+}
+
+% Ejercicio 6
+\ejercicio{
+    Demostrar que si $f\in C([a,b])$ y existe $f'(x_i)$ para alg\'un $x_i\in[a,b]$, entonces la funci\'on
+    \[
+        g(x)=
+        \begin{cases}
+            f[x,x_i], & x\neq x_i,\\
+            f'(x_i), & x=x_i,
+        \end{cases}
+    \]
+    es continua en el intervalo $[a,b]$ (esto permite definir la diferencia dividida $f[x,x_i]$ en todo punto del
+    intervalo). \textquestiondown Tiene $f[x,x_i]$ alguna propiedad similar a $(\varphi\psi)'=\varphi'\psi+\varphi\psi'$?
+}{}
+
+% Ejercicio 7
+\ejercicio{
+    Sea $a>0$, $\{-x_n,-x_{n-1},\ldots,-x_1,0,x_1,\ldots,x_n\}\subset[-a,a]$ y $P_{2n}$ el polinomio de
+    interpolaci\'on de Lagrange de $f:[-a,a]\to\mathbb{R}$ en estos puntos. Demostrar:
+    \begin{enumerate}[label=(\alph*)]
+        \item Si $f$ es una funci\'on par (resp. impar), entonces $P_{2n}$ es par (resp. impar).
+        \item Si $f$ es par, existe $Q_n\in\mathbb{P}_n$ tal que $P_{2n}(x)=Q_n(x^2)$.
+        \textquestiondown Qui\'en es $Q_n$? \textquestiondown Qu\'e utilidad tiene esto?
+    \end{enumerate}
+}{}
+
+% Ejercicio 8
+\ejercicio{
+    Determinar los valores de $\lambda$ y $\mu$ para que
+    \[
+        S(x)=
+        \begin{cases}
+            \lambda x(x^2+1), & 0\le x\le 1,\\
+            -\lambda x^3+\mu x^2-5\lambda x+1, & 1\le x\le 2,
+        \end{cases}
+    \]
+    sea una funci\'on spline c\'ubica.
+}{}
+
+% Ejercicio 9
+\ejercicio{
+    Sea $\Delta=\{a=x_0<x_1<\cdots<x_n=b\}$ una partici\'on del intervalo $[a,b]$. Demostrar:
+    \begin{enumerate}[label=(\alph*)]
+        \item Si $n<4$, toda funci\'on spline c\'ubica que verifique
+        \[
+            S_{\Delta}^{(k)}(a)=S_{\Delta}^{(k)}(b)=0,\qquad k=0,1,2,
+        \]
+        es id\'enticamente nula.
+        \item Si $n=4$, la anterior funci\'on spline c\'ubica est\'a un\'ivocamente determinada por el valor que tome en $x_2$.
+    \end{enumerate}
+}{}
+
+% Ejercicio 10
+\ejercicio{
+    Demostrar, a partir del teorema de Rolle, la unicidad de la funci\'on spline c\'ubica de interpolaci\'on en los casos I y II.
+}{}
+
+% Ejercicio 11
+\ejercicio{
+    Sea $\Delta=\{x_0=a<x_1<\cdots<x_n=b\}$ una partici\'on del intervalo $[a,b]$ y $S_{\Delta}(y;\cdot)$ la funci\'on
+    spline c\'ubica que interpola los valores $y=(y_0,y_1,\ldots,y_n)^T$ con condiciones de tipo I.
+    \textquestiondown Qu\'e deben verificar los valores $\{y_0,y_1,\ldots,y_n\}$ para que $S_{\Delta}(y;\cdot)$ coincida en
+    todo el intervalo $[a,b]$ con un polinomio $P\in\mathbb{P}_3$?
+}{}
+
+% Ejercicio 12
+\ejercicio{
+    Aplicar la regla de Simpson compuesta a la integral
+    \[
+        \int_{1}^{2}\frac{dt}{t}
+    \]
+    para obtener una aproximaci\'on de $\ln(2)$, determinando el n\'umero $m$ de subintervalos necesario para que el error
+    cometido en esa aproximaci\'on sea inferior a $10^{-3}$.
+}{}
+
+% Ejercicio 13
+\ejercicio{
+    Hallar la expresi\'on de la regla de Simpson abierta compuesta.
+}{}
+
+% Ejercicio 14
+\ejercicio{
+    Se considera la f\'ormula de integraci\'on
+    \[
+        \int_0^1 f(x)\,dx\simeq A\bigl(f(x_0)+f(x_1)\bigr).
+    \]
+    Hallar el valor de $A$, $x_0$ y $x_1$ para que la f\'ormula sea exacta para polinomios del mayor grado posible.
+    \textquestiondown Cu\'al es este grado?
+}{}
+
+% Ejercicio 15
+\ejercicio{
+    Encontrar una f\'ormula que aproxime
+    \[
+        \int_1^3 f(x)\,dx
+    \]
+    utilizando los valores de $f$ en los puntos $0$, $2$ y $4$, y que sea exacta para polinomios del mayor grado posible.
+    \textquestiondown Cu\'al es este grado?
+}{}
+
+% Ejercicio 16
+\ejercicio{
+    Dado $n\in\mathbb{N}$, se considera $h=\dfrac{1}{n}$, $x_i=ih$ para $i=0,1,\ldots,n$ y la funci\'on
+    \[
+        f_n(x)=x^n\cos(2\pi n x).
+    \]
+    Hallar el valor de la aproximaci\'on de
+    \[
+        \int_0^1 f_n(x)\,dx
+    \]
+    que se obtiene utilizando la f\'ormula de Newton--C\^otes cerrada de $n+1$ puntos.
+}{}
