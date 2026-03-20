@@ -179,3 +179,230 @@ En esta sección, vamos a ver un tipo de polinomios que nos van a resultar muy �
 El utilizar los polinomios de Lagrange se conoce como \textbf{Interpolación de Lagrange}.
 
 Todo esto sera útil para interpolar funciones, creando los puntos de la forma $\{ x_i, f(x_i) \}_{i=0}^n$, y buscando un polinomio $p$ que interpole a la función $f$ en esos puntos, es decir, que cumpla que $p(x_i) = f(x_i)$ para todo $i = 0, 1, \ldots, n$.
+
+\begin{teorema}[Existencia y unicidad del polinomio de Lagrange]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, entonces existe un único polinomio $p \in \mathcal{P}_n$ tal que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, y dicho polinomio viene dado por la fórmula de Lagrange:
+    \[
+        p(x) = \sum_{i=0}^n y_i L_i(x)
+    \]
+    Con:
+    \[
+        L_i(x) = \prod_{j \neq i} \frac{x - x_j}{x_i - x_j}
+    \]
+\end{teorema}
+
+\begin{proof}
+    Veamos primero la existencia del polinomio de Lagrange. Para ello, basta con comprobar que el polinomio $p$ definido por la fórmula de Lagrange cumple que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$. Esto se cumple debido a la definición de los polinomios de Lagrange, que garantizan que $L_k(x_j) = \delta_{kj}$, y está bien definido ya que:
+    \[
+        x_i \neq x_j \iff i \neq j \iff x_i - x_j \neq 0 
+    \]
+    Para ver la unicidad, supongamos que $\exists p,q \in \mathcal{P}_n$ tal que:
+    \[
+        \forall i \in \{ 0, 1, \ldots, n \} : p(x_i) = q(x_i) = y_i
+    \]  
+    Entonces definamos el polinomio $d(x)$ como:
+    \[
+        d(x) = p(x) - q(x) \in \mathcal{P}_n \implies
+        d(x_i) = p(x_i) - q(x_i) = y_i - y_i = 0 \quad \forall i = 0, 1, \ldots, n
+    \]
+    Como $d$ es un polinomio de grado a lo sumo $n$ que tiene $n+1$ raíces distintas, entonces según el teorema fundamental del álgebra, $d$ es el polinomio nulo, es decir, $d(x) = 0$ para todo $x \in \mathbb{R}$. Por lo tanto, $p(x) = q(x)$ para todo $x \in \mathbb{R}$, lo que implica que $p$ y $q$ son el mismo polinomio. Por lo tanto, el polinomio de Lagrange es único.
+\end{proof}
+
+\subsection{Error de interpolación}
+
+Podemos preguntarnos ahora, dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ y una función $f$ tal que $f(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, cuál es el error cometido al interpolar a la función $f$ mediante el polinomio de Lagrange $p$. Para ello, definamos:
+
+\begin{definición}
+    El error de interpolación de la función $f$ mediante el polinomio de Lagrange $p_n$ se define como la función:
+    \[
+        E_n(x) = f(x) - p_n(x)
+    \]
+\end{definición}
+
+\ejemplo{
+    Tomemos la función
+    \[
+        f(x) = \frac{\sin(x)}{1+x^2}
+    \]
+    y los nodos de interpolación
+    \[
+        x_i \in \{-3,-2,-1,0,1,2,3\}, \qquad y_i = f(x_i).
+    \]
+    El polinomio interpolador de Lagrange de grado $6$ es
+    \[
+        p_6(x) = \sum_{i=0}^{6} y_i L_i(x),
+        \qquad
+        L_i(x) = \prod_{\substack{j=0 \\ j\neq i}}^{6}\frac{x-x_j}{x_i-x_j}.
+    \]
+    Al simplificar, obtenemos:
+    \[
+        p_6(x) = 0.577015793023248\,x - 0.167866563297343\,x^3 + 0.0115862626780432\,x^5.
+    \]
+
+    \begin{center}
+        \begin{tikzpicture}[scale=1.15]
+            % Ejes
+            \draw[->] (-3.4,0) -- (3.4,0) node[right] {$x$};
+            \draw[->] (0,-0.5) -- (0,0.5) node[above] {$y$};
+
+            % Funcion original
+            \draw[thick, blue] plot[domain=-3.2:3.2, samples=240] (\x, {sin(\x r)/(1+\x*\x)}) node[right] {$f(x)$};
+
+            % Interpolador
+            \draw[thick, red] plot[domain=-3.2:3.2, samples=240] (\x, {0.577015793023248*\x - 0.167866563297343*(\x)^3 + 0.0115862626780432*(\x)^5}) node[above right] {$p_6(x)$};
+
+            % Nodos de interpolacion
+            \foreach \xx/\yy in {
+                -3/-0.0141120008,
+                -2/-0.1818594854,
+                -1/-0.4207354924,
+                0/0,
+                1/0.4207354924,
+                2/0.1818594854,
+                3/0.0141120008
+            } {
+                \fill[black] (\xx,\yy) circle (1.2pt);
+            }
+        \end{tikzpicture}
+    \end{center}
+}
+
+\begin{teorema}[Error de interpolación]
+    Sea $f \in C^{n+1}([a,b])$ y $\{ x_i \}_{i=0}^n \subset [a,b]$ con $x_i \neq x_j$ para todo $i \neq j$, $y_i = f(x_i)$ para todo $i = 0, 1, \ldots, n$.\\
+    Entonces $\forall x \in [a,b]$ introducimos:
+    \[
+        I_x = \left( \min \{x \cup x_i \} , \max \{x \cup x_i \} \right) \subset [a,b]
+    \]
+    Entonces $\exists \xi_x \in I_x$ tal que:
+    \[
+        E_n(x) = f(x) - p_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
+    \]
+    Donde podemos tomar normas para obtener una cota del error:
+    \[
+        |E_n(x)| = \frac{ \| f^{(n+1)} \| }{(n+1)!} \prod_{i=0}^n |x - x_i|
+    \]
+\end{teorema}
+
+\begin{proof}
+    Para demostrar el teorema, definamos la función auxiliar, teniendo en cuenta que hemos fijado el $x \notin \{ x_i \}_{i=0}^n$:
+    \[
+        F(y) = \left( f(y) - p_n(y) \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \prod_n (y)
+    \]
+    Ahora veamos lo siguiente:
+    \begin{enumerate}
+        \item $F \in C^{n+1}([a,b])$ ya que $f \in C^{n+1}([a,b])$ y $p_n$ es un polinomio de grado a lo sumo $n$, por lo que $p_n \in C^{\infty}([a,b])$.
+        \item $F(x_i) = 0$ para todo $i = 0, 1, \ldots, n$, ya que:
+        \[
+            F(x_i) = \left( \underbrace{f(x_i)}_{y_i} - \underbrace{p_n(x_i)}_{y_i} \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \underbrace{\prod_n (x_i)}_{0} = 0
+        \]
+        Por lo que $F$ tiene al menos $n+1$ raíces distintas.
+        \item $F(x) = 0$ ya que:
+        \[
+            F(x) = \left( f(x) - p_n(x) \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \prod_n (x) = 0
+        \]
+        Ahora como $F$ tiene $n+2$ raíces distintas y $F \in C^{n+1}([a,b])$, entonces por el teorema de Rolle, $\exists c \in (a,b)$ tal que $F^{(n+1)}(c) = 0$, ya que podemos ir aplicando el teroema de Rolle a $F$, sacando $n+1$ raíces distintas de $F'$, entre cada par de raices, por lo que podemos sacar $n$ raices de $F''$, y así sucesivamente, hasta llegar a $F^{(n+1)}$, que tendrá al menos una raíz distinta, que es el $c$ que hemos mencionado. Ahora simplemente denotamos a esa raíz como $\xi_x$, y obtenemos que:
+        \[        
+            F^{(n+1)}(\xi_x) = 0 
+        \]
+    \end{enumerate}
+    Ahora si evaluamos (recordando que $E_n(x) = f(x) - p_n(x)$):
+    \[
+        F^{(n+1)}(y) = \left( f^{(n+1)}(y) - p_n^{(n+1)}(y) \right) \prod_n (x) - E_n(x) \cdot \left( \prod_n (y) \right)^{(n+1)}
+    \]
+    Ahora si nos damos cuenta de que $\left( \prod_n (y) \right)^{(n+1)} = (n+1)!$ ya que el producto $\prod_n (y)$ es un polinomio de grado $n+1$ con $n+1$ raíces distintas, entonces su derivada $(n+1)$-ésima es igual a $(n+1)!$. Además, como $p_n$ es un polinomio de grado a lo sumo $n$, entonces $p_n^{(n+1)}(y) = 0$ para todo $y \in [a,b]$. Por lo tanto, obtenemos que:
+    \[
+        F^{(n+1)}(y) = f^{(n+1)}(y) \prod_n (x) - E_n(x) \cdot (n+1)!
+    \]
+    Y como $F^{(n+1)}(\xi_x) = 0$, entonces:
+    \[
+        0 = F^{(n+1)}(\xi_x) = f^{(n+1)}(\xi_x) \prod_n (x) - E_n(x) \cdot (n+1)! \implies
+    \]
+    \[
+        E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
+    \]
+\end{proof}
+
+\subsection{Método de Newton}
+\subsubsection{Diferencias divididas}
+
+\begin{definición}[Diferencias divididas]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, definimos las diferencias divididas de $f$ en los puntos $x_0, x_1, \ldots, x_n$ de la siguiente forma:
+    \[
+        f[x_i] = f(x_i) = y_i
+    \]
+    \[
+        f[x_i, x_j] = \frac{f[x_i] - f[x_j]}{x_i - x_j} \quad \text{para } i \neq j
+    \]
+    Y así sucesivamente, definiendo las diferencias divididas de orden $n$ como:
+    \[
+        f[x_i, x_{i+1}, \ldots, x_{i+m}] = 
+        \frac{f[x_{i+1}, x_{i+2}, \ldots, x_{i+m-1}] - f[x_i, x_{i+1}, \ldots, x_{i+m}]}{x_i - x_{i+m}}
+    \]
+\end{definición}
+
+\ejemplo{
+    Si queremos calcular las diferencias divididas con $x_0, x_1, x_2$, entonces tenemos que:
+    \[
+        f[x_0] = f(x_0) = y_0
+    \]
+    \[
+        f[x_0, x_1] = \frac{f[x_0] - f[x_1]}{x_0 - x_1} = \frac{y_0 - y_1}{x_0 - x_1}
+    \]
+    \[
+        f[x_0, x_1, x_2] = \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} = \frac{\frac{y_0 - y_1}{x_0 - x_1} - \frac{y_1 - y_2}{x_1 - x_2}}{x_0 - x_2}
+    \]
+}
+
+Veamos ahora algunas propiedades interesantes de las diferencias divididas:
+\begin{proposición}[Simetría de las diferencias divididas]
+    Las diferencias divididas son simétricas respecto a sus argumentos, es decir, si permutamos los puntos $x_i$ en la definición de las diferencias divididas, el valor de las diferencias divididas no cambia. Por ejemplo:
+        \[
+            f[x_0, x_1] =
+            \frac{f[x_0] - f[x_1]}{x_0 - x_1} =
+            \frac{f[x_1] - f[x_0]}{x_1 - x_0} =
+            f[x_1, x_0]
+        \]
+        E incluso para diferencias divididas de orden superior, como:
+        \[
+            f[x_0, x_1, x_2] =
+            \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} =
+            \frac{f[x_1, x_2] - f[x_0, x_1]}{x_1 - x_0} =
+            f[x_1, x_2, x_0]
+        \]
+        En general, si $\sigma$ es una permutación de $\{ 0, 1, \ldots, n \}$, entonces:
+        \[
+            f[x_0, x_1, \ldots, x_n] = 
+            f[x_{\sigma(0)}, x_{\sigma(1)}, \ldots, x_{\sigma(n)}]
+        \]
+\end{proposición}
+
+\subsubsection{Definición del método de Newton}
+
+La idea del método de Newton es construir el polinomio de interpolación de Lagrange de forma progressiva, es decir, primero construimos el polinomio de interpolación de Lagrange de grado $0$, luego el de grado $1$, y así sucesivamente, hasta llegar al polinomio de interpolación de Lagrange de grado $n$, es decir, la construcción se hará:
+
+\[
+    p_0(x) = f(x_0) \implies
+    p_1(x) = N(p_0(x)) \implies
+    p_2(x) = N(p_1(x)) \implies
+    \ldots \implies
+    p_n(x) = N(p_{n-1}(x))
+\]
+
+\begin{definición}[Construcción del método de Newton]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, podemos empezar a construir el polinomio de interpolación de la siguiente forma:
+    \begin{itemize}
+        \item \textbf{$n = 0$:} En este caso, el polinomio de interpolación es simplemente el polinomio constante que toma el valor $y_0$ en todo el intervalo, es decir:
+        \[
+            p_0(x) = f(x_0) = f[x_0]
+        \]
+        Esto nos deja el error:
+        \[
+            E_0(x) =
+            f(x) - p_0(x) =
+            \frac{f[x] - f[x_0]}{x - x_0} \cdot (x - x_0) =
+            f[x, x_0] \cdot (x - x_0) =
+            f[x_0, x] \cdot (x - x_0)
+        \]
+    \end{itemize}
+    
+\end{definición}

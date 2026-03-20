@@ -269,6 +269,8 @@ Ahora veamos algunos metodos de resolución de sistemas lineales más generales.
     El proceso de eliminacion gaussiana seguirá igual hasta llegar a una columna $j$ tal que este compuesta de ceros, en esa situacion, pasamos a la siguiente submatriz $A_{n-j}$, y repetimos el proceso hasta llegar a una matriz triangular superior $T$ cuya diagonal este compuesta por $0$ y $1$ (los $0$ vienen de las columnas compuestas por ceros, y los $1$ vienen de las columnas con elementos no nulos en la diagonal, que se convierten en $1$ al multiplicar la fila por el inverso del elemento no nulo).\\
 \end{proof}
 
+\subsection{Factorización LU}
+
 \begin{teorema}[Factorización LU]
     Sea $A \in \mathbb{K}^{n \times n}$, entonces $\exists L \in \mathbb{K}^{n \times n}$ una matriz triangular inferior con $1$ en la diagonal, y $\exists U \in \mathbb{K}^{n \times n}$ una matriz triangular superior tal que:
     \[
@@ -377,122 +379,103 @@ Notese que necesariamente $a_{11} \neq 0$ para poder hacer esta factorización, 
 
 Notese que la primera iteración tiene coste $(n-1) + 2(n-1)^2$, y la 2 iteración tiene coste $\frac{(n-2) + 2(n-2)^2}{\frac{2}{3}n^3}$, y asi sucesivamente, por lo que el coste total de la factorización es $O(n^3)$.\\
 
-\begin{teorema}[Permisibilidad de la factorización LU]
-    Sea $A \in \mathbb{K}^{n \times n}$, que además cumple que $\delta_k = det(A_k) = det((a_{ij})_{i,j=1}^k) \neq 0$ para $k=1, \ldots, n-1$, siendo ademas $\delta_n = det(A)$, pudiendo ser $0$ o no, entonces $A$ admite una factorización LU.\\
-    Además, si $\delta_n = 0$, entonces $u_nn = 0$.
-\end{teorema}
-
-Antes de la demostración veamos un lema interesante.
-
 \begin{lema}[Inversas de matrices triangulares]
     Si $T$ es una matriz triangular superior/inferior e invertible, entonces $T^{-1}$ es una matriz triangular superior/inferior.
 \end{lema}
 
+\begin{teorema}[Permisibilidad de la factorización LU]
+    Sea $A \in \mathbb{K}^{n \times n}$ una matriz cuyos menores principales dominantes cumplen que $\delta_k = \det(A_k) \neq 0$ para $k=1, \ldots, n-1$, siendo $A_k = (a_{ij})_{i,j=1}^k$. Sea además $\delta_n = \det(A)$. Entonces, $A$ admite una factorización $A = LU$, donde $L$ es una matriz triangular inferior con unos en su diagonal principal y $U$ es una matriz triangular superior.
+    
+    Además, si $\delta_n = 0$, entonces el último elemento de la diagonal de $U$ es nulo, es decir, $u_{nn} = 0$.
+\end{teorema}
+
 \begin{proof}
-    Primero probaremos la existencia y despues la unicidad de la factorización.\\
-    \begin{itemize}
-    \item[$\boldsymbol{\exists}$] Demostraremos la existencia por inducción sobre $n$.\\
+    Dividiremos la demostración en dos partes: primero estableceremos la existencia de la factorización por inducción y, a continuación, analizaremos su unicidad.
+
+    \paragraph{Existencia.} Demostraremos la existencia por inducción sobre $n$.
+    
     \begin{enumerate}
-    \item Primero si $\delta_1 = a_{11} \neq 0$, entonces podemos hacer la primera iteración de la factorización, y obtener $L_1$ y $U_1$ como:
-    \[
-        A_1 = 1 \cdot a_{11} \qquad L_1 = 1 \qquad U_1 = a_{11}
-    \]
-    Por lo tanto el caso base se cumple.\\
-    \item Ahora supongamos que $\exists A_{k-1} = L_{k-1} U_{k-1}$ con la descomposición buscada, entonces podemos encontrar $L_k$ y $U_k$, para calcular $A_k$ como:
-    \[
-    A_k =
-    \left(
-    \begin{array}{c|c}
-        A_{k-1} & \beta^T \\ \hline
-        \alpha & a_{kk}
-    \end{array}
-    \right) =
-    L_k \cdot U_k =
-    \left(
-    \begin{array}{c|c}
-        L_{k-1} & 0 \\ \hline
-        v & 1
-    \end{array}
-    \right) \cdot
-    \left(
-    \begin{array}{c|c}
-        U_{k-1} & w^T \\ \hline
-        0 & a_{kk}
-    \end{array}
-    \right)
-    =
-    \left(
-    \begin{array}{c|c}
-        L_{k-1} U_{k-1} & L_{k-1} w^T \\ \hline
-        v U_{k-1} & v w^T + a_{kk}
-    \end{array}
-    \right)
-    \]
-    De lo que deducimos que:
-    \[
-        L_k = 
+        \item \textbf{Caso base ($k=1$):} Si $\delta_1 = a_{11} \neq 0$, podemos realizar la primera iteración de la factorización tomando:
+        \[
+            A_1 = (a_{11}) \qquad L_1 = (1) \qquad U_1 = (a_{11})
+        \]
+        Como $A_1 = L_1 U_1$, el caso base se cumple de manera trivial.
+
+        \item \textbf{Paso inductivo:} Supongamos que el resultado es cierto para $k-1$, es decir, existe la descomposición $A_{k-1} = L_{k-1} U_{k-1}$. Queremos construir $L_k$ y $U_k$ tales que $A_k = L_k U_k$. Particionamos la matriz $A_k$ por bloques de la siguiente forma:
+        \[
+        A_k =
+        \left(
+        \begin{array}{c|c}
+            A_{k-1} & b_k \\ \hline
+            c_k^T & a_{kk}
+        \end{array}
+        \right)
+        \]
+        donde $b_k \in \mathbb{K}^{k-1}$ es un vector columna y $c_k^T \in \mathbb{K}^{1 \times (k-1)}$ es un vector fila. Buscamos $L_k$ y $U_k$ con la misma estructura:
+        \[
+        L_k U_k =
         \left(
         \begin{array}{c|c}
             L_{k-1} & 0 \\ \hline
-            v & 1
+            l_k^T & 1
         \end{array}
-        \right) 
-    \qquad
-    U_k = 
-    \left(
-    \begin{array}{c|c}
-            U_{k-1} & w^T \\ \hline
-            0 & a_{kk}
-    \end{array}
-    \right)
-    \]
-    Ahora hagamos las comprobaciones necesarias:
-    \begin{enumerate}
-        \item Primero, veamos que existe $w$:
-        \[
-        L_{k-1} w^T = \beta^T \xlongrightarrow{\det(L_{k-1}) = 1 \neq 0} \exists ! w^T = L_{k-1}^{-1} \beta^T
+        \right)
+        \left(
+        \begin{array}{c|c}
+            U_{k-1} & u_k \\ \hline
+            0 & u_{kk}
+        \end{array}
+        \right)
+        =
+        \left(
+        \begin{array}{c|c}
+            L_{k-1} U_{k-1} & L_{k-1} u_k \\ \hline
+            l_k^T U_{k-1} & l_k^T u_k + u_{kk}
+        \end{array}
+        \right)
         \]
-        \item Ahora veamos que existe $v$:
+        Igualando los bloques de esta matriz con los de $A_k$, obtenemos el siguiente sistema de ecuaciones matriciales:
+        \begin{enumerate}
+            \item $L_{k-1} U_{k-1} = A_{k-1}$, lo cual es cierto por hipótesis de inducción.
+            \item $L_{k-1} u_k = b_k$. Puesto que $L_{k-1}$ es triangular inferior con unos en la diagonal, $\det(L_{k-1}) = 1 \neq 0$. Por tanto, el vector columna $u_k$ existe y es único: $u_k = L_{k-1}^{-1} b_k$.
+            \item $l_k^T U_{k-1} = c_k^T$. Por hipótesis, $\det(U_{k-1}) = \det(A_{k-1}) = \delta_{k-1} \neq 0$. Así, la matriz $U_{k-1}$ es invertible y el vector fila $l_k^T$ existe y es único: $l_k^T = c_k^T U_{k-1}^{-1}$.
+            \item $l_k^T u_k + u_{kk} = a_{kk}$, lo que nos permite despejar el escalar $u_{kk}$:
+            \[
+                u_{kk} = a_{kk} - l_k^T u_k
+            \]
+        \end{enumerate}
+        Para verificar el valor de $u_{kk}$, empleamos la propiedad del determinante de matrices triangulares por bloques. Como $A_k = L_k U_k$:
         \[
-        v U_{k-1} = \alpha 
-        \xlongrightarrow{\det(U_{k}) = \det(A_k) \neq 0} 
-        \exists ! v = \alpha U_{k-1}^{-1}
+            \delta_k = \det(A_k) = \det(L_k) \det(U_k) = (1) \cdot \left( \det(U_{k-1}) \cdot u_{kk} \right) = \delta_{k-1} u_{kk}
         \]
-        \item Finalmente, veamos que $v w^T + a_{kk} = a_{kk}$:
-        \[
-        u_{kk} =
-        a_{kk} - v w^T =
-        a_{kk} - \alpha U_{k-1}^{-1} L_{k-1}^{-1} \beta^T =
-        a_{kk} - \alpha A_{k-1}^{-1} \beta^T =
-        \frac{det(A_k)}{det(A_{k-1})} = \frac{\delta_k}{\delta_{k-1}} \neq 0
-        \]
-        Y así $u_{kk} \neq 0 \, \quad \forall k=1, \ldots, n-1$, y $u_{nn} = \frac{\delta_n}{\delta_{n-1}}$, que puede ser $0$ o no, dependiendo de si $\delta_n = \det(A)$ es $0$ o no.\\
+        De aquí se deduce que $u_{kk} = \frac{\delta_k}{\delta_{k-1}}$. Para $k < n$, por hipótesis $\delta_k \neq 0$, por lo que $u_{kk} \neq 0$. 
+        
+        Para el caso final $k = n$, tenemos $u_{nn} = \frac{\delta_n}{\delta_{n-1}}$. Es evidente que si la matriz original es singular ($\delta_n = \det(A) = 0$), entonces obligatoriamente $u_{nn} = 0$.
     \end{enumerate}
-    Y tras hacer las comprobaciones necesarias, obtenemos que $A_k = L_k U_k$, por lo que el paso inductivo se cumple.\\
-    \end{enumerate}
-    Por lo tanto, por inducción, el teorema se cumple para todo $n$.\\
-    \item[$\textbf{!}$] Ahora probaremos la unicidad de la factorización, pero solo en el caso de que $\delta_n = \det(A) \neq 0$, ya que si $\delta_n = 0$, entonces $u_{nn} = 0$, y por lo tanto $A$ no es invertible, lo que implica que la factorización no es única, ya que podemos elegir cualquier valor para $u_{nn}$, y ajustar el valor de $l_{nn}$ para que se cumpla la igualdad $A = LU$.\\
-    En el caso de que existieran 2 descomposiciones para $A$:
+    Por el principio de inducción, la existencia de la factorización queda demostrada para todo $n$.
+
+    \paragraph{Unicidad.} Probaremos la unicidad de la factorización exclusivamente para el caso en el que la matriz es invertible, es decir, $\delta_n = \det(A) \neq 0$. 
+    
+    Supongamos, por reducción al absurdo, que existen dos factorizaciones distintas para $A$:
     \[
         A = L_1 U_1 = L_2 U_2
     \]
-    De tal forma que $L_1 \neq L_2$ y $U_1 \neq U_2$, entonces:
+    Como $\det(A) \neq 0$, todas las matrices involucradas son invertibles. Multiplicando por la izquierda por $L_1^{-1}$ y por la derecha por $U_2^{-1}$, obtenemos:
     \[
-    L_1 U_1 = L_2 U_2 \implies
-    U_1 = L_1^{-1} L_2 U_2 \implies
-    U_1 U_2^{-1} = L_1^{-1} L_2
+        L_1^{-1} A U_2^{-1} = L_1^{-1} (L_1 U_1) U_2^{-1} \implies U_1 U_2^{-1} = L_1^{-1} L_2
     \]
-    Ahora aplicando el lema anterior, y que el producto de dos matrices triangulares superiores/inferiores es una matriz triangular superior/inferior (visto anteriormente), entonces tenemos que:
+    Sabemos que el producto y la inversa de matrices triangulares inferiores (respectivamente superiores) da como resultado una matriz del mismo tipo. Además, las inversas y productos de matrices con unos en la diagonal conservan esos unos. 
+    Por lo tanto, en la igualdad:
     \[
-        \underbrace{U_1 U_2^{-1}}_{\text{triangular superior}} = \underbrace{L_1^{-1} L_2}_{\text{triangular inferior}} \implies
-        U_1 U_2^{-1} = L_1^{-1} L_2 = D = I
+        \underbrace{U_1 U_2^{-1}}_{\text{Triangular superior}} = \underbrace{L_1^{-1} L_2}_{\text{Triangular inferior}}
     \]
-    De lo que deducimos que por ser inversas entre si, entonces $U_1 = U_2$ y $L_1 = L_2$, lo que contradice la suposición de que $L_1 \neq L_2$ y $U_1 \neq U_2$.\\
-    Por lo tanto, la factorización es única en el caso de que $\delta_n = \det(A) \neq 0$.\\
-    En el caso de que $\delta_n = 0$, entonces como se ha mencionado anteriormente, la factorización no es única, ya que podemos elegir cualquier valor para $u_{nn}$, y ajustar el valor de $l_{nn}$ para que se cumpla la igualdad $A = LU$.\\
-    Por lo tanto, la factorización no es única en el caso de que $\delta_n = 0$.\\
-    Y así, hemos demostrado la unicidad de la factorización en el caso de que $\delta_n \neq 0$, y la no unicidad en el caso de que $\delta_n = 0$.\\
-    \end{itemize}
+    la única forma de que una matriz sea simultáneamente triangular superior e inferior es que sea una matriz diagonal. Dado que $L_1^{-1} L_2$ tiene necesariamente unos en su diagonal principal, dicha matriz diagonal debe ser la identidad $I$. En consecuencia:
+    \[
+        L_1^{-1} L_2 = I \implies L_1 = L_2 \qquad \text{y} \qquad U_1 U_2^{-1} = I \implies U_1 = U_2
+    \]
+    lo cual contradice la suposición inicial de que las factorizaciones eran distintas. La unicidad queda así demostrada si $\delta_n \neq 0$.
+
+    Si, por el contrario, $\delta_n = 0$, entonces $A$ es singular y $u_{nn} = 0$. En este escenario, la matriz $U$ no es invertible y los sistemas para hallar los elementos de $L$ pierden su solución única, lo que implica que existen infinitas matrices $L$ válidas para completar la factorización. Por tanto, no hay unicidad en el caso singular.
 \end{proof}
 
 \begin{teorema}[Factorización LUP]
@@ -621,6 +604,8 @@ Antes de la demostración veamos un lema interesante.
     \end{enumerate}
 \end{proof}
 
+\subsection{Factorización de Cholesky}
+
 \begin{teorema}[Factorización de Cholesky]
     Sea $A \in \mathbb{K}^{n \times n}$ una matriz h.d.p. (hermitiana definida positiva), entonces $\exists B \in \mathbb{K}^{n \times n}$ una matriz triangular inferior tal que:
     \[
@@ -669,7 +654,7 @@ Antes de la demostración veamos un lema interesante.
         (B C)^* =
         C^* B^* \implies
         B^{-1} | BC = C^* B^* \implies
-        C = B^{-1} C^* B^* | = B^{-1^{*}} \implies
+        C = B^{-1} C^* B^* | B^{*^{-1}} \implies
     \]
     \[
         \underbrace{C B^{*^{-1}}}_{\text{triang. superior}} = \underbrace{B^{-1} C^*}_{\text{triang. inferior}} \implies
@@ -677,4 +662,3 @@ Antes de la demostración veamos un lema interesante.
     \]
     Siendo ademas los elementos de la diagonal de $B^{*^{-1}}$ iguales a $\delta_{ii} = \sqrt{u_{ii}} \frac{1}{\sqrt{u_{ii}}} = 1 \forall i$. Deduciendo finalmente que $C = B^*$, y por lo tanto $A = BB^*$.\\
 \end{proof}
-
