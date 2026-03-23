@@ -398,6 +398,7 @@ mdframed={
 
 \usepackage{hyperref}
 \usepackage{cleveref}
+\usepackage{xstring}
 % Configure cleveref to recognize your custom theorem styles
 \crefname{teorema}{Teorema}{Teoremas}
 \crefname{proposición}{Proposición}{Proposiciones}
@@ -422,17 +423,58 @@ mdframed={
 \newcounter{ejercicio}
 \renewcommand{\theejercicio}{\arabic{ejercicio}}
 
-% Comando para ejercicios con enunciado y desarrollo usando solo \newcommand
-\newcommand{\ejercicio}[2]{%
+% Comando para ejercicios con estado, autoria, enunciado y desarrollo.
+% Estados: enunciado (rojo), medio (naranja), resuelto (verde).
+% Autoria del resuelto: profesor (marca), no (sin marca).
+\newcommand{\ejercicioestado}[1]{%
+  \def\ejerciciocolor{red!75!black}%
+  \IfStrEq{#1}{enunciado}{\def\ejerciciocolor{red!75!black}}{}%
+  \IfStrEq{#1}{medio}{\def\ejerciciocolor{orange!85!black}}{}%
+  \IfStrEq{#1}{resuelto}{\def\ejerciciocolor{green!55!black}}{}%
+}
+
+\newcommand{\ejerciciomarca}[1]{%
+  \def\ejerciciooverlay{}%
+  \IfStrEq{#1}{profesor}{%
+    \def\ejerciciooverlay{%
+      \node[
+        anchor=north east,
+        fill=black,
+        text=white,
+        rounded corners=1mm,
+        inner xsep=4pt,
+        inner ysep=1.2pt,
+        font=\scriptsize\bfseries
+      ] at ([xshift=-2mm,yshift=-2mm]frame.north east) {Prof};%
+    }%
+  }{}%
+}
+
+\newcommand{\ejercicio}[4]{%
   \refstepcounter{ejercicio}%
+  \ejercicioestado{#1}%
+  \ejerciciomarca{#2}%
   \vspace{0.25em}
-  \begin{mybox}{Ejercicio~\theejercicio}%
-    	\textbf{Enunciado:} #1
+  \begin{tcolorbox}[
+    colback=white,
+    colframe=\ejerciciocolor,
+    colbacktitle=\ejerciciocolor,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    boxrule=0.9pt,
+    left=10pt, right=10pt, top=10pt, bottom=10pt,
+    breakable,
+    overlay unbroken={\ejerciciooverlay},
+    overlay first={\ejerciciooverlay},
+    title={Ejercicio~\theejercicio}
+  ]%
+    \textbf{Enunciado:} #3
     \par\medskip
     \hrulefill
     \par\medskip
-    	\textbf{Desarrollo:} #2
-  \end{mybox}%
+    \textbf{Desarrollo:} #4
+  \end{tcolorbox}%
   \vspace{0.25em}
 }
 

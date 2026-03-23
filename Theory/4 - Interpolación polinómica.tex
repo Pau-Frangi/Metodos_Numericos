@@ -400,9 +400,103 @@ La idea del método de Newton es construir el polinomio de interpolación de Lag
             E_0(x) =
             f(x) - p_0(x) =
             \frac{f[x] - f[x_0]}{x - x_0} \cdot (x - x_0) =
-            f[x, x_0] \cdot (x - x_0) =
+            f[x, x_0] \cdot (x - x_0) \underbrace{=}_{\text{simetría}}
             f[x_0, x] \cdot (x - x_0)
         \]
+        \item \textbf{$n = 1$:} En este caso, el polinomio de interpolación es el polinomio de grado $1$ que interpola a los puntos $x_0$ y $x_1$, es decir:
+        \[
+            p_1(x) = \underbrace{p_0(x)}_{\in \mathcal{P}_0} + \underbrace{q_1(x)}_{\in \mathcal{P}_1} \in \mathcal{P}_1
+            \implies
+        \]
+        \[
+            p_1(x_0) = f(x_0) = \underbrace{p_0(x_0)}_{f[x_0]} + \underbrace{q_1(x_0)}_{0} \implies
+            q_1(x_0) = \alpha \cdot (x - x_0) \implies
+        \]
+        \[
+            p_1(x_1) = f(x_1) = \underbrace{p_0(x_1)}_{f[x_0]} + \underbrace{q_1(x_1)}_{\alpha \cdot (x_1 - x_0)} \implies
+            \alpha = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = f[x_0, x_1] \implies
+        \]
+        \[
+            \boxed{p_1(x) = f[x_0] + f[x_0, x_1] \cdot (x - x_0)}
+        \]
+        Y el error en este caso es:
+        \[
+            E_1(x) =
+            f(x) - p_1(x) =
+            \frac{f[x] - f[x_0, x_1]}{(x - x_0)(x - x_1)} \cdot (x - x_0)(x - x_1) =
+            f[x, x_0, x_1] \cdot (x - x_0)(x - x_1)
+        \]
+        Podemos reescribir el error y el polinomio de la siguiente forma, para hacer más evidente la construcción progressiva del método de Newton:
+        \[
+            p_1(x) = p_0(x) + f[x_0, x_1] \cdot \prod_{j=0}^{0} (x - x_j)
+            \, \quad
+            E_1(x) = f[x, x_0, x_1] \cdot \prod_{j=0}^{1} (x - x_j)
+        \]
+        \item \textbf{Inducción:} Queremos probar que los polinomios de interpolación de grado $n$ se pueden construir a partir del polinomio de interpolación de grado $n-1$ de la siguiente forma:
+        \[
+            p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
+            \, \quad
+            E_n(x) = f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+        \]
     \end{itemize}
-    
 \end{definición}
+
+\begin{teorema}[Correctitud del método de Newton]
+    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, entonces el polinomio de Newton construido de forma progressiva a partir de las diferencias divididas, es decir, el polinomio $p_n$ definido por:
+    \[
+        p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
+    \]
+    Con $p_0(x) = f[x_0]$, es el polinomio de interpolación de Lagrange, es decir, el único polinomio $p \in \mathcal{P}_n$ tal que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$. Además, el error cometido al interpolar a la función $f$ mediante el polinomio de Newton $p_n$ es:
+    \[
+        E_n(x) = f(x) - p_n(x) = f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+    \]
+\end{teorema}
+
+\begin{proof}
+    En la definición hemos probado los casos base $n = 0$ y $n = 1$, por lo que ahora simplemente tenemos que probar el paso inductivo, es decir, suponer que el polinomio de interpolación de grado $n$ se puede construir a partir del polinomio de interpolación de grado $n-1$ de la forma:
+    \[
+        p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
+    \]
+    Y ahora queremos probar que el polinomio de interpolación de grado $n+1$ se puede construir a partir del polinomio de interpolación de grado $n$ de la forma:
+    \[
+        p_{n+1}(x) = p_{n}(x) + f[x_0, x_1, \ldots, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j)
+    \]
+    Para ello, basta con comprobar que el polinomio $p_{n+1}$ debe ser de la forma:
+    \begin{equation}
+        \begin{aligned}
+            p_{n+1}(x) &= p_{n}(x) + q_{n+1}(x) \implies
+            \begin{cases}
+                \begin{cases}
+                    p_{n+1}(x_i) = \underbrace{p_{n}(x_i)}_{f[x_i]} + q_{n+1}(x_i) = f[x_i] \\
+                    q_{n+1}(x_i) = 0 \implies q_{n+1}(x) = \alpha \cdot \prod_{j=0}^{n} (x - x_j)
+                \end{cases}
+                \quad \forall i = 0, 1, \ldots, n \\
+                p_{n+1}(x_{n+1}) = f[x_{n+1}] = p_{n}(x_{n+1}) + \alpha \cdot \prod_{j=0}^{n} (x_{n+1} - x_j)
+                \label{eq:pn-mas-1}
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    Ahora usando el error de interpolación, tenemos que:
+    \[
+        E_n(x) = f(x) - p_n(x) \implies
+        p_n(x) = f(x) - E_n(x) =
+        f(x) - f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+    \]
+    Sustituyendo en la ecuación de $p_{n+1}(x_{n+1})$, obtenemos que:
+    \[
+        p_{n+1}(x_{n+1}) \overset{\eqref{eq:pn-mas-1}}{=} f[x_{n+1}] = f(x_{n+1}) - f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x_{n+1} - x_j) + \alpha \cdot \prod_{j=0}^{n} (x_{n+1} - x_j) \implies
+    \]
+    \[
+        \boxed{\alpha = f[x_0, x_1, \ldots, x_n, x_{n+1}]} \implies
+    \]
+    \[
+        \boxed{p_{n+1}(x) = p_{n}(x) + f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j)}
+    \]
+    Y el error en este caso es:
+    \[
+        E_{n+1}(x) =
+        f(x) - p_{n+1}(x) =
+        f(x) - p_{n}(x) - f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j) =
+        f[x_0, x_1, \ldots, x_n, x_{n+1}, x] \cdot \prod_{j=0}^{n+1} (x - x_j)
+    \]
+\end{proof}

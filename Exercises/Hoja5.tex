@@ -1,7 +1,7 @@
 \hojaejercicio{Interpolación e integración numérica}
 
 % Ejercicio 1
-\ejercicio{
+\ejercicio{resuelto}{profesor}{
     Hallar el polinomio $P$ que interpola la función $f(x) = \cos(\pi x)$ en los puntos $x_0 = 0$, $x_1 = \dfrac{1}{2}$, $x_2 = 1$, $x_3 = \dfrac{3}{2}$.
 }{
     Si tenemos la función $f(x) = \cos(\pi x)$ y los puntos $x_0 = 0$, $x_1 = \dfrac{1}{2}$, $x_2 = 1$, $x_3 = \dfrac{3}{2}$, entonces construimos la tabla de valores:
@@ -48,10 +48,10 @@
 }
 
 % Ejercicio 2
-\ejercicio{}{}
+\ejercicio{enunciado}{no}{}{}
 
 % Ejercicio 3
-\ejercicio{
+\ejercicio{resuelto}{profesor}{
     Sean $\{x_0, x_1, \ldots, x_n\} \subset \mathbb{R}$ puntos distintos. Demostrar:
     \begin{enumerate}[label=(\alph*)]
         \item
@@ -119,15 +119,37 @@
 }
 
 % Ejercicio 4
-\ejercicio{
+\ejercicio{resuelto}{profesor}{
     Sean $P\in\mathbb{P}_n$ y $n+1$ puntos distintos $\{x_0,x_1,\ldots,x_n\}$. Hallar el valor de
     \[
         P[x_0,x_1,\ldots,x_n].
     \]
-}{}
+}{
+    Tengamos por ejemplo:
+    \[
+        p_1 = 5 + 2x \, \quad \{ x_0 = 3, x_1 = 9 \}
+    \]
+    Podemos calcular la diferencia dividida de $p_1$ en los puntos $x_0$ y $x_1$:
+    \[
+        p_1[x_0, x_1] = \frac{p_1(x_1) - p_1(x_0)}{x_1 - x_0} = \frac{(5 + 2 \cdot 9) - (5 + 2 \cdot 3)}{9 - 3} = \frac{23 - 11}{6} = 2.
+    \]
+    En general, si tenemos:
+    \[
+        p_1 = a_0 + a_1 x \, \quad \{ x_0, x_1 \}
+    \]
+    Podemos calcular la diferencia dividida de $p_1$ en los puntos $x_0$ y $x_1$:
+    \[
+        p_1[x_0, x_1] = \frac{p_1(x_1) - p_1(x_0)}{x_1 - x_0} = \frac{(a_0 + a_1 x_1) - (a_0 + a_1 x_0)}{x_1 - x_0} = \frac{a_1 (x_1 - x_0)}{x_1 - x_0} = a_1.
+    \]
+    Ahora si tomamos $f = p_n$, tenemos que:
+    \[
+        p_n(x) = p_{n-1}(x) + \underbrace{\underbrace{p_n[x_0, x_1, \ldots, x_n]}_{\alpha} \prod_{j=0}^{n-1} (x - x_j)}_{q_n(x)}.
+    \]  
+
+}
 
 % Ejercicio 5
-\ejercicio{
+\ejercicio{resuelto}{profesor}{
     Sean $\{x_0,x_1,\ldots,x_n\}$ con $x_i\neq x_j$ si $i\neq j$ y $f(x)=x^{n+1}$. Calcular el polinomio de
     interpolaci\'on de Lagrange de $f$ en los puntos $\{x_0,x_1,\ldots,x_n\}$ y determinar su t\'ermino independiente.
 }{
@@ -157,7 +179,7 @@
 }
 
 % Ejercicio 6
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Demostrar que si $f\in C([a,b])$ y existe $f'(x_i)$ para alg\'un $x_i\in[a,b]$, entonces la funci\'on
     \[
         g(x)=
@@ -171,7 +193,7 @@
 }{}
 
 % Ejercicio 7
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Sea $a>0$, $\{-x_n,-x_{n-1},\ldots,-x_1,0,x_1,\ldots,x_n\}\subset[-a,a]$ y $P_{2n}$ el polinomio de
     interpolaci\'on de Lagrange de $f:[-a,a]\to\mathbb{R}$ en estos puntos. Demostrar:
     \begin{enumerate}[label=(\alph*)]
@@ -182,7 +204,7 @@
 }{}
 
 % Ejercicio 8
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Determinar los valores de $\lambda$ y $\mu$ para que
     \[
         S(x)=
@@ -195,7 +217,7 @@
 }{}
 
 % Ejercicio 9
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Sea $\Delta=\{a=x_0<x_1<\cdots<x_n=b\}$ una partici\'on del intervalo $[a,b]$. Demostrar:
     \begin{enumerate}[label=(\alph*)]
         \item Si $n<4$, toda funci\'on spline c\'ubica que verifique
@@ -208,12 +230,12 @@
 }{}
 
 % Ejercicio 10
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Demostrar, a partir del teorema de Rolle, la unicidad de la funci\'on spline c\'ubica de interpolaci\'on en los casos I y II.
 }{}
 
 % Ejercicio 11
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Sea $\Delta=\{x_0=a<x_1<\cdots<x_n=b\}$ una partici\'on del intervalo $[a,b]$ y $S_{\Delta}(y;\cdot)$ la funci\'on
     spline c\'ubica que interpola los valores $y=(y_0,y_1,\ldots,y_n)^T$ con condiciones de tipo I.
     \textquestiondown Qu\'e deben verificar los valores $\{y_0,y_1,\ldots,y_n\}$ para que $S_{\Delta}(y;\cdot)$ coincida en
@@ -221,7 +243,7 @@
 }{}
 
 % Ejercicio 12
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Aplicar la regla de Simpson compuesta a la integral
     \[
         \int_{1}^{2}\frac{dt}{t}
@@ -231,12 +253,12 @@
 }{}
 
 % Ejercicio 13
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Hallar la expresi\'on de la regla de Simpson abierta compuesta.
 }{}
 
 % Ejercicio 14
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Se considera la f\'ormula de integraci\'on
     \[
         \int_0^1 f(x)\,dx\simeq A\bigl(f(x_0)+f(x_1)\bigr).
@@ -246,7 +268,7 @@
 }{}
 
 % Ejercicio 15
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Encontrar una f\'ormula que aproxime
     \[
         \int_1^3 f(x)\,dx
@@ -256,7 +278,7 @@
 }{}
 
 % Ejercicio 16
-\ejercicio{
+\ejercicio{enunciado}{no}{
     Dado $n\in\mathbb{N}$, se considera $h=\dfrac{1}{n}$, $x_i=ih$ para $i=0,1,\ldots,n$ y la funci\'on
     \[
         f_n(x)=x^n\cos(2\pi n x).
