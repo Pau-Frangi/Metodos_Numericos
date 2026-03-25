@@ -11,14 +11,15 @@
 \contentsline {subsection}{\numberline {1.5}Método de Newton}{8}{subsection.1.5}%
 \contentsline {subsubsection}{\numberline {1.5.1}Diferencias divididas}{8}{subsubsection.1.5.1}%
 \contentsline {subsubsection}{\numberline {1.5.2}Definición del método de Newton}{9}{subsubsection.1.5.2}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{12}{part.2}%
+\contentsline {section}{\numberline {2}Splines}{11}{section.2}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{15}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{13}{section*.5}%
-\contentsline {part}{III\hspace {1em}Exámenes}{20}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{16}{section*.5}%
+\contentsline {part}{III\hspace {1em}Exámenes}{23}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{21}{section*.7}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{22}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{24}{section*.7}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{25}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{23}{section*.9}%
-\contentsline {section}{Apéndice B: Agradecimientos}{25}{section*.10}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{25}{section*.11}%
+\contentsline {section}{Apéndice A: Normas comunes}{26}{section*.9}%
+\contentsline {section}{Apéndice B: Agradecimientos}{28}{section*.10}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{28}{section*.11}%
