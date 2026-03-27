@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1774432301.09142 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1774432306.75032 0
+["pdflatex"] 1774518777.70176 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1774518782.83093 0
   "Appendix/Agradecimientos.tex" 1773048039 694 0ffa8f78c17e6d7479433e5965f7ceec ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -376,14 +376,14 @@
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
   "Preamble/Preamble.tex" 1774259105 16243 6d9df69b67a10981af6b3676aedd1ec7 ""
-  "Theory/4 - Interpolación polinómica.tex" 1774432300 29415 8526544a2b7ccbc6cad60e43c7ba07b0 ""
+  "Theory/4 - Interpolación polinómica.tex" 1774518771 33373 cf0264a4f14a187263f6e2c9a7670f08 ""
   "Theory/Theory.tex" 1774257003 285 bfbd47e9cec45e6dd0c39521646ee8ae ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1774432306 9950 50311dd88662c7c2552f95289a2c2730 "pdflatex"
-  "main.out" 1774432306 2691 5b4088af222af8e95314eff71018abd5 "pdflatex"
+  "main.aux" 1774518782 9959 0316013c1f9821e89951becfa2deaddb "pdflatex"
+  "main.out" 1774518782 2699 8c99d53a9b20cb63507ffc53d431d7ac "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1774432306 1760 15a425474744a014d9ffe0fefa29ee43 "pdflatex"
+  "main.toc" 1774518782 1770 e1073808e94d93f040518e6936bbca25 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

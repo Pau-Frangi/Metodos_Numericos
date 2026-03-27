@@ -501,7 +501,7 @@ La idea del método de Newton es construir el polinomio de interpolación de Lag
     \]
 \end{proof}
 
-\section{Splines}
+\subsection{Splines}
 
 \begin{definición}[Partición de un intervalo]
     Dado un intervalo $[a,b]$, una partición de dicho intervalo es un conjunto de puntos $\Delta = \{ x_i \}_{i=0}^n$ tal que:
@@ -628,6 +628,56 @@ En el caso $k=3$, si establecemos que el Spline sea natural, es decir, que $S''(
         m_i = S''(x_i)
     \]
     Que se denominan "momentos", y además se establece que $m_0 = m_n = 0$ por ser un spline natural. Después se escribe un lema que habla de la unicidad del Spline según los momentos.
+    \item \textbf{Momentos:} Sabiendo que $S'$ es continua, entonces:
+    \[
+        S'(x_i-0) = S'(x_i+0) \implies
+    \]
+    \[
+        \begin{cases}
+            S'(x_i+0) = \frac{1}{2 h_{i+1}} (\textcolor{green}{-m_i}h_{i+1}) + 
+            \frac{h_{i+1}}{6} (\textcolor{green}{m_i} - \textcolor{purple}{m_{i+1}}) +
+            f[x_i, x_{i+1}] \\
+            S'(x_i-0) = \frac{\textcolor{green}{m_i} h_i}{2} + \frac{h_i}{6} (\textcolor{red}{m_{i-1}} - \textcolor{green}{m_i}) + f[x_{i-1}, x_i]
+        \end{cases}
+        \implies
+    \]
+    \[
+        \frac{h_i}{6} + \left( \frac{h_{i+1}}{2} - \frac{h_i}{6} + \frac{h_i}{2} - \frac{h_{i}}{6} \right) m_i + \frac{h_{i+1}}{6} m_{i+1} = f[x_{i-1}, x_{i}] - f[x_{i}, x_{i+1}] \implies
+    \]
+    \[
+        \underbrace{\frac{h_i}{h_i + h_{i+1}}}_{\mu_i} m_{i-1} + 2 m_i + 
+        \underbrace{\frac{h_{i+1}}{h_i + h_{i+1}}}_{\lambda_i} m_{i+1} = 
+        6 \frac{f[x_{i-1}, x_{i}] - f[x_{i}, x_{i+1}]}{x_{i+1} - x_{i-1}} =
+        - 6 f[x_{i-1}, x_i, x_{i+1}]
+    \]
+    Dejándonos el sistema, con $m = \begin{pmatrix} m_0 \\ m_1 \\ \vdots \\ m_n \end{pmatrix}$, $d = \begin{pmatrix} d_1 \\ d_2 \\ \vdots \\ d_{n-1} \end{pmatrix}$:
+    \[
+        \Lambda m = d \implies
+        \begin{pmatrix}
+            2 & \lambda_1 & 0 & \cdots & 0 \\
+            \mu_2 & 2 & \lambda_2 & \cdots & 0 \\
+            0 & \mu_3 & 2 & \cdots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 0 & \cdots & \lambda_{n-2} \\
+            0 & 0 & \cdots & \mu_{n-2} & 2
+        \end{pmatrix} \begin{pmatrix}
+            m_0 \\
+            m_1 \\
+            m_2 \\
+            \vdots \\
+            m_{n-2} \\
+            m_{n-1} \\
+            m_n
+        \end{pmatrix} = \begin{pmatrix}
+            d_1 \\
+            d_2 \\
+            d_3 \\
+            \vdots \\
+            d_{n-2} \\
+            d_{n-1}
+        \end{pmatrix}
+    \]
+    Como $\Lambda$ es de diagonal estrictamente dominante, entonces el sistema tiene una única solución, lo que nos da los momentos $m_i$ para todo $i = 0, 1, \ldots, n$, y por lo tanto nos da un único spline cúbico que interpola a los datos dados en los puntos de la partición.
 \end{enumerate}
 
 \begin{lema}[Unicidad del Spline según los momentos]
@@ -638,6 +688,44 @@ En el caso $k=3$, si establecemos que el Spline sea natural, es decir, que $S''(
     Hagamos una demostración constructiva.
     \begin{enumerate}
         \item Como $S \in \mathcal{P}^3$ es un polinomio de grado a lo sumo $3$ en cada subintervalo $[x_i, x_{i+1}]$, entonces $S'' \in \mathcal{P}^1$ son rectas en cada subintervalo $[x_i, x_{i+1}]$, y deben de ser continuas al ser $S \in C^2$ globalmente en $[a,b]$.
-        \item Ahora si $x \in [x_i, x_{i+1}]$, donde denotamos $h_{i+1} = x_{i+1} - x_i$, entonces $S''(x) = \alpha m_i (x-x_i) + \beta m_{i+1} (x_{i+1}-x)$, ya que $S''$ es una recta que pasa por los puntos $(x_i, m_i)$ y $(x_{i+1}, m_{i+1})$.
+        \item Ahora si $x \in [x_i, x_{i+1}]$, donde denotamos $h_{i+1} = x_{i+1} - x_i$, entonces $S''(x) = \alpha m_i (x-x_i) + \beta m_{i+1} (x_{i+1}-x)$, ya que $S''$ es una recta que pasa por los puntos $(x_i, m_i)$ y $(x_{i+1}, m_{i+1})$. Despejando:
+        \[
+            \begin{cases}
+                S''(x_i) = m_i = \alpha m_i \underbrace{x_i - x_{i+1}}_{-h_{i+1}} \implies \alpha = -\frac{1}{h_{i+1}} \\
+                S''(x_{i+1}) = m_{i+1} = \beta m_{i+1} \underbrace{x_{i+1} - x_i}_{h_{i+1}} \implies \beta = \frac{1}{h_{i+1}}
+            \end{cases}
+            \implies
+            \boxed{S''(x) = \frac{m_{i+1} (x - x_i) - m_i (x_{i+1} - x)}{h_{i+1}}}
+        \]
+        \item Integrando:
+        \[
+            S'(x) = \int S''(x) dx = \frac{1}{2 h_{i+1}} \left( -m_i (x_{i+1} - x)^2 + m_{i+1} (x - x_i)^2 \right) + a_i
+        \]
+        \[
+            S(x) = \int S'(x) dx = \frac{1}{6 h_{i+1}} \left( m_i (x_{i+1} - x)^3 + m_{i+1} (x - x_i)^3 \right) + a_i (x - x_i) + b_i
+        \]
+        \item Ahora usando la condición de interpolación, tenemos que:
+        \[
+            S(x_i) = f(x_i) = \frac{1}{6 h_{i+1}} m_i h_{i+1}^3 + b_i \implies 
+        \]
+        \[
+            \boxed{b_i = f(x_i) - \frac{1}{6} m_i h_{i+1}^2}
+        \]
+        \[
+            S(x_{i+1}) = f(x_{i+1}) = \frac{1}{6 h_{i+1}} m_{i+1} h_{i+1}^3 + a_i h_{i+1} + \underbrace{f(x_i) - \frac{1}{6} m_i h_{i+1}^2}_{b_i} \implies
+        \]
+        \[
+            \boxed{a_i = \underbrace{\frac{f(x_{i+1}) - f(x_i)}{h_{i+1}}}_{f[x_i, x_{i+1}]} + \frac{h_{i+1}}{6} (m_{i} - m_{i+1})}
+        \]
+        Dejando así que:
+        \[
+            S(x) = \frac{1}{6 h_{i+1}} \left( m_i (x_{i+1} - x)^3 + 
+            m_{i+1} (x - x_i)^3 \right) + 
+        \]
+        \[
+            + \left( f[x_i, x_{i+1}] + \frac{h_{i+1}}{6} (m_{i} - m_{i+1}) \right) (x - x_i) + 
+            f(x_i) - \frac{1}{6} m_i h_{i+1}^2
+        \]
     \end{enumerate}
 \end{proof}
+
