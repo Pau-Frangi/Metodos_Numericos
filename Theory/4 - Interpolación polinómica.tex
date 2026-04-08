@@ -729,3 +729,127 @@ En el caso $k=3$, si establecemos que el Spline sea natural, es decir, que $S''(
     \end{enumerate}
 \end{proof}
 
+\begin{definición}[Spline cúbico natural o de Tipo I]
+    Un spline cúbico natural o de Tipo I es un spline cúbico que satisface las condiciones de contorno $S''(x_0) = S''(x_n) = 0$.
+\end{definición}
+
+Veamos ahora un ejemplo de cómo construir un spline cúbico natural a partir de un conjunto de datos dado.
+
+\ejemplo{
+    Suponemos que tenemos la siguiente tabla de datos:
+    \[
+        \begin{array}{c|c}
+            x_i & y_i \\
+            \hline
+            0 & 0 \\
+            1 & 1 \\
+            3 & 1 
+        \end{array}
+    \]
+    Y queremos construir el spline cúbico natural que interpole a estos datos. Para ello, seguimos los siguientes pasos:
+    \begin{enumerate}
+        \item \textbf{Definir los momentos:} Para cada $i = 0, 1, 2$, definimos:
+        \[
+            m_i = S''(x_i)
+        \]
+        Y así, nos queda, con $m_0 = m_2 = 0$ por ser un spline natural:
+        \[
+            S'' = 
+            \begin{cases}
+                m_1 x & \text{si } x \in [0,1] \\
+                - \frac{m_1}{2} (x-3) & \text{si } x \in [1,3]
+            \end{cases}
+        \]
+        Esto se pude apreciar si representamos gráficamente el spline cúbico natural que interpola a los datos dados:
+        \begin{center}
+            \begin{tikzpicture}
+                % Ejes
+                \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
+                \draw[->] (0,-0.5) -- (0,1.5) node[above] {$y$};
+
+                % Marcas de los puntos X
+                \foreach \x in {0,1,3} {
+                    \draw (\x,0.1) -- (\x,-0.1) node[below] {$\x$};
+                }
+
+                % Marca en la altura 1
+                \draw (0.1,1) -- (-0.1,1) node[left] {$m_1$};
+
+                % Puntos de la tabla
+                \foreach \xx/\yy in {
+                    0/0,
+                    1/1,
+                    3/0
+                } {
+                    \fill[black] (\xx,\yy) circle (1.2pt);
+                    % Dibujamos la recta horizontal y vertical de cada punto a los ejes, discontinua y con opacidad reducida
+                    \draw[dashed, gray, opacity=0.5] (\xx,0) -- (\xx,\yy);
+                    \draw[dashed, gray, opacity=0.5] (0,\yy) -- (\xx,\yy);
+                }
+
+                % Spline cúbico natural
+                \draw[thick, red] plot coordinates {
+                    (0,0)
+                    (1,1)
+                    (3,0)
+                };
+            \end{tikzpicture}
+        \end{center}
+        \item \textbf{Momentos:} Ahora podemos integrar para obtener $S'$ y $S$:
+        \[
+            S' = 
+            \begin{cases}
+                \frac{m_1}{2} x^2 + a_1 & \text{si } x \in [0,1] \\
+                -\frac{m_1}{4} (x-3)^2 + a_2 & \text{si } x \in [1,3]
+            \end{cases}
+            \implies
+        \]
+        \[
+            S = 
+            \begin{cases}
+                \frac{m_1}{6} x^3 + a_1 x + b_1 & \text{si } x \in [0,1] \\
+                -\frac{m_1}{12} (x-3)^3 + a_2 (x-1) + b_2 & \text{si } x \in [1,3]
+            \end{cases}
+        \]
+        Nótese que en $S$ aparece el término $a_2 (x-1)$ en lugar de $a_2 x$, esto es porque al integrar $S'$ en el intervalo $[1,3]$, el término $a_2$ se multiplica por $(x-1)$, ya que la integración se hace a partir del punto $1$.
+        \item \textbf{Condición de interpolación:} Ahora usando la condición de interpolación, tenemos que:
+        \[
+            S(0) = 0 \implies \boxed{b_1 = 0}
+        \]
+        \[
+            S(1) = 1 \implies \frac{m_1}{6} + a_1 + b_1 = 1 \implies \boxed{a_1 = 1 - \frac{m_1}{6}}
+        \]
+        \[
+            S(1) = 1 \implies -\frac{m_1}{12} (1-3)^3 + a_2 (1-1) + b_2 = 1
+            \implies \frac{2m_1}{3} + b_2 = 1 \implies \boxed{b_2 = 1 - \frac{2m_1}{3}}
+        \]
+        \[
+            S(3) = 1 \implies -\frac{m_1}{12} (3-3)^3 + a_2 (3-1) + b_2 = 1
+            \implies 2a_2 + b_2 = 1 \implies a_2 = \frac{1-b_2}{2}
+            \implies \boxed{a_2 = \frac{m_1}{3}}
+        \]
+        \item \textbf{Encontrar el momento $m_1$:} Ahora, para encontrar el valor de $m_1$, basta con usar la condición de que $S''$ es continua en $x=1$, es decir:
+        \[
+            S''(1-0) = S''(1+0) \implies 
+            \frac{m_1}{2} + a_1 = -m_1 + a_2 \implies
+            \boxed{m_1 = -1}
+        \]
+        Dejando así los parámetros del spline cúbico natural que interpola a los datos dados:
+        \[
+            \begin{cases}
+                a_1 = 1 - \frac{m_1}{6} = 1 + \frac{1}{6} = \frac{7}{6} \\
+                b_1 = 0 \\
+                a_2 = \frac{m_1}{3} = -\frac{1}{3} \\
+                b_2 = 1 - \frac{2m_1}{3} = 1 + \frac{2}{3} = \frac{5}{3}
+            \end{cases}
+        \]
+        \item \textbf{Resultado final:} Por lo tanto, el spline cúbico natural que interpola a los datos dados es:
+        \[
+            S(x) = 
+            \begin{cases}
+                -\frac{1}{6} x^3 + \frac{7}{6} x & \text{si } x \in [0,1] \\
+                \frac{1}{12} (x-3)^3 - \frac{1}{3} (x-1) + \frac{5}{3} & \text{si } x \in [1,3]
+            \end{cases}
+        \]
+    \end{enumerate}
+}

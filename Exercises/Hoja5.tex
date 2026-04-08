@@ -204,7 +204,7 @@
 }{}
 
 % Ejercicio 8
-\ejercicio{enunciado}{no}{
+\ejercicio{resuelto}{profesor}{
     Determinar los valores de $\lambda$ y $\mu$ para que
     \[
         S(x)=
@@ -214,7 +214,81 @@
         \end{cases}
     \]
     sea una funci\'on spline c\'ubica.
-}{}
+}{
+    Para que $S$ sea una función spline cúbica, debe ser de clase $C^2$ en el intervalo $[0, 2]$. Esto implica que $S$ debe ser continua, y sus primeras y segundas derivadas también deben ser continuas en el punto de unión $x=1$ (en el resto del intervalo, cada parte es un polinomio cúbico, por lo que no hay problemas de continuidad allí).
+    \begin{itemize}
+        \item \textbf{Continuidad de $S$ en $x=1$:}
+        \[
+            \begin{cases}
+                S(x=1-0) = \lambda \cdot 1 \cdot (1^2 + 1) = 2\lambda,\\
+                S(x=1+0) = -\lambda \cdot 1^3 + \mu \cdot 1^2 - 5\lambda \cdot 1 + 1 = -6\lambda + \mu + 1.
+            \end{cases}
+            \implies 2\lambda = -6\lambda + \mu + 1 \implies \mu = 8\lambda - 1.
+        \]
+        \item \textbf{Continuidad de $S'$ en $x=1$:}
+        Calculamos $S'$ para cada parte:
+        \[
+            S'(x) =
+            \begin{cases}
+                \lambda (3x^2 + 1), & 0 \le x \le 1,\\
+                -3\lambda x^2 + 2\mu x - 5\lambda, & 1 \le x \le 2.
+            \end{cases}
+            \implies
+        \]
+        \[
+            \begin{cases}
+                S'(x=1-0) = \lambda \cdot (3 \cdot 1^2 + 1) = 4\lambda,\\
+                S'(x=1+0) = -3\lambda \cdot 1^2 + 2\mu \cdot 1 - 5\lambda = -8\lambda + 2\mu.
+            \end{cases}
+            \implies
+        \]
+        \[
+            4\lambda = -8\lambda + 2\mu \implies 12\lambda = 2\mu \implies \mu = 6\lambda.
+        \]
+        \item \textbf{Resolvemos el sistema de ecuaciones:}
+        \[
+            \begin{cases}
+                \mu = 8\lambda - 1,\\
+                \mu = 6\lambda.
+            \end{cases}
+            \implies 
+            \begin{cases}
+                6\lambda = 8\lambda - 1 \implies -2\lambda = -1 \implies \boxed{\lambda = \frac{1}{2}},\\
+                \mu = 6\lambda = 6 \cdot \frac{1}{2} = 3 \implies \boxed{\mu = 3}.
+            \end{cases}
+        \]
+        Por lo tanto, los valores de $\lambda$ y $\mu$ para que $S$ sea una función spline cúbica son $\lambda = \frac{1}{2}$ y $\mu = 3$, pero falta comprobar la continuidad de $S''$ en $x=1$.
+        \item \textbf{Continuidad de $S''$ en $x=1$:}
+        Calculamos $S''$ para cada parte:
+        \[
+            S''(x) =
+            \begin{cases}
+                \lambda (6x), & 0 \le x \le 1,\\
+                -6\lambda x + 2\mu, & 1 \le x \le 2.
+            \end{cases}
+            \implies
+        \]
+        \[
+            \begin{cases}
+                S''(x=1-0) = \lambda \cdot 6 \cdot 1 = 6\lambda,\\
+                S''(x=1+0) = -6\lambda \cdot 1 + 2\mu = -6\lambda + 2\mu.
+            \end{cases}
+            \implies
+        \]
+        \[
+            6\lambda = -6\lambda + 2\mu \implies 
+            12\lambda = 2\mu \implies 
+            \mu = 6\lambda \impliedby 
+            \begin{cases}
+                \lambda = \frac{1}{2},\\
+                \mu = 3.
+            \end{cases}
+        \]
+        Este resultado coincide con el obtenido anteriormente, por lo que no hay contradicciones y los valores de $\lambda$ y $\mu$ son correctos.
+        \item \textbf{Condiciones de contorno:}
+        No se han especificado condiciones de contorno adicionales, por lo que no es necesario verificar nada más. Sin embargo, si se hubieran dado condiciones de contorno, habría que asegurarse de que $S$ las cumpla. En particular, si $S$ es de \textbf{Tipo I} entonces se deberían cumplir $S(0) = S(2) = 0$, lo cual no es el caso aquí, por lo que $S$ no es de \textbf{Tipo I}.
+    \end{itemize}
+}
 
 % Ejercicio 9
 \ejercicio{enunciado}{no}{

@@ -1,0 +1,24 @@
+\section{Diferenciación Numérica}
+\subsection{Motivación}
+
+El objetivo de esta sección es aproximar la derivada de una función $f$ en un punto $x$ a partir de los valores de la función en ciertos puntos, y llegar incluso a estimar derivadas de orden superior, es decir:
+
+\[
+    \begin{array}{c|c}
+        x_i & f(x_i) \\
+        \hline
+        x_0 & f(x_0) \\
+        x_1 & f(x_1) \\
+        \vdots & \vdots \\
+        x_n & f(x_n) \\
+    \end{array}
+    \longrightarrow
+    f'(x), f''(x), \ldots f^{(m)}(x) ?
+\]
+
+Además, en este problema, se puede suponer que la partición de los puntos $x_i$ es equidistante, es decir, $x_i = x_0 + ih$ para $i = 0, 1, \ldots, n$, donde $h$ es el paso de la partición.\\
+
+Tenemos a primera vista dos formas de abordar este problema:
+\begin{itemize}
+    \item Usar polinomios de interpolación para aproximar la función $f$ y luego derivar el polinomio resultante.
+\end{itemize}
