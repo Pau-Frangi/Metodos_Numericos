@@ -20,5 +20,120 @@ Además, en este problema, se puede suponer que la partición de los puntos $x_i
 
 Tenemos a primera vista dos formas de abordar este problema:
 \begin{itemize}
-    \item Usar polinomios de interpolación para aproximar la función $f$ y luego derivar el polinomio resultante.
+    \item[A)] Usar polinomios de interpolación para aproximar la función $f$ y luego derivar el polinomio resultante. Este método es más \textbf{breve}.
+    \item[B)] Usar la forma de Taylor de la función $f$ para obtener fórmulas de aproximación de la derivada. Este método es más \textbf{fácil}.
 \end{itemize}
+
+Veamos ambas ideas con más detalle.
+
+\textbf{Idea A:} Sabemos que:
+\[
+    f(x) = p_n(x) + E_n(x)
+\]
+Donde:
+\[
+    p_n(x) = \sum_{i=0}^n f(x_i) L_i(x) \, \qquad
+    E_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^n (x - x_i)
+\]
+De lo que se deduce que:
+\[
+    f'(x) = \underbrace{p_n'(x)}_{\text{hay fórmulas aproximadas}} + E_n'(x)
+\]
+
+\ejemplo{
+
+    Veamos un ejemplo para $n=1$.
+    \begin{center}
+        \begin{tikzpicture}
+            % Ejes
+                        \draw[->] (-0.5, 0) -- (2.25, 0) node[right] {$x$};
+                        \draw[->] (0, -0.5) -- (0, 3.5) node[above] {$y$};
+
+                        % Función x^2 + 0.5
+                        \draw[domain=0:2.25, smooth, variable=\x, blue] plot ({\x}, {\x*\x + 0.5}) node[right] {$f(x) = x^2 + 0.5$};
+
+                        % Puntos de interpolación x_i y x_i+1
+                        \fill (0.5, 0.75) circle (2pt) node[below] {$x_i$};
+                        \fill (1.5, 2.75) circle (2pt) node[below] {$x_{i+1}$};
+
+                        % Polinomio de interpolación lineal verde que une los puntos de interpolación
+                        \draw[domain=0:2, smooth, variable=\x, green] plot ({\x}, {-0.25 + 2*\x}) node[right] {$p_1(x)$};
+
+        \end{tikzpicture}
+    \end{center}
+    Ahora podemos escribir:
+    \[
+        p_1(x) = - \frac{f(x_i) (x - x_{i+1})}{h} + \frac{f(x_{i+1}) (x - x_i)}{h}
+    \]
+    Donde $h = x_{i+1} - x_i$. Derivando, obtenemos:
+    \[
+        f'(x) \approx
+        p_1'(x) = - \frac{f(x_i)}{h} + \frac{f(x_{i+1})}{h} = \frac{f(x_{i+1}) - f(x_i)}{h}
+    \]
+}
+
+Veamos ahora un ejemplo con el polinomio de Taylor.
+
+\ejemplo{
+    
+    Tengamos la gráfica:
+    \begin{comment}
+
+    \begin{center}
+        \begin{tikzpicture}
+            % Ejes
+            \draw[->] (-0.5, 0) -- (2.25, 0) node[right] {$x$};
+            \draw[->] (0, -0.5) -- (0, 3.5) node[above] {$y$};
+
+            % e^x
+            \draw[domain=0:2.25, smooth, variable=\x, blue] plot ({\x}, {exp(\x)}) node[right] {$f(x) = e^x$};
+
+            % 3 puntos de interpolación x_i-1, x_i y x_i+1
+            \fill (0.5, exp(0.5)) circle (2pt) node[below] {$x_{i-1}$};
+            \fill (1, exp(1)) circle (2pt) node[below] {$x_i$};
+            \fill (1.5, exp(1.5)) circle (2pt) node[below] {$x_{i+1}$};
+
+        
+
+        \end{tikzpicture}
+    \end{center}
+    \end{comment}
+
+    Si queremos calcular el punto $f(x_{i})$ a partir de los otros, tenemos que de manera aproximada:
+
+    \[
+        f(x_{i+1}) = f(x_i) + h f'(x_i) + \frac{f''(\eta)}{2} h^2
+    \]
+
+    De donde se deduce que:
+    \[
+        f'(x_i) = \underbrace{\frac{f(x_{i+1}) - f(x_i)}{h}}_{\text{aproximación}} - \underbrace{\frac{f''(\eta)}{2} h}_{\text{error}} 
+    \]
+
+    Y el punto anterior, de forma análoga, se puede escribir como:
+    \[
+        f(x_{i-1}) = f(x_i) - h f'(x_i) + \frac{f''(\xi)}{2} h^2
+    \]
+
+    De donde se deduce que:
+    \[
+        f'(x_i) = \underbrace{\frac{f(x_i) - f(x_{i-1})}{h}}_{\text{aproximación}} + \underbrace{\frac{f''(\xi)}{2} h}_{\text{error}}
+    \]
+
+    Ahora lo que podemos hacer es restar ambas fórmulas para obtener una nueva aproximación de la derivada:
+    \[
+        -
+        \begin{array}{ccc}
+            f(x_{i+1}) & = & f(x_i) + h f'(x_i) + \frac{1}{2} f''(x_i) h^2 + \frac{1}{6} f'''(\eta) h^3 \\
+            f(x_{i-1}) & = & f(x_i) - h f'(x_i) + \frac{1}{2} f''(x_i) h^2 - \frac{1}{6} f'''(\xi) h^3 \\
+            \hline
+            f(x_{i+1}) - f(x_{i-1}) & = & 2 h f'(x_i) + \frac{1}{3} f'''(\zeta) h^3
+        \end{array}
+    \]
+
+    De donde se deduce que:
+    \[
+        f'(x_i) = \underbrace{\frac{f(x_{i+1}) - f(x_{i-1})}{2h}}_{\text{aproximación}} - \underbrace{\frac{f'''(\zeta)}{6} h^2}_{\text{error}}
+    \]
+    Por loq que hemos logrado aumentar el orden de la aproximación, es decir, el error ahora es de orden $h^2$ en lugar de $h$.
+}
