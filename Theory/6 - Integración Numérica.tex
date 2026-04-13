@@ -1,0 +1,154 @@
+\section{Integración Numérica}
+\subsection{Motivación}
+
+El objetivo de la integración numérica es aproximar el valor de la integral definida de una función $f$ en un intervalo $[a, b]$ a partir de los valores de la función en ciertos puntos, es decir:
+\[
+    \begin{array}{c|c}
+        x_i & f(x_i) \\
+        \hline
+        x_0 & f(x_0) \\
+        x_1 & f(x_1) \\
+        \vdots & \vdots \\
+        x_n & f(x_n) \\
+    \end{array}
+    \longrightarrow
+    S = \int_a^b f(x) dx = 
+    \underbrace{\widetilde{S}}_{\text{fórmula aproximada}} + \underbrace{E}_{\text{error}}
+\]
+
+\subsection{Aproximación por interpolación de Lagrange}
+
+La idea de este procedimiento se va a basar en utilizar los \textbf{Polinomios de Lagrange}:
+
+\[
+    \underbrace{f(x)}_{\in C^{n+1}[a,b]} = 
+    \underbrace{p_n(x)}_{\text{polinomio de interpolación de Lagrange}} + \underbrace{E_n(x)}_{\text{error de interpolación}}
+\]
+
+Dónde:
+
+\[
+    p_n(x) = \sum_{i=0}^n f(x_i) L_i(x) \, \qquad L_i(x) = 
+    \prod_{\substack{j=0 \\ j \neq i}}^n \frac{x - x_j}{x_i - x_j}
+\]
+\[
+    E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
+\]
+
+De donde se deduce que:
+\[
+    S = \int_a^b f(x) dx = 
+    \underbrace{\int_a^b p_n(x) dx}_{\widetilde{S}_n} + \underbrace{\int_a^b E_n(x) dx}_{E_n}
+\]
+
+Ahora podemos escribir la fórmula de aproximación de la integral:
+\[
+    \widetilde{S}_n = 
+    \int_a^b p_n(x) dx = 
+    \int_a^b \sum_{i=0}^n f(x_i) L_i(x) dx =
+    \sum_{i=0}^n f(x_i) \int_a^b \underbrace{L_i(x)}_{c_i} =
+    \boxed{\sum_{i=0}^n c_i f(x_i)}
+\]
+
+Es interesante destacar que para calcular integrales existen formulas abiertas, y formulas cerradas. Las fórmulas abiertas no incluyen los extremos del intervalo, mientras que las fórmulas cerradas sí los incluyen.
+
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes 
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.75, 0) -- plot[smooth] coordinates {(0.75, 1.5) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (4.75, 1.75)} -- (4.75, 0) -- cycle;
+
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+
+        % Puntos de interpolación x_0 y x_n interiores a [a, b]
+        \fill[red] (0.75, 0) circle (0.1) node[below right] {$x_0$};
+        \fill[red] (4.75, 0) circle (0.1) node[below left] {$x_n$};
+
+        % Rectas de x_0 y x_n hasta la función
+        \draw[thick, dashed] (0.75, 0) -- (0.75, 1.5);
+        \draw[thick, dashed] (4.75, 0) -- (4.75, 1.75);
+
+        % Intervalo [a, b]
+        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
+        \draw[thick, dashed] (5, 0) -- (5, 2);
+        \node[below] at (0.5, 0) {$a$};
+        \node[below] at (5, 0) {$b$};
+
+        % Leyenda abierta
+        \draw[thick] (5.5, 2) -- (5.7, 2) node[right] {Fórmula abierta};
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
+
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+
+        % Puntos de interpolación x_0 y x_n en los extremos del intervalo
+        \fill[red] (0.5, 0) circle (0.1) node[below] {$x_0 = a$};
+        \fill[red] (5, 0) circle (0.1) node[below] {$x_n = b$};
+
+        % Rectas de x_0 y x_n hasta la función
+        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
+        \draw[thick, dashed] (5, 0) -- (5, 2);
+
+        
+
+        % Leyenda cerrada
+        \draw[thick] (5.5, 2) -- (5.7, 2) node[right] {Fórmula cerrada};
+    \end{tikzpicture}
+\end{center}
+
+Podemos fijar, al igual que en la diferenciación numérica, una distancia fina entre los puntos de interpolación, es decir, $h = \frac{b - a}{n+2}$.
+
+Veamos ahora distintos caos según \textbf{n}.\\
+
+\textbf{Caso $n = 0$:} En este caso, el polinomio de interpolación de Lagrange es simplemente una constante, es decir, $p_0(x) = f(x_0)$. Por lo tanto, la fórmula de aproximación de la integral se reduce a:
+\[
+    \widetilde{S}_0 = \int_a^b p_0(x) dx = \int_a^b f(x_0) dx = f(x_0)(b - a)
+\]
+
+Utilizando ahora que en este caso $h = \frac{b - a}{2}$, podemos escribir la fórmula de aproximación de la integral como:
+\[
+    \boxed{\widetilde{S}_0 = 2hf(x_0)}
+\]
+
+Que es la fórmula del área del rectángulo. Podemos ahora intentar calcular el error cometido usando la siguiente función:
+\[
+    \begin{array}{cccc}
+        \varphi: & [0, h] & \longrightarrow & \mathbb{R} \\
+        & x & \longmapsto & \varphi(x)
+    \end{array} \longrightarrow
+    \varphi(r) = \underbrace{\int_{x_0-r}^{x_0+r} f(x) dx}_{\text{exacto}} - \underbrace{2rf(x_0)}_{\text{aproximación}}
+\]
+
+Donde $r \in [0, h]$, y nos deja:
+\[
+    \varphi(0) = 0, \qquad \varphi(h) = \epsilon_0
+\]
+
+Siendo $\epsilon_0$ el error cometido. Ahora podemos derivar $\varphi$:
+\[
+    \varphi'(r) = f(x_0 + r) + f(x_0 - r) - 2f(x_0) \, \qquad \varphi'(0) = 0
+\]
+
+Si derivamos por segunda vez, obtenemos:
+\[
+    \varphi''(r) = f'(x_0 + r) - f'(x_0 - r) = f''(\xi_r) + f''(\eta_r) = 2f''(\zeta_r)
+\]
+
+Usando que:
+\[
+    f'(x_0 + r) - f'(x_0 - r) = f''(\xi_r)(x_0 + r - (x_0 - r)) = 2rf''(\xi_r)
+\]

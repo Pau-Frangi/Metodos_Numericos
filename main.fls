@@ -523,7 +523,16 @@ INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstop
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
+INPUT .\main.out
+INPUT .\main.out
+INPUT main.out
+INPUT main.out
+INPUT .\main.out
+INPUT .\main.out
 OUTPUT main.out
+INPUT .\main.toc
+INPUT .\main.toc
+INPUT main.toc
 INPUT .\images\logo.png
 INPUT .\images\logo.png
 INPUT .\images\logo.png
@@ -638,12 +647,6 @@ INPUT C:\Users\diego\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\diego\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\diego\AppData\Local\MiKTeX\fonts\tfm\public\mathabx\matha10.tfm
 INPUT C:\Users\diego\AppData\Local\MiKTeX\fonts\tfm\public\mathabx\matha8.tfm
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
-INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
 INPUT C:\Users\diego\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT .\Preamble\Introduction.tex
 INPUT .\Preamble\Introduction.tex
@@ -654,9 +657,27 @@ OUTPUT main.toc
 INPUT .\Theory\Theory.tex
 INPUT .\Theory\Theory.tex
 INPUT Theory\Theory.tex
+INPUT .\Theory\1 - Matrices y sus propiedades.tex
+INPUT .\Theory\1 - Matrices y sus propiedades.tex
+INPUT Theory\1 - Matrices y sus propiedades.tex
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti8.tfm
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti7.tfm
+INPUT .\Theory\2 - Resolución de sistemas lineales.tex
+INPUT .\Theory\2 - Resolución de sistemas lineales.tex
+INPUT Theory\2 - Resolución de sistemas lineales.tex
+INPUT .\Theory\3 - Métodos iterativos.tex
+INPUT .\Theory\3 - Métodos iterativos.tex
+INPUT Theory\3 - Métodos iterativos.tex
+INPUT .\Theory\4 - Interpolación polinómica.tex
+INPUT .\Theory\4 - Interpolación polinómica.tex
+INPUT Theory\4 - Interpolación polinómica.tex
 INPUT .\Theory\5 - Diferenciación Numérica.tex
 INPUT .\Theory\5 - Diferenciación Numérica.tex
 INPUT Theory\5 - Diferenciación Numérica.tex
+INPUT .\Theory\6 - Integración Numérica.tex
+INPUT .\Theory\6 - Integración Numérica.tex
+INPUT Theory\6 - Integración Numérica.tex
 INPUT .\Exercises\Hojas.tex
 INPUT .\Exercises\Hojas.tex
 INPUT Exercises\Hojas.tex
@@ -683,6 +704,12 @@ INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\doclicense\images\d
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\doclicense\images\doclicense-CC-by-nc-nd-88x31.pdf
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\doclicense\images\doclicense-CC-by-nc-nd-88x31.pdf
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\doclicense\images\doclicense-CC-by-nc-nd-88x31.pdf
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-pdfdoc.def
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\se-utf8.def
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
@@ -696,10 +723,14 @@ INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cmextra\cmex8.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
@@ -718,11 +749,15 @@ INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy6.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy6.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti8.pfb
+INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti8.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb

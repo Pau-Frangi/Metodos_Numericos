@@ -1,18 +1,54 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
 \babel@toc {english}{}\relax 
 \contentsline {section}{Índice General}{2}{section*.2}%
-\contentsline {part}{I\hspace {1em}Teoría}{3}{part.1}%
+\contentsline {part}{I\hspace {1em}Teoría}{4}{part.1}%
 \etoc@startlocaltoc {2}
-\contentsline {section}{\numberline {1}Diferenciación Numérica}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Motivación}{4}{subsection.1.1}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{6}{part.2}%
+\contentsline {section}{\numberline {1}Matrices y sus propiedades}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Tipos de matrices}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Autovalores y autovectores}{15}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Teoremas importantes}{17}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Matrices hermiticas definidas positivas}{21}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Normas matriciales}{22}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Normas subordinadas}{23}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Potencias de matrices}{26}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Condicionamiento de matrices}{27}{subsection.1.8}%
+\contentsline {section}{\numberline {2}Resolución de sistemas lineales}{29}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Introducción a los sistemas lineales}{29}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Factorización LU}{33}{subsection.2.2}%
+\contentsline {paragraph}{Existencia.}{35}{section*.4}%
+\contentsline {paragraph}{Unicidad.}{36}{section*.5}%
+\contentsline {subsection}{\numberline {2.3}Factorización de Cholesky}{37}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Métodos iterativos para resolver sistemas lineales}{39}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Motivación}{39}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Convergencia de métodos iterativos}{39}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Método de Jacobi y método de Gauss-Seidel}{40}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Métodos de relajación}{44}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Interpolación polinómica}{48}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Motivación}{48}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Problema de la interpolación polinómica}{48}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Polinomios de Lagrange}{49}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Error de interpolación}{50}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Método de Newton}{52}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Diferencias divididas}{52}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Definición del método de Newton}{53}{subsubsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.6}Splines}{55}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Diferenciación Numérica}{62}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Motivación}{62}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Aproximación por interpolación}{62}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Aproximación mediante Taylor}{63}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Diferencias centradas}{64}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Aplicaciones}{64}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Integración Numérica}{65}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Motivación}{65}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Aproximación por interpolación de Lagrange}{65}{subsection.6.2}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{67}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{7}{section*.5}%
-\contentsline {part}{III\hspace {1em}Exámenes}{14}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{68}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{75}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{15}{section*.7}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{16}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{76}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{77}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{17}{section*.9}%
-\contentsline {section}{Apéndice B: Agradecimientos}{19}{section*.10}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{19}{section*.11}%
+\contentsline {section}{Apéndice A: Normas comunes}{78}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{80}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{80}{section*.13}%
