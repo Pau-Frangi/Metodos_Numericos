@@ -41,14 +41,17 @@
 \contentsline {section}{\numberline {6}Integración Numérica}{65}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Motivación}{65}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Aproximación por interpolación de Lagrange}{65}{subsection.6.2}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{67}{part.2}%
+\contentsline {subsection}{\numberline {6.3}Aproximación por rectángulos}{65}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Aproximación por trapecios}{67}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Formula del trapecio abierta}{68}{subsection.6.5}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{70}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{68}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{75}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{71}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{78}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{76}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{77}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{79}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{80}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{78}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{80}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{80}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{81}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{83}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{83}{section*.13}%
