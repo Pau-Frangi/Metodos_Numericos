@@ -1,123 +1,129 @@
 \section{Interpolación polinómica}
-\subsection{Motivación}
 
-Hay un problema clásico en análisis numérico que es el siguiente:\\
-\textit{Dado un conjunto de puntos $x_0, x_1, \ldots, x_n$ y un conjunto de valores $y_0, y_1, \ldots, y_n$, encontrar una función $f$ tal que $f(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$.}
-Para ello, una de las formas más comunes de resolver este problema es mediante la interpolación polinómica, que consiste en encontrar un polinomio $P$ de grado a lo sumo $n$ tal que $P(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$.\\
+\subsection{Motivación e Introducción}
+
+En diversas ramas de las matemáticas aplicadas, la física y la ingeniería, es frecuente encontrarse con el siguiente problema fundamental en el análisis numérico:\\
+
+\textit{Dado un conjunto discreto de $n+1$ puntos distintos $\{x_0, x_1, \ldots, x_n\}$ (llamados comúnmente nodos) y un conjunto de valores correspondientes $\{y_0, y_1, \ldots, y_n\}$, se desea encontrar una función continua $f$ que pase exactamente por todos ellos, es decir, que cumpla la condición de interpolación $f(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$.}
+
+Estos valores $y_i$ pueden provenir de mediciones experimentales, de muestreos estadísticos, o bien pueden ser evaluaciones de una función matemática muy compleja que deseamos aproximar por una función mucho más sencilla de manipular, derivar e integrar. 
+
+Para lograr esto, una de las herramientas más robustas y elementales es la \textbf{interpolación polinómica}. Esta técnica consiste en restringir la búsqueda de la función $f$ al conjunto de los polinomios. El objetivo será encontrar un polinomio $p$ de grado a lo sumo $n$ que satisfaga las condiciones de interpolación. 
 
 \begin{definición}[Espacio de polinomios]
-    El espacio de polinomios al conjunto:
+    Se define el espacio vectorial de polinomios con coeficientes reales como el conjunto:
     \[
-    \mathbb{R}[x] = \{ p = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n : a_i \in \mathbb{R}, n \in \mathbb{N} \}
+        \mathbb{R}[x] = \{ p(x) = a_0 + a_1 x + a_2 x^2 + \ldots + a_k x^k : a_i \in \mathbb{R}, k \in \mathbb{N} \}
     \]
-    En particular, el espacio de polinomios de grado a lo sumo $n$ se denota por:
+    En el contexto de la interpolación, trabajaremos con un subespacio de dimensión finita, el espacio de polinomios de grado menor o igual a $n$, el cual denotamos por:
     \[
-    \mathcal{P}_n = \{ p = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n : a_i \in \mathbb{R} \}
+        \mathcal{P}_n = \{ p(x) = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n : a_i \in \mathbb{R} \}
     \]
 \end{definición}
 
-Un caso particular de este problema es el siguiente:
-
+Fijémonos en un par de casos particulares para comprender la estructura de estos espacios:
+Si tomamos $n=0$, obtenemos el espacio de los polinomios constantes:
 \[
-    \mathcal{P}_0 = \{ a_0 : a_0 \in \mathbb{R} \}
+    \mathcal{P}_0 = \{ p(x) = a_0 : a_0 \in \mathbb{R} \}
 \]
+Este espacio tiene una correspondencia directa (un isomorfismo) con los números reales, es decir, $\mathcal{P}_0 \cong \mathbb{R}$.
 
-Que es isomorfo a $\mathbb{R}$, es decir:
-\[
-    \mathcal{P}_0 \cong \mathbb{R}
-\]
-
-De hecho, el espacio de polinomios de grado a lo sumo $n$ es isomorfo a $\mathbb{R}^{n+1}$, es decir:
+Si generalizamos esto para cualquier $n$, notamos que un polinomio $p \in \mathcal{P}_n$ queda unívocamente determinado por sus $n+1$ coeficientes $(a_0, a_1, \ldots, a_n)$. Por lo tanto, estableciendo la base canónica $\{1, x, x^2, \ldots, x^n\}$, podemos afirmar que el espacio de polinomios de grado a lo sumo $n$ es isomorfo al espacio euclídeo de dimensión $n+1$:
 \[
     \mathcal{P}_n \cong \mathbb{R}^{n+1}
 \]
 
-\subsection{Problema de la interpolación polinómica}
+\subsection{Planteamiento formal del problema}
 
-Formalizemos ahora el problema de la interpolación polinómica.
+Formalicemos matemáticamente el problema que intentamos resolver.
 
 \begin{definición}[Problema de la interpolación polinómica]
-    Sean:
+    Sean dados:
+    \begin{itemize}
+        \item Un conjunto de $n+1$ nodos $\{ x_i \}_{i=0}^n \subset [a,b]$ estrictamente distintos entre sí, es decir, $x_i \neq x_j \iff i \neq j$.
+        \item Un conjunto de $n+1$ valores $\{ y_i \}_{i=0}^n \subset \mathbb{R}$.
+    \end{itemize}
+    El problema consiste en encontrar un único polinomio $p \in \mathcal{P}_n$ que satisfaga las $n+1$ condiciones de interpolación:
     \[
-        \begin{cases}
-            \{ x_i \}_{i=0}^n \subset [a,b] : \quad x_i \neq x_j \iff i \neq j \\
-            \{ y_i \}_{i=0}^n \subset \mathbb{R}
-        \end{cases}
-    \]
-    Encontrar $p \in \mathcal{P}_n$ que cumpla que:
-    \[
-        p(x_i) = y_i \quad \forall i = 0, 1, \ldots, n
+        p(x_i) = y_i \quad \forall i \in \{0, 1, \ldots, n\}
     \]
 \end{definición}
 
-En general, el problema se puede representar como un sistema de ecuaciones, que parten de:
+Dado que buscamos un polinomio de la forma $p(x) = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n$, el problema se reduce a encontrar los $n+1$ coeficientes incógnita $a_0, a_1, \ldots, a_n$. Al evaluar el polinomio en cada nodo $x_i$ e igualarlo a su respectivo valor $y_i$, obtenemos un sistema lineal de $n+1$ ecuaciones con $n+1$ incógnitas:
 \[
     \begin{cases}
-        y_0 = p_n(x_0) = a_0 + a_1 x_0 + a_2 x_0^2 + \ldots + a_n x_0^n \\
-        y_1 = p_n(x_1) = a_0 + a_1 x_1 + a_2 x_1^2 + \ldots + a_n x_1^n \\
+        a_0 + a_1 x_0 + a_2 x_0^2 + \ldots + a_n x_0^n = y_0 \\
+        a_0 + a_1 x_1 + a_2 x_1^2 + \ldots + a_n x_1^n = y_1 \\
         \vdots \\
-        y_n = p_n(x_n) = a_0 + a_1 x_n + a_2 x_n^2 + \ldots + a_n x_n^n
+        a_0 + a_1 x_n + a_2 x_n^2 + \ldots + a_n x_n^n = y_n
     \end{cases}
-    \implies
 \]
+
+Este sistema se puede expresar de forma elegante y compacta mediante notación matricial:
 \[
-    \underbrace{X}_{\mathcal{M}_{(n+1) \times (n+1)}} \cdot \underbrace{a}_{\mathbb{R}^{n+1}} = \underbrace{y}_{\mathbb{R}^{n+1}} \iff
+    \underbrace{
     \begin{bmatrix}
         1 & x_0 & x_0^2 & \ldots & x_0^n \\
         1 & x_1 & x_1^2 & \ldots & x_1^n \\
         \vdots & \vdots & \vdots & \ddots & \vdots \\
         1 & x_n & x_n^2 & \ldots & x_n^n
     \end{bmatrix}
+    }_{X \in \mathcal{M}_{(n+1) \times (n+1)}}
     \cdot
+    \underbrace{
     \begin{bmatrix}
         a_0 \\
         a_1 \\
         \vdots \\
         a_n
     \end{bmatrix}
+    }_{a \in \mathbb{R}^{n+1}}
     =
+    \underbrace{
     \begin{bmatrix}
         y_0 \\
         y_1 \\
         \vdots \\
         y_n
     \end{bmatrix}
+    }_{y \in \mathbb{R}^{n+1}}
 \]
-
-Y el problema ahora consistira en ver si la matriz $X$ es invertible, lo que nos deja una unica solución:
+La matriz de coeficientes $X$ de este sistema se conoce como \textbf{Matriz de Vandermonde}. El problema analítico consiste ahora en garantizar que esta matriz sea invertible, lo que aseguraría que exista una y solo una solución para el vector de coeficientes $a$.
 \[
-    \exists ! a = X^{-1} y \implies
-    \exists ! p \in \mathcal{P}_n : p = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n
+    \exists ! a = X^{-1} y \implies \exists ! p \in \mathcal{P}_n \text{ que interpola los datos.}
 \]
 
 \ejemplo{
-    Veamos un ejemplo particular:
+    Veamos la aplicación directa de este método resolviendo un caso particular de grado 2 (una parábola). Supongamos que disponemos de la siguiente tabla de datos experimentales:
+    
     \begin{center}
-        \begin{tabular}{|c|ccc|}
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|c|c|c|}
             \hline
-            $i$ & $0$ & 1 & 2 \\
+            Índice $i$ & $0$ & $1$ & $2$ \\
             \hline
-            $x$ & $0$ & $1$ & $3$ \\
+            Nodo $x_i$ & $0$ & $1$ & $3$ \\
             \hline
-            $y$ & $-3$ & $4$ & $5$ \\
+            Valor $y_i$ & $-3$ & $4$ & $5$ \\
             \hline
         \end{tabular}
     \end{center}
 
-    En este caso, el sistema de ecuaciones es el siguiente:
+    Como tenemos 3 puntos ($n=2$), buscamos un polinomio $p \in \mathcal{P}_2$ de la forma $p(x) = a_0 + a_1 x + a_2 x^2$. Evaluando en los nodos, planteamos el sistema de ecuaciones:
     \[
         \begin{cases}
-            -3 = a_0 + a_1 \cdot 0 + a_2 \cdot 0^2 \\
-            4 = a_0 + a_1 \cdot 1 + a_2 \cdot 1^2 \\
-            5 = a_0 + a_1 \cdot 3 + a_2 \cdot 3^2
+            p(0) = -3 \implies a_0 + a_1(0) + a_2(0^2) = -3 \\
+            p(1) = 4 \implies a_0 + a_1(1) + a_2(1^2) = 4 \\
+            p(3) = 5 \implies a_0 + a_1(3) + a_2(3^2) = 5
         \end{cases}
-        \implies
+    \]
+    Expresado en forma matricial (Matriz de Vandermonde):
+    \[
         \begin{bmatrix}
             1 & 0 & 0 \\
             1 & 1 & 1 \\
             1 & 3 & 9
         \end{bmatrix}
-        \cdot
         \begin{bmatrix}
             a_0 \\
             a_1 \\
@@ -130,113 +136,101 @@ Y el problema ahora consistira en ver si la matriz $X$ es invertible, lo que nos
             5
         \end{bmatrix}
     \]
+    Resolviendo el sistema, de la primera ecuación deducimos inmediatamente que $a_0 = -3$. Sustituyendo este valor en las dos ecuaciones restantes obtenemos:
+    \[
+        \begin{cases}
+            a_1 + a_2 = 7 \\
+            3a_1 + 9a_2 = 8
+        \end{cases}
+    \]
+    Multiplicando la primera por $-3$ y sumándola a la segunda, se llega a $6a_2 = -13$, por lo que $a_2 = -13/6$. Sustituyendo en la primera, $a_1 = 7 - (-13/6) = 55/6$. Así, el polinomio interpolador único es:
+    \[
+        p(x) = -3 + \frac{55}{6}x - \frac{13}{6}x^2
+    \]
 }
 
-Ahora veamos que ocurre con la matriz $X$. Para que sea invertible, es necesario que su determinante sea distinto de cero. El determinante de la matriz $X$ es el siguiente (usando la regla de Vandermonde):
-\[
-    \det(X) = \prod_{i \neq j} (x_i - x_j) \neq 0 \implies
-    \boxed{x_i \neq x_j \iff i \neq j}
-\]
+\subsection{Existencia y unicidad: El determinante de Vandermonde}
 
+Para garantizar rigurosamente que el sistema planteado siempre tiene una solución única, debemos analizar el determinante de la matriz $X$. Por propiedades del álgebra lineal, una matriz cuadrada es invertible si y solo si su determinante es no nulo.
+
+Se puede demostrar por inducción que el determinante de una matriz de Vandermonde $X$ viene dado por el producto de todas las diferencias posibles entre los nodos $x_i$, tomando los índices mayores menos los menores:
+\[
+    \det(X) = \prod_{0 \leq j < i \leq n} (x_i - x_j)
+\]
+De esta expresión analítica extraemos una conclusión vital: para que $\det(X) \neq 0$, ninguno de los factores $(x_i - x_j)$ puede ser cero. Esto equivale a exigir que no haya dos nodos iguales:
+\[
+    \det(X) \neq 0 \iff x_i \neq x_j \quad \forall i \neq j
+\]
+Por lo tanto, \textbf{si todos los nodos $x_i$ son distintos entre sí}, la matriz de Vandermonde es invariablemente invertible. Esto garantiza formalmente la \textbf{existencia y unicidad} del polinomio interpolador en $\mathcal{P}_n$. Sin embargo, cabe destacar que aunque el método de resolución directa mediante la matriz de Vandermonde es teóricamente impecable, desde el punto de vista computacional puede resultar inestable y costoso para valores grandes de $n$, lo que motivará el estudio de alternativas como los polinomios de Lagrange o el método de diferencias divididas de Newton.
 \subsection{Polinomios de Lagrange}
 
-En esta sección, vamos a ver un tipo de polinomios que nos van a resultar muy útiles para resultados teóricos.
+En la sección anterior vimos que el uso directo de la matriz de Vandermonde puede ser computacionalmente ineficiente. Para sortear este problema, introducimos una base alternativa para el espacio $\mathcal{P}_n$, lo que nos permitirá construir el polinomio interpolador de forma directa sin necesidad de resolver ningún sistema de ecuaciones. Esta es la base de Lagrange.
 
-\begin{definición}[Polinomios de Lagrange]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, buscaremos un polinomio $p \in \mathcal{P}_n$ de la siguiente forma:
-    \[
-        p(x) = \sum_{i=0}^n y_i L_i(x)
-    \]
-    Lo que nos lleva al siguiente sistema de ecuaciones:
-    \[
-        \begin{cases}
-            y_0 = p(x_0) = y_0 L_0(x_0) + y_1 L_1(x_0) + \ldots + y_n L_n(x_0) \\
-            y_1 = p(x_1) = y_0 L_0(x_1) + y_1 L_1(x_1) + \ldots + y_n L_n(x_1) \\
-            \vdots \\
-            y_n = p(x_n) = y_0 L_0(x_n) + y_1 L_1(x_n) + \ldots + y_n L_n(x_n)
-        \end{cases}
-        \implies
-        \begin{cases}
-            y_0 = y_0 L_0(x_0) \\
-            y_1 = y_1 L_1(x_1) \\
-            \vdots \\
-            y_n = y_n L_n(x_n)
-        \end{cases}
-    \]
-    Lo que nos lleva a que:
+\begin{definición}[Polinomios base de Lagrange]
+    Dado un conjunto de $n+1$ nodos $\{ x_i \}_{i=0}^n$ estrictamente distintos, definimos el $k$-ésimo polinomio base de Lagrange, denotado como $L_k(x)$, como aquel polinomio de grado $n$ que cumple la propiedad de la delta de Kronecker en los nodos:
     \[
         L_k(x_j) = \delta_{kj} = 
         \begin{cases}
             1 & \text{si } k = j \\
             0 & \text{si } k \neq j
         \end{cases}
-        \implies
-        L_k(x) = \prod_{j \neq k} \frac{x - x_j}{x_k - x_j}
     \]
-    Donde los numeradores de la fracción se encargan de que el polinomio se anule en los puntos $x_j$ con $j \neq k$, y el denominador se encarga de que el polinomio tome el valor $1$ en el punto $x_k$ (normalizando su valor).
+    Para lograr que $L_k(x)$ se anule en todos los nodos $x_j$ excepto en $x_k$, su numerador debe ser el producto de los factores $(x - x_j)$ para $j \neq k$. Para garantizar que $L_k(x_k) = 1$, normalizamos dividiendo por ese mismo producto evaluado en $x_k$. Así, obtenemos la fórmula explícita:
+    \[
+        L_k(x) = \prod_{\substack{j=0 \\ j \neq k}}^n \frac{x - x_j}{x_k - x_j}
+    \]
 \end{definición}
 
-El utilizar los polinomios de Lagrange se conoce como \textbf{Interpolación de Lagrange}.
-
-Todo esto sera útil para interpolar funciones, creando los puntos de la forma $\{ x_i, f(x_i) \}_{i=0}^n$, y buscando un polinomio $p$ que interpole a la función $f$ en esos puntos, es decir, que cumpla que $p(x_i) = f(x_i)$ para todo $i = 0, 1, \ldots, n$.
+El uso de esta base polinómica para resolver el problema de interpolación se conoce como \textbf{Interpolación de Lagrange}. Es especialmente útil para interpolar funciones continuas, construyendo los pares de datos de la forma $(x_i, f(x_i))$ y buscando un polinomio que aproxime a la función original.
 
 \begin{teorema}[Existencia y unicidad del polinomio de Lagrange]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, entonces existe un único polinomio $p \in \mathcal{P}_n$ tal que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, y dicho polinomio viene dado por la fórmula de Lagrange:
+    Dado un conjunto de puntos $\{ (x_i, y_i) \}_{i=0}^n$ con abscisas distintas, existe un único polinomio $p \in \mathcal{P}_n$ tal que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$. Dicho polinomio se puede expresar linealmente mediante la fórmula de Lagrange:
     \[
         p(x) = \sum_{i=0}^n y_i L_i(x)
-    \]
-    Con:
-    \[
-        L_i(x) = \prod_{j \neq i} \frac{x - x_j}{x_i - x_j}
     \]
 \end{teorema}
 
 \begin{proof}
-    Veamos primero la existencia del polinomio de Lagrange. Para ello, basta con comprobar que el polinomio $p$ definido por la fórmula de Lagrange cumple que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$. Esto se cumple debido a la definición de los polinomios de Lagrange, que garantizan que $L_k(x_j) = \delta_{kj}$, y está bien definido ya que:
+    Comprobemos primero la \textbf{existencia}. Para ver que el polinomio $p(x)$ definido por la suma anterior es efectivamente el polinomio interpolador, basta con evaluarlo en un nodo genérico $x_k$:
     \[
-        x_i \neq x_j \iff i \neq j \iff x_i - x_j \neq 0 
+        p(x_k) = \sum_{i=0}^n y_i L_i(x_k) = y_0 \underbrace{L_0(x_k)}_{0} + \ldots + y_k \underbrace{L_k(x_k)}_{1} + \ldots + y_n \underbrace{L_n(x_k)}_{0} = y_k
     \]
-    Para ver la unicidad, supongamos que $\exists p,q \in \mathcal{P}_n$ tal que:
+    Esto demuestra que satisface las condiciones de interpolación. Además, está bien definido porque los denominadores de $L_i(x)$ nunca se anulan, ya que por hipótesis $x_i \neq x_j$ si $i \neq j$.
+
+    Para demostrar la \textbf{unicidad}, procedemos por reducción al absurdo. Supongamos que existen dos polinomios distintos $p, q \in \mathcal{P}_n$ que interpolan los mismos datos, es decir:
     \[
-        \forall i \in \{ 0, 1, \ldots, n \} : p(x_i) = q(x_i) = y_i
-    \]  
-    Entonces definamos el polinomio $d(x)$ como:
+        p(x_i) = q(x_i) = y_i \quad \forall i \in \{0, 1, \ldots, n\}
+    \]
+    Definimos el polinomio diferencia $d(x) = p(x) - q(x)$. Al ser la resta de dos polinomios de grado a lo sumo $n$, resulta que $d \in \mathcal{P}_n$. Evaluando en los nodos obtenemos:
     \[
-        d(x) = p(x) - q(x) \in \mathcal{P}_n \implies
         d(x_i) = p(x_i) - q(x_i) = y_i - y_i = 0 \quad \forall i = 0, 1, \ldots, n
     \]
-    Como $d$ es un polinomio de grado a lo sumo $n$ que tiene $n+1$ raíces distintas, entonces según el teorema fundamental del álgebra, $d$ es el polinomio nulo, es decir, $d(x) = 0$ para todo $x \in \mathbb{R}$. Por lo tanto, $p(x) = q(x)$ para todo $x \in \mathbb{R}$, lo que implica que $p$ y $q$ son el mismo polinomio. Por lo tanto, el polinomio de Lagrange es único.
+    Esto significa que el polinomio $d(x)$, de grado a lo sumo $n$, tiene al menos $n+1$ raíces distintas. Por el Teorema Fundamental del Álgebra, el único polinomio que cumple esto es el polinomio nulo. Por consiguiente, $d(x) \equiv 0$, lo que implica que $p(x) \equiv q(x)$, demostrando que el polinomio interpolador es verdaderamente único.
 \end{proof}
 
 \subsection{Error de interpolación}
 
-Podemos preguntarnos ahora, dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ y una función $f$ tal que $f(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, cuál es el error cometido al interpolar a la función $f$ mediante el polinomio de Lagrange $p$. Para ello, definamos:
+Una vez construido el polinomio interpolador $p_n$ para una función $f$, es natural preguntarse cuán buena es esta aproximación en los puntos que no pertenecen al conjunto de nodos (es decir, para $x \neq x_i$).
 
 \begin{definición}
-    El error de interpolación de la función $f$ mediante el polinomio de Lagrange $p_n$ se define como la función:
+    El error de interpolación de la función $f$ aproximada mediante el polinomio de Lagrange $p_n$ de grado $n$ se define como la función:
     \[
         E_n(x) = f(x) - p_n(x)
     \]
 \end{definición}
 
 \ejemplo{
-    Tomemos la función
+    Para ilustrar que aumentar el grado del polinomio no siempre reduce el error en todo el intervalo (fenómeno de Runge), tomemos la función de Runge:
     \[
         f(x) = \frac{\sin(x)}{1+x^2}
     \]
-    y los nodos de interpolación
+    y utilicemos una malla de nodos equiespaciados:
     \[
         x_i \in \{-3,-2,-1,0,1,2,3\}, \qquad y_i = f(x_i).
     \]
-    El polinomio interpolador de Lagrange de grado $6$ es
+    Al simplificar el polinomio interpolador de Lagrange de grado 6, obtenemos:
     \[
-        p_6(x) = \sum_{i=0}^{6} y_i L_i(x),
-        \qquad
-        L_i(x) = \prod_{\substack{j=0 \\ j\neq i}}^{6}\frac{x-x_j}{x_i-x_j}.
-    \]
-    Al simplificar, obtenemos:
-    \[
-        p_6(x) = 0.577015793023248\,x - 0.167866563297343\,x^3 + 0.0115862626780432\,x^5.
+        p_6(x) = 0.5770157\,x - 0.1678665\,x^3 + 0.0115862\,x^5.
     \]
 
     \begin{center}
@@ -249,17 +243,17 @@ Podemos preguntarnos ahora, dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ 
             \draw[thick, blue] plot[domain=-3.2:3.2, samples=240] (\x, {sin(\x r)/(1+\x*\x)}) node[right] {$f(x)$};
 
             % Interpolador
-            \draw[thick, red] plot[domain=-3.2:3.2, samples=240] (\x, {0.577015793023248*\x - 0.167866563297343*(\x)^3 + 0.0115862626780432*(\x)^5}) node[above right] {$p_6(x)$};
+            \draw[thick, red] plot[domain=-3.2:3.2, samples=240] (\x, {0.57701579*\x - 0.16786656*(\x)^3 + 0.01158626*(\x)^5}) node[above right] {$p_6(x)$};
 
             % Nodos de interpolacion
             \foreach \xx/\yy in {
-                -3/-0.0141120008,
-                -2/-0.1818594854,
-                -1/-0.4207354924,
+                -3/-0.014112,
+                -2/-0.181859,
+                -1/-0.420735,
                 0/0,
-                1/0.4207354924,
-                2/0.1818594854,
-                3/0.0141120008
+                1/0.420735,
+                2/0.181859,
+                3/0.014112
             } {
                 \fill[black] (\xx,\yy) circle (1.2pt);
             }
@@ -267,283 +261,253 @@ Podemos preguntarnos ahora, dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ 
     \end{center}
 }
 
-\begin{teorema}[Error de interpolación]
-    Sea $f \in C^{n+1}([a,b])$ y $\{ x_i \}_{i=0}^n \subset [a,b]$ con $x_i \neq x_j$ para todo $i \neq j$, $y_i = f(x_i)$ para todo $i = 0, 1, \ldots, n$.\\
-    Entonces $\forall x \in [a,b]$ introducimos:
+Para poder acotar analíticamente este error, presentamos el siguiente teorema fundamental. Para simplificar la notación, definiremos primero el \textbf{polinomio nodal} $\omega(x)$ de grado $n+1$ como:
+\[
+    \omega(x) = \prod_{i=0}^n (x - x_i) = (x-x_0)(x-x_1)\cdots(x-x_n)
+\]
+
+\begin{teorema}[Fórmula del error de interpolación]
+    Sea $f \in C^{n+1}([a,b])$ y sea $\{ x_i \}_{i=0}^n \subset [a,b]$ un conjunto de nodos distintos. Sea $p_n \in \mathcal{P}_n$ el polinomio que interpola a $f$ en dichos nodos.\\
+    Para cualquier punto $x \in [a,b]$, existe un número $\xi_x$ perteneciente al intervalo abierto delimitado por el valor mínimo y máximo de los datos (es decir, en el intervalo más pequeño que contiene a $x, x_0, \dots, x_n$) tal que:
     \[
-        I_x = \left( \min \{x \cup x_i \} , \max \{x \cup x_i \} \right) \subset [a,b]
+        E_n(x) = f(x) - p_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \omega(x)
     \]
-    Entonces $\exists \xi_x \in I_x$ tal que:
+    A partir de esto, si podemos acotar la derivada $(n+1)$-ésima de la función en el intervalo, podemos establecer una cota superior absoluta para el error:
     \[
-        E_n(x) = f(x) - p_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
-    \]
-    Donde podemos tomar normas para obtener una cota del error:
-    \[
-        |E_n(x)| = \frac{ \| f^{(n+1)} \| }{(n+1)!} \prod_{i=0}^n |x - x_i|
+        |E_n(x)| \leq \frac{ \max_{t \in [a,b]} |f^{(n+1)}(t)| }{(n+1)!} \prod_{i=0}^n |x - x_i|
     \]
 \end{teorema}
 
 \begin{proof}
-    Para demostrar el teorema, definamos la función auxiliar, teniendo en cuenta que hemos fijado el $x \notin \{ x_i \}_{i=0}^n$:
+    Fijemos un punto arbitrario $x \in [a,b]$. Si $x$ coincide con alguno de los nodos $x_i$, la fórmula se cumple trivialmente pues ambos lados valen 0 (ya que $p_n(x_i) = f(x_i)$ y $\omega(x_i) = 0$).
+
+    Asumamos entonces que $x \neq x_i$ para todo $i$. Definamos una nueva variable $t$ y construyamos la siguiente función auxiliar $F(t)$:
     \[
-        F(y) = \left( f(y) - p_n(y) \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \prod_n (y)
+        F(t) = \left( f(t) - p_n(t) \right) \omega(x) - \left( f(x) - p_n(x) \right) \omega(t)
     \]
-    Ahora veamos lo siguiente:
+    Analicemos las propiedades fundamentales de esta función $F(t)$:
     \begin{enumerate}
-        \item $F \in C^{n+1}([a,b])$ ya que $f \in C^{n+1}([a,b])$ y $p_n$ es un polinomio de grado a lo sumo $n$, por lo que $p_n \in C^{\infty}([a,b])$.
-        \item $F(x_i) = 0$ para todo $i = 0, 1, \ldots, n$, ya que:
+        \item Regularidad: Como $f \in C^{n+1}([a,b])$ y tanto $p_n$ como $\omega$ son polinomios (y por tanto infinitamente derivables), se sigue que $F \in C^{n+1}([a,b])$.
+        \item Raíces en los nodos: Evaluando $F(t)$ en cualquier nodo $t = x_i$, recordamos que $f(x_i) - p_n(x_i) = 0$ y $\omega(x_i) = 0$. Por lo tanto:
         \[
-            F(x_i) = \left( \underbrace{f(x_i)}_{y_i} - \underbrace{p_n(x_i)}_{y_i} \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \underbrace{\prod_n (x_i)}_{0} = 0
+            F(x_i) = 0 \cdot \omega(x) - (f(x) - p_n(x)) \cdot 0 = 0 \quad \forall i = 0, \dots, n
         \]
-        Por lo que $F$ tiene al menos $n+1$ raíces distintas.
-        \item $F(x) = 0$ ya que:
+        \item Raíz en el punto fijado: Si evaluamos $F(t)$ en $t = x$, obtenemos:
         \[
-            F(x) = \left( f(x) - p_n(x) \right) \prod_n (x) - \left( f(x) - p_n(x) \right) \prod_n (x) = 0
-        \]
-        Ahora como $F$ tiene $n+2$ raíces distintas y $F \in C^{n+1}([a,b])$, entonces por el teorema de Rolle, $\exists c \in (a,b)$ tal que $F^{(n+1)}(c) = 0$, ya que podemos ir aplicando el teroema de Rolle a $F$, sacando $n+1$ raíces distintas de $F'$, entre cada par de raices, por lo que podemos sacar $n$ raices de $F''$, y así sucesivamente, hasta llegar a $F^{(n+1)}$, que tendrá al menos una raíz distinta, que es el $c$ que hemos mencionado. Ahora simplemente denotamos a esa raíz como $\xi_x$, y obtenemos que:
-        \[        
-            F^{(n+1)}(\xi_x) = 0 
+            F(x) = \left( f(x) - p_n(x) \right) \omega(x) - \left( f(x) - p_n(x) \right) \omega(x) = 0
         \]
     \end{enumerate}
-    Ahora si evaluamos (recordando que $E_n(x) = f(x) - p_n(x)$):
-    \[
-        F^{(n+1)}(y) = \left( f^{(n+1)}(y) - p_n^{(n+1)}(y) \right) \prod_n (x) - E_n(x) \cdot \left( \prod_n (y) \right)^{(n+1)}
+    
+    Por lo tanto, la función $F(t)$ tiene al menos $n+2$ raíces distintas en el intervalo. Por el Teorema de Rolle, entre cada par de raíces de $F(t)$ debe existir al menos una raíz de su derivada $F'(t)$. Esto significa que $F'(t)$ tiene al menos $n+1$ raíces.
+    
+    Aplicando el Teorema de Rolle de forma reiterada: $F''(t)$ tendrá $n$ raíces, $F'''(t)$ tendrá $n-1$ raíces, y así sucesivamente. Tras derivar $n+1$ veces, existirá al menos un punto, que llamaremos $\xi_x$, estrictamente contenido en el intervalo abarcado por los nodos y $x$, donde la derivada $(n+1)$-ésima se anula:
+    \[        
+        F^{(n+1)}(\xi_x) = 0 
     \]
-    Ahora si nos damos cuenta de que $\left( \prod_n (y) \right)^{(n+1)} = (n+1)!$ ya que el producto $\prod_n (y)$ es un polinomio de grado $n+1$ con $n+1$ raíces distintas, entonces su derivada $(n+1)$-ésima es igual a $(n+1)!$. Además, como $p_n$ es un polinomio de grado a lo sumo $n$, entonces $p_n^{(n+1)}(y) = 0$ para todo $y \in [a,b]$. Por lo tanto, obtenemos que:
+    Ahora, derivemos analíticamente la expresión de $F(t)$ $n+1$ veces respecto a la variable $t$. Notemos que $x$ actúa como una constante:
     \[
-        F^{(n+1)}(y) = f^{(n+1)}(y) \prod_n (x) - E_n(x) \cdot (n+1)!
+        F^{(n+1)}(t) = \left( f^{(n+1)}(t) - p_n^{(n+1)}(t) \right) \omega(x) - \left( f(x) - p_n(x) \right) \omega^{(n+1)}(t)
     \]
-    Y como $F^{(n+1)}(\xi_x) = 0$, entonces:
+    Sabemos dos cosas clave:
+    \begin{itemize}
+        \item $p_n(t)$ es un polinomio de grado $n$, por lo que su derivada $(n+1)$-ésima es estrictamente cero: $p_n^{(n+1)}(t) = 0$.
+        \item $\omega(t) = t^{n+1} + \dots$ es un polinomio mónico de grado $n+1$. Derivándolo $n+1$ veces obtenemos la constante factorial: $\omega^{(n+1)}(t) = (n+1)!$.
+    \end{itemize}
+    Sustituyendo esto en la derivada:
     \[
-        0 = F^{(n+1)}(\xi_x) = f^{(n+1)}(\xi_x) \prod_n (x) - E_n(x) \cdot (n+1)! \implies
+        F^{(n+1)}(t) = f^{(n+1)}(t) \omega(x) - \left( f(x) - p_n(x) \right) (n+1)!
     \]
+    Finalmente, evaluando en el punto $\xi_x$ donde sabemos que se anula:
     \[
-        E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
+        0 = f^{(n+1)}(\xi_x) \omega(x) - E_n(x) \cdot (n+1)!
+    \]
+    Despejando el término del error $E_n(x)$, llegamos exactamente a la demostración de la fórmula de nuestro teorema:
+    \[
+        E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \omega(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
     \]
 \end{proof}
-
 \subsection{Método de Newton}
+
+Aunque el método de Lagrange es excelente desde el punto de vista teórico para demostrar la existencia y unicidad del polinomio interpolador, presenta un inconveniente práctico importante: si decidimos añadir un nuevo nodo de interpolación a nuestro conjunto de datos, debemos recalcular todos los polinomios base $L_i(x)$ desde cero. 
+
+Para resolver este problema computacional, el \textbf{Método de Newton} propone construir el polinomio interpolador de forma progresiva o incremental. Es decir, construiremos el polinomio de grado $n$ reciclando el polinomio de grado $n-1$ y añadiéndole un término corrector. Para estructurar este cálculo, necesitamos introducir la herramienta de las diferencias divididas.
+
 \subsubsection{Diferencias divididas}
 
 \begin{definición}[Diferencias divididas]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, definimos las diferencias divididas de $f$ en los puntos $x_0, x_1, \ldots, x_n$ de la siguiente forma:
-    \[
-        f[x_i] = f(x_i) = y_i
-    \]
-    \[
-        f[x_i, x_j] = \frac{f[x_i] - f[x_j]}{x_i - x_j} \quad \text{para } i \neq j
-    \]
-    Y así sucesivamente, definiendo las diferencias divididas de orden $n$ como:
-    \[
-        f[x_i, x_{i+1}, \ldots, x_{i+m}] = 
-        \frac{f[x_i, x_{i+1}, \ldots, x_{i+m-1}] - f[x_{i+1}, x_{i+2}, \ldots, x_{i+m}]}{x_i - x_{i+m}}
-    \]
-\end{definición}
-
-\ejemplo{
-    Si queremos calcular las diferencias divididas con $x_0, x_1, x_2$, entonces tenemos que:
-    \[
-        f[x_0] = f(x_0) = y_0
-    \]
-    \[
-        f[x_0, x_1] = \frac{f[x_0] - f[x_1]}{x_0 - x_1} = \frac{y_0 - y_1}{x_0 - x_1}
-    \]
-    \[
-        f[x_0, x_1, x_2] = \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} = \frac{\frac{y_0 - y_1}{x_0 - x_1} - \frac{y_1 - y_2}{x_1 - x_2}}{x_0 - x_2}
-    \]
-}
-
-Veamos ahora algunas propiedades interesantes de las diferencias divididas:
-\begin{proposición}[Simetría de las diferencias divididas]
-    Las diferencias divididas son simétricas respecto a sus argumentos, es decir, si permutamos los puntos $x_i$ en la definición de las diferencias divididas, el valor de las diferencias divididas no cambia. Por ejemplo:
-        \[
-            f[x_0, x_1] =
-            \frac{f[x_0] - f[x_1]}{x_0 - x_1} =
-            \frac{f[x_1] - f[x_0]}{x_1 - x_0} =
-            f[x_1, x_0]
-        \]
-        E incluso para diferencias divididas de orden superior, como:
-        \[
-            f[x_0, x_1, x_2] =
-            \frac{f[x_0, x_1] - f[x_1, x_2]}{x_0 - x_2} =
-            \frac{f[x_1, x_2] - f[x_0, x_1]}{x_1 - x_0} =
-            f[x_1, x_2, x_0]
-        \]
-        En general, si $\sigma$ es una permutación de $\{ 0, 1, \ldots, n \}$, entonces:
-        \[
-            f[x_0, x_1, \ldots, x_n] = 
-            f[x_{\sigma(0)}, x_{\sigma(1)}, \ldots, x_{\sigma(n)}]
-        \]
-\end{proposición}
-
-\subsubsection{Definición del método de Newton}
-
-La idea del método de Newton es construir el polinomio de interpolación de Lagrange de forma progressiva, es decir, primero construimos el polinomio de interpolación de Lagrange de grado $0$, luego el de grado $1$, y así sucesivamente, hasta llegar al polinomio de interpolación de Lagrange de grado $n$, es decir, la construcción se hará:
-
-\[
-    p_0(x) = f(x_0) \implies
-    p_1(x) = N(p_0(x)) \implies
-    p_2(x) = N(p_1(x)) \implies
-    \ldots \implies
-    p_n(x) = N(p_{n-1}(x))
-\]
-
-\begin{definición}[Construcción del método de Newton]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, podemos empezar a construir el polinomio de interpolación de la siguiente forma:
+    Dada una función $f$ (o un conjunto de datos empíricos) evaluada en un conjunto de nodos distintos $\{ x_i \}_{i=0}^n$, definimos las diferencias divididas de forma recursiva según su orden:
     \begin{itemize}
-        \item \textbf{$n = 0$:} En este caso, el polinomio de interpolación es simplemente el polinomio constante que toma el valor $y_0$ en todo el intervalo, es decir:
+        \item \textbf{Orden 0:} Coinciden con las evaluaciones de la función en los nodos.
         \[
-            p_0(x) = f(x_0) = f[x_0]
+            f[x_i] = f(x_i) = y_i
         \]
-        Esto nos deja el error:
+        \item \textbf{Orden 1:} Tasan la tasa de variación media entre dos nodos.
         \[
-            E_0(x) =
-            f(x) - p_0(x) =
-            \frac{f[x] - f[x_0]}{x - x_0} \cdot (x - x_0) =
-            f[x, x_0] \cdot (x - x_0) \underbrace{=}_{\text{simetría}}
-            f[x_0, x] \cdot (x - x_0)
+            f[x_i, x_j] = \frac{f[x_j] - f[x_i]}{x_j - x_i} \quad \text{para } i \neq j
         \]
-        \item \textbf{$n = 1$:} En este caso, el polinomio de interpolación es el polinomio de grado $1$ que interpola a los puntos $x_0$ y $x_1$, es decir:
+        \item \textbf{Orden $k$:} En general, la diferencia dividida de orden $k$ evaluada en los nodos $x_i, x_{i+1}, \ldots, x_{i+k}$ se define a partir de las diferencias de orden $k-1$:
         \[
-            p_1(x) = \underbrace{p_0(x)}_{\in \mathcal{P}_0} + \underbrace{q_1(x)}_{\in \mathcal{P}_1} \in \mathcal{P}_1
-            \implies
-        \]
-        \[
-            p_1(x_0) = f(x_0) = \underbrace{p_0(x_0)}_{f[x_0]} + \underbrace{q_1(x_0)}_{0} \implies
-            q_1(x_0) = \alpha \cdot (x - x_0) \implies
-        \]
-        \[
-            p_1(x_1) = f(x_1) = \underbrace{p_0(x_1)}_{f[x_0]} + \underbrace{q_1(x_1)}_{\alpha \cdot (x_1 - x_0)} \implies
-            \alpha = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = f[x_0, x_1] \implies
-        \]
-        \[
-            \boxed{p_1(x) = f[x_0] + f[x_0, x_1] \cdot (x - x_0)}
-        \]
-        Y el error en este caso es:
-        \[
-            E_1(x) =
-            f(x) - p_1(x) =
-            \frac{f[x] - f[x_0, x_1]}{(x - x_0)(x - x_1)} \cdot (x - x_0)(x - x_1) =
-            f[x, x_0, x_1] \cdot (x - x_0)(x - x_1)
-        \]
-        Podemos reescribir el error y el polinomio de la siguiente forma, para hacer más evidente la construcción progressiva del método de Newton:
-        \[
-            p_1(x) = p_0(x) + f[x_0, x_1] \cdot \prod_{j=0}^{0} (x - x_j)
-            \, \quad
-            E_1(x) = f[x, x_0, x_1] \cdot \prod_{j=0}^{1} (x - x_j)
-        \]
-        \item \textbf{Inducción:} Queremos probar que los polinomios de interpolación de grado $n$ se pueden construir a partir del polinomio de interpolación de grado $n-1$ de la siguiente forma:
-        \[
-            p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
-            \, \quad
-            E_n(x) = f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+            f[x_i, x_{i+1}, \ldots, x_{i+k}] = 
+            \frac{f[x_{i+1}, x_{i+2}, \ldots, x_{i+k}] - f[x_i, x_{i+1}, \ldots, x_{i+k-1}]}{x_{i+k} - x_i}
         \]
     \end{itemize}
 \end{definición}
 
-\begin{teorema}[Correctitud del método de Newton]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$, que nos definan un problema de interpolación polinómica, entonces el polinomio de Newton construido de forma progressiva a partir de las diferencias divididas, es decir, el polinomio $p_n$ definido por:
+\ejemplo{
+    Si queremos calcular explícitamente las diferencias divididas iterando sobre los primeros tres nodos $x_0, x_1, x_2$, el proceso algebraico es el siguiente:
+    \begin{align*}
+        \text{Orden 0:} \quad & f[x_0] = y_0 \\
+        \text{Orden 1:} \quad & f[x_0, x_1] = \frac{y_1 - y_0}{x_1 - x_0} \\
+        \text{Orden 2:} \quad & f[x_0, x_1, x_2] = \frac{f[x_1, x_2] - f[x_0, x_1]}{x_2 - x_0} = \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1 - x_0}}{x_2 - x_0}
+    \end{align*}
+}
+
+Una propiedad fundamental que simplifica notablemente el cálculo y la teoría subyacente es la invariancia ante permutaciones.
+
+\begin{proposición}[Simetría de las diferencias divididas]
+    Las diferencias divididas son funciones simétricas respecto a sus argumentos. Es decir, el valor numérico de una diferencia dividida depende únicamente del conjunto de nodos sobre los que se evalúa, y no del orden en el que se enumeran. Por ejemplo, para el orden 1:
     \[
-        p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
+        f[x_0, x_1] = \frac{f(x_1) - f(x_0)}{x_1 - x_0} = \frac{f(x_0) - f(x_1)}{x_0 - x_1} = f[x_1, x_0]
     \]
-    Con $p_0(x) = f[x_0]$, es el polinomio de interpolación de Lagrange, es decir, el único polinomio $p \in \mathcal{P}_n$ tal que $p(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$. Además, el error cometido al interpolar a la función $f$ mediante el polinomio de Newton $p_n$ es:
+    En general, si $\sigma$ es cualquier permutación del conjunto de índices $\{ 0, 1, \ldots, k \}$, se cumple rigurosamente que:
     \[
-        E_n(x) = f(x) - p_n(x) = f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+        f[x_0, x_1, \ldots, x_k] = f[x_{\sigma(0)}, x_{\sigma(1)}, \ldots, x_{\sigma(k)}]
+    \]
+\end{proposición}
+
+\subsubsection{Construcción del Polinomio de Newton}
+
+La idea central del método de Newton es construir una sucesión de polinomios $\{p_0, p_1, \dots, p_n\}$ donde cada $p_k \in \mathcal{P}_k$ interpola a la función en los primeros $k+1$ nodos, apoyándose en el polinomio anterior.
+
+\begin{definición}[Construcción progresiva de Newton]
+    Dado el problema de interpolación en los nodos $\{ x_i \}_{i=0}^n$, construimos el polinomio paso a paso:
+    \begin{itemize}
+        \item \textbf{Paso $n = 0$:} El polinomio $p_0 \in \mathcal{P}_0$ es una constante que interpola en $x_0$.
+        \[
+            p_0(x) = f[x_0]
+        \]
+        Si utilizamos este polinomio para aproximar un punto genérico $x$, cometemos un error que podemos expresar algebraicamente usando diferencias divididas:
+        \[
+            E_0(x) = f(x) - p_0(x) = f(x) - f(x_0) = \frac{f(x) - f(x_0)}{x - x_0} (x - x_0) = f[x, x_0] (x - x_0)
+        \]
+        \item \textbf{Paso $n = 1$:} Buscamos un polinomio $p_1 \in \mathcal{P}_1$ que interpole en $x_0$ y $x_1$. Lo planteamos sumando un término corrector lineal a $p_0(x)$:
+        \[
+            p_1(x) = p_0(x) + \alpha (x - x_0) = f[x_0] + \alpha (x - x_0)
+        \]
+        Para que interpole en $x_1$, forzamos que $p_1(x_1) = f[x_1]$:
+        \[
+            f[x_1] = f[x_0] + \alpha (x_1 - x_0) \implies \alpha = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = f[x_0, x_1]
+        \]
+        Sustituyendo el coeficiente $\alpha$, obtenemos la forma final y su error asociado:
+        \[
+            p_1(x) = p_0(x) + f[x_0, x_1](x - x_0)
+        \]
+        \[
+            E_1(x) = f(x) - p_1(x) = f[x_0, x_1, x] (x - x_0)(x - x_1)
+        \]
+        \item \textbf{Paso General (Inducción):} La estructura observada sugiere que el polinomio de grado $n$ se obtiene sumando al polinomio de grado $n-1$ un término proporcional al producto de las distancias a los nodos previos, ponderado por la diferencia dividida de orden $n$.
+    \end{itemize}
+\end{definición}
+
+\begin{teorema}[Fórmula de Interpolación de Newton]
+    Sea $\{ x_i, y_i \}_{i=0}^n$ un conjunto de datos para un problema de interpolación. El único polinomio $p_n \in \mathcal{P}_n$ que satisface $p_n(x_i) = y_i$ para todo $i = 0, \ldots, n$ puede expresarse en la forma de Newton:
+    \[
+        p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \prod_{j=0}^{n-1} (x - x_j)
+    \]
+    Desarrollando la recursión, la forma canónica del polinomio de Newton es:
+    \[
+        p_n(x) = f[x_0] + \sum_{k=1}^n \left( f[x_0, \ldots, x_k] \prod_{j=0}^{k-1} (x - x_j) \right)
+    \]
+    Además, el error exacto de interpolación en un punto cualquiera $x$ viene dado por:
+    \[
+        E_n(x) = f(x) - p_n(x) = f[x_0, x_1, \ldots, x_n, x] \prod_{j=0}^{n} (x - x_j)
     \]
 \end{teorema}
 
 \begin{proof}
-    En la definición hemos probado los casos base $n = 0$ y $n = 1$, por lo que ahora simplemente tenemos que probar el paso inductivo, es decir, suponer que el polinomio de interpolación de grado $n$ se puede construir a partir del polinomio de interpolación de grado $n-1$ de la forma:
-    \[
-        p_n(x) = p_{n-1}(x) + f[x_0, x_1, \ldots, x_n] \cdot \prod_{j=0}^{n-1} (x - x_j)
-    \]
-    Y ahora queremos probar que el polinomio de interpolación de grado $n+1$ se puede construir a partir del polinomio de interpolación de grado $n$ de la forma:
-    \[
-        p_{n+1}(x) = p_{n}(x) + f[x_0, x_1, \ldots, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j)
-    \]
-    Para ello, basta con comprobar que el polinomio $p_{n+1}$ debe ser de la forma:
+    Procederemos por inducción matemática sobre el número de nodos. Ya hemos validado los casos base $n=0$ y $n=1$ en la definición previa.
+    
+    Asumamos como hipótesis de inducción que el teorema es cierto para $n$, es decir, que $p_n(x)$ interpola los primeros $n+1$ puntos y que el error asociado cumple:
     \begin{equation}
-        \begin{aligned}
-            p_{n+1}(x) &= p_{n}(x) + q_{n+1}(x) \implies
-            \begin{cases}
-                \begin{cases}
-                    p_{n+1}(x_i) = \underbrace{p_{n}(x_i)}_{f[x_i]} + q_{n+1}(x_i) = f[x_i] \\
-                    q_{n+1}(x_i) = 0 \implies q_{n+1}(x) = \alpha \cdot \prod_{j=0}^{n} (x - x_j)
-                \end{cases}
-                \quad \forall i = 0, 1, \ldots, n \\
-                p_{n+1}(x_{n+1}) = f[x_{n+1}] = p_{n}(x_{n+1}) + \alpha \cdot \prod_{j=0}^{n} (x_{n+1} - x_j)
-                \label{eq:pn-mas-1}
-            \end{cases}
-        \end{aligned}
+        f(x) = p_n(x) + f[x_0, x_1, \ldots, x_n, x] \prod_{j=0}^{n} (x - x_j) \label{eq:hipotesis_error}
     \end{equation}
-    Ahora usando el error de interpolación, tenemos que:
+    
+    Queremos construir el polinomio $p_{n+1} \in \mathcal{P}_{n+1}$ que interpole un nodo adicional $x_{n+1}$. Proponemos la estructura aditiva:
     \[
-        E_n(x) = f(x) - p_n(x) \implies
-        p_n(x) = f(x) - E_n(x) =
-        f(x) - f[x_0, x_1, \ldots, x_n, x] \cdot \prod_{j=0}^{n} (x - x_j)
+        p_{n+1}(x) = p_n(x) + q_{n+1}(x)
     \]
-    Sustituyendo en la ecuación de $p_{n+1}(x_{n+1})$, obtenemos que:
+    Como $p_n(x)$ ya interpola correctamente en los nodos $x_0, \dots, x_n$, necesitamos que el término corrector $q_{n+1}(x)$ no altere esos valores. Por tanto, $q_{n+1}(x_i) = 0$ para $i=0, \dots, n$. Dado que $q_{n+1}$ es un polinomio de grado a lo sumo $n+1$ con $n+1$ raíces conocidas, debe ser obligatoriamente de la forma:
     \[
-        p_{n+1}(x_{n+1}) = f[x_{n+1}] = f(x_{n+1}) - f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x_{n+1} - x_j) + \alpha \cdot \prod_{j=0}^{n} (x_{n+1} - x_j) \implies
+        q_{n+1}(x) = \alpha \prod_{j=0}^n (x - x_j)
     \]
+    Para determinar la constante $\alpha$, imponemos la condición de interpolación en el nuevo nodo $x_{n+1}$:
     \[
-        \boxed{\alpha = f[x_0, x_1, \ldots, x_n, x_{n+1}]} \implies
+        p_{n+1}(x_{n+1}) = f(x_{n+1}) \implies f(x_{n+1}) = p_n(x_{n+1}) + \alpha \prod_{j=0}^n (x_{n+1} - x_j)
     \]
+    Despejando $\alpha$:
     \[
-        \boxed{p_{n+1}(x) = p_{n}(x) + f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j)}
+        \alpha = \frac{f(x_{n+1}) - p_n(x_{n+1})}{\prod_{j=0}^n (x_{n+1} - x_j)}
     \]
-    Y el error en este caso es:
+    Si evaluamos la ecuación \eqref{eq:hipotesis_error} de nuestra hipótesis de error exactamente en el nodo $x = x_{n+1}$, obtenemos:
     \[
-        E_{n+1}(x) =
-        f(x) - p_{n+1}(x) =
-        f(x) - p_{n}(x) - f[x_0, x_1, \ldots, x_n, x_{n+1}] \cdot \prod_{j=0}^{n} (x - x_j) =
-        f[x_0, x_1, \ldots, x_n, x_{n+1}, x] \cdot \prod_{j=0}^{n+1} (x - x_j)
+        f(x_{n+1}) - p_n(x_{n+1}) = f[x_0, x_1, \ldots, x_n, x_{n+1}] \prod_{j=0}^{n} (x_{n+1} - x_j)
     \]
+    Sustituyendo esto en la expresión de $\alpha$, los productos se cancelan algebraicamente y concluimos de forma exacta que:
+    \[
+        \alpha = f[x_0, x_1, \ldots, x_n, x_{n+1}]
+    \]
+    Por consiguiente, el polinomio queda verificado:
+    \[
+        p_{n+1}(x) = p_n(x) + f[x_0, x_1, \ldots, x_{n+1}] \prod_{j=0}^n (x - x_j)
+    \]
+    Para completar la demostración, el nuevo error de interpolación usando propiedades de diferencias divididas resulta ser:
+    \begin{align*}
+        E_{n+1}(x) &= f(x) - p_{n+1}(x) \\
+        &= f(x) - p_n(x) - f[x_0, \ldots, x_{n+1}] \prod_{j=0}^n (x - x_j) \\
+        &= \left( f[x_0, \ldots, x_n, x] - f[x_0, \ldots, x_{n+1}] \right) \prod_{j=0}^n (x - x_j) \\
+        &= f[x_0, \ldots, x_{n+1}, x] \prod_{j=0}^{n+1} (x - x_j)
+    \end{align*}
+    Lo cual confirma la validez del teorema para el paso $n+1$, concluyendo la demostración.
 \end{proof}
-
 \subsection{Splines}
 
+Como hemos visto, la interpolación polinómica global (utilizando un único polinomio de grado $n$ para todos los puntos) presenta problemas severos de oscilación en los extremos del intervalo cuando $n$ es grande, un comportamiento conocido como el fenómeno de Runge. Para mitigar esto, en lugar de usar un solo polinomio de grado elevado, dividiremos el intervalo en pequeños segmentos y usaremos polinomios de grado bajo en cada uno, exigiendo que se unan de forma suave. A estas funciones definidas a trozos se les llama \textbf{Splines}.
+
 \begin{definición}[Partición de un intervalo]
-    Dado un intervalo $[a,b]$, una partición de dicho intervalo es un conjunto de puntos $\Delta = \{ x_i \}_{i=0}^n$ tal que:
+    Dado un intervalo cerrado $[a,b] \subset \mathbb{R}$, una partición $\Delta$ de dicho intervalo es un conjunto ordenado de $n+1$ puntos (llamados nodos) tal que:
     \[
         a = x_0 < x_1 < x_2 < \ldots < x_n = b
     \]
+    Denotaremos la longitud de cada subintervalo como $h_i = x_i - x_{i-1}$ para $i = 1, \dots, n$.
 \end{definición}
 
 \begin{definición}[Función spline]
-    Dada una partición $\Delta$ y un conjunto de datos $\{ (x_i, y_i) \}_{i=0}^n$, una función spline de orden $k \in \mathbb{N}$ es una función $S : [a,b] \to \mathbb{R}$ que cumple las siguientes condiciones:
+    Dada una partición $\Delta$ y un conjunto de datos $\{ (x_i, y_i) \}_{i=0}^n$, una función spline de orden $k \in \mathbb{N}$ es una función $S : [a,b] \to \mathbb{R}$ que satisface las siguientes tres condiciones:
     \begin{enumerate}
-        \item $S \in C^{k-1}$ globalmente en $[a,b]$, es decir, $S$ es continua y tiene derivadas continuas hasta el orden $k-1$ en todo el intervalo $[a,b]$.
-        \item $S \in \mathcal{P}^k$ localmente en cada subintervalo $[x_i, x_{i+1}]$, es decir, $S$ es un polinomio de grado a lo sumo $k$ en cada subintervalo $[x_i, x_{i+1}]$.
-        \item $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, es decir, $S$ interpola a los datos dados en los puntos de la partición.
+        \item \textbf{Regularidad global:} $S \in C^{k-1}([a,b])$. Es decir, la función y sus primeras $k-1$ derivadas son continuas en todo el intervalo $[a,b]$.
+        \item \textbf{Estructura local:} $S \big|_{[x_{i-1}, x_i]} \in \mathcal{P}_k$ para cada $i = 1, \dots, n$. Es decir, en cada subintervalo, $S$ se comporta exactamente como un polinomio de grado menor o igual a $k$.
+        \item \textbf{Condición de interpolación:} $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$.
     \end{enumerate}
-    Esta función spline se denota comúnmente como $S_k$ para indicar el orden del spline, y define un problema de interpolación spline, que consiste en encontrar una función spline $S_k$ que interpole a los datos dados en los puntos de la partición.
+    Comúnmente, a esta función se le denota como $S_k$ para explicitar su orden.
 \end{definición}
 
-Veamos algunos casos elementales:\\
+Veamos los casos elementales más utilizados en la práctica numérica:\\
 
-\textbf{Caso elemental $k=1$:}
-$S : [a,b] \to \mathbb{R}$ es un spline de orden $1$ si $S$:
-\begin{enumerate}
-    \item $S \in C^0([a,b])$, es decir, $S$ es continua en $[a,b]$.
-    \item $S \in \mathcal{P}^1([x_i, x_{i+1}])$ para todo $i = 0, 1, \ldots, n-1$, es decir, $S$ es un polinomio de grado a lo sumo $1$ en cada subintervalo $[x_i, x_{i+1}]$, lo que significa que $S$ es una función lineal por tramos.
-    \item $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, es decir, $S$ interpola a los datos dados en los puntos de la partición.
-\end{enumerate}
+\textbf{Spline lineal (Orden $k=1$):}\\
+Una función $S$ es un spline de orden $1$ si es continua globalmente ($S \in C^0([a,b])$) y en cada tramo es un polinomio de grado 1 (una recta). Geométricamente, esto equivale a unir los puntos de interpolación mediante segmentos de recta.
 
-Gráficamente, si tomamos la siguiente tabla de datos:
-\[
-    \begin{array}{c|c}
-        x_i & y_i \\
+Gráficamente, si tomamos la siguiente tabla de datos empíricos:
+\begin{center}
+    \begin{tabular}{|c|ccccc|}
         \hline
-        1 & 3 \\
-        2 & -2 \\
-        4 & 0 \\
-        5 & -1 \\
-        6 & 4
-    \end{array}
-\]
+        $x_i$ & 1 & 2 & 4 & 5 & 6 \\
+        \hline
+        $y_i$ & 3 & -2 & 0 & -1 & 4 \\
+        \hline
+    \end{tabular}
+\end{center}
 
-Podemos construir el spline de orden $1$ de la siguiente forma:
+El spline lineal resultante se visualiza de la siguiente forma:
 \begin{center}
     \begin{tikzpicture}
         % Ejes
@@ -562,288 +526,166 @@ Podemos construir el spline de orden $1$ de la siguiente forma:
 
         % Puntos de la tabla
         \foreach \xx/\yy in {
-            1/3,
-            2/-2,
-            4/0,
-            5/-1,
-            6/4
+            1/3, 2/-2, 4/0, 5/-1, 6/4
         } {
             \fill[black] (\xx,\yy) circle (1.2pt);
-            % Dibujamos la recta horizontal y vertical de cada punto a los ejes, discontinua y con opacidad reducida
+            % Lineas guia
             \draw[dashed, gray, opacity=0.5] (\xx,0) -- (\xx,\yy);
             \draw[dashed, gray, opacity=0.5] (0,\yy) -- (\xx,\yy);
         }
 
         % Spline de orden 1
-        \draw[thick, red] plot coordinates {
-            (1,3)
-            (2,-2)
-            (4,0)
-            (5,-1)
-            (6,4)
-        };
+        \draw[thick, red] plot coordinates { (1,3) (2,-2) (4,0) (5,-1) (6,4) };
     \end{tikzpicture}
 \end{center}
 
-\textbf{Caso elemental $k=2$:}
-$S : [a,b] \to \mathbb{R}$ es un spline de orden $2$ si $S$:
-\begin{enumerate}
-    \item $S \in C^1([a,b])$, es decir, $S$ es continua y tiene derivada continua en $[a,b]$.
-    \item $S \in \mathcal{P}^2([x_i, x_{i+1}])$ para todo $i = 0, 1, \ldots, n-1$, es decir, $S$ es un polinomio de grado a lo sumo $2$ en cada subintervalo $[x_i, x_{i+1}]$, lo que significa que $S$ es una función cuadrática por tramos.
-    \item $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, es decir, $S$ interpola a los datos dados en los puntos de la partición.
-\end{enumerate}
+\textbf{Spline cuadrático (Orden $k=2$):}\\
+En este caso, $S \in C^1([a,b])$ (función y primera derivada continuas) y está formado por arcos de parábola ($\mathcal{P}_2$) en cada subintervalo. La transición entre una parábola y otra en los nodos $x_i$ se realiza sin cambios bruscos de pendiente.
 
-\textbf{Caso elemental $k=3$:}
-$S : [a,b] \to \mathbb{R}$ es un spline de orden $3$ si $S$:
-\begin{enumerate}
-    \item $S \in C^2([a,b])$, es decir, $S$ es continua y tiene derivadas continuas hasta el orden $2$ en $[a,b]$.
-    \item $S \in \mathcal{P}^3([x_i, x_{i+1}])$ para todo $i = 0, 1, \ldots, n-1$, es decir, $S$ es un polinomio de grado a lo sumo $3$ en cada subintervalo $[x_i, x_{i+1}]$, lo que significa que $S$ es una función cúbica por tramos.
-    \item $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$, es decir, $S$ interpola a los datos dados en los puntos de la partición.
-\end{enumerate}
+\textbf{Spline cúbico (Orden $k=3$):}\\
+Es el tipo de spline más utilizado en ingeniería y diseño gráfico. Requiere que $S \in C^2([a,b])$ (continuidad de función, primera y segunda derivada) y utiliza polinomios cúbicos ($\mathcal{P}_3$) en cada tramo.
 
-Podemos entonces escribir sus ecuaciones de la siguiente forma:
-\[
-    S(x) = a_0^{i} + a_1^{i} x + a_2^{i} x^2 + a_3^{i} x^3
-\]
-\[
-    S'(x) = a_1^{i} + 2 a_2^{i} x + 3 a_3^{i} x^2
-\]
-\[
-    S''(x) = 2 a_2^{i} + 6 a_3^{i} x
-\]
-
-Ahora, nos podemos preguntar cuantas ecuaciones tenemos para determinar los coeficientes $a_0^{i}, a_1^{i}, a_2^{i}, \cdots, a_n^{i}$ de cada polinomio. Para ello, tenemos que:
+Analicemos los grados de libertad de un spline cúbico. Como tenemos $n$ subintervalos y un polinomio de grado 3 en cada uno, disponemos de $4n$ coeficientes desconocidos.
 \begin{itemize}
-    \item Por la condición de interpolación, tenemos $n+1$ ecuaciones, ya que $S(x_i) = y_i$ para todo $i = 0, 1, \ldots, n$.
-    \item Se suele añadir la condición de que el spline sea natural, es decir, que $S''(x_0) = S''(x_n) = 0$, lo que nos da $2$ ecuaciones más.
-    \item También se suelen dar condiciones de contorno de las derivadas al inicio y al final del intervalo, es decir, $S'(a) = \alpha$ y $S'(b) = \beta$, lo que nos da $2$ ecuaciones más.
-    \item A veces también se dan condiciones periodicas que nos dicen que $S^{(k)}(a) = S^{(k)}(b)$ para todo $k = 0, 1, \ldots$, lo que nos da $n+1$ ecuaciones más.
+    \item \textbf{Interpolación:} Que la curva pase por los extremos de cada intervalo aporta $2n$ ecuaciones.
+    \item \textbf{Continuidad en los nodos interiores ($C^0, C^1, C^2$):} En los $n-1$ nodos interiores, igualamos el valor, la derivada primera y la derivada segunda de los polinomios adyacentes. Esto aporta $3(n-1)$ ecuaciones.
+\end{itemize}
+En total tenemos $2n + 3n - 3 = 5n - 3$ ecuaciones. ¡Pero esperábamos $4n$! Un análisis correcto nos dice que evaluar la función en todos los puntos da $n+1$ ecuaciones, y la continuidad interna da $3(n-1)$, sumando $4n-2$ ecuaciones. Faltan exactamente \textbf{dos ecuaciones} adicionales para que el sistema tenga solución única. Estas provienen de las condiciones de contorno:
+\begin{itemize}
+    \item \textbf{Frontera Natural:} Se impone que la curvatura en los extremos sea nula, es decir, $S''(x_0) = S''(x_n) = 0$.
+    \item \textbf{Frontera Sujeta (Clamped):} Se especifican las pendientes inicial y final empíricamente, $S'(x_0) = \alpha$ y $S'(x_n) = \beta$.
+    \item \textbf{Frontera Periódica:} Útil para curvas cerradas, obliga a que $S'(x_0) = S'(x_n)$ y $S''(x_0) = S''(x_n)$.
 \end{itemize}
 
-En el caso $k=3$, si establecemos que el Spline sea natural, es decir, que $S''(x_0) = S''(x_n) = 0$, entonces podemos tener suficientes datos para determinar un único spline cúbico que interpole a los datos dados en los puntos de la partición. Esto se puede hacer en 2 pasos:
+\subsubsection{Construcción del Spline Cúbico Natural}
+
+Estableciendo que el Spline sea natural ($S''(x_0) = S''(x_n) = 0$), podemos determinar el sistema de forma eficiente parametrizándolo a través de sus derivadas segundas en los nodos.
 
 \begin{enumerate}
-    \item \textbf{Definir:} Para cada $i = 0, 1, \ldots, n-1$, definimos:
+    \item \textbf{Definición de Momentos:} Para cada $i = 0, 1, \ldots, n$, definimos las incógnitas auxiliares llamadas \textit{momentos}:
     \[
         m_i = S''(x_i)
     \]
-    Que se denominan "momentos", y además se establece que $m_0 = m_n = 0$ por ser un spline natural. Después se escribe un lema que habla de la unicidad del Spline según los momentos.
-    \item \textbf{Momentos:} Sabiendo que $S'$ es continua, entonces:
+    Por ser un spline natural, sabemos a priori que $m_0 = m_n = 0$.
+    
+    \item \textbf{Planteamiento del Sistema:} Ya que obligamos a $S''$ a ser continua, interpolando linealmente los momentos $m_i$, y forzando a que la primera derivada $S'$ también sea continua en los nodos interiores ($S'(x_i^-) = S'(x_i^+)$), se deduce algebraicamente la siguiente relación fundamental para cada nodo interior $i = 1, \dots, n-1$:
     \[
-        S'(x_i-0) = S'(x_i+0) \implies
+        \frac{h_i}{6} m_{i-1} + \frac{h_i + h_{i+1}}{3} m_i + \frac{h_{i+1}}{6} m_{i+1} = \frac{y_{i+1} - y_i}{h_{i+1}} - \frac{y_i - y_{i-1}}{h_i}
     \]
-    \[
-        \begin{cases}
-            S'(x_i+0) = \frac{1}{2 h_{i+1}} (\textcolor{green}{-m_i}h_{i+1}) + 
-            \frac{h_{i+1}}{6} (\textcolor{green}{m_i} - \textcolor{purple}{m_{i+1}}) +
-            f[x_i, x_{i+1}] \\
-            S'(x_i-0) = \frac{\textcolor{green}{m_i} h_i}{2} + \frac{h_i}{6} (\textcolor{red}{m_{i-1}} - \textcolor{green}{m_i}) + f[x_{i-1}, x_i]
-        \end{cases}
-        \implies
-    \]
-    \[
-        \frac{h_i}{6} + \left( \frac{h_{i+1}}{2} - \frac{h_i}{6} + \frac{h_i}{2} - \frac{h_{i}}{6} \right) m_i + \frac{h_{i+1}}{6} m_{i+1} = f[x_{i-1}, x_{i}] - f[x_{i}, x_{i+1}] \implies
-    \]
+    Si multiplicamos toda la ecuación por $\frac{6}{h_i + h_{i+1}}$, obtenemos la forma adimensional clásica:
     \[
         \underbrace{\frac{h_i}{h_i + h_{i+1}}}_{\mu_i} m_{i-1} + 2 m_i + 
         \underbrace{\frac{h_{i+1}}{h_i + h_{i+1}}}_{\lambda_i} m_{i+1} = 
-        6 \frac{f[x_{i-1}, x_{i}] - f[x_{i}, x_{i+1}]}{x_{i+1} - x_{i-1}} =
-        - 6 f[x_{i-1}, x_i, x_{i+1}]
+        6 f[x_{i-1}, x_i, x_{i+1}]
     \]
-    Dejándonos el sistema, con $m = \begin{pmatrix} m_0 \\ m_1 \\ \vdots \\ m_n \end{pmatrix}$, $d = \begin{pmatrix} d_1 \\ d_2 \\ \vdots \\ d_{n-1} \end{pmatrix}$:
+    Donde $f[\dots]$ denota las diferencias divididas de Newton. Esto nos genera un sistema lineal tridiagonal $\Lambda m = d$:
     \[
-        \Lambda m = d \implies
-        \begin{pmatrix}
+        \begin{bmatrix}
             2 & \lambda_1 & 0 & \cdots & 0 \\
             \mu_2 & 2 & \lambda_2 & \cdots & 0 \\
             0 & \mu_3 & 2 & \cdots & 0 \\
             \vdots & \vdots & \vdots & \ddots & \vdots \\
-            0 & 0 & 0 & \cdots & \lambda_{n-2} \\
-            0 & 0 & \cdots & \mu_{n-2} & 2
-        \end{pmatrix} \begin{pmatrix}
-            m_0 \\
+            0 & 0 & 0 & \cdots & \lambda_{n-1} \\
+            0 & 0 & \cdots & \mu_{n-1} & 2
+        \end{bmatrix}
+        \begin{bmatrix}
             m_1 \\
             m_2 \\
+            m_3 \\
             \vdots \\
             m_{n-2} \\
-            m_{n-1} \\
-            m_n
-        \end{pmatrix} = \begin{pmatrix}
+            m_{n-1}
+        \end{bmatrix}
+        = 
+        \begin{bmatrix}
             d_1 \\
             d_2 \\
             d_3 \\
             \vdots \\
             d_{n-2} \\
             d_{n-1}
-        \end{pmatrix}
+        \end{bmatrix}
     \]
-    Como $\Lambda$ es de diagonal estrictamente dominante, entonces el sistema tiene una única solución, lo que nos da los momentos $m_i$ para todo $i = 0, 1, \ldots, n$, y por lo tanto nos da un único spline cúbico que interpola a los datos dados en los puntos de la partición.
+    Notemos que $\mu_i + \lambda_i = 1$. Como el elemento en la diagonal es $2$, y $2 > 1$, la matriz $\Lambda$ es \textbf{diagonal estrictamente dominante}. Esto garantiza matemáticamente que la matriz es no singular y, por ende, el sistema tiene una única solución para los momentos $m_i$.
 \end{enumerate}
 
-\begin{lema}[Unicidad del Spline según los momentos]
-    Dado un conjunto de puntos $\{ x_i, y_i \}_{i=0}^n$ y un conjunto de momentos $\{ m_i \}_{i=0}^n$ con $m_0 = m_n = 0$, entonces existe un único spline cúbico $S$ que interpola a los datos dados en los puntos de la partición y que tiene como momentos a los $m_i$ dados.
+\begin{lema}[Construcción analítica del Spline desde sus momentos]
+    Conocidos los momentos $\{ m_i \}_{i=0}^n$, el spline cúbico en cada intervalo $x \in [x_{i-1}, x_i]$ queda unívocamente determinado.
 \end{lema}
 
 \begin{proof}
-    Hagamos una demostración constructiva.
-    \begin{enumerate}
-        \item Como $S \in \mathcal{P}^3$ es un polinomio de grado a lo sumo $3$ en cada subintervalo $[x_i, x_{i+1}]$, entonces $S'' \in \mathcal{P}^1$ son rectas en cada subintervalo $[x_i, x_{i+1}]$, y deben de ser continuas al ser $S \in C^2$ globalmente en $[a,b]$.
-        \item Ahora si $x \in [x_i, x_{i+1}]$, donde denotamos $h_{i+1} = x_{i+1} - x_i$, entonces $S''(x) = \alpha m_i (x-x_i) + \beta m_{i+1} (x_{i+1}-x)$, ya que $S''$ es una recta que pasa por los puntos $(x_i, m_i)$ y $(x_{i+1}, m_{i+1})$. Despejando:
-        \[
-            \begin{cases}
-                S''(x_i) = m_i = \alpha m_i \underbrace{x_i - x_{i+1}}_{-h_{i+1}} \implies \alpha = -\frac{1}{h_{i+1}} \\
-                S''(x_{i+1}) = m_{i+1} = \beta m_{i+1} \underbrace{x_{i+1} - x_i}_{h_{i+1}} \implies \beta = \frac{1}{h_{i+1}}
-            \end{cases}
-            \implies
-            \boxed{S''(x) = \frac{m_{i+1} (x - x_i) - m_i (x_{i+1} - x)}{h_{i+1}}}
-        \]
-        \item Integrando:
-        \[
-            S'(x) = \int S''(x) dx = \frac{1}{2 h_{i+1}} \left( -m_i (x_{i+1} - x)^2 + m_{i+1} (x - x_i)^2 \right) + a_i
-        \]
-        \[
-            S(x) = \int S'(x) dx = \frac{1}{6 h_{i+1}} \left( m_i (x_{i+1} - x)^3 + m_{i+1} (x - x_i)^3 \right) + a_i (x - x_i) + b_i
-        \]
-        \item Ahora usando la condición de interpolación, tenemos que:
-        \[
-            S(x_i) = f(x_i) = \frac{1}{6 h_{i+1}} m_i h_{i+1}^3 + b_i \implies 
-        \]
-        \[
-            \boxed{b_i = f(x_i) - \frac{1}{6} m_i h_{i+1}^2}
-        \]
-        \[
-            S(x_{i+1}) = f(x_{i+1}) = \frac{1}{6 h_{i+1}} m_{i+1} h_{i+1}^3 + a_i h_{i+1} + \underbrace{f(x_i) - \frac{1}{6} m_i h_{i+1}^2}_{b_i} \implies
-        \]
-        \[
-            \boxed{a_i = \underbrace{\frac{f(x_{i+1}) - f(x_i)}{h_{i+1}}}_{f[x_i, x_{i+1}]} + \frac{h_{i+1}}{6} (m_{i} - m_{i+1})}
-        \]
-        Dejando así que:
-        \[
-            S(x) = \frac{1}{6 h_{i+1}} \left( m_i (x_{i+1} - x)^3 + 
-            m_{i+1} (x - x_i)^3 \right) + 
-        \]
-        \[
-            + \left( f[x_i, x_{i+1}] + \frac{h_{i+1}}{6} (m_{i} - m_{i+1}) \right) (x - x_i) + 
-            f(x_i) - \frac{1}{6} m_i h_{i+1}^2
-        \]
-    \end{enumerate}
+    Como $S$ es de grado 3 en el subintervalo, su derivada segunda $S''$ debe ser una recta que interpola los puntos $(x_{i-1}, m_{i-1})$ y $(x_i, m_i)$. Su ecuación es directa:
+    \[
+        S''(x) = m_{i-1} \frac{x_i - x}{h_i} + m_i \frac{x - x_{i-1}}{h_i}
+    \]
+    Integrando dos veces respecto a $x$ y aplicando las condiciones de interpolación $S(x_{i-1}) = y_{i-1}$ y $S(x_i) = y_i$ para hallar las dos constantes de integración, llegamos a la expresión analítica final del polinomio en el tramo:
+    \begin{align*}
+        S(x) =& \frac{m_{i-1}}{6h_i} (x_i - x)^3 + \frac{m_i}{6h_i} (x - x_{i-1})^3 \\
+              &+ \left( \frac{y_{i-1}}{h_i} - \frac{m_{i-1} h_i}{6} \right) (x_i - x) 
+               + \left( \frac{y_i}{h_i} - \frac{m_i h_i}{6} \right) (x - x_{i-1})
+    \end{align*}
 \end{proof}
 
-\begin{definición}[Spline cúbico natural o de Tipo I]
-    Un spline cúbico natural o de Tipo I es un spline cúbico que satisface las condiciones de contorno $S''(x_0) = S''(x_n) = 0$.
-\end{definición}
-
-Veamos ahora un ejemplo de cómo construir un spline cúbico natural a partir de un conjunto de datos dado.
-
 \ejemplo{
-    Suponemos que tenemos la siguiente tabla de datos:
-    \[
-        \begin{array}{c|c}
-            x_i & y_i \\
+    Apliquemos la teoría resolviendo a mano un spline cúbico natural para el siguiente conjunto de datos empíricos:
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|}
             \hline
-            0 & 0 \\
-            1 & 1 \\
-            3 & 1 
-        \end{array}
-    \]
-    Y queremos construir el spline cúbico natural que interpole a estos datos. Para ello, seguimos los siguientes pasos:
+            $x_i$ & 0 & 1 & 3 \\
+            \hline
+            $y_i$ & 0 & 1 & 1 \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    Tenemos $n=2$ tramos. Los momentos en las fronteras son $m_0 = m_2 = 0$. Nuestra única incógnita es $m_1$.
+    Las longitudes de los intervalos son $h_1 = 1 - 0 = 1$ y $h_2 = 3 - 1 = 2$.
+
     \begin{enumerate}
-        \item \textbf{Definir los momentos:} Para cada $i = 0, 1, 2$, definimos:
+        \item \textbf{Ecuaciones de la curvatura ($S''$):}
+        Conociendo que los momentos son rectas que unen los valores $\{0, m_1, 0\}$, planteamos $S''$:
         \[
-            m_i = S''(x_i)
-        \]
-        Y así, nos queda, con $m_0 = m_2 = 0$ por ser un spline natural:
-        \[
-            S'' = 
+            S''(x) = 
             \begin{cases}
                 m_1 x & \text{si } x \in [0,1] \\
                 - \frac{m_1}{2} (x-3) & \text{si } x \in [1,3]
             \end{cases}
         \]
-        Esto se pude apreciar si representamos gráficamente el spline cúbico natural que interpola a los datos dados:
-        \begin{center}
-            \begin{tikzpicture}
-                % Ejes
-                \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
-                \draw[->] (0,-0.5) -- (0,1.5) node[above] {$y$};
-
-                % Marcas de los puntos X
-                \foreach \x in {0,1,3} {
-                    \draw (\x,0.1) -- (\x,-0.1) node[below] {$\x$};
-                }
-
-                % Marca en la altura 1
-                \draw (0.1,1) -- (-0.1,1) node[left] {$m_1$};
-
-                % Puntos de la tabla
-                \foreach \xx/\yy in {
-                    0/0,
-                    1/1,
-                    3/0
-                } {
-                    \fill[black] (\xx,\yy) circle (1.2pt);
-                    % Dibujamos la recta horizontal y vertical de cada punto a los ejes, discontinua y con opacidad reducida
-                    \draw[dashed, gray, opacity=0.5] (\xx,0) -- (\xx,\yy);
-                    \draw[dashed, gray, opacity=0.5] (0,\yy) -- (\xx,\yy);
-                }
-
-                % Spline cúbico natural
-                \draw[thick, red] plot coordinates {
-                    (0,0)
-                    (1,1)
-                    (3,0)
-                };
-            \end{tikzpicture}
-        \end{center}
-        \item \textbf{Momentos:} Ahora podemos integrar para obtener $S'$ y $S$:
+        \item \textbf{Integración a Velocidad ($S'$):} Integramos obteniendo constantes $a_1$ y $a_2$:
         \[
-            S' = 
+            S'(x) = 
             \begin{cases}
                 \frac{m_1}{2} x^2 + a_1 & \text{si } x \in [0,1] \\
                 -\frac{m_1}{4} (x-3)^2 + a_2 & \text{si } x \in [1,3]
             \end{cases}
-            \implies
         \]
+        \item \textbf{Integración a Posición ($S$):} Integramos nuevamente. En el segundo tramo, agruparemos la constante $a_2$ respecto a $(x-1)$ para facilitar la evaluación:
         \[
-            S = 
+            S(x) = 
             \begin{cases}
                 \frac{m_1}{6} x^3 + a_1 x + b_1 & \text{si } x \in [0,1] \\
                 -\frac{m_1}{12} (x-3)^3 + a_2 (x-1) + b_2 & \text{si } x \in [1,3]
             \end{cases}
         \]
-        Nótese que en $S$ aparece el término $a_2 (x-1)$ en lugar de $a_2 x$, esto es porque al integrar $S'$ en el intervalo $[1,3]$, el término $a_2$ se multiplica por $(x-1)$, ya que la integración se hace a partir del punto $1$.
-        \item \textbf{Condición de interpolación:} Ahora usando la condición de interpolación, tenemos que:
+        \item \textbf{Forzar la Interpolación:}
+        En $x=0$: $S(0) = 0 \implies \boxed{b_1 = 0}$ \\
+        En $x=1$ (Tramo 1): $S(1) = 1 \implies \frac{m_1}{6} + a_1 = 1 \implies \boxed{a_1 = 1 - \frac{m_1}{6}}$ \\
+        En $x=1$ (Tramo 2): $S(1) = 1 \implies -\frac{m_1}{12}(-8) + b_2 = 1 \implies \frac{2m_1}{3} + b_2 = 1 \implies \boxed{b_2 = 1 - \frac{2m_1}{3}}$ \\
+        En $x=3$: $S(3) = 1 \implies 0 + a_2(2) + b_2 = 1 \implies 2a_2 + 1 - \frac{2m_1}{3} = 1 \implies \boxed{a_2 = \frac{m_1}{3}}$
+        
+        \item \textbf{Imponer la continuidad de la primera derivada en $x=1$:}
+        Para encontrar $m_1$, exigimos que la curva no tenga un "pico" en $x=1$, es decir, los límites laterales de $S'$ deben coincidir:
         \[
-            S(0) = 0 \implies \boxed{b_1 = 0}
+            S'(1^-) = S'(1^+) \implies \frac{m_1}{2} + a_1 = - \frac{m_1}{4}(-2)^2 + a_2 \implies \frac{m_1}{2} + a_1 = -m_1 + a_2
         \]
+        Sustituyendo los valores de $a_1$ y $a_2$:
         \[
-            S(1) = 1 \implies \frac{m_1}{6} + a_1 + b_1 = 1 \implies \boxed{a_1 = 1 - \frac{m_1}{6}}
+            \frac{m_1}{2} + \left(1 - \frac{m_1}{6}\right) = -m_1 + \frac{m_1}{3}
         \]
-        \[
-            S(1) = 1 \implies -\frac{m_1}{12} (1-3)^3 + a_2 (1-1) + b_2 = 1
-            \implies \frac{2m_1}{3} + b_2 = 1 \implies \boxed{b_2 = 1 - \frac{2m_1}{3}}
-        \]
-        \[
-            S(3) = 1 \implies -\frac{m_1}{12} (3-3)^3 + a_2 (3-1) + b_2 = 1
-            \implies 2a_2 + b_2 = 1 \implies a_2 = \frac{1-b_2}{2}
-            \implies \boxed{a_2 = \frac{m_1}{3}}
-        \]
-        \item \textbf{Encontrar el momento $m_1$:} Ahora, para encontrar el valor de $m_1$, basta con usar la condición de que $S''$ es continua en $x=1$, es decir:
-        \[
-            S''(1-0) = S''(1+0) \implies 
-            \frac{m_1}{2} + a_1 = -m_1 + a_2 \implies
-            \boxed{m_1 = -1}
-        \]
-        Dejando así los parámetros del spline cúbico natural que interpola a los datos dados:
-        \[
-            \begin{cases}
-                a_1 = 1 - \frac{m_1}{6} = 1 + \frac{1}{6} = \frac{7}{6} \\
-                b_1 = 0 \\
-                a_2 = \frac{m_1}{3} = -\frac{1}{3} \\
-                b_2 = 1 - \frac{2m_1}{3} = 1 + \frac{2}{3} = \frac{5}{3}
-            \end{cases}
-        \]
-        \item \textbf{Resultado final:} Por lo tanto, el spline cúbico natural que interpola a los datos dados es:
+        Resolviendo la ecuación llegamos a que $\boxed{m_1 = -1}$.
+        
+        \item \textbf{Resultado final:}
+        Sustituyendo $m_1 = -1$ en nuestras constantes ($a_1 = 7/6$, $a_2 = -1/3$, $b_2 = 5/3$), obtenemos las funciones cúbicas exactas del Spline:
         \[
             S(x) = 
             \begin{cases}
@@ -852,4 +694,35 @@ Veamos ahora un ejemplo de cómo construir un spline cúbico natural a partir de
             \end{cases}
         \]
     \end{enumerate}
+
+    Gráficamente, hemos sustituido una trayectoria poligonal por curvas fluidas perfectas:
+    \begin{center}
+        \begin{tikzpicture}
+            % Ejes
+            \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
+            \draw[->] (0,-0.5) -- (0,2) node[above] {$y$};
+
+            % Marcas de los puntos X
+            \foreach \x in {0,1,3} {
+                \draw (\x,0.1) -- (\x,-0.1) node[below] {$\x$};
+            }
+
+            % Marca en la altura 1
+            \draw (0.1,1) -- (-0.1,1) node[left] {1};
+
+            % Puntos de la tabla
+            \foreach \xx/\yy in { 0/0, 1/1, 3/1 } {
+                \fill[black] (\xx,\yy) circle (1.5pt);
+                \draw[dashed, gray, opacity=0.5] (\xx,0) -- (\xx,\yy);
+                \draw[dashed, gray, opacity=0.5] (0,\yy) -- (\xx,\yy);
+            }
+
+            % Spline cúbico natural (Curvas reales calculadas)
+            \draw[thick, red] plot[domain=0:1, samples=50] (\x, {-1/6*(\x)^3 + 7/6*(\x)});
+            \draw[thick, red] plot[domain=1:3, samples=50] (\x, {1/12*(\x-3)^3 - 1/3*(\x-1) + 5/3});
+            
+            % Etiqueta del nodo donde m_1 = -1
+            \node[above right, text=red] at (1,1) {$m_1 = -1$};
+        \end{tikzpicture}
+    \end{center}
 }
