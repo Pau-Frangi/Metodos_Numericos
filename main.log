@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  15 APR 2026 10:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  16 APR 2026 11:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1292,7 +1292,7 @@ Package etoc Info: Setting (or re-setting) the options `maintoctotoc' and
 (etoc)             `localtoctotoc' to true as tocbibind was detected and
 (etoc)             found to be configured for `TOC to toc'.
 (etoc)             Reported at begin document on input line 15.
-<images/logo.png, id=230, 1585.81029pt x 1585.81029pt>
+<images/logo.png, id=246, 1585.81029pt x 1585.81029pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 31.
@@ -1998,49 +1998,49 @@ pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\
                    \relax 
 l.494     N
            otese que si $\omega = 1$, entonces el método de relajación de ... [46]) [47] (Theory/4 - Interpolación polinómica.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--7
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 8.
+(mdframed)              on input line 13.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.8 \begin{definición}[Espacio de polinomios]
-                                              
+l.13 \begin{definición}[Espacio de polinomios]
+                                               
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 39.
+(mdframed)              on input line 40.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.39 ...Problema de la interpolación polinómica]
-                                                   [48]
+l.40 ...Problema de la interpolación polinómica]
+                                                   [48] [49]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 145.
+(mdframed)              on input line 169.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.145 \begin{definición}[Polinomios de Lagrange]
-                                                 
+l.169 ...definición}[Polinomios base de Lagrange]
+                                                  
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 177.
- [49]
+(mdframed)              on input line 182.
+ [50]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 183.
+(mdframed)              on input line 186.
 
 pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.183 ...cia y unicidad del polinomio de Lagrange]
+l.186 ...cia y unicidad del polinomio de Lagrange]
                                                   
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -2050,119 +2050,84 @@ pdfTeX warning (ext4): destination with the same identifier (name{definici\303\2
 <to be read again> 
                    \relax 
 l.216     E
-           l error de interpolación de la función $f$ mediante el polinomi...
-Package mdframed Info: Not enough space on this page on input line 220.
- [50]
-Package mdframed Info: Not enough space on this page on input line 220.
+           l error de interpolación de la función $f$ aproximada mediante ... [51]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 270.
+(mdframed)              on input line 269.
 
 pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.270 \begin{teorema}[Error de interpolación]
-                                               [51]
+l.269 ...ma}[Fórmula del error de interpolación]
+                                                   [52] [53]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 328.
+(mdframed)              on input line 337.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.328 \begin{definición}[Diferencias divididas]
-                                                 [52]
+l.337 \begin{definición}[Diferencias divididas]
+                                                
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 357.
+(mdframed)              on input line 367.
 
 pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.357 ...}[Simetría de las diferencias divididas]
-                                                  
+l.367 ...}[Simetría de las diferencias divididas]
+                                                   [54]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 391.
+(mdframed)              on input line 382.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.391 ...ón}[Construcción del método de Newton]
-                                                   [53]
+l.382 ...ión}[Construcción progresiva de Newton]
+                                                  
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 444.
+(mdframed)              on input line 412.
 
 pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.444 ...orema}[Correctitud del método de Newton]
-                                                   [54]
-Overfull \hbox (8.15839pt too wide) detected at line 478
-[][][][][][]
- []
-
-
-Overfull \hbox (30.8912pt too wide) detected at line 501
-\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 p[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 p[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 x[]; x[]; [] ; x[]; x[]\OT1/cmr/m/n/10.95 ] \OMS/cmsy/m/n/10.95 ^^A []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 x[]\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 x[]; x[]; [] ; x[]; x[]; x\OT1/cmr/m/n/10.95 ] \OMS/cmsy/m/n/10.95 ^^A []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 x[]\OT1/cmr/m/n/10.95 )
- []
-
+l.412 ...ma}[Fórmula de Interpolación de Newton]
+                                                   [55] [56]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 506.
+(mdframed)              on input line 476.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.506 ...{definición}[Partición de un intervalo]
-                                                   [55]
+l.476 ...{definición}[Partición de un intervalo]
+                                                  
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 513.
+(mdframed)              on input line 484.
 
 pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.513 \begin{definición}[Función spline]
+l.484 \begin{definición}[Función spline]
                                           
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
 
  []
 
-[56]
-Overfull \hbox (2.48428pt too wide) in paragraph at lines 615--617
-[]\OT1/cmr/m/n/10.95 Ahora, nos pode-mos pre-gun-tar cuan-tas ecua-ciones ten-emos para de-ter-mi-nar los co-e-fi-cientes $\OML/cmm/m/it/10.95 a[]; a[]; a[]; []  ; a[]$
- []
-
-[57]
+[57] [58]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 683.
+(mdframed)              on input line 612.
 
 pdfTeX warning (ext4): destination with the same identifier (name{lema.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.683 ...[Unicidad del Spline según los momentos]
-                                                   [58]
-Overfull \hbox (2.45119pt too wide) detected at line 699
-[]  \OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/10.95 )  []
- []
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 732.
-
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.732 ...ión}[Spline cúbico natural o de Tipo I]
-                                                  
-Overfull \hbox (10.91652pt too wide) detected at line 855
-\OML/cmm/m/it/10.95 S\OT1/cmr/m/n/10.95 (3) = 1  =[]\OMS/cmsy/m/n/10.95 )  ^^@[]\OT1/cmr/m/n/10.95 (3 \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 3)[] + \OML/cmm/m/it/10.95 a[]\OT1/cmr/m/n/10.95 (3 \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 1) + \OML/cmm/m/it/10.95 b[] \OT1/cmr/m/n/10.95 = 1  =[]\OMS/cmsy/m/n/10.95 )  \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 a[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 b[] \OT1/cmr/m/n/10.95 = 1  =[]\OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 a[] \OT1/cmr/m/n/10.95 = []  =[]\OMS/cmsy/m/n/10.95 )  []
- []
-
-[59] [60]) [61] (Theory/5 - Diferenciación Numérica.tex
+l.612 ...analítica del Spline desde sus momentos]
+                                                   [59] [60]) [61] (Theory/5 - Diferenciación Numérica.tex
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
@@ -2191,12 +2156,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
-[68]) [69]) [70] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja5.tex [71] [72] [73]
+[68] [69]
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+
+ []
+
+[70]
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+
+ []
+
+) [71]) [72] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja5.tex [73] [74] [75]
 Overfull \hbox (36.75778pt too wide) detected at line 291
 []  \OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/10.95 )  \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 6\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ^^V \OT1/cmr/m/n/10.95 + 1  =[]\OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 ^^V \OT1/cmr/m/n/10.95 = 8\OML/cmm/m/it/10.95 ^^U \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :
  []
 
-[74] [75] [76]) [77]) [78] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [79]) [80] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+[76] [77] [78]) [79]) [80] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [81]) [82] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
@@ -2254,7 +2229,7 @@ l.39 ...definición}[Norma infinito de una matriz]
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 45.
- [81]
+ [83]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 47.
@@ -2281,14 +2256,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{definici\303\2
 <to be read again> 
                    \relax 
 l.62 ...ión}[Norma $p$ subordinada de una matriz]
-                                                  ) [82] (Appendix/Agradecimientos.tex
+                                                  ) [84] (Appendix/Agradecimientos.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 10.95003pt
 (hyperref)                replaced by space on input line 15.
 
-) [83])
-<doclicense-CC-by-nc-nd-88x31.pdf, id=1175, 90.3375pt x 31.61812pt>
+) [85])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=1204, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
@@ -2297,26 +2272,26 @@ Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 15
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [84 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+) [86 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F6538AA094FA7C1A86264EF88E6918BD;8438.
+(rerunfilecheck)             Checksum: A21BD3DCB79A66CAAF03E33B8C3B2E68;9380.
  ) 
 Here is how much of TeX's memory you used:
- 52000 strings out of 467866
- 1207278 string characters out of 5418326
- 1899645 words of memory out of 5000000
- 79555 multiletter control sequences out of 15000+600000
+ 52135 strings out of 467866
+ 1210111 string characters out of 5418326
+ 1899605 words of memory out of 5000000
+ 79696 multiletter control sequences out of 15000+600000
  653805 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,28n,112p,1035b,1232s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,17n,112p,1035b,1232s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi657\esint10.pk> <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (85 pages, 1331573 bytes).
+Output written on main.pdf (87 pages, 1365758 bytes).
 PDF statistics:
- 1365 PDF objects out of 1440 (max. 8388607)
- 354 named destinations out of 1000 (max. 500000)
- 547 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1392 PDF objects out of 1440 (max. 8388607)
+ 348 named destinations out of 1000 (max. 500000)
+ 579 words of extra memory for PDF output out of 10000 (max. 10000000)
 
