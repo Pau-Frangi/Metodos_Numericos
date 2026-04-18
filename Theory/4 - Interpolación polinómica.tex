@@ -559,26 +559,66 @@ En total tenemos $2n + 3n - 3 = 5n - 3$ ecuaciones. ¡Pero esperábamos $4n$! Un
 
 \subsubsection{Construcción del Spline Cúbico Natural}
 
-Estableciendo que el Spline sea natural ($S''(x_0) = S''(x_n) = 0$), podemos determinar el sistema de forma eficiente parametrizándolo a través de sus derivadas segundas en los nodos.
+Para determinar unívocamente un spline cúbico $S(x)$ interpolante en los nodos $x_0, x_1, \dots, x_n$ (con valores asociados $y_0, y_1, \dots, y_n$), resulta altamente ineficiente resolver un sistema de $4n$ ecuaciones. En su lugar, el método estándar consiste en parametrizar el problema utilizando las derivadas segundas del spline en los nodos. 
+
+Sea $h_i = x_i - x_{i-1}$ la longitud del $i$-ésimo subintervalo. El desarrollo se estructura en los siguientes pasos lógicos:
 
 \begin{enumerate}
-    \item \textbf{Definición de Momentos:} Para cada $i = 0, 1, \ldots, n$, definimos las incógnitas auxiliares llamadas \textit{momentos}:
+    \item \textbf{Definición de Momentos:} 
+    Para cada nodo $i = 0, 1, \ldots, n$, definimos unas incógnitas auxiliares llamadas \textit{momentos}, que representan la curvatura en el nodo:
     \[
         m_i = S''(x_i)
     \]
-    Por ser un spline natural, sabemos a priori que $m_0 = m_n = 0$.
-    
-    \item \textbf{Planteamiento del Sistema:} Ya que obligamos a $S''$ a ser continua, interpolando linealmente los momentos $m_i$, y forzando a que la primera derivada $S'$ también sea continua en los nodos interiores ($S'(x_i^-) = S'(x_i^+)$), se deduce algebraicamente la siguiente relación fundamental para cada nodo interior $i = 1, \dots, n-1$:
+    Si imponemos la condición de \textbf{Frontera Natural}, la curvatura en los extremos debe ser nula. Por tanto, sabemos a priori que $m_0 = m_n = 0$.
+
+    \item \textbf{Construcción analítica del polinomio por integración:}
+    Dado que el spline $S(x)$ está formado por polinomios cúbicos en cada tramo $x \in [x_{i-1}, x_i]$, su derivada segunda $S''(x)$ debe ser un polinomio de grado 1 (una recta). Esta recta debe interpolar los momentos $(x_{i-1}, m_{i-1})$ y $(x_i, m_i)$. Su ecuación exacta es:
     \[
-        \frac{h_i}{6} m_{i-1} + \frac{h_i + h_{i+1}}{3} m_i + \frac{h_{i+1}}{6} m_{i+1} = \frac{y_{i+1} - y_i}{h_{i+1}} - \frac{y_i - y_{i-1}}{h_i}
+        S''(x) = m_{i-1} \frac{x_i - x}{h_i} + m_i \frac{x - x_{i-1}}{h_i}
     \]
-    Si multiplicamos toda la ecuación por $\frac{6}{h_i + h_{i+1}}$, obtenemos la forma adimensional clásica:
+    Para hallar la expresión de $S(x)$, integramos dos veces respecto a $x$. La primera integración nos da la pendiente $S'(x)$:
+    \[
+        S'(x) = -m_{i-1} \frac{(x_i - x)^2}{2h_i} + m_i \frac{(x - x_{i-1})^2}{2h_i} + C_1
+    \]
+    Integrando una segunda vez, obtenemos el valor de la función. Para facilitar el manejo algebraico, expresaremos las constantes de integración como una combinación lineal en función de $(x_i - x)$ y $(x - x_{i-1})$:
+    \[
+        S(x) = m_{i-1} \frac{(x_i - x)^3}{6h_i} + m_i \frac{(x - x_{i-1})^3}{6h_i} + A (x_i - x) + B (x - x_{i-1})
+    \]
+    Para determinar las constantes $A$ y $B$, aplicamos las condiciones de interpolación en los extremos del intervalo, es decir, $S(x_{i-1}) = y_{i-1}$ y $S(x_i) = y_i$:
+    \begin{itemize}
+        \item Evaluando en $x_{i-1}$: \quad $y_{i-1} = m_{i-1} \frac{h_i^3}{6h_i} + A h_i \implies A = \frac{y_{i-1}}{h_i} - \frac{m_{i-1} h_i}{6}$
+        \item Evaluando en $x_i$: \quad $y_i = m_i \frac{h_i^3}{6h_i} + B h_i \implies B = \frac{y_i}{h_i} - \frac{m_i h_i}{6}$
+    \end{itemize}
+    Sustituyendo $A$ y $B$, la expresión final y unívoca del spline en el tramo $i$ es:
+    \begin{align}
+        S_i(x) =& \frac{m_{i-1}}{6h_i} (x_i - x)^3 + \frac{m_i}{6h_i} (x - x_{i-1})^3 \nonumber \\
+              &+ \left( \frac{y_{i-1}}{h_i} - \frac{m_{i-1} h_i}{6} \right) (x_i - x) 
+               + \left( \frac{y_i}{h_i} - \frac{m_i h_i}{6} \right) (x - x_{i-1}) \label{eq:spline_tramo}
+    \end{align}
+
+    \item \textbf{Condición de continuidad para la primera derivada ($C^1$):}
+    La ecuación \eqref{eq:spline_tramo} garantiza que la función pasa por los puntos y que su curvatura es continua. Sin embargo, para que el spline sea suave, debemos forzar que las pendientes de dos tramos adyacentes coincidan en los nodos interiores. Es decir, para cada $i = 1, \dots, n-1$:
+    \[
+        S'_i(x_i) = S'_{i+1}(x_i)
+    \]
+    Derivando la expresión analítica \eqref{eq:spline_tramo} y evaluando en el nodo $x_i$ para el tramo izquierdo (usando $h_i$) y el tramo derecho (usando $h_{i+1}$), obtenemos:
+    \begin{align*}
+        S'_i(x_i) &= \frac{h_i}{6} m_{i-1} + \frac{h_i}{3} m_i + \frac{y_i - y_{i-1}}{h_i} \\
+        S'_{i+1}(x_i) &= -\frac{h_{i+1}}{3} m_i - \frac{h_{i+1}}{6} m_{i+1} + \frac{y_{i+1} - y_i}{h_{i+1}}
+    \end{align*}
+    Igualando ambas expresiones y agrupando las incógnitas (los momentos $m$) a un lado de la igualdad, deducimos la relación fundamental del spline cúbico:
+    \begin{equation}
+        \frac{h_i}{6} m_{i-1} + \frac{h_i + h_{i+1}}{3} m_i + \frac{h_{i+1}}{6} m_{i+1} = \frac{y_{i+1} - y_i}{h_{i+1}} - \frac{y_i - y_{i-1}}{h_i} \label{eq:relacion_fundamental}
+    \end{equation}
+
+    \item \textbf{Formulación matricial del sistema:}
+    Para mejorar el condicionamiento numérico, multiplicamos toda la ecuación \eqref{eq:relacion_fundamental} por el factor $\frac{6}{h_i + h_{i+1}}$, obteniendo la forma adimensional clásica:
     \[
         \underbrace{\frac{h_i}{h_i + h_{i+1}}}_{\mu_i} m_{i-1} + 2 m_i + 
         \underbrace{\frac{h_{i+1}}{h_i + h_{i+1}}}_{\lambda_i} m_{i+1} = 
         6 f[x_{i-1}, x_i, x_{i+1}]
     \]
-    Donde $f[\dots]$ denota las diferencias divididas de Newton. Esto nos genera un sistema lineal tridiagonal $\Lambda m = d$:
+    Donde $f[\dots]$ denota la segunda diferencia dividida de Newton. Al aplicar esto a los $n-1$ nodos interiores, y recordando que $m_0 = 0$ y $m_n = 0$, se genera un sistema lineal tridiagonal $\Lambda m = d$:
     \[
         \begin{bmatrix}
             2 & \lambda_1 & 0 & \cdots & 0 \\
@@ -606,25 +646,8 @@ Estableciendo que el Spline sea natural ($S''(x_0) = S''(x_n) = 0$), podemos det
             d_{n-1}
         \end{bmatrix}
     \]
-    Notemos que $\mu_i + \lambda_i = 1$. Como el elemento en la diagonal es $2$, y $2 > 1$, la matriz $\Lambda$ es \textbf{diagonal estrictamente dominante}. Esto garantiza matemáticamente que la matriz es no singular y, por ende, el sistema tiene una única solución para los momentos $m_i$.
+    Notemos que $\mu_i + \lambda_i = 1$. Como el elemento en la diagonal es $2$, y la suma de los valores absolutos de los elementos extradiagonales es $|\mu_i| + |\lambda_i| = 1 < 2$, la matriz $\Lambda$ es \textbf{diagonal estrictamente dominante}. Esto garantiza matemáticamente, mediante el Teorema de Gershgorin, que la matriz es no singular e invertible. Por ende, el sistema tiene una solución única para los momentos $m_i$, lo que demuestra la existencia y unicidad del spline cúbico natural.
 \end{enumerate}
-
-\begin{lema}[Construcción analítica del Spline desde sus momentos]
-    Conocidos los momentos $\{ m_i \}_{i=0}^n$, el spline cúbico en cada intervalo $x \in [x_{i-1}, x_i]$ queda unívocamente determinado.
-\end{lema}
-
-\begin{proof}
-    Como $S$ es de grado 3 en el subintervalo, su derivada segunda $S''$ debe ser una recta que interpola los puntos $(x_{i-1}, m_{i-1})$ y $(x_i, m_i)$. Su ecuación es directa:
-    \[
-        S''(x) = m_{i-1} \frac{x_i - x}{h_i} + m_i \frac{x - x_{i-1}}{h_i}
-    \]
-    Integrando dos veces respecto a $x$ y aplicando las condiciones de interpolación $S(x_{i-1}) = y_{i-1}$ y $S(x_i) = y_i$ para hallar las dos constantes de integración, llegamos a la expresión analítica final del polinomio en el tramo:
-    \begin{align*}
-        S(x) =& \frac{m_{i-1}}{6h_i} (x_i - x)^3 + \frac{m_i}{6h_i} (x - x_{i-1})^3 \\
-              &+ \left( \frac{y_{i-1}}{h_i} - \frac{m_{i-1} h_i}{6} \right) (x_i - x) 
-               + \left( \frac{y_i}{h_i} - \frac{m_i h_i}{6} \right) (x - x_{i-1})
-    \end{align*}
-\end{proof}
 
 \ejemplo{
     Apliquemos la teoría resolviendo a mano un spline cúbico natural para el siguiente conjunto de datos empíricos:
