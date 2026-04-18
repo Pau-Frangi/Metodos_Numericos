@@ -24,14 +24,16 @@
 \contentsline {subsection}{\numberline {3.3}Método de Jacobi y método de Gauss-Seidel}{40}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Métodos de relajación}{44}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Interpolación polinómica}{48}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Motivación}{48}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Problema de la interpolación polinómica}{48}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Polinomios de Lagrange}{49}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Error de interpolación}{50}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Método de Newton}{52}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Diferencias divididas}{52}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Definición del método de Newton}{53}{subsubsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.6}Splines}{55}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.1}Motivación e Introducción}{48}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Planteamiento formal del problema}{48}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Existencia y unicidad: El determinante de Vandermonde}{50}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Polinomios de Lagrange}{50}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Error de interpolación}{51}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Método de Newton}{53}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Diferencias divididas}{54}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Construcción del Polinomio de Newton}{55}{subsubsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.7}Splines}{57}{subsection.4.7}%
+\contentsline {subsubsection}{\numberline {4.7.1}Construcción del Spline Cúbico Natural}{59}{subsubsection.4.7.1}%
 \contentsline {section}{\numberline {5}Diferenciación Numérica}{62}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Motivación}{62}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Aproximación por interpolación}{62}{subsection.5.2}%
@@ -41,14 +43,20 @@
 \contentsline {section}{\numberline {6}Integración Numérica}{65}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Motivación}{65}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Aproximación por interpolación de Lagrange}{65}{subsection.6.2}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{67}{part.2}%
+\contentsline {subsection}{\numberline {6.3}Aproximación por rectángulos}{65}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Aproximación por trapecios}{67}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Formula del trapecio abierta}{68}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Formula de Simpson cerrada}{69}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Tabla resumen}{71}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}Fórmula compuesta de integración}{71}{subsection.6.8}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{72}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{68}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{75}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{73}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{80}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{76}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{77}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{81}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{82}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{78}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{80}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{80}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{83}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{85}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{85}{section*.13}%

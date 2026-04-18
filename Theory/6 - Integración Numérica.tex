@@ -50,6 +50,8 @@ Ahora podemos escribir la fórmula de aproximación de la integral:
     \boxed{\sum_{i=0}^n c_i f(x_i)}
 \]
 
+\subsection{Aproximación por rectángulos}
+
 Es interesante destacar que para calcular integrales existen formulas abiertas, y formulas cerradas. Las fórmulas abiertas no incluyen los extremos del intervalo, mientras que las fórmulas cerradas sí los incluyen.
 
 \begin{center}
@@ -140,15 +142,376 @@ Donde $r \in [0, h]$, y nos deja:
 
 Siendo $\epsilon_0$ el error cometido. Ahora podemos derivar $\varphi$:
 \[
-    \varphi'(r) = f(x_0 + r) + f(x_0 - r) - 2f(x_0) \, \qquad \varphi'(0) = 0
+    \boxed{\varphi'(r) = f(x_0 + r) + f(x_0 - r) - 2f(x_0)} \, \qquad \varphi'(0) = 0
 \]
 
 Si derivamos por segunda vez, obtenemos:
 \[
-    \varphi''(r) = f'(x_0 + r) - f'(x_0 - r) = f''(\xi_r) + f''(\eta_r) = 2f''(\zeta_r)
+    \varphi''(r) = f'(x_0 + r) - f'(x_0 - r) \, \qquad \varphi''(0) = 0
 \]
 
-Usando que:
+Ahora usando Taylor:
 \[
-    f'(x_0 + r) - f'(x_0 - r) = f''(\xi_r)(x_0 + r - (x_0 - r)) = 2rf''(\xi_r)
+    \begin{cases}
+        f'(x_0 + r) = f'(x_0) + f''(\xi_r)r  \qquad \xi_r \in (x_0, x_0 + r) \\
+        f'(x_0 - r) = f'(x_0) - f''(\eta_r)r \qquad \eta_r \in (x_0 - r, x_0)
+    \end{cases}
+    \implies  
+    \varphi''(r) = 2r \left( \frac{f''(\xi) + f''(\eta)}{2} \right)
+\]
+
+Ahora, aplicando el teorema del valor intermedio (Bolzano para los amigos) sobre $\frac{f''(\xi) + f''(\eta)}{2}$, obtenemos que existe $\theta \in (x_0 - r, x_0 + r)$ tal que:
+\[
+    \varphi''(r) = 2rf''(\theta)
+\]
+
+Ahora podemos integrar $\varphi''$ para obtener:
+\[
+    \begin{cases}
+        \int_0^r \varphi''(s) ds = \varphi'(r) - \varphi'(0) = \varphi'(r) \\
+        \int_0^r 2sf''(\theta) ds = f''(\theta) s^2 \Big|_0^r = f''(\theta) r^2
+    \end{cases}
+    \implies 
+    \boxed{\varphi'(r) = f''(\theta) r^2}
+\]
+
+Dejando así finalmente las fórmulas para aproximar la integral y el error cometido:
+\[
+    S = \int_a^b f(x) dx \approx 2hf(x_0)
+\]
+\[
+    E = \varphi(h) = \frac{f''(\theta)}{3} h^3
+\]
+
+\subsection{Aproximación por trapecios}
+
+Utilizaremos la fórmula de aproximación de la integral mediante trapecios, dejando de  nuevo la constante $h$. Para el caso $n = 0$, tenemos el siguiente trapecio:
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
+
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+
+        % Puntos de interpolación a y b
+        \fill[red] (0.5, 0) circle (0.1) node[below] {$a$};
+        \fill[red] (5, 0) circle (0.1) node[below] {$b$};
+
+        % Trapecio a b f(a) f(b)
+        \draw[thick, dashed] (0.5, 0) -- (0.5, 1) -- (5, 2) -- (5, 0) -- cycle;
+    \end{tikzpicture}
+\end{center}
+
+Donde aproximamos la integral por el área del trapecio, es decir:
+\[
+    S = \int_a^b f(x) dx \approx (b-a) \frac{f(a) + f(b)}{2} = \frac{h}{2} (f(a) + f(b))
+\]
+
+Si vamos con la aproximación por interpolación de Lagrange, tenemos que:
+\[
+    \widetilde{S} = \int_a^b p_1(x) dx = \sum_{i=0}^1 f(x_i) \underbrace{\int_a^b L_i(x) dx}_{c_i}
+\]
+
+Donde ahora si tomamos $x_0 = a$ y $x_1 = b$, obteniendo que:
+\[
+    \begin{cases}
+        L_0(x) = \frac{x - x_1}{x_0 - x_1} = \frac{x - b}{-h} \implies
+        c_0 = \int_a^b L_0(x) dx = 
+        \int_a^b \frac{b - x}{h} dx =
+        \left.- \frac{(x-b)^2}{2h} \right|_a^b = \boxed{\frac{h}{2}} \\
+        L_1(x) = \frac{x - x_0}{x_1 - x_0} = \frac{x - a}{h} \implies
+        c_1 = \int_a^b L_1(x) dx =
+        \int_a^b \frac{x - a}{h} dx =
+        \left.\frac{(x-a)^2}{2h} \right|_a^b = \boxed{\frac{h}{2}}
+    \end{cases}
+\]
+
+Y el error en este caso sería:
+\[
+    E = \int_a^b \underbrace{E_1(x)}_{\text{error de interpolación}} dx =
+    \int_a^b \frac{f''(\xi_x)}{2!} (x - a)(x - b) dx
+\]
+
+Ahora recordemos el teorema del valor medio para integrales.
+\begin{teorema}[Teorema del valor medio para integrales]
+    Si $h,g \in C[a,b]$, y $g(x) \geq 0$ para todo $x \in [a, b]$, entonces existe $\theta \in [a, b]$ tal que:
+    \[
+        \int_a^b h(x)g(x) dx = h(\theta) \int_a^b g(x) dx
+    \]
+\end{teorema}
+
+Ahora, podemos continuar tomando:
+\[
+    E = \int_a^b \underbrace{\frac{f''(\xi_x)}{2}}_{h(x)} \underbrace{(x - a)(x - b)}_{g(x)} dx =
+    \frac{f''(\theta)}{2} \int_a^b (x - a)(x - b) dx =
+    \frac{f''(\theta)}{2} - \frac{h^3}{6} =
+    -\frac{f''(\theta)}{12} h^3
+\]
+
+Resumiendo, nos quedan los siguientes errores según el método utilizado, y recordando que en el rectángulo $h = \frac{b - a}{2}$, mientras que en el trapecio $h = b - a$:
+\[
+    E_{\text{rectángulos}} = \frac{f''(\theta)}{3} h_R^3 = \frac{f''(\theta)}{24} h^3
+\]
+\[
+    E_{\text{trapecios}} = -\frac{f''(\theta)}{12} h_T^3 = -\frac{f''(\theta)}{12} h^3
+\]
+
+Donde se aprecia que el error cometido por el método de los trapecios es el doble que el error cometido por el método de los rectángulos. Por lo tanto, el método de los rectángulos es más preciso que el método de los trapecios.\\
+
+Algo interesante a notar en este caso es que si la 2 derivada es 0, ocurre lo siguiente:
+\[
+    f''(\theta) = 0 \implies
+    \begin{cases}
+        E_{\text{rectángulos}} = 0 \\
+        E_{\text{trapecios}} = 0
+    \end{cases}
+\]
+
+También es interesante destacar que normalmente las fórmulas abiertas son más precisas que las cerradas.
+
+\subsection{Formula del trapecio abierta}
+
+Si tomamos $n = 0$, pero ahora con $x_0$ y $x_1$ interiores a $[a, b]$, con $h=\frac{b - a}{3}$, tenemos la siguiente aproximación de la integral:
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+
+        % Puntos de interpolación x_0 y x_1 interiores a [a, b]
+        \fill[red] (1.5, 0) circle (0.1) node[below] {$x_0$};
+        \fill[red] (3.5, 0) circle (0.1) node[below] {$x_1$};
+
+        % Trapecio x_0 x_1 f(x_0) f(x_1)
+        \draw[thick, dashed] (1.5, 0) -- (1.5, 1.75) -- (3.5, 1.25) -- (3.5, 0) -- cycle;
+
+        % Marcas a y b
+        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
+        \draw[thick, dashed] (5, 0) -- (5, 2);
+        \node[below] at (0.5, 0) {$a$};
+        \node[below] at (5, 0) {$b$};
+
+    \end{tikzpicture}
+\end{center}
+
+El cual nos deja la siguiente fórmula de aproximación de la integral:
+\[
+    \widetilde{S} = 3h \frac{f(x_0) + f(x_1)}{2}
+\]
+
+Con error:
+\[
+    E = \frac{3}{4} f''(\theta) h^3
+\]
+
+\subsection{Formula de Simpson cerrada}
+
+En esta ocasión, tomamos, intentaremos aproximar el area bajo la curva utilizando un polinomio de grado 2, es decir, $p_2(x)$. Para ello, tomamos $h = \frac{b - a}{2}$, y $x_1 = a + h = b - h$. De esta forma, obtenemos la siguiente fórmula de aproximación de la integral:
+\[
+    S = \int_a^b f(x) dx \approx \widetilde{S} = f(a)c_0 + f(x_1)c_1 + f(b)c_2
+\]
+
+Que viene de la siguiente intuición geométrica:
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)} -- (5, 0) -- cycle;
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)};
+
+        % Puntos de interpolación x_0 y x_2 en los extremos del intervalo
+        \fill[red] (0.5, 0) circle (0.1) node[below] {$a$};
+        \fill[red] (5, 0) circle (0.1) node[below] {$b$};
+
+        % Punto de interpolación x_1 en el interior del intervalo
+        \fill[red] (2.75, 0) circle (0.1) node[below] {$x_1$};
+
+        % Polinomio de grado 2 que interpola a f en a, x_1 y b
+        \draw[thick, dashed] plot[smooth] coordinates {(0.5, 1) (2.75, 1.65) (5, 3)};
+
+        % Puntos f(a), f(x_1) y f(b)
+        \fill[green] (0.5, 1) circle (0.1) node[above] {$f(a)$};
+        \fill[green] (2.75, 1.65) circle (0.1) node[above] {$f(x_1)$};
+        \fill[green] (5, 3) circle (0.1) node[above] {$f(b)$};
+    \end{tikzpicture}
+\end{center}
+
+
+Sabemos que el polinomio de interpolación de Lagrange es el siguiente:
+\[
+    p_2(x) = f(a) L_0(x) + f(x_1) L_1(x) + f(b) L_2(x)
+\]
+
+Por lo tanto, tenemos que:
+\[
+    c_i = \int_a^b L_i(x) dx
+\]
+
+Y entonces despejando todas las constantes, obtenemos que:
+\[
+    L_0(x) = \frac{(x - x_1)(x - x_2)}{\underbrace{(x_0 - x_1)}_{-h}\underbrace{(x_0 - x_2)}_{-2h}} = 
+    \frac{1}{2h^2}(x - x_1)(x - b) \implies
+    c_0 = \int_a^b \frac{1}{2h^2}(x - x_1)(x - b) dx = \frac{h}{3}
+\]
+\[
+    L_1(x) = \frac{(x - x_0)(x - x_2)}{\underbrace{(x_1 - x_0)}_{h}\underbrace{(x_1 - x_2)}_{-h}} = 
+    \frac{-1}{h^2}(x - a)(x - b) \implies
+    c_1 = \int_a^b \frac{-1}{h^2}(x - a)(x - b) dx = \frac{4h}{3}
+\]
+\[
+    L_2(x) = \frac{(x - x_0)(x - x_1)}{\underbrace{(x_2 - x_0)}_{2h}\underbrace{(x_2 - x_1)}_{h}} = 
+    \frac{1}{2h^2}(x - a)(x - x_1) \implies
+    c_2 = \int_a^b \frac{1}{2h^2}(x - a)(x - x_1) dx = \frac{h}{3}
+\]
+
+Dejando así finalmente la fórmula de aproximación de la integral:
+\[
+    \boxed{\widetilde{S} = \frac{h}{3} (f(a) + 4f(x_1) + f(b))}
+\]
+
+Y el error cometido:
+\[
+    E = \int_a^b \underbrace{E_2(x)}_{\text{error de interpolación}} dx =
+    \int_a^b \frac{f^{(3)}(\xi_x)}{3!} (x - a)(x - x_1)(x - b) dx
+\]
+
+Ahora no podemos aplicar el teorema del valor medio para integrales, ya que el producto $(x - a)(x - x_1)(x - b)$ no es de un mismo signo en todo el intervalo $[a, b]$.\\
+
+Sin embargo, si utilizamos la función $\varphi(r)$ que habíamos definido en el método de los rectángulos, recordando que representaba el error cometido en el radio $r$, y que $\varphi(h) = E$, podemos escribir:
+\[
+    \varphi(r) = \int_{x_1 - r}^{x_1 + r} f(x) dx - \frac{r}{3} (f(x_1 - r) + 4f(x_1) + f(x_1 + r))
+\]
+\[
+    \varphi'(r) = f(x_1 + r) + f(x_1 - r) - \frac{1}{3} (f(x_1 - r) + 4f(x_1) + f(x_1 + r)) - \frac{r}{3} (-f'(x_1 - r) + f'(x_1 + r))
+\]
+\[
+    \varphi''(r) = f'(x_1 + r) - f'(x_1 - r) - \frac{1}{3} (-f'(x_1 - r) + f'(x_1 + r)) - \frac{r}{3} (f''(x_1 - r) + f''(x_1 + r))
+\]
+\[
+    \varphi^{3}(r) = \frac{r}{3} (f^{(3)}(x_1 - r) - f^{(3)}(x_1 + r))
+\]
+
+Tomando ahora según Taylor:
+\[
+    \begin{cases}
+        f^{(3)}(x_1 - r) = f^{(3)}(x_1) - f^{(4)}(\xi_r)r \qquad \xi_r \in (x_1 - r, x_1) \\
+        f^{(3)}(x_1 + r) = f^{(3)}(x_1) + f^{(4)}(\eta_r)r \qquad \eta_r \in (x_1, x_1 + r)
+    \end{cases}
+    \implies
+    \varphi^{3}(r) = -\frac{r^2}{3} (f^{(4)}(\xi_r) + f^{(4)}(\eta_r))  
+\]
+
+Ahora aplicando el teorema del valor intermedio, obtenemos que existe $\theta \in (x_1 - r, x_1 + r)$ tal que:
+\[
+    \varphi^{3}(r) = -\frac{r^2}{3} f^{(4)}(\theta)
+\]
+
+Ahora integrando tres veces, obtenemos:
+\[
+    \varphi''(r) = \int_0^r \varphi^{3}(s) ds = -\frac{2r^3}{9} f^{(4)}(\theta)
+\]
+\[
+    \varphi'(r) = \int_0^r \varphi''(s) ds = -\frac{r^4}{18} f^{(4)}(\theta)
+\]
+\[
+    \varphi(r) = \int_0^r \varphi'(s) ds = -\frac{r^5}{90} f^{(4)}(\theta)
+\]
+
+Y por tanto ahora podemos calcular el error cometido:
+\[
+    \boxed{E = \varphi(h) = -\frac{h^5}{90} f^{(4)}(\theta)}
+\]
+
+Es interesante destacar que el método de Simpson es exacto si $m \leq 3$, es decir, si la función $f$ es un polinomio de grado menor o igual a 3, ya que en ese caso $f^{(4)}(\theta) = 0$.
+
+\subsection{Tabla resumen}
+
+Veamos una tabla resumen con los distintos métodos de aproximación de la integral, y sus respectivos errores:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Método & Fórmula de aproximación & $h$ & Error & Error en función de $h=b-a$ \\
+        \hline
+        Rectángulos & $2hf(x_0)$ & $\frac{b-a}{2}$ & $\frac{f''(\theta)}{3} h^3$ & $\frac{f''(\theta)}{24} h^3$ \\
+        \hline
+        Trapecios & $\frac{h}{2} (f(a) + f(b))$ & $b-a$ & $-\frac{f''(\theta)}{12} h^3$ & $-\frac{f''(\theta)}{12} h^3$ \\
+        \hline
+        Trapecio abierto & $\frac{3}{2}h f(x_0) + f(x_1)$ & $\frac{b-a}{3}$ & $\frac{3}{4} f''(\theta) h^3$ & $\frac{1}{36} f''(\theta) h^3$ \\
+        \hline
+        Simpson cerrado & $\frac{h}{3} (f(a) + 4f(x_1) + f(b))$ & $\frac{b-a}{2}$ & $-\frac{h^5}{90} f^{(4)}(\theta)$ & $-\frac{h^5}{2880} f^{(4)}(\theta)$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Fórmula compuesta de integración}
+
+En esta sección, vamos a ver cómo podemos separar la aproximación de la integral en varios subintervalos, según la siguiente intuición geométrica:
+\begin{center}
+    \begin{tikzpicture}
+        % Ejes
+        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Area bajo la curva
+        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)} -- (5, 0) -- cycle;
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)};
+
+        % Puntos de interpolación x_0 y x_n en los extremos del intervalo
+        \fill[red] (0.5, 0) circle (0.1) node[below] {$x_0 = a$};
+        \fill[red] (5, 0) circle (0.1) node[below] {$x_n = b$};
+
+        % Puntos de interpolación x_1 x_2 x_3 en el interior del intervalo
+        \fill[red] (1.75, 0) circle (0.1) node[below] {$x_1$};
+        \fill[red] (3, 0) circle (0.1) node[below] {$x_2$};
+        \fill[red] (4.25, 0) circle (0.1) node[below] {$x_3$};
+
+        % Rectas verticales en los puntos de interpolación
+        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
+        \draw[thick, dashed] (1.75, 0) -- (1.75, 1.75);
+        \draw[thick, dashed] (3, 0) -- (3, 1.25);
+        \draw[thick, dashed] (4.25, 0) -- (4.25, 1);
+        \draw[thick, dashed] (5, 0) -- (5, 3);
+
+    \end{tikzpicture}
+\end{center}
+
+Dejando entonces que:
+\[
+    S = \int_a^b f(x) dx = \int_{x_0}^{x_1} f(x) dx + \int_{x_1}^{x_2} f(x) dx + \int_{x_2}^{x_3} f(x) dx + \cdots + \int_{x_{n-1}}^{x_n} f(x) dx =
+    \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} f(x) dx =
+\]
+\[
+    = \sum_{i=0}^{n-1} \left( \widetilde{S}_i + E_i \right) =
+    \boxed{\underbrace{\sum_{i=0}^{n-1} \widetilde{S}_i}_{\widetilde{S}}} + \boxed{\underbrace{\sum_{i=0}^{n-1} E_i}_{E}}
+\]
+
+Y ahora podemos intentar usar distintos métodos de aproximación de la integral en cada subintervalo, obteniendo así distintas fórmulas de aproximación de la integral, y distintos errores cometidos.\\
+
+Si usamos la fórmula del trapecio compuesta, dejando que (con $h = \frac{b - a}{n}$):
+\[
+    \widetilde{S} = \sum_{i=0}^{n-1} \frac{h}{2} (f(x_i) + f(x_{i+1})) \implies
+    \boxed{\widetilde{S} = \frac{h}{2} (f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b))}
+\]
+
+Con error:
+\[
+    E = -\frac{h^3}{12} \sum_{i=0}^{n-1} f''(\theta_i)
+    = -\frac{h^3}{12} n f''(\theta)
+    = -\frac{(b-a)h^2}{12}f''(\theta)
 \]

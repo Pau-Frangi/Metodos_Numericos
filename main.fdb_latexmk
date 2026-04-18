@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1776070363.20165 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1776070375.3716 0
+["pdflatex"] 1776330091.94391 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1776330103.72333 0
   "Appendix/Agradecimientos.tex" 1773048039 694 0ffa8f78c17e6d7479433e5965f7ceec ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -379,17 +379,17 @@
   "Preamble/Preamble.tex" 1775734989 16243 6d9df69b67a10981af6b3676aedd1ec7 ""
   "Theory/1 - Matrices y sus propiedades.tex" 1773656729 64674 957ce2ea9f5e474cb03946f0af3f15d0 ""
   "Theory/2 - Resolución de sistemas lineales.tex" 1773652108 30770 7bf87883874689514a8ce7a50aa76d0c ""
-  "Theory/3 - Métodos iterativos.tex" 1773049035 21018 18319975389fbf79abb76dc05ffa7efe ""
-  "Theory/4 - Interpolación polinómica.tex" 1775637645 38588 20b25d73b906d7d370a3bc555a4ae576 ""
+  "Theory/3 - Métodos iterativos.tex" 1776100752 21053 e136a2065d300c28afd8eea53fe66119 ""
+  "Theory/4 - Interpolación polinómica.tex" 1776243154 40766 802fe3470d25606dbcb7a06b702efd17 ""
   "Theory/5 - Diferenciación Numérica.tex" 1776068269 5647 26b12afd7645a649e68207e7203ba69f ""
-  "Theory/6 - Integración Numérica.tex" 1776070362 5612 9c22bd20b43fbf9f1d89f0267df56dfa ""
+  "Theory/6 - Integración Numérica.tex" 1776330054 20152 3d9e3b77a88c6d3e7b764218e46cff87 ""
   "Theory/Theory.tex" 1776068238 404 a2bb449c3f3848bf1b7b34d81f432c96 ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1776070374 35343 d827acdd58f9efa48b0fd5d448ff3669 "pdflatex"
-  "main.out" 1776070374 7824 ccb2e55711a8c4d1b404a033b7ec3193 "pdflatex"
+  "main.aux" 1776330103 36522 fa973a4c101c9d768f67fb2c6818e77a "pdflatex"
+  "main.out" 1776330103 9380 a21bd3dcb79a66caaf03e33b8c3b2e68 "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1776070374 4342 5fa03e9396fdc023684373372a9ba4ae "pdflatex"
+  "main.toc" 1776330103 5151 a5effa5c42d77f2471d91b412a9a0ef9 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
