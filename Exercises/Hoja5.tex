@@ -317,14 +317,64 @@
 }{}
 
 % Ejercicio 12
-\ejercicio{enunciado}{no}{
+\ejercicio{resuelto}{profesor}{
     Aplicar la regla de Simpson compuesta a la integral
     \[
         \int_{1}^{2}\frac{dt}{t}
     \]
     para obtener una aproximaci\'on de $\ln(2)$, determinando el n\'umero $m$ de subintervalos necesario para que el error
     cometido en esa aproximaci\'on sea inferior a $10^{-3}$.
-}{}
+}{
+    Nuestro objetivo es aproximar $\ln(2)$ utilizando la regla de Simpson compuesta para la integral, para ello recordemos que el error en esta regla está dado por:
+    \[
+        E = -\frac{(b-a)^5 f^{(4)}(\theta)}{180 n^4}
+    \]
+    En nuestro caso, $a=1$, $b=2$ y $f(t) = \frac{1}{t}$. Es interesante recordar que $m$ será el número de bloques de Simpson, con $n=2m$ el número total de subintervalos. Las derivadas de $f$ son:
+    \[
+        f'(t) = -\frac{1}{t^2}, \quad
+        f''(t) = \frac{2}{t^3}, \quad
+        f'''(t) = -\frac{6}{t^4}, \quad
+        f^{(4)}(t) = \frac{24}{t^5}.
+    \]
+    Es trivial ver que $f^{(4)}(t)$ es una función decreciente en el intervalo $[1, 2]$, por lo que su máximo valor se alcanza en $t=1$:
+    \[
+        \max_{t \in [1, 2]} |f^{(4)}(t)| = |f^{(4)}(1)| = 24.
+    \]
+    Por lo tanto, el error máximo en la regla de Simpson compuesta está mayorado por:
+    \[
+        |E| \leq \frac{(2-1)^5 \cdot 24}{180 n^4} = \frac{24}{180 n^4} = \frac{2}{15 n^4}.
+    \]
+    Para que el error sea inferior a $10^{-3}$, necesitamos:
+    \[
+        \frac{2}{15 n^4} < 10^{-3} \implies n^4 > \frac{2}{15 \cdot 10^{-3}} \approx 133.33. \implies
+        n > \sqrt[4]{133.33} \approx 3.36.
+    \]
+    Por lo tanto, necesitamos al menos $n = 4$ subintervalos para que el error sea inferior a $10^{-3}$.
+    Dado que $n=2m$, el número de bloques de Simpson necesarios es:
+    \[
+        m = \frac{n}{2} = \frac{4}{2} = 2.
+    \]
+    Por lo tanto, se necesitan al menos $m=2$ bloques de Simpson para que el error cometido en la aproximación de $\ln(2)$ sea inferior a $10^{-3}$.\\
+    Ahora aproximemos la integral utilizando la regla de Simpson compuesta con $m=2$ bloques, lo que implica $n=4$ subintervalos. La aproximación se calcula como:
+    \[
+        \widetilde{S} =
+        \frac{h}{3} \left[ f(1) + f(2) + 2f(x_2) + 4f(x_1) + 4f(x_3) \right],
+    \]
+    Usando ahora que:
+    \[
+        h = \frac{1}{4} \, \quad
+        x_0 = 1, \quad
+        x_1 = 1.25, \quad
+        x_2 = 1.5, \quad
+        x_3 = 1.75,
+        x_4 = 2,
+    \]
+    Obtenemos que:
+    \[
+        \widetilde{S} =
+        \frac{1/4}{3} \left[ f(1) + f(2) + 2f(1.5) + 4f(1.25) + 4f(1.75) \right] = 0.50476.
+    \]
+}
 
 % Ejercicio 13
 \ejercicio{enunciado}{no}{
@@ -332,14 +382,23 @@
 }{}
 
 % Ejercicio 14
-\ejercicio{enunciado}{no}{
+\ejercicio{medio}{profesor}{
     Se considera la f\'ormula de integraci\'on
     \[
         \int_0^1 f(x)\,dx\simeq A\bigl(f(x_0)+f(x_1)\bigr).
     \]
     Hallar el valor de $A$, $x_0$ y $x_1$ para que la f\'ormula sea exacta para polinomios del mayor grado posible.
     \textquestiondown Cu\'al es este grado?
-}{}
+}{
+    Sabemos que si usamos la fórmula del trapecio, el error es $0$ si la segunda derivada es $0$, es decir:
+    \[
+        E = 0 \implies f''(x) = 0 \implies f(x) = ax + b.
+    \]
+    Si usamos la fórmula de Simpson, el error es $0$ si la cuarta derivada es $0$, es decir:
+    \[
+        E = 0 \implies f^{(4)}(x) = 0 \implies f(x) = ax^3 + bx^2 + cx + d.
+    \]
+}
 
 % Ejercicio 15
 \ejercicio{enunciado}{no}{
