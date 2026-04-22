@@ -51,14 +51,17 @@
 \contentsline {subsubsection}{\numberline {6.7.2}Fórmula de Simpson compuesta (cerrada)}{73}{subsubsection.6.7.2}%
 \contentsline {subsubsection}{\numberline {6.7.3}Comparación de ratios de error}{73}{subsubsection.6.7.3}%
 \contentsline {subsection}{\numberline {6.8}Tabla resumen}{74}{subsection.6.8}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{75}{part.2}%
+\contentsline {section}{\numberline {7}Resolución de ecuaciones no lineales}{75}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Motivación}{75}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Raíces aisladas}{75}{subsection.7.2}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{76}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{76}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{84}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{77}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{87}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{85}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{86}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{88}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{89}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{87}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{89}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{89}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{90}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{92}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{92}{section*.13}%
