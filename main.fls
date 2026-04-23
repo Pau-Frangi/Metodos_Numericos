@@ -1,6 +1,6 @@
-PWD c:\Users\diego\OneDrive\Documentos\UCM\Metodos_Numericos
+PWD C:\Users\diego\OneDrive\Documentos\UCM\Metodos_Numericos
 INPUT C:\Users\diego\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\diego\OneDrive\Documentos\UCM\Metodos_Numericos\main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\diego\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

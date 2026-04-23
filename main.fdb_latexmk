@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1776935187.80321 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1776935201.52167 0
+["pdflatex"] 1776935253.21895 "main.tex" "main.pdf" "main" 1776935269.56216 0
   "Appendix/Agradecimientos.tex" 1773048039 694 0ffa8f78c17e6d7479433e5965f7ceec ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -372,7 +372,7 @@
   "C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1750428951 20785 198a9cb2e04238d92c320d0d9edbd76a ""
   "Exams/Examen 1.tex" 1770195712 22 c3b8c901dd17622f5b4426fbc487dd13 ""
   "Exams/Examenes Resueltos.tex" 1770195712 70 317808e8fe84b70602496018a36d25b1 ""
-  "Exercises/Hoja6.tex" 1776935181 6477 105fb5304479adafc7d2471146dfdc28 ""
+  "Exercises/Hoja6.tex" 1776935213 6477 105fb5304479adafc7d2471146dfdc28 ""
   "Exercises/Hojas.tex" 1776933407 281 ae910bf1f0ea04f6a619096e1f3a614b ""
   "Preamble/Diagonal Matrix Command.tex" 1770195712 994 86797f6883aa9637224e9e09b84c6f7c ""
   "Preamble/Introduction.tex" 1770195712 2594 3dd677fb536aa68ddcdda2728a9e996b ""
@@ -385,12 +385,11 @@
   "Theory/6 - Integración Numérica.tex" 1776674002 25357 83fb7e54ca5620a47fc939d016b9a94a ""
   "Theory/7 - Resolución de ecuaciones no lineales.tex" 1776934198 7074 af4e08997646863baf041fb521430138 ""
   "Theory/Theory.tex" 1776847744 468 228f821553aeb10bdfd3850189a7075f ""
-  "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1776935200 40367 ad667460fb260406011598e4081f5154 "pdflatex"
-  "main.out" 1776935200 10482 f89d44fd72f322214e5ee13ed6c1e536 "pdflatex"
+  "main.aux" 1776935268 40367 ad667460fb260406011598e4081f5154 "pdflatex"
+  "main.out" 1776935268 10482 f89d44fd72f322214e5ee13ed6c1e536 "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1776935200 5922 4861457d63890d76a6621f0089019efb "pdflatex"
+  "main.toc" 1776935268 5922 4861457d63890d76a6621f0089019efb "pdflatex"
   (generated)
   "main.aux"
   "main.log"
