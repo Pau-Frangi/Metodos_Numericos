@@ -390,7 +390,7 @@ Sin embargo este método no es muy utilizado en la práctica, ya que no se sabe 
     \]
     De lo que sacamos la matriz del método de relajación de Gauss-Seidel:
     \[
-        L_R = (D - \omega E)^{-1} ((1-\omega) D + \omega F)
+        L_R = \underbrace{(D - \omega E)}_{M}^{-1} \underbrace{((1-\omega) D + \omega F)}_{N} 
     \]
     Y su convergencia estará dada por el radio espectral de esta matriz, es decir:
     \[

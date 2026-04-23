@@ -1,0 +1,214 @@
+\hojaejercicio{Resoluci\'on de ecuaciones no lineales}
+
+% Ejercicio 1
+\ejercicio{enunciado}{no}{
+	Utilizar el m\'etodo de la bisecci\'on para aproximar una ra\'iz de la ecuaci\'on
+	\[
+			\sqrt{x}\,\sin{x}-x^3+2=0
+	\]
+	en el intervalo $[1,2]$ con un error menor que $\dfrac{1}{30}$.
+}{}
+
+% Ejercicio 2
+\ejercicio{enunciado}{no}{
+	Comprobar que se puede aplicar el teorema del Punto Fijo a las siguientes funciones en los intervalos dados:
+	\begin{enumerate}[label=(\alph*)]
+		\item $f(x)=\dfrac{\cos{x}}{8}+\dfrac{x^2}{4}$ en $\left[0,\dfrac{\pi}{2}\right]$.
+		\item $g(x)=x-\dfrac{x^2+1}{5}$ en $[0,1]$.
+	\end{enumerate}
+}{}
+
+% Ejercicio 3
+\ejercicio{enunciado}{no}{
+	Determinar un intervalo y una funci\'on para poder aplicar el m\'etodo del Punto Fijo a las siguientes ecuaciones:
+	\begin{enumerate}[label=(\alph*)]
+		\item $x^3-x-1=0$.
+		\item $4-x-\tan(x)=0$.
+		\item $x=-\ln(x)$.
+	\end{enumerate}
+	Determinar, en cada caso, el n\'umero de iteraciones necesario para que el error cometido sea inferior a $10^{-5}$.
+}{}
+
+% Ejercicio 4
+\ejercicio{medio}{profesor}{
+	Se considera la ecuaci\'on
+	\[
+		x^2-1-\sin{x}=0.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Probar que dicha ecuaci\'on tiene, al menos, una ra\'iz positiva.
+		\item Encontrar un intervalo en el que la iteraci\'on
+		\[
+			x_n=\sqrt{1+\sin{x_{n-1}}},\qquad n\in\mathbb{N}
+		\]
+		converja, para cualquier valor inicial $x_0$ de dicho intervalo, a una ra\'iz positiva de la ecuaci\'on anterior. \textquestiondown Cu\'antos pasos deben darse, a partir de $x_0=\dfrac{\pi}{2}$, para obtener una aproximaci\'on de la ra\'iz con un error inferior a la mil\'esima?
+	\end{enumerate}
+}{
+	Sea
+	\[
+		f(x)=x^2-1-\sin{x}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Como $f$ es continua en $[1,\tfrac{3}{2}]$, y
+		\[
+			f(1)=1-1-\sin{1}=-\sin{1}<0,
+		\qquad
+			f\!\left(\tfrac{3}{2}\right)=\tfrac{9}{4}-1-\sin\!\left(\tfrac{3}{2}\right)>0,
+		\]
+		por el teorema de Bolzano existe $\xi\in(1,\tfrac{3}{2})$ tal que $f(\xi)=0$. Luego la ecuaci\'on tiene al menos una ra\'iz positiva.
+
+		\item Reescribimos la ecuaci\'on como
+		\[
+			x=\varphi(x),
+			\qquad
+			\varphi(x)=\sqrt{1+\sin{x}}.
+		\]
+		Tomamos $I=[1,\tfrac{\pi}{2}]$. Para $x\in I$, se tiene
+		\[
+			\varphi(x)\in\left[\sqrt{1+\sin{1}},\sqrt{2}\right]\subset[1,\tfrac{\pi}{2}],
+		\]
+		luego $\varphi(I)\subset I$.
+
+		Adem\'as,
+		\[
+			\varphi'(x)=\frac{\cos{x}}{2\sqrt{1+\sin{x}}},
+		\]
+		y en $I$ vale
+		\[
+			\lvert\varphi'(x)\rvert
+			\le
+			\frac{\cos{1}}{2\sqrt{1+\sin{1}}}
+			=:q<1
+			\quad (q\approx 0.2).
+		\]
+		Por tanto, $\varphi$ es contractiva en $I$ y la iteraci\'on
+		\[
+			x_n=\varphi(x_{n-1})
+		\]
+		converge a la \textbf{\'unica} ra\'iz positiva $\zeta$ para todo $x_0\in I$.
+
+		Con $x_0=\tfrac{\pi}{2}$, se tiene $x_1=\sqrt{2}$ y
+		\[
+			\lvert x_n-\zeta\rvert
+			\le
+			\frac{q^n}{1-q}\,\lvert x_1-x_0\rvert.
+		\]
+		Usando $q\approx0.2$ y
+		\[
+			\lvert x_1-x_0\rvert=\left|\sqrt{2}-\frac{\pi}{2}\right|\approx 0.1566,
+		\]
+		pedimos
+		\[
+			\frac{0.2^n}{0.8}\cdot 0.1566<10^{-3}.
+		\]
+		Se obtiene $n=4$ como m\'inimo.
+	\end{enumerate}
+}
+
+% Ejercicio 5
+\ejercicio{enunciado}{no}{
+	Se considera la funci\'on
+	\[
+		g(x)=\sin^2(x),\qquad x\in[0,\pi].
+	\]
+	Aplicar el teorema del Punto Fijo a la funci\'on
+	\[
+		f(x)=\frac{2+\sin{2x}}{2}
+	\]
+	en el intervalo $[1.6,2]$ para determinar el valor del punto $\zeta$ para el que se verifica que
+	\[
+		\int_0^{\zeta} g(t)\,dt=1
+	\]
+	de forma que el error cometido sea inferior a $10^{-4}$.
+}{}
+
+% Ejercicio 6
+\ejercicio{enunciado}{no}{
+	Sea $F:\mathbb{R}\setminus\{0\}\to\mathbb{R}$ definida como
+	\[
+		F(x)=x-\frac{1}{x}-e^{-x}.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Dibujar la gr\'afica de $F$ y determinar el n\'umero de ra\'ices reales de la ecuaci\'on $F(x)=0$, localizando cada ra\'iz entre dos enteros consecutivos.
+		\item Para cada una de las funciones siguientes:
+		\[
+			f_1(x)=1+xe^{-x},\qquad
+			f_2(x)=\ln\!\left(\frac{x}{x-1}\right),\qquad
+			f_3(x)=(x-1)e^x
+		\]
+		consideramos el siguiente m\'etodo iterativo: dado $x_0\in\mathbb{R}$ arbitrario sea
+		\[
+			x_n=f_i(x_{n-1}),\qquad n\in\mathbb{N}\quad (i=1,2,3).
+		\]
+		Estudiar cu\'ales de estas sucesiones convergen hacia alguna de las ra\'ices de la ecuaci\'on $F(x)=0$.
+		\item Elegir intervalos y puntos iniciales adecuados para que el m\'etodo de Newton converja a cada una de las ra\'ices.
+	\end{enumerate}
+}{}
+
+% Ejercicio 7
+\ejercicio{enunciado}{no}{
+	Dados un n\'umero natural $n$ y un n\'umero positivo $\alpha$, una forma de calcular las ra\'ices reales $n$-\'esimas de $\alpha$ sin usar radicales es aplicar el m\'etodo de Newton a la ecuaci\'on
+	\[
+		x^n-\alpha=0.
+	\]
+	Encontrar un intervalo y un valor inicial para los que el m\'etodo sea convergente.
+}{}
+
+% Ejercicio 8
+\ejercicio{enunciado}{no}{
+	Demostrar que la ecuaci\'on
+	\[
+		e^x\ln(x)+x^3-2=0
+	\]
+	tiene una \'unica ra\'iz positiva. Determinar un intervalo y un valor inicial para los que el m\'etodo de Newton converja a dicha ra\'iz.
+}{}
+
+% Ejercicio 9
+\ejercicio{enunciado}{no}{
+	\begin{enumerate}[label=(\alph*)]
+		\item Demostrar que la ecuaci\'on
+		\[
+			\cos{x}-3x=\frac{\pi}{2}
+		\]
+		tiene una \'unica ra\'iz real.
+		\item Determinar un intervalo y un valor inicial para los que el m\'etodo de Newton converja a dicha ra\'iz.
+	\end{enumerate}
+}{}
+
+% Ejercicio 10
+\ejercicio{enunciado}{no}{
+	Calcular las ra\'ices de la ecuaci\'on
+	\[
+		x^3-x^2+3x=3.
+	\]
+}{}
+
+% Ejercicio 11
+\ejercicio{enunciado}{no}{
+	Calcular las ra\'ices del polinomio
+	\[
+		P(x)=5x^5-17x^4-79x^3+269x^2-34x-24.
+	\]
+}{}
+
+% Ejercicio 12
+\ejercicio{enunciado}{no}{
+	Calcular las ra\'ices reales de la ecuaci\'on algebraica
+	\[
+		2x^4-x^3+2x^2-7x+3=0.
+	\]
+}{}
+
+% Ejercicio 13
+\ejercicio{enunciado}{no}{
+	Se considera la ecuaci\'on algebraica
+	\[
+		x^5+x^4+5x^3+2x^2-13x-10=0.
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Determinar el n\'umero de ra\'ices positivas.
+		\item Encontrar una ra\'iz racional negativa.
+		\item Hallar el n\'umero de ra\'ices reales y complejas de la ecuaci\'on anterior.
+		\item Determinar un intervalo donde se pueda aplicar el m\'etodo de Newton para aproximar la ra\'iz positiva m\'as peque\~na, as\'i como los dos primeros t\'erminos de la sucesi\'on $\{x_n\}_{n=0}^{\infty}$ que determina dicho m\'etodo.
+	\end{enumerate}
+}{}
