@@ -19,4 +19,154 @@ Continua, y encontrar sus raíces, es decir, los puntos $\xi_i \in [a,b]$:
     \]   
 \end{definición}
 
-Si $f$ es continua, sus raíces tienen que ser aisladas.
+\begin{observación}
+    Si una función es derivable, entonces todas sus raices son aisladas.
+\end{observación}
+
+\begin{teorema}[Algoritmo general]
+    Veamos los pasos a seguir:
+    \begin{enumerate}
+        \item Aislamos las raíces, mediante intervalos encajados, de tal forma que:
+        \[
+            \forall i \exists ! \xi_i \in (a_i, b_i) 
+        \]
+        Esto se puede apreciar en la siguiente figura:
+        \begin{center}
+            \begin{tikzpicture}
+                % Recta horizontal
+                \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+                % puntos a y b
+                \draw (0, 0) node[below] {$a$} -- (0, 0.5);
+                \draw (5, 0) node[below] {$b$} -- (5, 0.5);
+
+                % Raices xi1 y xi2
+                \draw (1.5, 0) node[below] {$\xi_1$} -- (1.5, 0.5);
+                \draw (3.5, 0) node[below] {$\xi_2$} -- (3.5, 0.5);
+
+                % Intervalos (a1, b1) y (a2, b2)
+                \draw (1, 0) node[below] {$a_1$} -- (1, 0.5);
+                \draw (2, 0) node[below] {$b_1$} -- (2, 0.5);
+                \draw (3, 0) node[below] {$a_2$} -- (3, 0.5);
+                \draw (4, 0) node[below] {$b_2$} -- (4, 0.5);
+
+
+
+            \end{tikzpicture}
+        \end{center}
+        \item Aproximar $\xi_i$ en cada intervalo $(a_i, b_i)$, mediante un método numérico iterativo, es decir:
+        \[
+            \begin{cases}
+                x_0 \in (a_i, b_i) \\
+                x_{n+1} = h(x_n) \quad \forall n \in \mathbb{N}
+            \end{cases}
+            \implies \lim_{n\to\infty} x_n = \xi_i
+        \]
+    \end{enumerate}
+\end{teorema}
+
+\subsection{Separación de raíces}
+
+Recordemos algunos teoremas que nos servirán para separar raíces.
+
+\begin{teorema}[Teorema de Bolzano]
+    Si $f$ es continua en $[a,b]$ y $f(a)f(b)<0$, entonces existe $\xi \in (a,b)$ tal que $f(\xi)=0$.
+\end{teorema}
+
+\begin{teorema}[Teorema de Rolle]
+    Si $f$ es continua en $[a,b]$, derivable en $(a,b)$ y $f(a)=f(b)$, entonces existe $\xi \in (a,b)$ tal que $f'(\xi)=0$.
+\end{teorema}
+
+\begin{teorema}[Teorema del valor medio]
+    Si $f$ es continua en $[a,b]$ y derivable en $(a,b)$, entonces existe $\xi \in (a,b)$ tal que:
+    \[
+        f'(\xi) = \frac{f(b)-f(a)}{b-a}
+    \]
+\end{teorema}
+
+Ahora veamos un teorema importante para separar y caracterizar raíces.
+
+\begin{teorema}[Teorema de existencia y unicidad de raíces]
+    Si $f$ es continua en $[a,b]$, derivable en $(a,b)$ y $f(a)f(b)<0$, y además $f'(x)$ tiene un signo constante en $(a,b)$, entonces:
+    \[
+        \begin{cases}
+            f\in C^0([a,b]) \\
+            f\in C^1((a,b)) \\
+            f(a)f(b)<0 \\
+            f'(x) \neq 0 \quad \forall x \in (a,b)
+        \end{cases}
+        \implies
+        \exists ! \xi \in (a,b) \text{ tal que } f(\xi)=0
+    \]   
+\end{teorema}
+
+Veamos como demostrarlo.
+
+\begin{proof}
+    Veamos la existencia y la unicidad por separado:
+    \begin{itemize}
+        \item \textbf{Existencia: } Como se cumplen las hipótesis del teorema de Bolzano, entonces existe $\xi \in (a,b)$ tal que $f(\xi)=0$.
+        \item \textbf{Unicidad: } Supongamos que existen dos raíces distintas $\xi_1, \xi_2 \in (a,b)$, con $\xi_1 < \xi_2$. Entonces, por el teorema de Rolle, existe $\xi \in (\xi_1, \xi_2) \subset (a,b)$ tal que $f'(\xi)=0$, lo cual contradice la hipótesis de que $f'(x) \neq 0$ para todo $x \in (a,b)$. Por lo tanto, no pueden existir dos raíces distintas, es decir, la raíz es única.
+    \end{itemize}
+\end{proof}
+
+\begin{teorema}[Teorema de separación de raíces]
+    Si $f$ es continua en $[a,b]$, derivable en $(a,b)$ y $f(a)f(b)<0$, y además $f'(x)$ tiene $n$ raíces distintas en $(a,b)$, entonces $f$ tiene a lo sumo $n+1$ raíces en $(a,b)$, es decir:
+    \[
+        \begin{cases}
+            f\in C^0([a,b]) \\
+            f\in C^1((a,b)) \\
+            f(a)f(b)<0 \\
+            f'(x) \text{ tiene } n \text{ raíces distintas en } (a,b)
+        \end{cases}
+        \implies
+        f \text{ tiene a lo sumo } n+1 \text{ raíces en } (a,b)
+    \]
+\end{teorema}
+
+\begin{proof}
+    Primero ordenemos las raíces de $f'$ de menor a mayor, es decir, $a < \xi_1 < \xi_2 < \ldots < \xi_n < b$. Entonces, si ahora tomamos los intervalos $[a, \xi_1], [\xi_1, \xi_2], \ldots, [\xi_n, b]$, en cada uno de estos intervalos, $f'$ no cambia de signo, y por tanto por el teorema de Rolle en cada intervalo, no podemos tener más de una raíz de $f$. Por lo tanto, en total, $f$ puede tener a lo sumo $n+1$ raíces en $(a,b)$.
+\end{proof}
+
+\begin{corolario}
+    Si tenemos una función $f \in C^2([a,b])$ tal que $f''(x) > 0$ para todo $x \in (a,b)$, entonces $f$ tiene a lo sumo dos raíces en $(a,b)$.
+\end{corolario}
+
+\begin{proof}
+    Si $f''(x) > 0$ para todo $x \in (a,b)$, entonces $f'$ es estrictamente creciente en $(a,b)$, lo que implica que $f'$ tiene a lo sumo una raíz en $(a,b)$. Por lo tanto, por el teorema de separación de raíces, $f$ tiene a lo sumo dos raíces en $(a,b)$.
+\end{proof}
+
+\subsection{Raíces de polinomios}
+
+Veamos un teorema interesante sobre las raíces de los polinomios.
+
+\begin{teorema}[Cota de las raíces de un polinomio]
+    Si $P(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ es un polinomio con $a_0 \neq 0 \neq a_n$, entonces:
+    \[
+        \begin{cases}
+            \lambda = \max_{0 \leq i \neq n } \left| \frac{a_i}{a_n} \right| \\
+            \mu = \max_{0 \leq i \neq 0 } \left| \frac{a_i}{a_0} \right|
+        \end{cases}
+        \implies
+        \boxed{P(\xi) = 0} \iff
+        \xi \in D(0, \mu +1, \lambda + 1)
+    \]
+
+    Es decir, las raices están en el disco de centro $0$ y radio $\min\{\lambda + 1, \mu + 1\}$, y fuera del disco de centro $0$ y radio $\max\{\lambda + 1, \mu + 1\}$.
+
+    \begin{center}
+        \begin{tikzpicture}
+            % Ejes
+            \draw[->] (-4, 0) -- (4, 0) node[right] {$\text{Re}$};
+            \draw[->] (0, -4) -- (0, 4) node[above] {$\text{Im}$};
+
+            % Discos
+            \draw[thick, blue] (0, 0) circle (2.5);
+            \draw[thick, red] (0, 0) circle (1.5);
+
+            % Etiquetas
+            \node at (2.5, 0.3) [above] {$\lambda + 1$};
+            \node at (1.5, 0.3) [above] {$\mu + 1$};
+        \end{tikzpicture}
+    \end{center}
+    
+\end{teorema}

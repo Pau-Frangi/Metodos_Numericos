@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  22 APR 2026 10:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.1) (preloaded format=pdflatex 2026.2.2)  23 APR 2026 11:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1292,7 +1292,7 @@ Package etoc Info: Setting (or re-setting) the options `maintoctotoc' and
 (etoc)             `localtoctotoc' to true as tocbibind was detected and
 (etoc)             found to be configured for `TOC to toc'.
 (etoc)             Reported at begin document on input line 15.
-<images/logo.png, id=254, 1585.81029pt x 1585.81029pt>
+<images/logo.png, id=262, 1585.81029pt x 1585.81029pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 31.
@@ -2156,17 +2156,96 @@ pdfTeX warning (ext4): destination with the same identifier (name{definici\303\2
 <to be read again> 
                    \relax 
 l.15 \begin{definición}[Raíz aislada]
-                                       )) [75] [76] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja5.tex [77] [78] [79]
-Overfull \hbox (36.75778pt too wide) detected at line 291
-[]  \OT1/cmr/m/n/10.95 =[]\OMS/cmsy/m/n/10.95 )  \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 6\OML/cmm/m/it/10.95 ^^U \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ^^V \OT1/cmr/m/n/10.95 + 1  =[]\OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 ^^V \OT1/cmr/m/n/10.95 = 8\OML/cmm/m/it/10.95 ^^U \OMS/cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :
- []
+                                       
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 23.
 
-[80] [81] [82] [83] [84] [85]) [86]) [87] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [88]) [89] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.23     S
+          i una función es derivable, entonces todas sus raices son aisladas.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 26.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.26 \begin{teorema}[Algoritmo general]
+                                       
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 71.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.71 \begin{teorema}[Teorema de Bolzano]
+                                        
+Package mdframed Info: Not enough space on this page on input line 73.
+ [75]
+Package mdframed Info: Not enough space on this page on input line 73.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 75.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.75 \begin{teorema}[Teorema de Rolle]
+                                      
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 79.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.79 \begin{teorema}[Teorema del valor medio]
+                                             
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 88.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.88 ...orema de existencia y unicidad de raíces]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 112.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.112 ...orema}[Teorema de separación de raíces]
+                                                   [76]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 131.
+
+pdfTeX warning (ext4): destination with the same identifier (name{corolario.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.131     S
+           i tenemos una función $f \in C^2([a,b])$ tal que $f''(x) > 0$ pa...
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 142.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.142 ...ema}[Cota de las raíces de un polinomio]
+                                                   [77])) [78] [79] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja6.tex [80] [81] [82] [83]) [84]) [85] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [86]) [87] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.3 ...n{definición}[Norma euclidea de un vector]
@@ -2175,7 +2254,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 10.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.3}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.10 \begin{definición}[Norma 1 de un vector]
@@ -2184,7 +2263,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 17.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.4}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.17 ...{definición}[Norma infinito de un vector]
@@ -2193,7 +2272,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 24.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.5}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.24 \begin{definición}[Norma $p$ de un vector]
@@ -2202,7 +2281,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 31.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.6}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.31 \begin{definición}[Norma 1 de una matriz]
@@ -2211,7 +2290,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 39.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.7}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.39 ...definición}[Norma infinito de una matriz]
@@ -2219,12 +2298,12 @@ l.39 ...definición}[Norma infinito de una matriz]
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 45.
- [90]
+ [88]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 47.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.8}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47 \begin{definición}[Norma de Frobenius]
@@ -2233,7 +2312,7 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 54.
 
-pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.9}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.54 ...ición}[Norma 2 o espectral de una matriz]
@@ -2241,14 +2320,19 @@ l.54 ...ición}[Norma 2 o espectral de una matriz]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 62.
-) [91] (Appendix/Agradecimientos.tex
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.62 ...ión}[Norma $p$ subordinada de una matriz]
+                                                  ) [89] (Appendix/Agradecimientos.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 10.95003pt
 (hyperref)                replaced by space on input line 15.
 
-) [92])
-<doclicense-CC-by-nc-nd-88x31.pdf, id=1286, 90.3375pt x 31.61812pt>
+) [90])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=1295, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
@@ -2257,26 +2341,26 @@ Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 15
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [93 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+) [91 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 96E3362D50781661CC7104E50CAA26B6;10148.
+(rerunfilecheck)             Checksum: F89D44FD72F322214E5EE13ED6C1E536;10482.
  ) 
 Here is how much of TeX's memory you used:
- 52198 strings out of 467866
- 1211334 string characters out of 5418326
- 1899813 words of memory out of 5000000
- 79733 multiletter control sequences out of 15000+600000
+ 52232 strings out of 467866
+ 1212221 string characters out of 5418326
+ 1900328 words of memory out of 5000000
+ 79756 multiletter control sequences out of 15000+600000
  653805 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,17n,112p,1035b,1232s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi657\esint10.pk> <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (94 pages, 1419291 bytes).
+Output written on main.pdf (92 pages, 1405758 bytes).
 PDF statistics:
- 1479 PDF objects out of 1728 (max. 8388607)
- 371 named destinations out of 1000 (max. 500000)
- 595 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1490 PDF objects out of 1728 (max. 8388607)
+ 382 named destinations out of 1000 (max. 500000)
+ 611 words of extra memory for PDF output out of 10000 (max. 10000000)
 
