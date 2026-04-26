@@ -515,6 +515,154 @@ Aquí la superposición crea un patrón alternante distintivo:
 
 Procediendo con la misma técnica rigurosa para el error, sumamos los errores de los $n/2$ bloques. El error simple de Simpson en un bloque es $-h^5 f^{(4)}(\theta_j) / 90$:
 \[
+    E = -\frac{h^3}{12} \sum_{i=0}^{n-1} f''(\theta_i)
+    = -\frac{h^3}{12} n f''(\theta)
+    = -\frac{(b-a)h^2}{12}f''(\theta)
+\]
+
+\subsubsection{Fórmula de los trapecios compuesta (cerrada)}
+
+Podemos tomar ahora la fórmula de los trapecios compuesta, pero ahora con $n$ mayor a 1, y con $h = \frac{b - a}{n}$. De esta forma, obtenemos la siguiente fórmula de aproximación de la integral:
+\[
+    \widetilde{S} = \frac{h}{2} (f(a) + f(b) + 2 \sum_{i=1}^{n-1} f(x_i))
+\]
+\[
+    E = \sum_{i=0}^{n-1} E_i =
+    -\frac{h^3}{12} \sum_{i=0}^{n-1} f''(\theta_i) =
+    -\frac{h^3}{12} n f''(\theta) =
+    -\frac{(b-a)h^3}{12n^2}f''(\theta)
+\]
+
+\subsubsection{Fórmula de Simpson compuesta (cerrada)}
+
+Ahora dividiremos el intervalo $[a, b]$ en $n$ subintervalos, con $n=2m$ par, siendo $m$ el número de bloques de Simpson que vamos a utilizar, y cada uno contiene 3 puntos, el inicial, el final y el del medio. Nótese que el final de cada bloque coincide con el inicial del siguiente bloque. así, nos queda que $h = \frac{b - a}{n} = \frac{b - a}{2m}$, y la fórmula de aproximación de la integral es la siguiente:
+
+\begin{center}
+    \begin{tikzpicture}
+        
+        % Ejes
+        \draw[->] (-0.5, 0) -- (7.5, 0) node[right] {$x$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+
+        % Puntos a x1 x2 x3 x4 x5 x6 b
+        \fill[red] (0, 0) circle (0.1) node[below] {$a$};
+        \fill[red] (1, 0) circle (0.1) node[below] {$x_1$};
+        \fill[red] (2, 0) circle (0.1) node[below] {$x_2$};
+        \fill[red] (3, 0) circle (0.1) node[below] {$x_3$};
+        \fill[red] (4, 0) circle (0.1) node[below] {$x_4$};
+        \fill[red] (5, 0) circle (0.1) node[below] {$x_5$};
+        \fill[red] (6, 0) circle (0.1) node[below] {$x_6$};
+        \fill[red] (7, 0) circle (0.1) node[below] {$b$};
+
+        % Bloque 1 (area bajo la curva entre a y x2)
+        \fill[blue!20] (0, 0) -- plot[smooth] coordinates {(0, 1) (1, 2) (2, 1.5)} -- (2, 0) -- cycle;
+
+        % Bloque 2 (area bajo la curva entre x2 y x4)
+        \fill[red!20] (2, 0) -- plot[smooth] coordinates {(2, 1.5) (3, 2.5) (4, 1)} -- (4, 0) -- cycle;
+
+        % Bloque 3 (area bajo la curva entre x4 y x6)
+        \fill[green!20] (4, 0) -- plot[smooth] coordinates {(4, 1) (5, 2) (6, 1.75)} -- (6, 0) -- cycle;
+
+        % Bloque 4 (area bajo la curva entre x6 y b)
+        \fill[yellow!20] (6, 0) -- plot[smooth] coordinates {(6, 1.75) (7, 2.25) (7, 0)} -- (7, 0) -- cycle;
+
+        % Función
+        \draw[thick, blue] plot[smooth] coordinates {(0, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2) (6, 1.75) (7, 2.25)};
+
+        % Rectas de a, x1, x2, x3, x4, x5, x6 y b hasta la función
+        \draw[thick, dashed] (0, 0) -- (0, 1);
+        \draw[thick, dashed] (1, 0) -- (1, 2);
+        \draw[thick, dashed] (2, 0) -- (2, 1.5);
+        \draw[thick, dashed] (3, 0) -- (3, 2.5);
+        \draw[thick, dashed] (4, 0) -- (4, 1);
+        \draw[thick, dashed] (5, 0) -- (5, 2);
+        \draw[thick, dashed] (6, 0) -- (6, 1.75);
+        \draw[thick, dashed] (7, 0) -- (7, 2.25);
+
+    \end{tikzpicture}
+\end{center}
+
+\[
+    \widetilde{S} = \frac{h}{3} \left[ 
+    \sum_{i=0}^{m} \left( 
+        \underbrace{f(x_{2(i-1)})}_{\text{pares}} +
+        \underbrace{4f(x_{2i-1})}_{\text{impares}} +
+        \underbrace{f(x_{2i})}_{\text{pares}}
+        \right)
+    \right] =
+    \frac{h}{3} \left[
+        \sum_{\color{red} k = 0}^{\color{black} m \color{red} - 1} f(x_{2\underbrace{k}_{(i-1)}}) +
+        4\sum_{i=1}^{m} f(x_{2i-1}) +
+        \sum_{i=1}^{m} f(x_{2i})
+    \right] =
+\]
+\[
+    \boxed{\widetilde{S} = \frac{h}{3} \left[
+        f(a) + f(b)
+        + 2\sum_{i=1}^{m-1} f(x_{2i})
+        + 4\sum_{i=1}^{m} f(x_{2i-1})
+    \right]}
+\]
+
+Y deja el error:
+\[
+    E = \sum_{i=1}^{m} E_i =
+    - \sum_{i=1}^{m} \frac{h^5}{90} f^{(4)}(\theta_i) =
+    -\frac{h^5}{90} m \frac{1}{m} \sum_{i=1}^{m} f^{(4)}(\theta_i) =
+    - \frac{(b-a)^5 n f^{(4)}(\theta)}{90 n^5 2} =
+\]
+\[
+    \boxed{
+        E = -\frac{(b-a)^5 f^{(4)}(\theta)}{180 n^4}
+    }
+\]
+
+\subsubsection{Comparación de ratios de error}
+
+Es interesante comparar el error cometido por la fórmula de los trapecios compuesta, con el error cometido por la fórmula de Simpson compuesta. Para ello, vamos a comparar el ratio entre ambos errores:
+
+\[
+    R = \frac{|E_{\text{Simp}}|}{|E_{\text{Trp}}|} =
+    \frac{\frac{(b-a)^5 f^{(4)}(\theta_s) 12 n^2}{180 n^4 (b-a)^3 |f''(\theta_t)|}} =
+    \frac{(b-a)^2}{15 n^2} \frac{|f^{(4)}(\theta_s)|}{|f''(\theta_t)|}
+\]
+
+Que queda aproximadamente:
+
+\[
+    \widetilde{R} = \frac{(b-a)^2}{15 n^2}
+\]
+
+Nótese que en la practica se suele usar la formula de los trapecios para evitar el posible "ruido" que puede introducir la fórmula de Simpson, ya que esta última utiliza más puntos de interpolación, y por tanto es más sensible a posibles errores en la evaluación de la función $f$ en esos puntos.
+
+\subsection{Tabla resumen}
+
+Veamos una tabla resumen con los distintos métodos de aproximación de la integral, y sus respectivos errores:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Método & Fórmula de aproximación & $h$ & Error \\
+        \hline
+        Rectángulos & $2hf(x_0)$ & $\frac{b-a}{2}$ & $\frac{f''(\theta)}{3} h^3$ \\
+        \hline
+        Trapecios & $\frac{h}{2} (f(a) + f(b))$ & $b-a$ & $-\frac{f''(\theta)}{12} h^3$ \\
+        \hline
+        Trapecio abierto & $\frac{3}{2}h f(x_0) + f(x_1)$ & $\frac{b-a}{3}$ & $\frac{3}{4} f''(\theta) h^3$ \\
+        \hline
+        Simpson cerrado & $\frac{h}{3} (f(a) + 4f(x_1) + f(b))$ & $\frac{b-a}{2}$ & $-\frac{h^5}{90} f^{(4)}(\theta)$ \\
+        \hline
+        Trapecio compuesto & $\frac{h}{2} (f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b))$ & $\frac{b-a}{n}$ & $-\frac{(b-a)h^2}{12}f''(\theta)$ \\
+        \hline
+        Simpson compuesto & $\frac{h}{3} \left[
+            f(a) + f(b)
+            + 2\sum_{i=1}^{m-1} f(x_{2i})
+            + 4\sum_{i=1}^{m} f(x_{2i-1})
+        \right]$ & $\frac{b-a}{n}$ & $-\frac{(b-a)^5 f^{(4)}(\theta)}{180 n^4}$ \\
+        \hline
+    \end{tabular}
+\end{center}
+\[
     E_S = \sum_{j=1}^{n/2} \left( -\frac{h^5}{90} f^{(4)}(\theta_j) \right) = -\frac{h^5}{90} \sum_{j=1}^{n/2} f^{(4)}(\theta_j)
 \]
 Aplicando el Teorema del Valor Intermedio sobre los $n/2$ términos:

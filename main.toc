@@ -35,28 +35,40 @@
 \contentsline {subsection}{\numberline {4.7}Splines}{57}{subsection.4.7}%
 \contentsline {subsubsection}{\numberline {4.7.1}Construcción del Spline Cúbico Natural}{59}{subsubsection.4.7.1}%
 \contentsline {section}{\numberline {5}Diferenciación Numérica}{62}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Motivación}{62}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Aproximación por interpolación}{62}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Aproximación mediante Taylor}{63}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Diferencias centradas}{64}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Aplicaciones}{64}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Integración Numérica}{65}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Motivación}{65}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Aproximación por interpolación de Lagrange}{65}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Aproximación por rectángulos}{65}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Aproximación por trapecios}{67}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Formula del trapecio abierta}{68}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Formula de Simpson cerrada}{69}{subsection.6.6}%
-\contentsline {subsection}{\numberline {6.7}Tabla resumen}{71}{subsection.6.7}%
-\contentsline {subsection}{\numberline {6.8}Fórmula compuesta de integración}{71}{subsection.6.8}%
-\contentsline {part}{II\hspace {1em}Ejercicios}{72}{part.2}%
+\contentsline {subsection}{\numberline {5.1}Motivación e Introducción}{62}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Aproximación por interpolación polinómica}{62}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Aproximación mediante Desarrollos de Taylor}{63}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Diferencias Centradas y Derivadas de Orden Superior}{64}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Integración Numérica}{66}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Motivación e Introducción}{66}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Aproximación mediante Interpolación (Fórmulas de Newton-Cotes)}{66}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Regla del Punto Medio (Rectángulo Centrado)}{67}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Construcción de la fórmula aproximada}{67}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Deducción del término del error}{68}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}Integración y Error Final}{69}{subsubsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.4}Regla del Trapecio}{70}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Deducción analítica de la fórmula}{70}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Análisis del error de truncamiento}{71}{subsubsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.3}Comparación conceptual}{71}{subsubsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.5}Regla de Simpson}{72}{subsection.6.5}%
+\contentsline {subsubsection}{\numberline {6.5.1}Deducción analítica de los pesos de cuadratura}{72}{subsubsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.2}El milagro de la simetría: Análisis del error}{73}{subsubsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.6}Tabla Resumen de Fórmulas Simples}{73}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Fórmulas Compuestas de Integración}{73}{subsection.6.7}%
+\contentsline {subsubsection}{\numberline {6.7.1}Regla del Trapecio Compuesta}{74}{subsubsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.2}Regla de Simpson Compuesta}{75}{subsubsection.6.7.2}%
+\contentsline {subsubsection}{\numberline {6.7.3}Fórmula de los trapecios compuesta (cerrada)}{75}{subsubsection.6.7.3}%
+\contentsline {subsubsection}{\numberline {6.7.4}Fórmula de Simpson compuesta (cerrada)}{76}{subsubsection.6.7.4}%
+\contentsline {subsubsection}{\numberline {6.7.5}Comparación de ratios de error}{76}{subsubsection.6.7.5}%
+\contentsline {subsection}{\numberline {6.8}Tabla resumen}{77}{subsection.6.8}%
+\contentsline {part}{II\hspace {1em}Ejercicios}{78}{part.2}%
 \etoc@startlocaltoc {3}
-\contentsline {section}{Hoja 1: Interpolación e integración numérica}{73}{section*.7}%
-\contentsline {part}{III\hspace {1em}Exámenes}{80}{part.3}%
+\contentsline {section}{Hoja 1: Interpolación e integración numérica}{79}{section*.7}%
+\contentsline {part}{III\hspace {1em}Exámenes}{87}{part.3}%
 \etoc@startlocaltoc {4}
-\contentsline {section}{Examen 1: Primer examen}{81}{section*.9}%
-\contentsline {part}{IV\hspace {1em}Apéndice}{82}{part.4}%
+\contentsline {section}{Examen 1: Primer examen}{88}{section*.9}%
+\contentsline {part}{IV\hspace {1em}Apéndice}{89}{part.4}%
 \etoc@startlocaltoc {5}
-\contentsline {section}{Apéndice A: Normas comunes}{83}{section*.11}%
-\contentsline {section}{Apéndice B: Agradecimientos}{85}{section*.12}%
-\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{85}{section*.13}%
+\contentsline {section}{Apéndice A: Normas comunes}{90}{section*.11}%
+\contentsline {section}{Apéndice B: Agradecimientos}{92}{section*.12}%
+\contentsline {subsection}{B.1\hskip 1em\relax Varios compañeros}{92}{section*.13}%
