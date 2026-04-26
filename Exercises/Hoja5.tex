@@ -382,7 +382,7 @@
 }{}
 
 % Ejercicio 14
-\ejercicio{medio}{profesor}{
+\ejercicio{resuelto}{profesor}{
     Se considera la f\'ormula de integraci\'on
     \[
         \int_0^1 f(x)\,dx\simeq A\bigl(f(x_0)+f(x_1)\bigr).
@@ -398,6 +398,55 @@
     \[
         E = 0 \implies f^{(4)}(x) = 0 \implies f(x) = ax^3 + bx^2 + cx + d.
     \]
+    Si la función es un polinomio, la podemos expresar como:
+    \[
+        f = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n = \sum_{i=0}^{n} a_i x^i.
+    \]
+    De donde podemos sacar la expresión de la integral:
+    \[
+        \int_0^1 f(x) dx =
+        \int_0^1 \sum_{i=0}^{n} a_i x^i dx =
+        \sum_{i=0}^{n} a_i \int_0^1 x^i dx =
+        \sum_{i=0}^{n} a_i \left[ \frac{x^{i+1}}{i+1} \right]_0^1 =
+        \sum_{i=0}^{n} a_i \frac{1}{i+1}.
+    \]
+    Igualando ahora, obtenemos:
+    \[
+        \sum_{i=0}^{n} \frac{a_i}{i+1} =
+        A \left( \sum_{i=0}^{n} a_i x_0^i + \sum_{i=0}^{n} a_i x_1^i \right) \implies
+        \sum_{i=0}^{n} \left[ a_i \left( \frac{1}{i+1} - A(x_0^i + x_1^i) \right) \right] = 0
+    \]
+    Como cada termino de la suma tiene que ser $0$, ya que los $a_i$ son arbitrarios, se concluye que:
+    \[
+        \frac{1}{i+1} - A(x_0^i + x_1^i) = 0 \implies
+        A(x_0^i + x_1^i) = \frac{1}{i+1}.
+    \]
+    Ahora, despejando:
+    \[
+        i = 0 \implies A(x_0^0 + x_1^0) = A(1 + 1) = 2A = 1 \implies \boxed{A = \frac{1}{2}}
+    \]
+    \[
+        i = 1 \implies A(x_0^1 + x_1^1) = \frac{1}{2} \implies x_0 + x_1 = 1 \implies \boxed{x_1 = 1 - x_0}
+    \]
+    \[
+        i = 2 \implies A(x_0^2 + x_1^2) = \frac{1}{3} \implies \frac{1}{2}(x_0^2 + (1 - x_0)^2) = \frac{1}{3} \implies
+    \]
+    \[
+        3(x_0^2 + (1 - x_0)^2) = 2 \implies 6x_0^2 - 6x_0 + 1 = 0 \implies
+    \]
+    \[
+        x_0 = \frac{6 \pm \sqrt{36 - 24}}{12} = \frac{6 \pm 2\sqrt{3}}{12} = \frac{1 \pm \sqrt{3}/3}{2}
+    \]
+    Nótese que tomemos la suma o la resta, el resultado es el mismo, ya que $x_1 = 1 - x_0$. Por lo tanto, los valores de $x_0$ y $x_1$ son simétricos.
+    \[
+        \boxed{x_0 = \frac{1 - \sqrt{3}/3}{2}} \quad \text{y} \quad \boxed{x_1 = \frac{1 + \sqrt{3}/3}{2}}
+    \]
+    Ahora podemos intentar con $i=3$ para ver que ocurre:
+    \[
+        i = 3 \implies A(x_0^3 + x_1^3) = \frac{1}{4} \implies 
+        \frac{1}{2} \left[ \left( \frac{1 - \sqrt{3}/3}{2} \right)^3 + \left( \frac{1 + \sqrt{3}/3}{2} \right)^3 \right] = \frac{1}{4}
+    \]
+    Que es cierto, por lo que la fórmula es exacta para polinomios de grado $3$. Sin embargo, si intentamos con $i=4$ no se cumple, por lo que la fórmula no es exacta para polinomios de grado $4$. Por lo tanto, la fórmula es exacta para polinomios de grado a lo sumo $3$.
 }
 
 % Ejercicio 15
@@ -411,7 +460,7 @@
 }{}
 
 % Ejercicio 16
-\ejercicio{enunciado}{no}{
+\ejercicio{medio}{profesor}{
     Dado $n\in\mathbb{N}$, se considera $h=\dfrac{1}{n}$, $x_i=ih$ para $i=0,1,\ldots,n$ y la funci\'on
     \[
         f_n(x)=x^n\cos(2\pi n x).
@@ -421,4 +470,45 @@
         \int_0^1 f_n(x)\,dx
     \]
     que se obtiene utilizando la f\'ormula de Newton--C\^otes cerrada de $n+1$ puntos.
+}{
+    Primero empezemos destacando que podemos calcular los valores de $f$ en los puntos $x_i$:
+    \[
+        f_n(x_i) = (ih)^n \cos(2\pi n \cdot ih) = \left( \frac{i}{n} \right)^n \underbrace{\cos(2\pi i)}_{=1} = \left( \frac{i}{n} \right)^n.
+    \]
+    Por lo tanto, la aproximación de la integral utilizando la fórmula de Newton--Cotes cerrada de $n+1$ puntos es:
+    \[
+        \widetilde{S} = \sum_{i=0}^{n} f_n(x_i) c_i = \sum_{i=0}^{n} \left( \frac{i}{n} \right)^n c_i,
+    \]
+    Por lo tanto, el valor de la aproximación de la integral es $\sum_{i=0}^{n} \left( \frac{i}{n} \right)^n c_i$, donde $c_i$ son los coeficientes de la fórmula de Newton--Cotes cerrada de $n+1$ puntos. Integrales que se pueden calcular.
+}
+
+% Ejercicio 17
+\ejercicio{enunciado}{no}{
+    Hallar el valor de la aproximaci\'on que se obtiene al calcular
+    \[
+        \int_{-4}^{4} |x-2|^3 (1 -\sin(\pi x))\,dx
+    \]
+    mediante la regla de Simpson compuesta para 4 subintervalos.
+}{}
+
+% Ejercicio 18
+\ejercicio{enunciado}{no}{
+    \begin{enumerate}[label=(\alph*)]
+        \item Hallar la expresi\'on de la f\'ormula abierta de Newton--C\^otes de dos puntos.
+        \item Determinar la expresi\'on de la regla anterior compuesta.
+        \item \textquestiondown Qu\'e valor se obtendr\'ia si se utilizara la regla de b) con 100 subintervalos para aproximar
+        \[
+            \int_{-5}^{5} |x|\,dx?
+        \]
+        \textquestiondown Qu\'e ocurrir\'ia si se tomaran 99 subintervalos?
+    \end{enumerate}
+}{}
+
+% Ejercicio 19
+\ejercicio{enunciado}{no}{
+    Hallar la aproximaci\'on que se obtiene de
+    \[
+        \int_a^b f(x)\,dx
+    \]
+    cuando se considera la integral de la interpolaci\'on lineal a trozos de $f$ en una partici\'on equiespaciada.
 }{}
