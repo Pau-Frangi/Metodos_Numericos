@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1777274555.82717 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1777274566.9995 0
+["pdflatex"] 1777279743.22831 "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" "main.pdf" "main" 1777279756.058 0
   "Appendix/Agradecimientos.tex" 1773048039 694 0ffa8f78c17e6d7479433e5965f7ceec ""
   "Appendix/Appendix.tex" 1770714365 121 381465db554b3b3048a65842a2317f00 ""
   "Appendix/Normas.tex" 1770798572 2343 ad817af6c01ab46338edd23e44da6041 ""
@@ -383,14 +383,14 @@
   "Theory/4 - Interpolación polinómica.tex" 1776527511 43249 13a2cb4bf4892c3333f94385e0418b80 ""
   "Theory/5 - Diferenciación Numérica.tex" 1776527511 9007 82e21970ebfa466318ab96d27151cd36 ""
   "Theory/6 - Integración Numérica.tex" 1777274532 40700 5f2066e24c7036883a605c7919c9b6f8 ""
-  "Theory/7 - Resolución de ecuaciones no lineales.tex" 1776934198 7074 af4e08997646863baf041fb521430138 ""
+  "Theory/7 - Resolución de ecuaciones no lineales.tex" 1777279742 11863 2cea07d7057e4a88145975fa60a2d652 ""
   "Theory/Theory.tex" 1776847744 468 228f821553aeb10bdfd3850189a7075f ""
   "c:/Users/diego/OneDrive/Documentos/UCM/Metodos_Numericos/main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
   "images/logo.png" 1770195712 444144 2cb7926de033eda7c58a3b31d8e065e6 ""
-  "main.aux" 1777274566 41938 92279cc1d8218f074de86fe3fe3f7ff5 "pdflatex"
-  "main.out" 1777274566 10710 b827eef3fffbc35900d97e54e6eebef8 "pdflatex"
+  "main.aux" 1777279755 42975 5a6206395ed326376fb53d6fc8d8942a "pdflatex"
+  "main.out" 1777279755 10862 8995008c9549b3ca2968ca289a40ab08 "pdflatex"
   "main.tex" 1772097303 4942 f112b8eddbee330ef1fb1f6f5b00e075 ""
-  "main.toc" 1777274566 7073 260cfa1bc484c664f0e3cebc2f848576 "pdflatex"
+  "main.toc" 1777279755 7159 e3cf87447645c32f2f956788d0f07e9c "pdflatex"
   (generated)
   "main.aux"
   "main.log"

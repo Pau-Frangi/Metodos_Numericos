@@ -170,3 +170,109 @@ Veamos un teorema interesante sobre las raíces de los polinomios.
     \end{center}
     
 \end{teorema}
+
+\ejemplo{
+    Sea el polinomio:
+    \[
+        p(x) = x^{100} - x^{50} +20x^{20} + 30
+    \]
+    Donde tenemos que:
+    \[
+        \begin{cases}
+            a_n = 1 \implies \lambda = \max (\frac{1}{1}, \frac{20}{1}, \frac{30}{1}) = 30 \\
+            a_0 = 30 \implies \mu = \max (\frac{1}{30}, \frac{1}{30}, \frac{20}{30}) = \frac{2}{3}
+        \end{cases}
+    \]
+    Por lo tanto, las raíces de $p$ están en el disco de centro $0$ y radio $\min\{30 + 1, \frac{2}{3} + 1\} = \frac{5}{3}$, y fuera del disco de centro $0$ y radio $\max\{30 + 1, \frac{2}{3} + 1\} = 31$.
+}
+
+\begin{teorema}[Regla de Descartes]
+    Sea $p_n \in \mathcal{P}_n$, con sus terminos siendo $\{ a_n \}_{i=0}^{n}$.\\
+    Esta regla se basa en contar los cambios de signo, siendo esta cantidad $m$, y dejando que la cantidad de raices positivas es:
+    \[
+        \begin{cases}
+            m \text{ es par: } \{m, m-2, \ldots 0\} \\
+            m \text{ es impar: } \{m, m-2, \ldots 1\}
+        \end{cases}
+    \]
+    Por ejemplo con el polinomio anterior que era:
+    \[
+        p(x) = x^{100} - x^{50} +20x^{20} + 30
+    \]
+    Tenemos la siguiente sucesión de terminos:
+    \[
+        \underbrace{30}_{+} \xrightarrow{0} \underbrace{20}_{+} \xrightarrow{+1}
+        \underbrace{-1}_{-} \xrightarrow{+1} \underbrace{1}_{+}
+    \]
+    En este caso, ha habido 2 cambios en los signos de las raices, por lo que como es una cantidad par, habrá $2$ ó $0$ raices positivas del polinomio.\\
+    Si ahora cambiamos al polinomio:
+    \[
+        p(x) = x^{100} - x^{50} +20x^{20} \textbf{-} 30
+    \]
+    Tenemos la siguiente sucesión de terminos:
+    \[
+        \underbrace{-30}_{-} \xrightarrow{+1} \underbrace{20}_{+} \xrightarrow{+1}
+        \underbrace{-1}_{-} \xrightarrow{+1} \underbrace{1}_{+}
+    \]
+    Ahora habria 3 cambios de signos, por lo que puede haber $3$ ó $1$ raices positivas del polinomio.\\
+    Para ver cuantas raices negativas hay, basta con evaluar el polinomio en $-x$, es decir:
+    \[
+        q(x) = p(-x) = (-1)^n a_n x^n + (-1)^{n-1} a_{n-1} x^{n-1} + \ldots + (-1)^0 a_0
+    \]
+    En nuestro caso, el polinomio se quedaría igual, es decir:
+    \[
+        q(x) = p(-x) =  x^{100} - x^{50} +20x^{20} - 30
+    \]
+    Por lo tanto, el número de cambios de signos en $q$ es el mismo que en $p$, por lo que también habría $3$ ó $1$ raices negativas del polinomio.
+\end{teorema}
+
+\subsection{Métodos numéricos}
+
+Los métodos numéricos son iterativos.\\
+
+En este caso ya hemos conseguido separar la única raiz $\xi$ de $f$ en un intervalo $[a,b]$, mediante la siguiente iteración:
+\[
+    \begin{cases}
+        x_0 \in (a,b) \\
+        x_{n+1} = h(x_n) \quad \forall n \in \mathbb{N}
+    \end{cases}
+    \implies
+    \lim_{n\to\infty} x_n = \xi \iff \text{ el método converge}
+\]
+
+Siendo el error en la i-ésima iteración:
+\[
+    e_i = |x_i - \xi|
+\]
+
+\begin{definición}[Orden de un método numérico]
+    Se existe una constante $M > 0$ y un número $\alpha > 0$ tal que:
+    \[
+        e_{i+1} \leq M e_i^\alpha \quad \forall i \in \mathbb{N}
+    \]
+    Entonces se dice que el método numérico tiene orden $\alpha$. En particular, distinguimos:
+    \begin{itemize}
+        \item \textbf{Orden 1: } Si $\alpha = 1$, entonces el método es de orden 1, y se dice que el método es linealmente.
+        \item \textbf{Orden entre 1 y 2: } Si $1 < \alpha < 2$, entonces el método es de orden entre 1 y 2, y se dice que el método es superlineal.
+        \item \textbf{Orden 2: } Si $\alpha = 2$, entonces el método es de orden 2, y se dice que el método es cuadrático.
+    \end{itemize}
+\end{definición}
+
+\begin{teorema}[Método de la bisección]
+    Si $f$ es continua en $[a,b]$, y $f(a)f(b)<0$, entonces el método de la bisección converge a la única raíz $\xi$ de $f$ en $(a,b)$ de la siguiente forma:
+    \begin{enumerate}
+        \item Sea $x_0 = \frac{a+b}{2}$.
+        \item Calculamos $f(x_0)$, y si $f(x_0) = 0$, entonces hemos encontrado la raíz, es decir, $\xi = x_0$. Si no, proseguiremos al siguiente paso.
+        \item[3.1] Si $f(a)f(x_0) < 0$, entonces la raíz $\xi$ se encuentra en el intervalo $(a, x_0)$, por lo que actualizamos $b = x_0$. Repetir.
+        \item[3.2] Si $f(x_0)f(b) < 0$, entonces la raíz $\xi$ se encuentra en el intervalo $(x_0, b)$, por lo que actualizamos $a = x_0$. Repetir.
+    \end{enumerate}
+    Como cada vez dividimos el intervalo por la mitad, el error se puede calcular como:
+    \[
+        e_i = \frac{b-a}{2^{i+1}} \xrightarrow{i \to \infty} 0
+    \]
+    Y como:
+    \[
+        e_{i+1} = \frac{1}{2} e_1
+    \]
+    Dejando así que es un método lineal, al tener $\alpha = 1$ y $M=\frac{1}{2} < 1$.
+\end{teorema}
