@@ -1,7 +1,12 @@
 \section{Integración Numérica}
-\subsection{Motivación}
 
-El objetivo de la integración numérica es aproximar el valor de la integral definida de una función $f$ en un intervalo $[a, b]$ a partir de los valores de la función en ciertos puntos, es decir:
+\subsection{Motivación e Introducción}
+
+El Cálculo Fundamental nos enseña que la integral definida de una función representa el área bajo su curva. Sin embargo, en la práctica científica e ingenieril, calcular analíticamente $S = \int_a^b f(x) dx$ mediante la regla de Barrow a menudo es imposible. Esto ocurre por dos motivos principales:
+\begin{enumerate}
+    \item La función $f(x)$ no posee una primitiva expresable mediante funciones elementales (ej. $f(x) = e^{-x^2}$, fundamental en estadística).
+    \item No disponemos de la expresión analítica de $f(x)$, sino únicamente de un conjunto discreto de datos empíricos tomados en ciertos puntos (nodos):
+\end{enumerate}
 \[
     \begin{array}{c|c}
         x_i & f(x_i) \\
@@ -11,486 +16,504 @@ El objetivo de la integración numérica es aproximar el valor de la integral de
         \vdots & \vdots \\
         x_n & f(x_n) \\
     \end{array}
-    \longrightarrow
-    S = \int_a^b f(x) dx = 
-    \underbrace{\widetilde{S}}_{\text{fórmula aproximada}} + \underbrace{E}_{\text{error}}
+    \quad \longrightarrow \quad
+    S = \int_a^b f(x) dx = \underbrace{\widetilde{S}}_{\text{Fórmula aproximada}} + \underbrace{E}_{\text{Error de truncamiento}}
 \]
 
-\subsection{Aproximación por interpolación de Lagrange}
+El objetivo de la \textbf{integración numérica} (o cuadratura numérica) es diseñar algoritmos que nos permitan calcular $\widetilde{S}$ con la mayor precisión posible, acotando matemáticamente el error $E$ cometido.
 
-La idea de este procedimiento se va a basar en utilizar los \textbf{Polinomios de Lagrange}:
+\subsection{Aproximación mediante Interpolación (Fórmulas de Newton-Cotes)}
 
+La estrategia más natural para abordar este problema es sustituir la función original $f(x)$ por un polinomio interpolador $p_n(x)$ que pase por los nodos dados, ya que los polinomios son trivialmente integrables. Cuando los nodos de interpolación están \textbf{equiespaciados}, las fórmulas resultantes se conocen como la familia de \textbf{Fórmulas de Newton-Cotes}.
+
+Basándonos en la teoría de interpolación, podemos expresar la función como la suma del polinomio de Lagrange y su término de error:
 \[
     \underbrace{f(x)}_{\in C^{n+1}[a,b]} = 
-    \underbrace{p_n(x)}_{\text{polinomio de interpolación de Lagrange}} + \underbrace{E_n(x)}_{\text{error de interpolación}}
+    \underbrace{p_n(x)}_{\text{Polinomio de Lagrange}} + \underbrace{E_n(x)}_{\text{Error de interpolación}}
 \]
-
-Dónde:
-
+Donde la base de Lagrange y el error vienen dados por:
 \[
-    p_n(x) = \sum_{i=0}^n f(x_i) L_i(x) \, \qquad L_i(x) = 
-    \prod_{\substack{j=0 \\ j \neq i}}^n \frac{x - x_j}{x_i - x_j}
+    p_n(x) = \sum_{i=0}^n f(x_i) L_i(x), \qquad L_i(x) = \prod_{\substack{j=0 \\ j \neq i}}^n \frac{x - x_j}{x_i - x_j}
 \]
 \[
     E_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i)
 \]
 
-De donde se deduce que:
+Integrando esta igualdad en el intervalo $[a,b]$, la integral exacta se descompone en la aproximación numérica más el error integral:
 \[
     S = \int_a^b f(x) dx = 
-    \underbrace{\int_a^b p_n(x) dx}_{\widetilde{S}_n} + \underbrace{\int_a^b E_n(x) dx}_{E_n}
+    \underbrace{\int_a^b p_n(x) dx}_{\widetilde{S}_n} + \underbrace{\int_a^b E_n(x) dx}_{E}
 \]
 
-Ahora podemos escribir la fórmula de aproximación de la integral:
+Dado que la integral es un operador lineal, podemos intercambiar el sumatorio y la integral en el término $\widetilde{S}_n$:
 \[
-    \widetilde{S}_n = 
-    \int_a^b p_n(x) dx = 
-    \int_a^b \sum_{i=0}^n f(x_i) L_i(x) dx =
-    \sum_{i=0}^n f(x_i) \int_a^b \underbrace{L_i(x)}_{c_i} =
-    \boxed{\sum_{i=0}^n c_i f(x_i)}
+    \widetilde{S}_n = \int_a^b \left( \sum_{i=0}^n f(x_i) L_i(x) \right) dx = \sum_{i=0}^n f(x_i) \underbrace{\int_a^b L_i(x) dx}_{c_i}
+\]
+Los valores $c_i$ se denominan \textbf{pesos de cuadratura}. Nótese que los pesos $c_i$ dependen únicamente de la geometría de los nodos y del intervalo, no de la función $f$. La fórmula general de cuadratura queda entonces como una combinación lineal de las evaluaciones de la función:
+\[
+    \boxed{\widetilde{S}_n = \sum_{i=0}^n c_i f(x_i)}
 \]
 
-\subsection{Aproximación por rectángulos}
-
-Es interesante destacar que para calcular integrales existen formulas abiertas, y formulas cerradas. Las fórmulas abiertas no incluyen los extremos del intervalo, mientras que las fórmulas cerradas sí los incluyen.
+Es crucial distinguir entre dos grandes clases de fórmulas de Newton-Cotes:
+\begin{itemize}
+    \item \textbf{Fórmulas Cerradas:} Los extremos del intervalo de integración coinciden con los primeros y últimos nodos de interpolación ($x_0 = a$ y $x_n = b$).
+    \item \textbf{Fórmulas Abiertas:} Los nodos de interpolación son estrictamente interiores al intervalo $(a, b)$. Son útiles cuando la función tiene una singularidad integrable en los extremos.
+\end{itemize}
 
 \begin{center}
     \begin{tikzpicture}
-        % Ejes 
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+        % --- Fórmula Abierta ---
+        \begin{scope}[shift={(0,0)}]
+            \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+            \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+            
+            % Área bajo la curva
+            \fill[blue!15] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5,0) -- cycle;
+            \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+            
+            % Límites a y b
+            \draw[thick, dashed, gray] (0.5, 0) -- (0.5, 1);
+            \draw[thick, dashed, gray] (5, 0) -- (5, 2);
+            \node[below] at (0.5, 0) {$a$};
+            \node[below] at (5, 0) {$b$};
+            
+            % Nodos interiores
+            \fill[red] (1.25, 0) circle (2pt) node[below] {$x_0$};
+            \fill[red] (4.25, 0) circle (2pt) node[below] {$x_n$};
+            \draw[thick, dashed, red] (1.25, 0) -- (1.25, 1.8);
+            \draw[thick, dashed, red] (4.25, 0) -- (4.25, 1.3);
+            
+            \node[font=\bfseries] at (2.75, -1) {Fórmula Abierta};
+        \end{scope}
 
-        % Area bajo la curva
-        \fill[blue!20] (0.75, 0) -- plot[smooth] coordinates {(0.75, 1.5) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (4.75, 1.75)} -- (4.75, 0) -- cycle;
-
-        % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
-
-        % Puntos de interpolación x_0 y x_n interiores a [a, b]
-        \fill[red] (0.75, 0) circle (0.1) node[below right] {$x_0$};
-        \fill[red] (4.75, 0) circle (0.1) node[below left] {$x_n$};
-
-        % Rectas de x_0 y x_n hasta la función
-        \draw[thick, dashed] (0.75, 0) -- (0.75, 1.5);
-        \draw[thick, dashed] (4.75, 0) -- (4.75, 1.75);
-
-        % Intervalo [a, b]
-        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
-        \draw[thick, dashed] (5, 0) -- (5, 2);
-        \node[below] at (0.5, 0) {$a$};
-        \node[below] at (5, 0) {$b$};
-
-        % Leyenda abierta
-        \draw[thick] (5.5, 2) -- (5.7, 2) node[right] {Fórmula abierta};
+        % --- Fórmula Cerrada ---
+        \begin{scope}[shift={(7,0)}]
+            \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+            \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+            
+            % Área bajo la curva
+            \fill[blue!15] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5,0) -- cycle;
+            \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+            
+            % Nodos extremos (a y b)
+            \fill[red] (0.5, 0) circle (2pt) node[below] {$x_0 = a$};
+            \fill[red] (5, 0) circle (2pt) node[below] {$x_n = b$};
+            \draw[thick, dashed, red] (0.5, 0) -- (0.5, 1);
+            \draw[thick, dashed, red] (5, 0) -- (5, 2);
+            
+            \node[font=\bfseries] at (2.75, -1) {Fórmula Cerrada};
+        \end{scope}
     \end{tikzpicture}
 \end{center}
 
+Veamos en detalle las fórmulas fundamentales derivadas de este principio.
+
+\subsection{Regla del Punto Medio (Rectángulo Centrado)}
+
+El caso más elemental de las fórmulas de integración de Newton-Cotes surge cuando decidimos aproximar nuestra función $f(x)$ utilizando un polinomio de grado $n = 0$. Geométricamente, esto equivale a sustituir la curva real por una línea recta horizontal. 
+
+La pregunta inmediata es: ¿a qué altura debemos trazar esta línea horizontal para minimizar el error? Si elegimos el valor de la función en el extremo izquierdo $f(a)$ o en el derecho $f(b)$, estaríamos utilizando la regla de los rectángulos clásica, la cual es muy imprecisa. Sin embargo, si evaluamos la función exactamente en el \textbf{punto medio} del intervalo, el área que calculamos de más por un lado tiende a compensarse con el área que nos falta por el otro (especialmente si la función es casi lineal en ese tramo). 
+
+Dado que el punto de evaluación no coincide con los límites de integración $a$ y $b$, esta se clasifica como una \textbf{fórmula abierta}.
+
+\subsubsection{Construcción de la fórmula aproximada}
+
+Para formalizar esta idea, definimos el nodo central y la semi-amplitud del intervalo:
+\[
+    x_0 = \frac{a+b}{2} \qquad \text{y} \qquad h = \frac{b - a}{2}
+\]
+Notemos que, con esta notación, el intervalo original $[a, b]$ se puede reescribir simétricamente como $[x_0 - h, x_0 + h]$. Nuestro polinomio interpolador de grado cero es simplemente la constante evaluada en el centro:
+\[
+    p_0(x) = f(x_0)
+\]
+La integral aproximada, que denotaremos como $\widetilde{S}_0$, es el área de un rectángulo de base $2h$ (la anchura total del intervalo) y altura $f(x_0)$. Analíticamente, la integral de una constante sale fuera del operador:
+\[
+    \widetilde{S}_0 = \int_a^b p_0(x) dx = \int_{x_0-h}^{x_0+h} f(x_0) dx = f(x_0) \int_{x_0-h}^{x_0+h} 1 \, dx = f(x_0) \Big[ x \Big]_{x_0-h}^{x_0+h} 
+\]
+Al evaluar los límites, obtenemos $(x_0+h) - (x_0-h) = 2h$. Por lo tanto, la fórmula de la Regla del Punto Medio es:
+\[
+    \boxed{\widetilde{S}_0 = 2h f(x_0)}
+\]
+
+\subsubsection{Deducción del término del error}
+
+El verdadero reto en el análisis numérico no es hallar la fórmula, sino acotar matemáticamente el error exacto $E$ que cometemos al usarla. Sabemos que el error total es la diferencia entre la integral real y nuestra aproximación:
+\[
+    E = \int_{x_0-h}^{x_0+h} f(x) dx - 2h f(x_0)
+\]
+
+Para hallar una expresión manejable de este error, utilizaremos un recurso analítico muy elegante: parametrizaremos el error. En lugar de calcular el error de golpe en todo el intervalo de anchura $h$, definiremos una función $\varphi(r)$ que calcule el error en un subintervalo dinámico $[x_0 - r, x_0 + r]$, donde el "radio" $r$ crece desde $0$ hasta $h$:
+\[
+    \varphi(r) = \underbrace{\int_{x_0-r}^{x_0+r} f(x) dx}_{\text{Integral real en el subintervalo}} - \underbrace{2r f(x_0)}_{\text{Área del rectángulo interior}}
+\]
+
+Estudiemos las propiedades de esta función:
+\begin{enumerate}
+    \item \textbf{Condición inicial:} Si el radio es nulo ($r=0$), el intervalo no tiene anchura. La integral de un punto es cero, y el área del rectángulo es cero. Por tanto, $\varphi(0) = 0$.
+    \item \textbf{Condición final:} Si expandimos el radio al máximo ($r=h$), recuperamos exactamente el error total de nuestro método. Por tanto, nuestro objetivo final es hallar $E = \varphi(h)$.
+\end{enumerate}
+
+Para desentrañar $\varphi(r)$, vamos a derivarla respecto a la variable $r$. Para el término integral, debemos usar la \textbf{Regla de Leibniz} (una generalización del Teorema Fundamental del Cálculo), la cual establece que la derivada de una integral con límites dependientes de la variable se calcula evaluando la función en los límites y multiplicando por la derivada (regla de la cadena) de dichos límites:
+\[
+    \frac{d}{dr} \int_{a(r)}^{b(r)} f(x) dx = f(b(r)) \cdot b'(r) - f(a(r)) \cdot a'(r)
+\]
+Aplicando esto a nuestra función $\varphi(r)$, donde el límite superior es $(x_0+r)$ con derivada $1$, y el límite inferior es $(x_0-r)$ con derivada $-1$:
+\[
+    \varphi'(r) = \Big[ f(x_0 + r) \cdot (1) - f(x_0 - r) \cdot (-1) \Big] - 2f(x_0)
+\]
+\[
+    \varphi'(r) = f(x_0 + r) + f(x_0 - r) - 2f(x_0)
+\]
+Si evaluamos esta primera derivada en $r=0$, obtenemos $f(x_0) + f(x_0) - 2f(x_0) = 0$. Así que también sabemos que $\varphi'(0) = 0$.
+
+Derivamos por segunda vez respecto a $r$ (ahora utilizando simplemente la regla de la cadena convencional sobre $f$):
+\[
+    \varphi''(r) = f'(x_0 + r) \cdot (1) + f'(x_0 - r) \cdot (-1) = f'(x_0 + r) - f'(x_0 - r)
+\]
+De nuevo, si evaluamos en cero, $\varphi''(0) = f'(x_0) - f'(x_0) = 0$.
+
+Es aquí donde entra en juego la \textbf{Fórmula de Taylor}. Queremos expresar las derivadas evaluadas en puntos desplazados ($x_0 \pm r$) en función de la información central en $x_0$. El desarrollo de Taylor de primer orden con el resto de Lagrange para la función $f'$ nos dice:
+\[
+    \begin{cases}
+        f'(x_0 + r) = f'(x_0) + f''(\xi_1) \cdot (r), & \text{donde } \xi_1 \in (x_0, x_0 + r) \\
+        f'(x_0 - r) = f'(x_0) + f''(\xi_2) \cdot (-r), & \text{donde } \xi_2 \in (x_0 - r, x_0)
+    \end{cases}
+\]
+Sustituyendo estas dos expresiones de Taylor en nuestra segunda derivada $\varphi''(r)$:
+\[
+    \varphi''(r) = \Big[ f'(x_0) + r f''(\xi_1) \Big] - \Big[ f'(x_0) - r f''(\xi_2) \Big]
+\]
+Los términos $f'(x_0)$ se cancelan algebraicamente, dejándonos con:
+\[
+    \varphi''(r) = r f''(\xi_1) + r f''(\xi_2) = 2r \left( \frac{f''(\xi_1) + f''(\xi_2)}{2} \right)
+\]
+
+Analicemos el factor entre paréntesis. Representa exactamente la \textbf{media aritmética} de la segunda derivada evaluada en dos puntos distintos del intervalo. Por el \textbf{Teorema de Bolzano} (o Teorema del Valor Intermedio), si asumimos que $f''$ es una función continua, esta debe obligatoriamente tomar todos los valores comprendidos entre su mínimo y su máximo. Por ende, existe algún punto intermedio $\theta_r \in (x_0-r, x_0+r)$ donde la función toma exactamente este valor medio:
+\[
+    \varphi''(r) = 2r f''(\theta_r)
+\]
+
+\subsubsection{Integración y Error Final}
+
+Ahora que tenemos la segunda derivada del error simplificada, el último paso es deshacer el camino integrando dos veces desde $0$ hasta $r$. 
+
+Para la primera integración, utilizamos el hecho de que $\varphi'(0) = 0$:
+\[
+    \int_0^r \varphi''(s) ds = \varphi'(r) - \varphi'(0) \implies \varphi'(r) = \int_0^r 2s f''(\theta_s) ds
+\]
+Dado que $f''(\theta_s)$ es continua, el \textit{Teorema del Valor Medio Generalizado para Integrales} nos permite extraer $f''$ de la integral, evaluada en un nuevo punto genérico $\theta$ válido para todo el intervalo:
+\[
+    \varphi'(r) \approx f''(\theta) \int_0^r 2s ds = f''(\theta) \Big[ s^2 \Big]_0^r = f''(\theta) r^2
+\]
+
+Integramos por segunda vez desde $0$ hasta $h$, recordando que $\varphi(0) = 0$:
+\[
+    E = \varphi(h) = \int_0^h \varphi'(r) dr \approx f''(\theta) \int_0^h r^2 dr = f''(\theta) \left[ \frac{r^3}{3} \right]_0^h = \frac{f''(\theta)}{3} h^3
+\]
+
+Finalmente, en la literatura matemática es común expresar este error en función de la anchura total del intervalo. Recordando nuestra definición inicial de que el intervalo completo es $b-a$, sabemos que $h = \frac{b-a}{2}$. Si sustituimos esto en la fórmula:
+\[
+    h^3 = \left(\frac{b-a}{2}\right)^3 = \frac{(b-a)^3}{8}
+\]
+Al multiplicar esto por el $\frac{1}{3}$ de nuestra integración, obtenemos el denominador $24$. Por tanto, el error de truncamiento exacto de la Regla del Punto Medio se presenta como:
+\[
+    \boxed{E_{\text{P.Medio}} = \frac{f''(\theta)}{3} h^3 = \frac{f''(\theta)}{24} (b-a)^3} \qquad \text{para algún } \theta \in (a, b)
+\]
+Este resultado es extraordinario: a pesar de aproximar la función con un polinomio de grado 0 (constante), el error depende de la segunda derivada ($f''$). Esto demuestra analíticamente que \textbf{la regla del punto medio integra de forma perfecta e impecable cualquier línea recta} (polinomio de grado 1), ya que la segunda derivada de una recta es cero, anulando el término del error.
+
+\subsection{Regla del Trapecio}
+
+La \textbf{Regla del Trapecio} constituye la primera fórmula \textit{cerrada} de la familia de Newton-Cotes, correspondiente al uso de un polinomio interpolador de grado $n = 1$. En lugar de aproximar la función mediante una constante horizontal, en este método aproximaremos $f(x)$ mediante una función lineal (una recta secante) que conecta directamente los puntos extremos del intervalo de integración: $(x_0, f(x_0))$ y $(x_1, f(x_1))$, donde $x_0 = a$ y $x_1 = b$.
+
+Definimos la amplitud del intervalo completo como $h = b - a$. Geométricamente, al proyectar esta recta secante sobre el eje de abscisas, el área aproximada bajo la curva corresponde exactamente al área de un trapecio, lo que da nombre al método.
+
 \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=1.1]
         % Ejes
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+        \draw[->, thick] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->, thick] (0, -0.5) -- (0, 3.5) node[above] {$y$};
 
-        % Area bajo la curva
-        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
-
-        % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
-
-        % Puntos de interpolación x_0 y x_n en los extremos del intervalo
-        \fill[red] (0.5, 0) circle (0.1) node[below] {$x_0 = a$};
-        \fill[red] (5, 0) circle (0.1) node[below] {$x_n = b$};
-
-        % Rectas de x_0 y x_n hasta la función
-        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
-        \draw[thick, dashed] (5, 0) -- (5, 2);
-
+        % Área real bajo la curva
+        \fill[blue!10] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
+        % Función real
+        \draw[thick, blue!60] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} node[above left, text=blue] {$f(x)$};
         
+        % Área del Trapecio
+        \fill[red!20, opacity=0.6] (0.5, 0) -- (0.5, 1) -- (5, 2) -- (5, 0) -- cycle;
+        % Recta secante (Polinomio p_1)
+        \draw[thick, red] (0.5, 1) -- (5, 2) node[midway, above left] {$p_1(x)$};
 
-        % Leyenda cerrada
-        \draw[thick] (5.5, 2) -- (5.7, 2) node[right] {Fórmula cerrada};
+        % Puntos extremos
+        \fill[black] (0.5, 1) circle (1.5pt) node[left] {$f(a)$};
+        \fill[black] (5, 2) circle (1.5pt) node[right] {$f(b)$};
+
+        % Líneas de proyección
+        \draw[thick, dashed] (0.5, 0) node[below] {$a$} -- (0.5, 1);
+        \draw[thick, dashed] (5, 0) node[below] {$b$} -- (5, 2);
     \end{tikzpicture}
 \end{center}
 
-Podemos fijar, al igual que en la diferenciación numérica, una distancia fina entre los puntos de interpolación, es decir, $h = \frac{b - a}{n+2}$.
+\subsubsection{Deducción analítica de la fórmula}
 
-Veamos ahora distintos caos según \textbf{n}.\\
-
-\textbf{Caso $n = 0$:} En este caso, el polinomio de interpolación de Lagrange es simplemente una constante, es decir, $p_0(x) = f(x_0)$. Por lo tanto, la fórmula de aproximación de la integral se reduce a:
+Aunque la fórmula del área de un trapecio es bien conocida en geometría elemental, procedamos a demostrarla integrando la base polinómica de Lagrange. El polinomio interpolador lineal es:
 \[
-    \widetilde{S}_0 = \int_a^b p_0(x) dx = \int_a^b f(x_0) dx = f(x_0)(b - a)
+    p_1(x) = f(a) L_0(x) + f(b) L_1(x) = f(a) \frac{x - b}{a - b} + f(b) \frac{x - a}{b - a}
 \]
-
-Utilizando ahora que en este caso $h = \frac{b - a}{2}$, podemos escribir la fórmula de aproximación de la integral como:
+Nuestra integral aproximada $\widetilde{S}_1$ se obtiene integrando este polinomio en el intervalo $[a, b]$. Calculemos los pesos de cuadratura $c_0$ y $c_1$:
 \[
-    \boxed{\widetilde{S}_0 = 2hf(x_0)}
-\]
-
-Que es la fórmula del área del rectángulo. Podemos ahora intentar calcular el error cometido usando la siguiente función:
-\[
-    \begin{array}{cccc}
-        \varphi: & [0, h] & \longrightarrow & \mathbb{R} \\
-        & x & \longmapsto & \varphi(x)
-    \end{array} \longrightarrow
-    \varphi(r) = \underbrace{\int_{x_0-r}^{x_0+r} f(x) dx}_{\text{exacto}} - \underbrace{2rf(x_0)}_{\text{aproximación}}
-\]
-
-Donde $r \in [0, h]$, y nos deja:
-\[
-    \varphi(0) = 0, \qquad \varphi(h) = \epsilon_0
-\]
-
-Siendo $\epsilon_0$ el error cometido. Ahora podemos derivar $\varphi$:
-\[
-    \boxed{\varphi'(r) = f(x_0 + r) + f(x_0 - r) - 2f(x_0)} \, \qquad \varphi'(0) = 0
-\]
-
-Si derivamos por segunda vez, obtenemos:
-\[
-    \varphi''(r) = f'(x_0 + r) - f'(x_0 - r) \, \qquad \varphi''(0) = 0
-\]
-
-Ahora usando Taylor:
-\[
-    \begin{cases}
-        f'(x_0 + r) = f'(x_0) + f''(\xi_r)r  \qquad \xi_r \in (x_0, x_0 + r) \\
-        f'(x_0 - r) = f'(x_0) - f''(\eta_r)r \qquad \eta_r \in (x_0 - r, x_0)
-    \end{cases}
-    \implies  
-    \varphi''(r) = 2r \left( \frac{f''(\xi) + f''(\eta)}{2} \right)
-\]
-
-Ahora, aplicando el teorema del valor intermedio (Bolzano para los amigos) sobre $\frac{f''(\xi) + f''(\eta)}{2}$, obtenemos que existe $\theta \in (x_0 - r, x_0 + r)$ tal que:
-\[
-    \varphi''(r) = 2rf''(\theta)
-\]
-
-Ahora podemos integrar $\varphi''$ para obtener:
-\[
-    \begin{cases}
-        \int_0^r \varphi''(s) ds = \varphi'(r) - \varphi'(0) = \varphi'(r) \\
-        \int_0^r 2sf''(\theta) ds = f''(\theta) s^2 \Big|_0^r = f''(\theta) r^2
-    \end{cases}
-    \implies 
-    \boxed{\varphi'(r) = f''(\theta) r^2}
-\]
-
-Dejando así finalmente las fórmulas para aproximar la integral y el error cometido:
-\[
-    S = \int_a^b f(x) dx \approx 2hf(x_0)
+    c_0 = \int_a^b \frac{x - b}{a - b} dx = \frac{1}{-(b-a)} \left[ \frac{(x-b)^2}{2} \right]_a^b = -\frac{1}{h} \left( 0 - \frac{(a-b)^2}{2} \right) = -\frac{1}{h} \left( -\frac{h^2}{2} \right) = \frac{h}{2}
 \]
 \[
-    E = \varphi(h) = \frac{f''(\theta)}{3} h^3
+    c_1 = \int_a^b \frac{x - a}{b - a} dx = \frac{1}{b-a} \left[ \frac{(x-a)^2}{2} \right]_a^b = \frac{1}{h} \left( \frac{(b-a)^2}{2} - 0 \right) = \frac{1}{h} \left( \frac{h^2}{2} \right) = \frac{h}{2}
 \]
-
-\subsection{Aproximación por trapecios}
-
-Utilizaremos la fórmula de aproximación de la integral mediante trapecios, dejando de  nuevo la constante $h$. Para el caso $n = 0$, tenemos el siguiente trapecio:
-\begin{center}
-    \begin{tikzpicture}
-        % Ejes
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
-
-        % Area bajo la curva
-        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
-
-        % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
-
-        % Puntos de interpolación a y b
-        \fill[red] (0.5, 0) circle (0.1) node[below] {$a$};
-        \fill[red] (5, 0) circle (0.1) node[below] {$b$};
-
-        % Trapecio a b f(a) f(b)
-        \draw[thick, dashed] (0.5, 0) -- (0.5, 1) -- (5, 2) -- (5, 0) -- cycle;
-    \end{tikzpicture}
-\end{center}
-
-Donde aproximamos la integral por el área del trapecio, es decir:
+Como ambos pesos resultan ser idénticos ($c_0 = c_1 = h/2$), al sustituirlos en la combinación lineal recuperamos la célebre Regla del Trapecio:
 \[
-    S = \int_a^b f(x) dx \approx (b-a) \frac{f(a) + f(b)}{2} = \frac{h}{2} (f(a) + f(b))
+    \boxed{\widetilde{S}_1 = \int_a^b p_1(x) dx = \frac{h}{2} \Big( f(a) + f(b) \Big)}
 \]
 
-Si vamos con la aproximación por interpolación de Lagrange, tenemos que:
+\subsubsection{Análisis del error de truncamiento}
+
+Para acotar el error $E$, integramos el término del error de la interpolación de Lagrange de grado 1:
 \[
-    \widetilde{S} = \int_a^b p_1(x) dx = \sum_{i=0}^1 f(x_i) \underbrace{\int_a^b L_i(x) dx}_{c_i}
+    E = \int_a^b E_1(x) dx = \int_a^b \frac{f''(\xi_x)}{2!} (x - a)(x - b) dx
 \]
+Donde $\xi_x$ es un punto desconocido en $(a, b)$ que depende de $x$. Esta dependencia impide extraer $f''(\xi_x)$ directamente de la integral. Para sortear esta dificultad, recurrimos a un resultado fundamental del cálculo integral:
 
-Donde ahora si tomamos $x_0 = a$ y $x_1 = b$, obteniendo que:
-\[
-    \begin{cases}
-        L_0(x) = \frac{x - x_1}{x_0 - x_1} = \frac{x - b}{-h} \implies
-        c_0 = \int_a^b L_0(x) dx = 
-        \int_a^b \frac{b - x}{h} dx =
-        \left.- \frac{(x-b)^2}{2h} \right|_a^b = \boxed{\frac{h}{2}} \\
-        L_1(x) = \frac{x - x_0}{x_1 - x_0} = \frac{x - a}{h} \implies
-        c_1 = \int_a^b L_1(x) dx =
-        \int_a^b \frac{x - a}{h} dx =
-        \left.\frac{(x-a)^2}{2h} \right|_a^b = \boxed{\frac{h}{2}}
-    \end{cases}
-\]
-
-Y el error en este caso sería:
-\[
-    E = \int_a^b \underbrace{E_1(x)}_{\text{error de interpolación}} dx =
-    \int_a^b \frac{f''(\xi_x)}{2!} (x - a)(x - b) dx
-\]
-
-Ahora recordemos el teorema del valor medio para integrales.
-\begin{teorema}[Teorema del valor medio para integrales]
-    Si $h,g \in C[a,b]$, y $g(x) \geq 0$ para todo $x \in [a, b]$, entonces existe $\theta \in [a, b]$ tal que:
+\begin{teorema}[Teorema del Valor Medio Ponderado para Integrales]
+    Sean $h, g \in C[a,b]$. Si la función peso $g(x)$ no cambia de signo en todo el intervalo $[a,b]$ (es decir, $g(x) \geq 0$ o $g(x) \leq 0 \,\, \forall x$), entonces existe un punto $\theta \in (a,b)$ tal que:
     \[
         \int_a^b h(x)g(x) dx = h(\theta) \int_a^b g(x) dx
     \]
 \end{teorema}
 
-Ahora, podemos continuar tomando:
+Observemos nuestra función polinómica $g(x) = (x-a)(x-b)$. Puesto que $x$ siempre es mayor que $a$ y menor que $b$ dentro del intervalo de integración, el primer factor es positivo y el segundo es negativo. Por lo tanto, el producto siempre satisface que $(x-a)(x-b) \leq 0$. Como no cambia de signo, el teorema es aplicable tomando $h(x) = f''(\xi_x)/2$:
 \[
-    E = \int_a^b \underbrace{\frac{f''(\xi_x)}{2}}_{h(x)} \underbrace{(x - a)(x - b)}_{g(x)} dx =
-    \frac{f''(\theta)}{2} \int_a^b (x - a)(x - b) dx =
-    \frac{f''(\theta)}{2} - \frac{h^3}{6} =
-    -\frac{f''(\theta)}{12} h^3
+    E = \frac{f''(\theta)}{2} \int_a^b (x - a)(x - b) dx \qquad \text{para algún } \theta \in (a, b)
+\]
+Para resolver la integral restante de forma limpia, aplicamos el cambio de variable $t = x - a \implies dt = dx$. Los nuevos límites de integración serán de $0$ a $b-a$, es decir, de $0$ a $h$:
+\[
+    \int_a^b (x - a)(x - b) dx = \int_0^h t (t - h) dt = \int_0^h (t^2 - ht) dt = \left[ \frac{t^3}{3} - h\frac{t^2}{2} \right]_0^h = \frac{h^3}{3} - \frac{h^3}{2} = -\frac{h^3}{6}
+\]
+Multiplicando este resultado por la constante que extrajimos gracias al teorema, obtenemos la expresión exacta del error:
+\[
+    E = \frac{f''(\theta)}{2} \left( -\frac{h^3}{6} \right) = \boxed{-\frac{f''(\theta)}{12} h^3}
 \]
 
-Resumiendo, nos quedan los siguientes errores según el método utilizado, y recordando que en el rectángulo $h = \frac{b - a}{2}$, mientras que en el trapecio $h = b - a$:
+\subsubsection{Comparación conceptual}
+
+Es sumamente instructivo comparar este resultado con el obtenido en la fórmula abierta del punto medio. Si consideramos un mismo intervalo de integración de anchura total $L = b-a$, tenemos que $h = L$ para el trapecio. 
+\begin{itemize}
+    \item Error del Trapecio (Cerrada): $\displaystyle E_T = -\frac{f''(\theta)}{12} L^3$
+    \item Error del Punto Medio (Abierta): $\displaystyle E_M = +\frac{f''(\theta)}{24} L^3$
+\end{itemize}
+De esta observación se extraen dos conclusiones geométricas fascinantes:
+\begin{enumerate}
+    \item \textbf{Signos opuestos:} Si una función es convexa ($f'' > 0$), el trapecio sobreestima el área (error negativo, aproximación mayor que la real), mientras que el punto medio la subestima (error positivo).
+    \item \textbf{Magnitud:} El coeficiente del trapecio ($1/12$) es el doble que el del punto medio ($1/24$). Magnitudinalmente, ¡la evaluación en un solo punto bien elegido (el centro) es el doble de precisa que la evaluación en los dos extremos!
+\end{enumerate}
+\subsection{Regla de Simpson}
+
+Si continuamos aumentando el orden de nuestra aproximación llegamos a $n = 2$, dando lugar a la \textbf{Regla de Simpson} (o regla de Simpson 1/3). Esta es una fórmula \textit{cerrada} en la que utilizaremos tres nodos equiespaciados para construir un polinomio interpolador cuadrático (una parábola) que se adapte a la curvatura de la función.
+
+Los tres nodos elegidos son los extremos del intervalo y su punto medio exacto:
 \[
-    E_{\text{rectángulos}} = \frac{f''(\theta)}{3} h_R^3 = \frac{f''(\theta)}{24} h^3
+    x_0 = a, \qquad x_1 = \frac{a+b}{2}, \qquad x_2 = b
 \]
-\[
-    E_{\text{trapecios}} = -\frac{f''(\theta)}{12} h_T^3 = -\frac{f''(\theta)}{12} h^3
-\]
+La distancia uniforme entre nodos adyacentes es la semi-amplitud del intervalo: $h = \frac{b-a}{2}$. 
 
-Donde se aprecia que el error cometido por el método de los trapecios es el doble que el error cometido por el método de los rectángulos. Por lo tanto, el método de los rectángulos es más preciso que el método de los trapecios.\\
-
-Algo interesante a notar en este caso es que si la 2 derivada es 0, ocurre lo siguiente:
-\[
-    f''(\theta) = 0 \implies
-    \begin{cases}
-        E_{\text{rectángulos}} = 0 \\
-        E_{\text{trapecios}} = 0
-    \end{cases}
-\]
-
-También es interesante destacar que normalmente las fórmulas abiertas son más precisas que las cerradas.
-
-\subsection{Formula del trapecio abierta}
-
-Si tomamos $n = 0$, pero ahora con $x_0$ y $x_1$ interiores a $[a, b]$, con $h=\frac{b - a}{3}$, tenemos la siguiente aproximación de la integral:
 \begin{center}
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=1.1]
         % Ejes
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+        \draw[->, thick] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
+        \draw[->, thick] (0, -0.5) -- (0, 3.5) node[above] {$y$};
 
-        % Area bajo la curva
-        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)} -- (5, 0) -- cycle;
-        % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.5) (3, 2.5) (4, 1) (5, 2)};
+        % Área real bajo la curva
+        \fill[blue!10] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 1)} -- (5, 0) -- cycle;
+        % Función real
+        \draw[thick, blue!60] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 1)} node[right, text=blue] {$f(x)$};
 
-        % Puntos de interpolación x_0 y x_1 interiores a [a, b]
-        \fill[red] (1.5, 0) circle (0.1) node[below] {$x_0$};
-        \fill[red] (3.5, 0) circle (0.1) node[below] {$x_1$};
+        % Nodos y proyecciones
+        \draw[thick, dashed, gray] (0.5, 0) node[below, text=black] {$a$} -- (0.5, 1);
+        \draw[thick, dashed, gray] (2.75, 0) node[below, text=black] {$x_1$} -- (2.75, 1.6);
+        \draw[thick, dashed, gray] (5, 0) node[below, text=black] {$b$} -- (5, 1);
 
-        % Trapecio x_0 x_1 f(x_0) f(x_1)
-        \draw[thick, dashed] (1.5, 0) -- (1.5, 1.75) -- (3.5, 1.25) -- (3.5, 0) -- cycle;
+        % Puntos de interpolación
+        \fill[black] (0.5, 1) circle (1.5pt) node[left] {$f(a)$};
+        \fill[black] (2.75, 1.6) circle (1.5pt) node[above] {$f(x_1)$};
+        \fill[black] (5, 1) circle (1.5pt) node[right] {$f(b)$};
 
-        % Marcas a y b
-        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
-        \draw[thick, dashed] (5, 0) -- (5, 2);
-        \node[below] at (0.5, 0) {$a$};
-        \node[below] at (5, 0) {$b$};
-
+        % Parábola interpoladora p_2(x) (Calculada analíticamente para pasar por los 3 puntos)
+        % Vértice en (2.75, 1.6), pasa por (0.5, 1) y (5, 1). Ecuación: y = -0.1185*(x-2.75)^2 + 1.6
+        \draw[thick, red, domain=0.5:5, samples=50] plot (\x, {-0.1185*(\x-2.75)*(\x-2.75) + 1.6}) node[above left] {$p_2(x)$};
+        
+        % Sombreado del área de la parábola para enfatizar
+        \fill[red!20, opacity=0.4] (0.5, 0) -- plot[domain=0.5:5, samples=50] (\x, {-0.1185*(\x-2.75)*(\x-2.75) + 1.6}) -- (5,0) -- cycle;
     \end{tikzpicture}
 \end{center}
 
-El cual nos deja la siguiente fórmula de aproximación de la integral:
+\subsubsection{Deducción analítica de los pesos de cuadratura}
+
+Para hallar la fórmula de la Regla de Simpson, debemos integrar el polinomio interpolador $p_2(x) = \sum_{i=0}^2 f(x_i) L_i(x)$. El cálculo directo en el intervalo $[a,b]$ es algebraicamente tedioso. Para simplificarlo drásticamente, aplicamos una traslación del sistema de coordenadas centrando el origen en el nodo medio $x_1$. 
+
+Bajo este nuevo sistema local de variable $t = x - x_1$, el intervalo de integración $[a,b]$ se transforma en $[-h, h]$, y los nodos relativos son $t_0 = -h$, $t_1 = 0$, y $t_2 = h$.
+Procedemos a integrar los polinomios base de Lagrange $L_i(t)$ en este dominio simétrico para hallar los pesos $c_i$:
+
+\textbf{Cálculo de $c_0$:}
 \[
-    \widetilde{S} = 3h \frac{f(x_0) + f(x_1)}{2}
+    L_0(t) = \frac{(t - 0)(t - h)}{(-h - 0)(-h - h)} = \frac{t^2 - ht}{2h^2}
+\]
+\[
+    c_0 = \int_{-h}^h \frac{t^2 - ht}{2h^2} dt = \frac{1}{2h^2} \left[ \frac{t^3}{3} - h\frac{t^2}{2} \right]_{-h}^h
+\]
+Al evaluar, notamos que el término par $t^2$ evaluado simétricamente se anula $\left( \frac{h^3}{2} - \frac{h^3}{2} = 0 \right)$, dejando solo la contribución del término impar:
+\[
+    c_0 = \frac{1}{2h^2} \left( \frac{h^3}{3} - \frac{(-h)^3}{3} \right) = \frac{1}{2h^2} \left( \frac{2h^3}{3} \right) = \frac{h}{3}
 \]
 
-Con error:
+\textbf{Cálculo de $c_1$:}
 \[
-    E = \frac{3}{4} f''(\theta) h^3
+    L_1(t) = \frac{(t - (-h))(t - h)}{(0 - (-h))(0 - h)} = \frac{t^2 - h^2}{-h^2}
+\]
+\[
+    c_1 = \int_{-h}^h \frac{h^2 - t^2}{h^2} dt = \frac{1}{h^2} \left[ h^2 t - \frac{t^3}{3} \right]_{-h}^h = \frac{1}{h^2} \left( 2h^3 - \frac{2h^3}{3} \right) = \frac{1}{h^2} \left( \frac{4h^3}{3} \right) = \frac{4h}{3}
 \]
 
-\subsection{Formula de Simpson cerrada}
+\textbf{Cálculo de $c_2$:}
+Por pura simetría geométrica respecto al centro, la contribución del nodo derecho debe ser idéntica a la del nodo izquierdo. Por ende, $c_2 = c_0 = h/3$.
 
-En esta ocasión, tomamos, intentaremos aproximar el area bajo la curva utilizando un polinomio de grado 2, es decir, $p_2(x)$. Para ello, tomamos $h = \frac{b - a}{2}$, y $x_1 = a + h = b - h$. De esta forma, obtenemos la siguiente fórmula de aproximación de la integral:
+Reagrupando nuestra combinación lineal original $\widetilde{S}_2 = c_0 f(x_0) + c_1 f(x_1) + c_2 f(x_2)$, extraemos el factor común $h/3$ y obtenemos la clásica \textbf{Regla de Simpson}:
 \[
-    S = \int_a^b f(x) dx \approx \widetilde{S} = f(a)c_0 + f(x_1)c_1 + f(b)c_2
+    \boxed{\widetilde{S}_2 = \frac{h}{3} \Big[ f(a) + 4f(x_1) + f(b) \Big]}
 \]
 
-Que viene de la siguiente intuición geométrica:
+\subsubsection{El milagro de la simetría: Análisis del error}
+
+El análisis del error de la Regla de Simpson revela uno de los resultados más hermosos del análisis numérico. Si procediéramos de manera estándar acotando el error del polinomio de Lagrange $E_2(x)$, esperaríamos que el error de integración dependiera de la tercera derivada, $f'''(\theta)$, al ser un método de interpolación cuadrático.
+
+Sin embargo, recordemos el término del error de Lagrange:
+\[
+    E = \int_a^b \frac{f'''(\xi_x)}{3!} (x - x_0)(x - x_1)(x - x_2) dx
+\]
+Si trasladamos esto a nuestro sistema simétrico $[-h, h]$, el producto nodal es $t(t+h)(t-h) = t(t^2 - h^2) = t^3 - th^2$. ¡Esta es una \textbf{función impar}! Si asumiéramos que $f'''$ es constante, la integral de una función impar en un intervalo simétrico es \textbf{exactamente cero}.
+
+Esto significa que el término dominante del error se anula completamente por cancelación geométrica. Para encontrar el verdadero error remanente, debemos recurrir a un desarrollo de Taylor de orden superior (extendiendo la función auxiliar $\varphi(r)$ hasta la cuarta derivada). Tras una rigurosa derivación analítica, el término dominante sobrevive en el cuarto orden:
+\[
+    E_{\text{Simpson}} = \boxed{-\frac{h^5}{90} f^{(4)}(\theta)} \qquad \text{para algún } \theta \in (a,b)
+\]
+
+\textbf{Consecuencia Fundamental (Grado de Precisión):}\\
+Hemos utilizado un polinomio de grado $n=2$ (una parábola) para aproximar la función. Sin embargo, observando la fórmula del error, vemos que este depende de $f^{(4)}(\theta)$. 
+
+¿Qué ocurre si integramos un polinomio de grado 3 (un polinomio cúbico)? La cuarta derivada de cualquier polinomio cúbico es invariablemente nula ($f^{(4)}(x) = 0$). Por lo tanto, el error es cero. 
+De forma asombrosa, \textbf{la Regla de Simpson integra polinomios cúbicos de manera exacta}, exhibiendo lo que se conoce en la literatura como un grado de precisión superior al esperado por su número de nodos.
+
+\subsection{Tabla Resumen de Fórmulas Simples}
+
 \begin{center}
-    \begin{tikzpicture}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Método} & \textbf{Fórmula $\widetilde{S}$} & $h$ & \textbf{Error Global (En función de $L = b-a$)} \\
+        \hline
+        Punto Medio (Abierta, $n=0$) & $L \cdot f(\frac{a+b}{2})$ & $L/2$ & $\frac{f''(\theta)}{24} L^3$ \\
+        \hline
+        Trapecio (Cerrada, $n=1$) & $\frac{L}{2} [f(a) + f(b)]$ & $L$ & $-\frac{f''(\theta)}{12} L^3$ \\
+        \hline
+        Simpson (Cerrada, $n=2$) & $\frac{L}{6} [f(a) + 4f(x_1) + f(b)]$ & $L/2$ & $-\frac{f^{(4)}(\theta)}{2880} L^5$ \\
+        \hline
+    \end{tabular}
+\end{center}
+\subsection{Fórmulas Compuestas de Integración}
+
+Las fórmulas simples de Newton-Cotes (como el Trapecio o Simpson) presentan un límite operativo evidente: si el intervalo de integración $[a,b]$ es muy extenso, la aproximación de la función mediante un único polinomio global de bajo grado resultará muy deficiente. Por otro lado, incrementar el grado $n$ del polinomio global para todo el intervalo no es una solución viable, ya que desencadena el fenómeno de Runge (oscilaciones violentas en los extremos).
+
+Para remediar esta situación y lograr una precisión arbitrariamente alta, recurrimos a las \textbf{Fórmulas Compuestas}. La estrategia de "divide y vencerás" consiste en particionar el intervalo macroscópico $[a,b]$ en $n$ subintervalos uniformes (o "paneles") de ancho constante $h$:
+\[
+    h = \frac{b-a}{n} \implies x_i = a + i \cdot h \quad \text{para } i = 0, 1, \dots, n
+\]
+Posteriormente, aplicamos una regla de cuadratura simple de bajo orden de forma aislada en cada pequeña franja.
+
+\begin{center}
+    \begin{tikzpicture}[scale=1.1]
         % Ejes
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
+        \draw[->, thick] (-0.5, 0) -- (6.5, 0) node[right] {$x$};
+        \draw[->, thick] (0, -0.5) -- (0, 3) node[above] {$y$};
 
-        % Area bajo la curva
-        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)} -- (5, 0) -- cycle;
         % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)};
+        \draw[thick, blue!60] plot[smooth] coordinates {(0.5, 1) (1.5, 2) (2.5, 1.2) (3.5, 2.3) (4.5, 1.5) (5.5, 2.5)} node[above left, text=blue] {$f(x)$};
 
-        % Puntos de interpolación x_0 y x_2 en los extremos del intervalo
-        \fill[red] (0.5, 0) circle (0.1) node[below] {$a$};
-        \fill[red] (5, 0) circle (0.1) node[below] {$b$};
+        % Partición y trapecios
+        \foreach \i/\x/\y in {0/0.5/1, 1/1.5/2, 2/2.5/1.2, 3/3.5/2.3, 4/4.5/1.5, 5/5.5/2.5} {
+            \fill[black] (\x, \y) circle (1.5pt);
+            \draw[dashed, gray] (\x, 0) node[below, text=black] {$x_{\i}$} -- (\x, \y);
+        }
 
-        % Punto de interpolación x_1 en el interior del intervalo
-        \fill[red] (2.75, 0) circle (0.1) node[below] {$x_1$};
+        % Dibujar los techos de los trapecios (líneas rojas)
+        \draw[thick, red] (0.5, 1) -- (1.5, 2) -- (2.5, 1.2) -- (3.5, 2.3) -- (4.5, 1.5) -- (5.5, 2.5);
 
-        % Polinomio de grado 2 que interpola a f en a, x_1 y b
-        \draw[thick, dashed] plot[smooth] coordinates {(0.5, 1) (2.75, 1.65) (5, 3)};
+        % Relleno
+        \fill[red!20, opacity=0.4] (0.5, 0) -- (0.5, 1) -- (1.5, 2) -- (1.5, 0) -- cycle;
+        \fill[red!20, opacity=0.4] (1.5, 0) -- (1.5, 2) -- (2.5, 1.2) -- (2.5, 0) -- cycle;
+        \fill[red!20, opacity=0.4] (2.5, 0) -- (2.5, 1.2) -- (3.5, 2.3) -- (3.5, 0) -- cycle;
+        \fill[red!20, opacity=0.4] (3.5, 0) -- (3.5, 2.3) -- (4.5, 1.5) -- (4.5, 0) -- cycle;
+        \fill[red!20, opacity=0.4] (4.5, 0) -- (4.5, 1.5) -- (5.5, 2.5) -- (5.5, 0) -- cycle;
 
-        % Puntos f(a), f(x_1) y f(b)
-        \fill[green] (0.5, 1) circle (0.1) node[above] {$f(a)$};
-        \fill[green] (2.75, 1.65) circle (0.1) node[above] {$f(x_1)$};
-        \fill[green] (5, 3) circle (0.1) node[above] {$f(b)$};
+        % Etiqueta h
+        \draw[<->] (1.5, -0.5) -- (2.5, -0.5) node[midway, below] {$h$};
     \end{tikzpicture}
 \end{center}
 
-
-Sabemos que el polinomio de interpolación de Lagrange es el siguiente:
+Amparándonos en la propiedad de aditividad del operador integral respecto al dominio, podemos expresar la integral total como la suma exacta de las integrales en cada subintervalo:
 \[
-    p_2(x) = f(a) L_0(x) + f(x_1) L_1(x) + f(b) L_2(x)
+    S = \int_a^b f(x) dx = \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} f(x) dx = \sum_{i=0}^{n-1} \left( \widetilde{S}_i + E_i \right) = \underbrace{\sum_{i=0}^{n-1} \widetilde{S}_i}_{\widetilde{S}_{\text{Compuesta}}} + \underbrace{\sum_{i=0}^{n-1} E_i}_{E_{\text{Total}}}
 \]
 
-Por lo tanto, tenemos que:
+Veamos cómo se concretan las sumas para los dos métodos cerrados vistos anteriormente.
+
+\subsubsection{Regla del Trapecio Compuesta}
+
+Si aplicamos la fórmula simple del trapecio en cada subintervalo $[x_i, x_{i+1}]$, tenemos:
 \[
-    c_i = \int_a^b L_i(x) dx
+    \widetilde{S}_T = \frac{h}{2} [f(x_0) + f(x_1)] + \frac{h}{2} [f(x_1) + f(x_2)] + \dots + \frac{h}{2} [f(x_{n-1}) + f(x_n)]
+\]
+Analizando la topología de la suma, observamos que los nodos de las fronteras globales ($x_0$ y $x_n$) pertenecen a un solo trapecio, por lo que aparecen una única vez. Sin embargo, todos los nodos interiores ($x_1, \dots, x_{n-1}$) actúan como límite derecho de un trapecio y límite izquierdo del siguiente, siendo evaluados dos veces. Factorizando $h/2$, obtenemos la forma computacional óptima:
+\[
+    \boxed{\widetilde{S}_T = \frac{h}{2} \left[ f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b) \right]}
 \]
 
-Y entonces despejando todas las constantes, obtenemos que:
+Para determinar el error total $E_T$, sumamos los errores locales. Sabiendo que el error del trapecio simple es $-h^3 f''(\theta_i) / 12$ para algún $\theta_i$ local:
 \[
-    L_0(x) = \frac{(x - x_1)(x - x_2)}{\underbrace{(x_0 - x_1)}_{-h}\underbrace{(x_0 - x_2)}_{-2h}} = 
-    \frac{1}{2h^2}(x - x_1)(x - b) \implies
-    c_0 = \int_a^b \frac{1}{2h^2}(x - x_1)(x - b) dx = \frac{h}{3}
+    E_T = \sum_{i=0}^{n-1} \left( -\frac{h^3}{12} f''(\theta_i) \right) = -\frac{h^3}{12} \sum_{i=0}^{n-1} f''(\theta_i)
 \]
+Para simplificar este sumatorio, asumimos que $f \in C^2([a,b])$. Al ser continua, la media aritmética de $n$ evaluaciones de $f''$ debe estar comprendida entre el mínimo y el máximo de $f''$ en $[a,b]$. Por el Teorema del Valor Intermedio, existe un punto global $\theta \in (a,b)$ tal que:
 \[
-    L_1(x) = \frac{(x - x_0)(x - x_2)}{\underbrace{(x_1 - x_0)}_{h}\underbrace{(x_1 - x_2)}_{-h}} = 
-    \frac{-1}{h^2}(x - a)(x - b) \implies
-    c_1 = \int_a^b \frac{-1}{h^2}(x - a)(x - b) dx = \frac{4h}{3}
+    \frac{1}{n} \sum_{i=0}^{n-1} f''(\theta_i) = f''(\theta) \implies \sum_{i=0}^{n-1} f''(\theta_i) = n f''(\theta)
 \]
+Sustituyendo esto y recordando que $n \cdot h = b-a$:
 \[
-    L_2(x) = \frac{(x - x_0)(x - x_1)}{\underbrace{(x_2 - x_0)}_{2h}\underbrace{(x_2 - x_1)}_{h}} = 
-    \frac{1}{2h^2}(x - a)(x - x_1) \implies
-    c_2 = \int_a^b \frac{1}{2h^2}(x - a)(x - x_1) dx = \frac{h}{3}
+    E_T = -\frac{h^3}{12} n f''(\theta) = -\frac{h^2}{12} (n h) f''(\theta) = \boxed{-\frac{b-a}{12} h^2 f''(\theta)}
 \]
+Se concluye que el error global de la Regla del Trapecio Compuesta desciende a $\mathcal{O}(h^2)$.
 
-Dejando así finalmente la fórmula de aproximación de la integral:
-\[
-    \boxed{\widetilde{S} = \frac{h}{3} (f(a) + 4f(x_1) + f(b))}
-\]
+\subsubsection{Regla de Simpson Compuesta}
 
-Y el error cometido:
-\[
-    E = \int_a^b \underbrace{E_2(x)}_{\text{error de interpolación}} dx =
-    \int_a^b \frac{f^{(3)}(\xi_x)}{3!} (x - a)(x - x_1)(x - b) dx
-\]
+Para aplicar la Regla de Simpson a trozos, es condición esencial que el número total de subintervalos $n$ sea \textbf{par}. Esto se debe a que Simpson requiere tres nodos por panel (un inicio, un medio y un fin). Agruparemos los subintervalos de dos en dos, definiendo $n/2$ bloques de ancho $2h$.
 
-Ahora no podemos aplicar el teorema del valor medio para integrales, ya que el producto $(x - a)(x - x_1)(x - b)$ no es de un mismo signo en todo el intervalo $[a, b]$.\\
-
-Sin embargo, si utilizamos la función $\varphi(r)$ que habíamos definido en el método de los rectángulos, recordando que representaba el error cometido en el radio $r$, y que $\varphi(h) = E$, podemos escribir:
+Si aplicamos la regla de Simpson al primer bloque (nodos $x_0, x_1, x_2$), al segundo ($x_2, x_3, x_4$), y así sucesivamente:
 \[
-    \varphi(r) = \int_{x_1 - r}^{x_1 + r} f(x) dx - \frac{r}{3} (f(x_1 - r) + 4f(x_1) + f(x_1 + r))
+    \widetilde{S}_S = \frac{h}{3} [f(x_0) + 4f(x_1) + f(x_2)] + \frac{h}{3} [f(x_2) + 4f(x_3) + f(x_4)] + \dots
 \]
+Aquí la superposición crea un patrón alternante distintivo:
+\begin{itemize}
+    \item Los extremos globales ($x_0$ y $x_n$) aparecen una vez (coeficiente 1).
+    \item Los nodos de índice impar ($x_1, x_3, x_5\dots$) son siempre los nodos centrales de cada bloque parabólico (coeficiente 4).
+    \item Los nodos interiores de índice par ($x_2, x_4, x_6\dots$) son las fronteras compartidas donde termina una parábola y comienza la siguiente, por lo que su coeficiente es $1 + 1 = 2$.
+\end{itemize}
 \[
-    \varphi'(r) = f(x_1 + r) + f(x_1 - r) - \frac{1}{3} (f(x_1 - r) + 4f(x_1) + f(x_1 + r)) - \frac{r}{3} (-f'(x_1 - r) + f'(x_1 + r))
-\]
-\[
-    \varphi''(r) = f'(x_1 + r) - f'(x_1 - r) - \frac{1}{3} (-f'(x_1 - r) + f'(x_1 + r)) - \frac{r}{3} (f''(x_1 - r) + f''(x_1 + r))
-\]
-\[
-    \varphi^{3}(r) = \frac{r}{3} (f^{(3)}(x_1 - r) - f^{(3)}(x_1 + r))
+    \boxed{\widetilde{S}_S = \frac{h}{3} \left[ f(a) + 4 \sum_{j=1, 3, 5\dots}^{n-1} f(x_j) + 2 \sum_{k=2, 4, 6\dots}^{n-2} f(x_k) + f(b) \right]}
 \]
 
-Tomando ahora según Taylor:
-\[
-    \begin{cases}
-        f^{(3)}(x_1 - r) = f^{(3)}(x_1) - f^{(4)}(\xi_r)r \qquad \xi_r \in (x_1 - r, x_1) \\
-        f^{(3)}(x_1 + r) = f^{(3)}(x_1) + f^{(4)}(\eta_r)r \qquad \eta_r \in (x_1, x_1 + r)
-    \end{cases}
-    \implies
-    \varphi^{3}(r) = -\frac{r^2}{3} (f^{(4)}(\xi_r) + f^{(4)}(\eta_r))  
-\]
-
-Ahora aplicando el teorema del valor intermedio, obtenemos que existe $\theta \in (x_1 - r, x_1 + r)$ tal que:
-\[
-    \varphi^{3}(r) = -\frac{r^2}{3} f^{(4)}(\theta)
-\]
-
-Ahora integrando tres veces, obtenemos:
-\[
-    \varphi''(r) = \int_0^r \varphi^{3}(s) ds = -\frac{2r^3}{9} f^{(4)}(\theta)
-\]
-\[
-    \varphi'(r) = \int_0^r \varphi''(s) ds = -\frac{r^4}{18} f^{(4)}(\theta)
-\]
-\[
-    \varphi(r) = \int_0^r \varphi'(s) ds = -\frac{r^5}{90} f^{(4)}(\theta)
-\]
-
-Y por tanto ahora podemos calcular el error cometido:
-\[
-    \boxed{E = \varphi(h) = -\frac{h^5}{90} f^{(4)}(\theta)}
-\]
-
-Es interesante destacar que el método de Simpson es exacto si $m \leq 3$, es decir, si la función $f$ es un polinomio de grado menor o igual a 3, ya que en ese caso $f^{(4)}(\theta) = 0$.
-
-\subsection{Fórmula compuesta de integración}
-
-En esta sección, vamos a ver cómo podemos separar la aproximación de la integral en varios subintervalos, según la siguiente intuición geométrica:
-\begin{center}
-    \begin{tikzpicture}
-        % Ejes
-        \draw[->] (-0.5, 0) -- (5.5, 0) node[right] {$x$};
-        \draw[->] (0, -0.5) -- (0, 3) node[above] {$f(x)$};
-
-        % Area bajo la curva
-        \fill[blue!20] (0.5, 0) -- plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)} -- (5, 0) -- cycle;
-        % Función
-        \draw[thick, blue] plot[smooth] coordinates {(0.5, 1) (1, 2) (2, 1.25) (3.5, 2) (4, 1) (5, 3)};
-
-        % Puntos de interpolación x_0 y x_n en los extremos del intervalo
-        \fill[red] (0.5, 0) circle (0.1) node[below] {$x_0 = a$};
-        \fill[red] (5, 0) circle (0.1) node[below] {$x_n = b$};
-
-        % Puntos de interpolación x_1 x_2 x_3 x_4 en el interior del intervalo
-        \fill[red] (1, 0) circle (0.1) node[below] {$x_1$};
-        \fill[red] (2, 0) circle (0.1) node[below] {$x_2$};
-        \fill[red] (3.5, 0) circle (0.1) node[below] {$x_3$};
-        \fill[red] (4, 0) circle (0.1) node[below] {$x_4$};
-
-        % Rectas de x_0, x_1, x_2, x_3 y x_4 hasta la función
-        \draw[thick, dashed] (0.5, 0) -- (0.5, 1);
-        \draw[thick, dashed] (1, 0) -- (1, 2);
-        \draw[thick, dashed] (2, 0) -- (2, 1.25);
-        \draw[thick, dashed] (3.5, 0) -- (3.5, 2);
-        \draw[thick, dashed] (4, 0) -- (4, 1);
-        \draw[thick, dashed] (5, 0) -- (5, 3);
-    \end{tikzpicture}
-\end{center}
-
-Dejando entonces que:
-\[
-    S = \int_a^b f(x) dx = \int_{x_0}^{x_1} f(x) dx + \int_{x_1}^{x_2} f(x) dx + \int_{x_2}^{x_3} f(x) dx + \cdots + \int_{x_{n-1}}^{x_n} f(x) dx =
-    \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} f(x) dx =
-\]
-\[
-    = \sum_{i=0}^{n-1} \left( \widetilde{S}_i + E_i \right) =
-    \boxed{\underbrace{\sum_{i=0}^{n-1} \widetilde{S}_i}_{\widetilde{S}}} + \boxed{\underbrace{\sum_{i=0}^{n-1} E_i}_{E}}
-\]
-
-Y ahora podemos intentar usar distintos métodos de aproximación de la integral en cada subintervalo, obteniendo así distintas fórmulas de aproximación de la integral, y distintos errores cometidos.\\
-
-Si usamos la fórmula del trapecio compuesta, dejando que (con $h = \frac{b - a}{n}$):
-\[
-    \widetilde{S} = \sum_{i=0}^{n-1} \frac{h}{2} (f(x_i) + f(x_{i+1})) \implies
-    \boxed{\widetilde{S} = \frac{h}{2} (f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b))}
-\]
-
-Con error:
+Procediendo con la misma técnica rigurosa para el error, sumamos los errores de los $n/2$ bloques. El error simple de Simpson en un bloque es $-h^5 f^{(4)}(\theta_j) / 90$:
 \[
     E = -\frac{h^3}{12} \sum_{i=0}^{n-1} f''(\theta_i)
     = -\frac{h^3}{12} n f''(\theta)
@@ -639,3 +662,15 @@ Veamos una tabla resumen con los distintos métodos de aproximación de la integ
         \hline
     \end{tabular}
 \end{center}
+\[
+    E_S = \sum_{j=1}^{n/2} \left( -\frac{h^5}{90} f^{(4)}(\theta_j) \right) = -\frac{h^5}{90} \sum_{j=1}^{n/2} f^{(4)}(\theta_j)
+\]
+Aplicando el Teorema del Valor Intermedio sobre los $n/2$ términos:
+\[
+    \sum_{j=1}^{n/2} f^{(4)}(\theta_j) = \left(\frac{n}{2}\right) f^{(4)}(\theta)
+\]
+Sustituyendo y factorizando $(n \cdot h) = b-a$:
+\[
+    E_S = -\frac{h^5}{90} \left( \frac{n}{2} \right) f^{(4)}(\theta) = -\frac{h^4}{180} (nh) f^{(4)}(\theta) = \boxed{-\frac{b-a}{180} h^4 f^{(4)}(\theta)}
+\]
+Gracias a la composición, el error desciende vertiginosamente, siendo proporcional a la cuarta potencia del paso de malla, $\mathcal{O}(h^4)$, lo que convierte a la regla de Simpson compuesta en uno de los métodos más eficientes y ubicuos del cálculo numérico general.
