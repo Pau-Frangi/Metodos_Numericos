@@ -1775,4 +1775,582 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 264.
 
-pdfTeX warning (ext4): destina
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.264     S
+           i además $\det(A) = 0$, entonces podemos encontrar $T$ cuya diag...
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 274.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.274 \begin{teorema}[Factorización LU]
+                                         [33]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 299.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.299 ...stemas lineales con la factorización LU]
+                                                  
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
+
+ []
+
+[34]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 374.
+
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.374     N
+           otese que:
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 382.
+Package hyperref Info: bookmark level for unknown lema defaults to 0 on input line 382.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 386.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.386 ...}[Permisibilidad de la factorización LU]
+                                                   [35]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 481.
+Package mdframed Info: Not enough space on this page on input line 486.
+ [36]
+Package mdframed Info: Not enough space on this page on input line 486.
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 609.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.609 \begin{teorema}[Factorización de Cholesky]
+                                                  [37]) [38] (Theory/3 - Métodos iterativos.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 28.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.28 ...ión}[Convergencia de métodos iterativos]
+                                                  
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 48.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.48 ...roposición}[Error en métodos iterativos]
+                                                  
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 73.
+ [39]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 75.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.75 \begin{proposición}[Criterios de parada]
+                                              
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 116.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.116 \begin{teorema}[Metodo de Jacobi]
+                                       
+Underfull \hbox (badness 10000) in paragraph at lines 172--174
+
+ []
+
+[40]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 178.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.178 ...ión}[Convergencia del método de Jacobi]
+                                                   [41]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 230.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.230 \begin{definición}[Matriz d.e.d.]
+                                        
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 238.
+
+pdfTeX warning (ext4): destination with the same identifier (name{lema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.238     S
+           ea $A$ una matriz d.e.d., entonces:
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 259.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.259 ...l método de Jacobi para matrices d.e.d.]
+                                                   [42]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 288.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288 \begin{teorema}[Método de Gauss-Seidel]
+                                               [43]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 347.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.347 ...eorema}[Método de relajación de Jacobi]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 382.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.382 ...}[Método de relajación de Gauss-Seidel]
+                                                  
+Underfull \hbox (badness 10000) in paragraph at lines 398--400
+
+ []
+
+[44]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 402.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.402 ...l método de relajación de Gauss-Seidel]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 440.
+ [45]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 480.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 489.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 494.
+
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.494     N
+           otese que si $\omega = 1$, entonces el método de relajación de ... [46]) [47] (Theory/4 - Interpolación polinómica.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 13.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.13 \begin{definición}[Espacio de polinomios]
+                                               
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 40.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.40 ...Problema de la interpolación polinómica]
+                                                   [48] [49]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 169.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.169 ...definición}[Polinomios base de Lagrange]
+                                                  
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 182.
+ [50]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 186.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.186 ...cia y unicidad del polinomio de Lagrange]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 216.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.216     E
+           l error de interpolación de la función $f$ aproximada mediante ... [51]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 269.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.269 ...ma}[Fórmula del error de interpolación]
+                                                   [52] [53]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 337.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.337 \begin{definición}[Diferencias divididas]
+                                                
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 367.
+
+pdfTeX warning (ext4): destination with the same identifier (name{proposici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.367 ...}[Simetría de las diferencias divididas]
+                                                   [54]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 382.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.382 ...ión}[Construcción progresiva de Newton]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 412.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.412 ...ma}[Fórmula de Interpolación de Newton]
+                                                   [55] [56]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 476.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.476 ...{definición}[Partición de un intervalo]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 484.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.484 \begin{definición}[Función spline]
+                                          
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
+
+ []
+
+[57] [58] [59] [60]) [61] (Theory/5 - Diferenciación Numérica.tex [62] [63]) [64] [65] (Theory/6 - Integración Numérica.tex [66] [67]
+Overfull \hbox (23.75604pt too wide) in paragraph at lines 145--146
+[]\OT1/cmr/m/n/10.95 Para hal-lar una ex-presi^^Son mane-jable de este er-ror, uti-lizare-mos un re-curso anal^^S^^Ptico muy el-e-gante: parametrizare-
+ []
+
+[68] [69] [70]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 282.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.282 ...el Valor Medio Ponderado para Integrales]
+                                                   [71] [72]
+Overfull \hbox (31.01999pt too wide) in paragraph at lines 414--425
+ [] 
+ []
+
+[73] [74] [75] [76]) [77] (Theory/7 - Resolución de ecuaciones no lineales.tex
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 15.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15 \begin{definición}[Raíz aislada]
+                                       
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 23.
+
+pdfTeX warning (ext4): destination with the same identifier (name{observaci\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.23     S
+          i una función es derivable, entonces todas sus raices son aisladas.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 26.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.26 \begin{teorema}[Algoritmo general]
+                                       
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 71.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.71 \begin{teorema}[Teorema de Bolzano]
+                                        
+Package mdframed Info: Not enough space on this page on input line 73.
+ [78]
+Package mdframed Info: Not enough space on this page on input line 73.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 75.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.75 \begin{teorema}[Teorema de Rolle]
+                                      
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 79.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.79 \begin{teorema}[Teorema del valor medio]
+                                             
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 88.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.88 ...orema de existencia y unicidad de raíces]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 112.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.112 ...orema}[Teorema de separación de raíces]
+                                                   [79]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 131.
+
+pdfTeX warning (ext4): destination with the same identifier (name{corolario.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.131     S
+           i tenemos una función $f \in C^2([a,b])$ tal que $f''(x) > 0$ pa...
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 142.
+
+pdfTeX warning (ext4): destination with the same identifier (name{teorema.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.142 ...ema}[Cota de las raíces de un polinomio]
+                                                   [80])) [81] [82] (Exercises/Hojas.tex Excluding 'comment' comment. (Exercises/Hoja6.tex [83] [84] [85] [86]) [87]) [88] (Exams/Examenes Resueltos.tex Excluding 'comment' comment. (Exams/Examen 1.tex) [89]) [90] (Appendix/Appendix.tex Excluding 'comment' comment. (Appendix/Normas.tex
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 3.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3 ...n{definición}[Norma euclidea de un vector]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 10.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.10 \begin{definición}[Norma 1 de un vector]
+                                              
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 17.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.17 ...{definición}[Norma infinito de un vector]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 24.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.24 \begin{definición}[Norma $p$ de un vector]
+                                                
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 31.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.31 \begin{definición}[Norma 1 de una matriz]
+                                               
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 39.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.39 ...definición}[Norma infinito de una matriz]
+                                                  
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 45.
+ [91]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 47.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.47 \begin{definición}[Norma de Frobenius]
+                                            
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 54.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.54 ...ición}[Norma 2 o espectral de una matriz]
+                                                  
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 62.
+
+pdfTeX warning (ext4): destination with the same identifier (name{definici\303\263n.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.62 ...ión}[Norma $p$ subordinada de una matriz]
+                                                  ) [92] (Appendix/Agradecimientos.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 10.95003pt
+(hyperref)                replaced by space on input line 15.
+
+) [93])
+<doclicense-CC-by-nc-nd-88x31.pdf, id=1342, 90.3375pt x 31.61812pt>
+File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
+<use doclicense-CC-by-nc-nd-88x31.pdf>
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 157.
+(pdftex.def)             Requested size: 109.50027pt x 38.32556pt.
+ (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+) (C:\Users\diego\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf8.def
+File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
+) [94 <C:/Users/diego/AppData/Local/Programs/MiKTeX/tex/latex/doclicense/images/doclicense-CC-by-nc-nd-88x31.pdf>] (main.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: B827EEF3FFFBC35900D97E54E6EEBEF8;10710.
+ ) 
+Here is how much of TeX's memory you used:
+ 52322 strings out of 467866
+ 1213926 string characters out of 5418326
+ 1900328 words of memory out of 5000000
+ 79827 multiletter control sequences out of 15000+600000
+ 653805 words of font info for 141 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 109i,17n,112p,1035b,1232s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi657\esint10.pk> <C:\Users\diego\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/diego/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (95 pages, 1450197 bytes).
+PDF statistics:
+ 1541 PDF objects out of 1728 (max. 8388607)
+ 401 named destinations out of 1000 (max. 500000)
+ 611 words of extra memory for PDF output out of 10000 (max. 10000000)
+
