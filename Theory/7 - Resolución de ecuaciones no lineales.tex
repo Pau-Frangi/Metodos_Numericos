@@ -140,18 +140,17 @@ Veamos como demostrarlo.
 Veamos un teorema interesante sobre las raíces de los polinomios.
 
 \begin{teorema}[Cota de las raíces de un polinomio]
-    Si $P(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ es un polinomio con $a_0 \neq 0 \neq a_n$, entonces:
+    Si $P(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ es un polinomio con $a_0 \neq 0 \neq a_n$, entonces todas sus raíces $\xi$ satisfacen:
     \[
         \begin{cases}
-            \lambda = \max_{0 \leq i \neq n } \left| \frac{a_i}{a_n} \right| \\
-            \mu = \max_{0 \leq i \neq 0 } \left| \frac{a_i}{a_0} \right|
+            \lambda = \max_{i \neq n } \left| \frac{a_i}{a_n} \right| \\
+            \mu = \max_{i \neq 0 } \left| \frac{a_i}{a_0} \right|
         \end{cases}
         \implies
-        \boxed{P(\xi) = 0} \iff
-        \xi \in D(0, \mu +1, \lambda + 1)
+        \frac{1}{1+\mu} < |\xi| < 1 + \lambda
     \]
 
-    Es decir, las raices están en el disco de centro $0$ y radio $\min\{\lambda + 1, \mu + 1\}$, y fuera del disco de centro $0$ y radio $\max\{\lambda + 1, \mu + 1\}$.
+    Es decir, las raíces están fuera del disco de centro $0$ y radio $\frac{1}{1+\mu}$, y dentro del disco de centro $0$ y radio $1 + \lambda$.
 
     \begin{center}
         \begin{tikzpicture}
@@ -164,8 +163,8 @@ Veamos un teorema interesante sobre las raíces de los polinomios.
             \draw[thick, red] (0, 0) circle (1.5);
 
             % Etiquetas
-            \node at (2.5, 0.3) [above] {$\lambda + 1$};
-            \node at (1.5, 0.3) [above] {$\mu + 1$};
+            \node at (2.5, 0.3) [above] {$1 + \lambda$};
+            \node at (1.5, 0.3) [above] {$\frac{1}{1+\mu}$};
         \end{tikzpicture}
     \end{center}
     
@@ -183,7 +182,7 @@ Veamos un teorema interesante sobre las raíces de los polinomios.
             a_0 = 30 \implies \mu = \max (\frac{1}{30}, \frac{1}{30}, \frac{20}{30}) = \frac{2}{3}
         \end{cases}
     \]
-    Por lo tanto, las raíces de $p$ están en el disco de centro $0$ y radio $\min\{30 + 1, \frac{2}{3} + 1\} = \frac{5}{3}$, y fuera del disco de centro $0$ y radio $\max\{30 + 1, \frac{2}{3} + 1\} = 31$.
+    Por lo tanto, las raíces de $p$ están fuera del disco de centro $0$ y radio $\frac{1}{1 + \frac{2}{3}} = \frac{3}{5}$, y dentro del disco de centro $0$ y radio $1 + 30 = 31$.
 }
 
 \begin{teorema}[Regla de Descartes]
@@ -276,3 +275,44 @@ Siendo el error en la i-ésima iteración:
     \]
     Dejando así que es un método lineal, al tener $\alpha = 1$ y $M=\frac{1}{2} < 1$.
 \end{teorema}
+
+\subsection{Métodos del punto fijo}
+
+\begin{definición}[Aplicación contractiva]
+    Se dice que una función $f: [a,b] \to \mathbb{R}$ es una aplicación contractiva si existe una constante $M \in [0,1)$ tal que:
+    \[
+        |f(x) - f(y)| \leq M |x-y| \quad \forall x,y \in [a,b]
+    \]
+    A la constante $M$ se le llama constante de contracción o constante de Lipschitz.
+\end{definición}
+
+\begin{corolario}[Continuidad de las aplicaciones contractivas]
+    Si $f$ es una aplicación contractiva en $[a,b]$, entonces $f$ es continua en $[a,b]$.
+\end{corolario}
+
+Una pregunta natural sería como encontrar la constante de contracción $M$ de una aplicación contractiva $f$. Para ello, usaremos el teorema de Rolle. Definamos la siguiente función auxiliar:
+\[
+    \begin{array}{cccc}
+        F: & [a,b] & \to & \mathbb{R} \\
+        & z & \mapsto & F(z) = f(z) - \frac{f(x)(y-z) + f(y)(z-x)}{y-x}
+    \end{array}
+\]
+
+Siendo $x,y \in [a,b]$ con $x < y$. Nótese que:
+\[
+    \begin{cases}
+        F(x) = f(x) - \frac{f(x)(y-x) + f(y)(x-x)}{y-x} = 0 \\
+        F(y) = f(y) - \frac{f(x)(y-y) + f(y)(y-x)}{y-x} = 0
+    \end{cases}
+\]
+Esta función es claramente $C^1$ en $[a,b]$, por lo que por el teorema de Rolle, existe $c \in (x,y)$ tal que $F'(c) = 0$. Calculando la derivada de $F$, tenemos:
+\[
+    F'(c) = f'(c) - \frac{-f(x) + f(y)}{y-x} = 0 \implies
+    f(y) - f(x) = f'(c)(y-x) \implies
+    |f(y) - f(x)| = |f'(c)||y-x| \leq \| f'\|_\infty |y-x|
+\]
+
+Y así, finalmente, la constante $M$ será:
+\[
+    \boxed{M = \| f'\|_\infty}
+\]
