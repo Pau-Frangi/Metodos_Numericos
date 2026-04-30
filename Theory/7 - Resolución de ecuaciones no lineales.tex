@@ -316,3 +316,72 @@ Y así, finalmente, la constante $M$ será:
 \[
     \boxed{M = \| f'\|_\infty}
 \]
+
+\ejemplo{
+    Sea la función;
+    \[
+        f(x) = e^x - \sin(x)
+    \]
+    Con dominio $x \in [0, \frac{\pi}{2}]$. Calculemos entonces sus derivadas:
+    \[
+        \begin{cases}
+            f'(x) = e^x - \cos(x) \\
+            f''(x) = e^x + \sin(x)
+        \end{cases}
+    \]
+    Como la 2 derivada es siempre positiva, entonces $f'$ es estrictamente creciente, y por tanto, el máximo de $f'$ en $[0, \frac{\pi}{2}]$ se encuentra en el extremo derecho del intervalo, es decir: 
+    \[
+        \| f' \|_\infty = f'(\frac{\pi}{2}) = e^{\frac{\pi}{2}}
+    \]
+    Que es una mejor aproximacion a simplemente acotar:
+    \[
+        \| f' \|_\infty = \| e^x - \cos(x) \|_\infty \leq \| e^x \|_\infty + \| \cos(x) \|_\infty = e^{\frac{\pi}{2}} + 1
+    \]
+}
+
+\subsubsection{Teorema de Banach}
+
+\begin{teorema}[Teorema de Banach]
+    Sea $h$ una aplicación que cumple:
+    \begin{enumerate}
+        \item $h:[a,b] \to [a,b]$, es decir, deja el intervalo $[a,b]$ invariante.
+        \item $h$ es contractiva con $M<1$.
+    \end{enumerate}
+    Entonces la aplicación:
+    \[
+        \begin{cases}
+            x_0 \in [a,b] \\
+            \vdots \\
+            x_i = h(x_{i-1}) \\
+            \xi = h(\xi)
+        \end{cases}
+    \]
+    Tiene un único punto fijo $\xi \in [a,b]$, y toda sucesión $\{x_i\}_{i=0}^\infty$ con $x_0 \in [a,b]$ converge a $\xi$.\\
+    Además, el error:
+    \[
+        E_i = |x_i - \xi| \leq \frac{M^i}{1-M}|x_1-x_0| \leq  \frac{M^i}{1-M}(b-a)
+    \]
+\end{teorema}
+
+Una forma de poder aplicar el teorema de Banach para encontrar los 0 de una función $f$ es la siguiente:
+\begin{enumerate}
+    \item Sumamos: $x + f(x) = x$ y denotamos $h(x) = x + f(x)$. Ahora aplicamos el teorema de Banach a $h$, ya que buscamos su punto fijo $h(\xi) = \xi \implies x + f(x) = x \implies f(x) = 0$.
+    \item Ahora intentamos aplicar el teorema de Banach, para ello, necesitamos un intervalo invariante $[a,b]$ y buscar $M= \|1+f'\|_\infty < 1$.
+\end{enumerate}
+
+En muchas situaciones, nos podemos encontrar con que $M$ es un poco mayor que 1, o que el intervalo no es invariante, pero podemos multiplicar por una constante $\alpha$ que haga que $M$ sea menor que 1, o que el intervalo sea invariante, es decir, podemos intentar aplicar el teorema de Banach a la función $h(x) = x + \alpha f(x)$, ya que las raíces no cambian de $f(x)$ a $\alpha f(x)$.
+
+\subsubsection{Criterios de parada}
+
+Ahora es interesante plantearnos cuales pueden ser los criterios de parada para este método. Para ello, fijamos una tolerancia $\epsilon \ll 1$ y despejamos:
+\[
+    E_n \leq \epsilon \implies
+    \frac{M^n}{1-M}|x_1-x_0| \leq |\epsilon| \implies
+    M^n \leq \frac{(1-M)\epsilon}{|x_1-x_0|} \implies
+    n \log(M) \leq \log\left( \frac{(1-M)\epsilon}{|x_1-x_0|} \right) \implies
+\]
+\[
+    \boxed{
+        n = \left\lceil \frac{\log\left( \frac{(1-M)\epsilon}{|x_1-x_0|} \right)}{\log(M)} \right\rceil
+    }
+\]
