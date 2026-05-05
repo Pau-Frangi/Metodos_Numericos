@@ -240,13 +240,19 @@
 }{}
 
 % Ejercicio 7
-\ejercicio{enunciado}{no}{
+\ejercicio{medio}{profesor}{
 	Dados un n\'umero natural $n$ y un n\'umero positivo $\alpha$, una forma de calcular las ra\'ices reales $n$-\'esimas de $\alpha$ sin usar radicales es aplicar el m\'etodo de Newton a la ecuaci\'on
 	\[
 		x^n-\alpha=0.
 	\]
 	Encontrar un intervalo y un valor inicial para los que el m\'etodo sea convergente.
-}{}
+}{
+	Si tomamos $f(x)=x^n-\alpha$, entonces $f'(x)=nx^{n-1}$. Podemos distinguir dos casos:
+	\begin{itemize}
+		\item Si $\alpha < 1$, entonces $f(0)=-\alpha<0$ y $f(1)=1-\alpha>0$, luego existe una raíz $\xi\in(0,1)$.
+		\item Si $\alpha > 1$, entonces $f(1)=1-\alpha<0$ y $f(\alpha)=\alpha^n-\alpha>0$, luego existe una raíz $\xi\in(1,\alpha)$.
+	\end{itemize}
+}
 
 % Ejercicio 8
 \ejercicio{enunciado}{no}{

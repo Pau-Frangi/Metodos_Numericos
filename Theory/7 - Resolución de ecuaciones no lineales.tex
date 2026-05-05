@@ -361,6 +361,11 @@ Y así, finalmente, la constante $M$ será:
     \[
         E_i = |x_i - \xi| \leq \frac{M^i}{1-M}|x_1-x_0| \leq  \frac{M^i}{1-M}(b-a)
     \]
+    También es interesante destacar la relación entre un error y el siguiente:
+    \[
+        E_{i+1} \leq M E_i \quad \forall i \in \mathbb{N} 
+    \]
+    De lo que deducimos que el \textbf{orden} del método es $\alpha = 1$, es decir, es un método lineal.
 \end{teorema}
 
 Una forma de poder aplicar el teorema de Banach para encontrar los 0 de una función $f$ es la siguiente:
@@ -385,3 +390,204 @@ Ahora es interesante plantearnos cuales pueden ser los criterios de parada para 
         n = \left\lceil \frac{\log\left( \frac{(1-M)\epsilon}{|x_1-x_0|} \right)}{\log(M)} \right\rceil
     }
 \]
+
+\subsubsection{Salvar el método}
+
+Si el método no converge, es decir, si $M \geq 1$, entonces podemos intentar salvarlo de distintas formas.
+
+\begin{enumerate}
+    \item Multiplicando por una constante $\alpha$ que haga que el intervalo sea invariante, es decir, podemos intentar aplicar el teorema de Banach a la función $h(x) = x + \alpha f(x)$, ya que las raíces no cambian de $f(x)$ a $\alpha f(x)$.
+    \item Buscar una función $\Phi \in C^0([a,b])$ y cuya única raíz sea 0, por lo que:
+    \[
+        f(x) = 0 \iff \Phi(f(x)) = 0
+    \]
+
+    Y así el método quedararía:
+    \[
+        x_i = x_{i-1} + \Phi(f(x_{i-1})) = \widetilde{h}(x_{i-1})
+    \]
+
+    Por lo que nuestro objetivo es encontrar una función $\Phi$ tal que $\widetilde{h}$ sea contractiva, es decir, que $\| \widetilde{h}' \|_\infty < 1$. 
+
+    \item Encontrar una función de signo constante en $[a,b]$, es decir, una función $\varphi$ tal que $\varphi(x) > 0$ o $\varphi(x) < 0$ para todo $x \in [a,b]$, por lo que:
+    \[
+        f(x) = 0 \iff \varphi(x)f(x) = 0
+    \]
+
+    Y así el método quedararía:
+    \[
+        x_i = x_{i-1} + \varphi(x_{i-1})f(x_{i-1}) = \overline{h}(x_{i-1})
+    \]
+
+    \item Buscar una función invertible (monótona) $\psi \in C^0([a,b])$ tal que si ahora descomponemos:
+    \[
+        f(x) = g(x) - s(x) = 0 \implies
+        g(x) = s(x) \implies
+        \psi(g(x)) = \psi(s(x))
+    \]
+    Por lo que si tomamos $\psi$ como la función inversa de $g$, es decir, $\psi = g^{-1}$, entonces el método quedaría:
+    \[
+        x_i = \psi(s(x_{i-1})) = \widehat{h}(x_{i-1})
+    \]
+\end{enumerate}
+
+\ejemplo{   
+    Podemos intentar aplicar esto al ejercicio \textbf{3.a} de la hoja \textbf{6}, el cual nos pide hayar las raíces de la función:
+    \[
+        f(x) = x^3 - x - 1 = 0
+    \]
+    Donde al haber 1 cambio de signo, habrá una única raíz positiva. Calculando:
+    \[
+        \begin{cases}
+            f(0) = -1 < 0 \\
+            f(1) = -1 < 0 \\
+            f(2) = 5 > 0
+        \end{cases}
+        \implies 
+        \exists ! \xi \in (1,2) \text{ tal que } f(\xi) = 0
+    \]
+    Si tomamos directamente $h(x) = x + f(x) = x^3 - 1$, entonces $h'(x) = 3x^2$, y como $h'(1) = 3 > 1$ y $h'(2) = 12 > 1$, entonces el método no converge.\\
+
+    Si intentamos el método \textbf{1} buscar una constante $\alpha$ tal que $h(x) = x + \alpha f(x)$, entonces $h'(x) = 1 + \alpha (3x^2 - 1)$, y como $h'(1) = 1 + 2\alpha$ y $h'(2) = 1 + 11\alpha$, entonces para que el método converja, necesitamos que $|1 + 2\alpha| < 1$ y $|1 + 11\alpha| < 1$, lo que implica que $\alpha \in (-1,0)$ y $\alpha \in (-\frac{2}{11},0)$, por lo que el método convergería para cualquier $\alpha \in (-\frac{2}{11},0)$.\\
+
+    Otra idea sería aplicar el método \textbf{4}, descomponiendo $f$ como $f(x) = g(x) - s(x)$, con $g(x) = x^3$ y $s(x) = x + 1$. Entonces, si tomamos $\psi = g^{-1}$, es decir, $\psi(x) = \sqrt[3]{x}$, entonces el método quedaría:
+    \[
+        x_i = \psi(s(x_{i-1})) = \sqrt[3]{x_{i-1} + 1} = \widehat{h}(x_{i-1})
+    \]
+    Derivando ahora llegamos a que $\widehat{h}'(x) = \frac{1}{3\sqrt[3]{(x+1)^2}} > 0$, por lo que $\widehat{h}$ es monótona, y además, como:
+    \[
+        1 \leq \widehat{h}(1) = \sqrt[3]{2} \leq \widehat{h}(2) = \sqrt[3]{3} \leq 2
+    \]
+    Y además la derivada es menor que 1, ya que la segunda derivada es $\widehat{h}''(x) = -\frac{2}{9\sqrt[3]{(x+1)^5}} < 0$, por lo que $\widehat{h}'$ es decreciente, y por lo tanto, $ M = \| \widehat{h}' \|_\infty = \widehat{h}'(1) = \frac{1}{3\sqrt[3]{4}} < 1$.\\
+    
+    Por lo tanto, $\widehat{h}$ es una aplicación contractiva (ya que $ M < 1$ y $\widehat{h}([1,2]) \subset [1,2]$), y por lo tanto, el método converge a la raíz $\xi$ de $f$.\\
+
+    Si ahora nos planteamos cuantas iteraciones necesitamos para que el error sea menor que $\epsilon = 10^{-5}$, entonces:
+    \[
+        E_n \leq \frac{M^n}{1-M}|x_1-x_0| \underbrace{\leq}_{|x_1-x_0| \leq b - a = 1} 
+        \frac{M^n}{1-M} < 10^{-5} \implies
+        n \log_{10}(M) < -5 + \log_{10}(1-M) \implies
+    \]
+    \[
+        n > \frac{-5 + \log_{10}(1-M)}{\log_{10}(M)} \implies
+        \boxed{
+            n = \left\lceil \frac{-5 + \log_{10}(1-\frac{1}{3\sqrt[3]{4}})}{\log_{10}(\frac{1}{3\sqrt[3]{4}})} \right\rceil
+        }
+    \]
+}
+
+\ejemplo{
+    Sea ahora la ecuación:
+    \[
+        x = - \ln(x) \implies
+        f(x) = x + \ln(x) = 0
+    \]
+    Dibujando obtenemos:
+    \begin{center}
+        \begin{tikzpicture}
+            % Ejes
+            \draw[->] (-0.5, 0) -- (3, 0) node[right] {$x$};
+            \draw[->] (0, -1.5) -- (0, 1) node[above] {$f(x)$};
+
+            % Función -ln(x)
+            \draw[domain=0.1:2.5, smooth, variable=\x, blue] plot ({\x}, {-ln(\x)});
+            % Función x
+            \draw[domain=-0.5:2.5, smooth, variable=\x, red] plot ({\x}, {\x});
+            % Intersección
+            \draw (0.567143, 0) node[below] {$\xi$} -- (0.567143, 0.5);
+            % Marca del (1,0)
+            \draw (1, 0) node[below] {$1$} -- (1, 0.5);
+        \end{tikzpicture}
+    \end{center}
+    Ahora podemos plantearnos directamente el método iterativo:
+    \[
+        x_i = -\ln(x_{i-1}) = h(x_{i-1})
+    \]
+    Pero no funcionaría. Podemos intentar entonces pasar a la exponencial, es decir:
+    \[
+        e^{-x} = x \implies
+        x_i = e^{-x_{i-1}} = \widehat{h}(x_{i-1})
+    \]
+    Que sí converge ya que $\widehat{h}'(x) = -e^{-x}$, y como $-e^{-x} \in (-1,0)$ para todo $x > 0$, entonces $\| \widehat{h}' \|_\infty < 1$.\\
+    Por lo tanto, el método converge a la raíz $\xi$ de $f$.\\
+}
+
+\begin{teorema}[Estabilidad de puntos fijos]
+    Si tenemos que $\xi$ es un punto fijo de $h \in \mathcal{C}^1([a,b])$, es decir, $h(\xi) = \xi$, con la sucesión $x_i = h(x_{i-1})$ y $x_0 \in [a,b]$.\\
+    Entonces, si $|h'(\xi)| < 1$, entonces $\xi$ es un punto fijo estable, es decir, existe un intervalo $I$ con $\xi \in I \subset [a,b]$ tal que para todo $x_0 \in I$, la sucesión $\{x_i\}_{i=0}^\infty$ converge a $\xi$.\\
+    Si la derivada es mayor que 1, es decir, $|h'(\xi)| > 1$, entonces $\xi$ es un punto fijo inestable, es decir, no puede existir un intervalo $I$ con $\xi \in I \subset [a,b]$ tal que para todo $x_0 \in I$, la sucesión $\{x_i\}_{i=0}^\infty$ converge a $\xi$.
+\end{teorema}
+
+\subsection{Método de Newton}
+
+El método de Newton es un método iterativo para encontrar raíces de funciones, y es de orden 2, es decir, es un método cuadrático:
+\[
+    e_i = |x_i - \xi| \leq C e_{i-1}^2 \quad \forall i \in \mathbb{N}
+\]
+
+\begin{teorema}
+    Sean:
+    \begin{enumerate}
+        \item $f \in \mathcal{C}^2([a,b])$ que cumple que $f(x) = 0$ para algún único $\xi \in (a,b)$.
+        \item $\varphi: [a,b] \to \mathbb{R}$ continua de un solo signo
+    \end{enumerate}
+    Entonces $\varphi(x)f(x) = 0$ tiene la misma raíz $\xi$, y tenemos la aplicación:
+    \[
+        x_i = x_{i-1} - \varphi(x_{i-1}) f(x_{i-1})
+    \]
+\end{teorema}
+
+Ahora podemos empezar a hacer los siguientes despejes:
+\begin{enumerate}
+    \item Restar el error a ambos lados:
+    \[
+        x_i - \xi = x_{i-1} - \xi - \varphi(x_{i-1}) f(x_{i-1})
+    \]
+    \item 
+    \[
+        0 = f(\xi) = f(x_{i-1} - (x_{i-1} - \xi)) \underbrace{=}_{\text{Taylor}} 
+        f(x_{i-1}) - f'(x_{i-1})(x_{i-1} - \xi) + \frac{f''(\eta)}{2}\underbrace{(x_{i-1} - \xi)^2}_{e_{i-1}^2}
+    \]
+    \item Despejando $x_{i-1} - \xi$:
+    \[
+        x_{i-1} - \xi = \frac{f(x_{i-1})}{f'(x_{i-1})} + \frac{f''(\eta)}{2f'(x_{i-1})} e_{i-1}^2
+    \]
+    \item Reordenando:
+    \[
+        x_i - \xi = \frac{1}{2} \frac{f''(\eta)}{f'(x_{i-1})} e_{i-1}^2 +
+        \underbrace{\frac{f(x_{i-1})}{f'(x_{i-1})} + \varphi(x_{i-1})f(x_{i-1})}_{= 0}
+    \]
+    \item Por lo tanto, el error se puede acotar como:
+    \[
+        e_i = |x_i - \xi| \leq \frac{1}{2} \left| \frac{f''(\eta)}{f'(x_{i-1})} \right| e_{i-1}^2 \leq
+        C e_{i-1}^2
+    \]
+    Siendo:
+    \[
+        C = \frac{1}{2} \left\| \frac{f''}{f'} \right\|_\infty
+    \]
+    \item Por lo tanto, el método queda:
+    \[
+        x_i = x_{i-1} - \frac{f(x_{i-1})}{f'(x_{i-1})}
+    \]
+\end{enumerate}
+
+\begin{observación}
+    Veamos 3 observaciones interesantes sobre el método de Newton:
+    \begin{itemize}
+        \item Si $\varphi(x)$ es de un signo entonces $f'(x)$ es de un signo.
+        \item La segunda derivada está siempre acotada, ya que $f''$ es continua en un intervalo compacto, por lo que $C$ es una constante finita.
+        \item Aunque se cumplan las 2 proposiciones anteriores, el método de Newton no tiene por qué converger.
+    \end{itemize}
+\end{observación}
+
+\begin{teorema}[Método de Newton]
+    Sea $f \in \mathcal{C}^2([a,b])$ tal que $f(a)f(b) < 0$, $f'$ es de un solo signo en $[a,b]$, y $f''$ es de un solo signo en $[a,b]$.\\
+    Si ahora definimos un $c \in \{a,b\}$ tal que $f(c)f''(c) > 0$, entonces el método de Newton con $x_0 = c$ converge a la raíz $\xi$ de $f$ en $(a,b)$:
+    \[
+        \begin{cases}
+            x_0 = c \\
+            x_i = x_{i-1} - \frac{f(x_{i-1})}{f'(x_{i-1})}
+        \end{cases}
+    \]
+\end{teorema}
