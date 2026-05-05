@@ -249,9 +249,12 @@
 }{
 	Si tomamos $f(x)=x^n-\alpha$, entonces $f'(x)=nx^{n-1}$. Podemos distinguir dos casos:
 	\begin{itemize}
-		\item Si $\alpha < 1$, entonces $f(0)=-\alpha<0$ y $f(1)=1-\alpha>0$, luego existe una raíz $\xi\in(0,1)$.
+		\item Si $\alpha < 1$, entonces $f(0)=-\alpha<0$ y $f(1)=1-\alpha>0$, luego existe una raíz $\xi\in(0,1)$.\\
+		Ahora como $f' > 0$ excepto en $x=0$, y $f''(x)=n(n-1)x^{n-2}>0$ excepto en $x=0$, entonces podemos tomar $I=[0,1]$ y $x_0=1$, ya que $f(x_0)f''(x_0)>0$.
 		\item Si $\alpha > 1$, entonces $f(1)=1-\alpha<0$ y $f(\alpha)=\alpha^n-\alpha>0$, luego existe una raíz $\xi\in(1,\alpha)$.
+		Ahora como $f' > 0$ excepto en $x=0$, y $f''(x)=n(n-1)x^{n-2}>0$ excepto en $x=0$, entonces podemos tomar $I=[1,\alpha]$ y $x_0=\alpha$, ya que $f(x_0)f''(x_0)>0$.
 	\end{itemize}
+	Así, de forma general, podemos tomar $I=[\min\{1,\alpha\},\max\{1,\alpha\}]$ y $x_0=\max\{1,\alpha\}$ para que el método de Newton converja a la raíz $\xi$.
 }
 
 % Ejercicio 8
