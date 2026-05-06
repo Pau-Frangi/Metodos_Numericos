@@ -1,1 +1,225 @@
-\examen{Primer examen}
+\examen{Final (20 de diciembre de 2022)}
+
+Empezar cada ejercicio en una cara nueva. Solo se empleará papel y bolígrafo. El examen dura 3 horas. Una vez comenzado, no se podrá salir en los primeros 45 minutos.
+
+\vspace{1em}
+
+% Ejercicio 1
+\ejercicio{enunciado}{no}{%
+Sea $A := (a_{ij})_{i,j=1}^{n} \in \mathcal{M}_n(\mathbb{R})$ una matriz inversible.
+\begin{enumerate}[label=\alph*)]
+  \item Probar que si $A = L_1U_1 = L_2U_2$, con $L_1$ y $L_2$ triangulares inferiores (los elementos en la diagonal pueden ser arbitrarios, la condición $\ell_{ii} = 1$ no es necesaria) y $U_1, U_2$ triangulares superiores, entonces existe una matriz diagonal $D = \text{diag}(d_1, \ldots, d_n)$ inversible tal que $L_2 = L_1D$ y $U_2 = D^{-1}U_1$. \\
+  \textit{Indicación:} Usar el hecho de que la inversa de una matriz triangular inversible también es triangular.
+  
+  \item Probar que si $A$ admite factorización $LU$ (con $\ell_{ii} = 1$, $i = 1, 2, \ldots, n$), entonces todos sus menores principales $\delta_k := \det(A_k) \neq 0$, $k = 1, 2, \ldots, n-1$, donde $A_k = (a_{ij})_{i,j=1}^{k}$. \\
+  \textit{Indicación:} Primero concluir que para factorizar $A_2$ es necesario que $\delta_1 \neq 0$. Segundo, usar inducción: representar $A_{k+1}$ como matriz compuesta por bloques a partir de $A_k$ y factorizándola concluir que $\delta_k \neq 0$.
+\end{enumerate}
+}{%
+%
+}
+
+% Ejercicio 2
+\ejercicio{enunciado}{no}{%
+Se considera el método iterativo de Jacobi para resolver el sistema lineal $Au = b$ dados $A := (a_{ij})_{i,j=1}^{n} \in \mathcal{M}_n(\mathbb{R})$ y $b \in \mathbb{R}^n$:
+\begin{equation*}
+u^0 = 0, \quad u^k = Ju^{k-1} + D^{-1}b, \quad k = 1, 2, \ldots
+\end{equation*}
+donde la matriz $A$ se descompone de forma: $A = D - E - F$ ($D$ es diagonal y $E, F$ son triangulares inferior y superior, respectivamente) y $J = D^{-1}(E + F)$. La matriz $A$ verifica:
+\begin{align*}
+|a_{ii}| > \alpha \sum_{\substack{j=1\\j\neq i}}^{n} |a_{ij}|, \quad \alpha > 1, \quad i = 1, 2, \ldots, n, \\
+|a_{ii}| > \gamma > 0, \quad i = 1, 2, \ldots, n.
+\end{align*}
+
+\begin{enumerate}[label=\alph*)]
+  \item Probar que $\|J\|_\infty < \frac{1}{\alpha}$. \textit{Indicación:} La norma infinito: $\|J\|_\infty := \max_{i \in \{1,\ldots,n\}} \sum_{j=1}^{n} |J_{ij}|$. Representar $J$ en términos de $A$.
+  
+  \item Sea $\xi \in \mathbb{R}^n$ la solución del sistema lineal $Au = b$. Probar que:
+  \begin{equation*}
+  \xi = J\xi + D^{-1}b.
+  \end{equation*}
+  Sea $e^k = u^k - \xi$ el error de aproximación en el $k$-ésimo paso. Demostrar que
+  \begin{equation*}
+  e^k = J^k e^0, \quad k = 0, 1, 2, \ldots
+  \end{equation*}
+  
+  \item Usando el apartado (a) y la ecuación anterior del (b) probar:
+  \begin{equation*}
+  \|\xi\|_\infty < \frac{\alpha\|b\|_\infty}{\gamma(\alpha - 1)}.
+  \end{equation*}
+  
+  \item Deducir de lo anterior que
+  \begin{equation*}
+  \|e^k\|_\infty < \frac{\|b\|_\infty}{\gamma \alpha^{k-1}(\alpha - 1)}, \quad k = 0, 1, 2, \ldots
+  \end{equation*}
+  
+  \item En particular, se considera el sistema $Au = b$ siendo:
+  \begin{equation*}
+  A = \begin{pmatrix}
+  1.3 & 0.1 & -0.2 & 0.3 \\
+  0.3 & -1.9 & 0.4 & 0.2 \\
+  -0.4 & 0.1 & 1.1 & 0.0 \\
+  0.1 & 0.2 & -0.3 & 1.3
+  \end{pmatrix}, \quad b = \begin{pmatrix} 7 \\ -2 \\ 10 \\ 1 \end{pmatrix}.
+  \end{equation*}
+  Utilizar la cota del error de (d) para determinar un número $k$ de iteraciones tal que el error cometido en norma infinito, al aplicar el método de Jacobi, sea inferior a $10^{-6}$. \\
+  \textit{Indicación:} Dejar el resultado indicado, es decir, poner que $k > \cdots$.
+\end{enumerate}
+}{%
+%
+}
+
+% Ejercicio 3
+\ejercicio{resuelto}{profesor}{%
+Se desea aproximar el valor de la siguiente integral impropia:
+\begin{equation*}
+S = \int_0^\infty e^{-x^2} \, dx,
+\end{equation*}
+mediante la fórmula de los trapecios compuesta con un error menor que $10^{-2}$. Para ello, seguimos el siguiente proceso. Se divide la integral en dos partes:
+\begin{equation*}
+S = A + B, \quad \text{donde} \quad A = \int_0^6 e^{-x^2} \, dx, \quad B = \int_6^\infty e^{-x^2} \, dx.
+\end{equation*}
+El valor de $A$ se aproxima por la fórmula del trapecio compuesta $A = A_{\text{trp.comp}} + E$, donde $E$ es el error de la aproximación. En este caso
+\begin{equation*}
+S = A_{\text{trp.comp}} + E_{\text{total}},
+\end{equation*}
+donde el error total $E_{\text{total}} = E + B$ debería estar por debajo de $10^{-2}$.
+
+\begin{enumerate}[label=\alph*)]
+  \item Probar que $B < \frac{10^{-2}}{2}$. \\
+  \textit{Indicación:} Probar y usar $e^{-x^2} < e^{-x}$ para $x > 1$. Además $e^{-6} \approx 0.0025$.
+  
+  \item Determinar un número $m$ de intervalos para aproximar $A$ por la fórmula de trapecios compuesta con un error menor que $\frac{10^{-2}}{2}$. \\
+  \textit{Indicación:} Usar la fórmula del error:
+  \begin{equation*}
+  E = -\frac{(b-a)h^2}{12} f''(\theta),
+  \end{equation*}
+  donde $h = \frac{b-a}{m}$ y $\theta \in [a,b]$.
+\end{enumerate}
+}{%
+%
+    Veamos cada apartado por separado:
+    \begin{enumerate}[label=\alph*)]
+        \item Para calcular $B$ se puede usar la desigualdad indicada en la enunciación:
+        \[
+            B = \int_6^\infty e^{-x^2} \, dx < \int_6^\infty e^{-x} \, dx =
+            -e^{-x} \Big|_6^\infty = e^{-6} \approx 0.0025 < \frac{10^{-2}}{2}.
+        \]
+        \item Para calcular el número de intervalos necesarios para que el error sea menor que $\frac{10^{-2}}{2}$, se puede usar la fórmula del error indicada en la enunciación:
+        \[
+            E = -\frac{(b-a)h^2}{12} f''(\theta) = -\frac{6h^2}{12} f''(\theta) = -\frac{h^2}{2} f''(\theta).
+        \]
+        Para calcular $f''(\theta)$, se puede usar la función dada en la integral:
+        \[
+            f(x) = e^{-x^2} \implies
+            f' = -2xe^{-x^2} \implies
+            f'' = (4x^2 - 2)e^{-x^2}.
+        \]
+        Por lo tanto, el error se puede acotar por (usando $h=\frac{b-a}{n}$):
+        \[
+            E = \left| - \frac{(b-a)h^2}{12} f''(\theta) \right| = 
+            \frac{h^2}{2} |f''(\theta)| \leq \frac{36}{2n^2} \| f''\|_\infty = \frac{18}{n^2} \|f''\|_\infty.
+        \]
+        Ahora para calcular $\|f''\|_\infty$, se puede usar la 3 derivada de $f$:
+        \[
+            f''' = (12x - 8x^3)e^{-x^2} \implies
+            f''' = 0 \implies
+            x = 0, \sqrt{\frac{3}{2}}.
+        \]
+        Ahora, como $f'''(1) > 0$, entonces $f''$ es creciente en $[0, \sqrt{\frac{3}{2}}]$ y decreciente en $[\sqrt{\frac{3}{2}}, 6]$. Por lo tanto, el máximo de $|f''|$ se encuentra en $\sqrt{\frac{3}{2}}$, dejando así:
+        \[
+            \|f''\|_\infty = |f''(\sqrt{\frac{3}{2}})|
+        \]
+        También se podría haber acotado:
+        \[
+            \|f''\|_\infty \leq \|e^{-x^2} \|_\infty 2 \| 1 - 2x^2 \|_\infty = 2.
+        \]
+    \end{enumerate}
+}
+
+% Ejercicio 4
+\ejercicio{resuelto}{profesor}{%
+Se desea aproximar $\sqrt[3]{21}$ mediante el método del punto fijo:
+\begin{equation*}
+x_0 = 2, \quad x_n = f(x_{n-1}), \quad n = 1, 2, 3, \ldots
+\end{equation*}
+con $f = \frac{1}{21}\left(20x + \frac{21}{x^2}\right)$.
+
+\begin{enumerate}[label=\alph*)]
+  \item Encontrar un intervalo $[a, b]$ que contenga a $2$, en el que se pueda aplicar el teorema del Punto Fijo de Banach para garantizar la convergencia de la sucesión $\{x_n\}_{n=0}^\infty$. \\
+  \textit{Indicación:} Conviene esbozar la función y luego asegurar que $f : [a, b] \to [a, b]$. Encontrar un intervalo con $f'(x) > 0$, tal que $a \leq 2 \leq b$, $f(a) \geq a$ y $f(b) \leq b$. Encontrar una constante $0 \leq M < 1$ tal que:
+  \begin{equation*}
+  |f(x) - f(y)| \leq M|x - y|, \quad \forall x, y \in [a, b].
+  \end{equation*}
+  
+  \item Concluir que cualquier sucesión con $x_0 \in [a, b]$ converge a un único punto fijo $\xi \in [a, b]$. Probar que $\xi = \sqrt[3]{21}$.
+  
+  \item Determinar un número $n$ de iteraciones para que el error cometido en la aproximación sea menor que $10^{-3}$, es decir $E_n = |x_n - \xi| < 10^{-3}$. \\
+  \textit{Indicación:} Dejar el resultado indicado, es decir, poner que $n > \cdots$.
+\end{enumerate}
+}{%
+%
+    Veamos cada apartado por separado:
+    \begin{enumerate}[label=\alph*)]
+        \item Sea la recursión que usaremos:
+        \[
+            \begin{cases}
+                x_0 = 2 \in [a,b], \\
+                x_n = h(x_{n-1}) = \frac{1}{21}\left(20x_{n-1} + \frac{21}{x_{n-1}^2}\right), \quad \forall n \in \mathbb{N}.
+            \end{cases}
+        \]
+        De lo que deducimos:
+        \[
+            h = \frac{1}{21}\left(20x + \frac{21}{x^2}\right) = \frac{20}{21}x + \frac{1}{x^2} \implies
+            h' = \frac{20}{21} - \frac{2}{x^3} > 0 \impliedby x > \sqrt[3]{\frac{21}{10}} \approx 1.28.
+        \]
+        Suele ser útil para encontrar el intervalo establecer que $x_0$ sea el punto inicial o final del intervalo, es decir, $a = 2$ o $b = 2$. Para comprobar cual nos conviene, calculemos los valores de $h$ para $1,2,3$ que serian los puntos que limitarían los intervalos $[1,2]$ y $[2,3]$:
+        \[
+            \begin{cases}
+                h(1) = \frac{1}{21}(20 + 21) = \frac{41}{21} > 2, \\
+                h(2) = \frac{1}{21}\left(40 + \frac{21}{4}\right) \rightarrow
+                \begin{cases}
+                    \geq \frac{1}{21}\left(40 + \frac{20}{4}\right) = \frac{45}{21} > 2, \\
+                    \leq \frac{1}{21}\left(40 + \frac{24}{4}\right) = \frac{46}{21} < 3,
+                \end{cases} \\
+                h(3) = \frac{1}{21}\left(60 + \frac{21}{9}\right) \rightarrow
+                \begin{cases}
+                    \geq \frac{1}{21}\left(60 + \frac{18}{9}\right) = \frac{62}{21} > 2, \\
+                    \leq \frac{1}{21}\left(60 + \frac{27}{9}\right) = \frac{63}{21} = 3.
+                \end{cases}
+            \end{cases}
+        \]
+        Dejando así claro que $h(1) > 2$, $h(2) \in (2,3)$ y $h(3) \in (2,3)$. Por lo tanto, el intervalo que nos interesa es $[2,3]$ (el $[1,2]$ no es adecuado porque $h(1) > 2$). Ahora, para calcular la norma de la derivada:
+        \[
+            h'' = \frac{6}{x^4} > 0 \implies 
+            h' \text{ es creciente} \implies
+            \|h'\|_\infty = \max_{x \in [2,3]} h'(x) = h'(3) = \frac{20}{21} - \frac{2}{27} = \frac{520}{567} < 1.
+        \]
+        \item Despejando en la función $h$ se obtiene:
+        \[
+            \xi = h(\xi) \implies
+            \xi = \frac{1}{21}\left(20\xi + \frac{21}{\xi^2}\right) \implies
+            21\xi = 20\xi + \frac{21}{\xi^2} \implies
+            \xi^3 = 21 \implies
+            \xi = \sqrt[3]{21}.
+        \]
+        \item Para calcular el número de iteraciones necesario para que el error sea menor que $10^{-3}$, se puede usar la siguiente cota del error:
+        \[
+            E_n \leq \frac{M^n}{1 - M} |x_1 - x_0| \leq \frac{M^n}{1 - M}\underbrace{(b-a)}_{=1} < 10^{-3} \implies
+            n > \frac{\ln\left(10^{-3}(1 - M)\right)}{\ln(M)}.
+        \]
+        Poniendolo como cota superior entera:
+        \[
+        \boxed{
+            n = \left\lceil \frac{\ln\left(10^{-3}(1 - M)\right)}{\ln(M)} \right\rceil.
+        }
+        \]
+        Se podría seguir calculando usando el valor numérico de $M$, y que $\ln(10^{-3}(1 - M)) = -3 + \ln(1 - M)$, pero lo importante es dejar la expresión indicada. También se podría usar que como $\ln(M) < 0$, entonces $\ln(M) = - \ln(M^{-1})$ y así cambiar el signo del numerador.
+    \end{enumerate}
+}
+
+% Ejercicio 5
+\ejercicio{enunciado}{no}{%
+Escribir un código de Matlab para la iteración del ejercicio 4 anterior. El código debe implementar como mucho 100 iteraciones y parar si $E_n = |x_n - x_{n-1}| < 10^{-7}$.
+}{%
+%
+}
