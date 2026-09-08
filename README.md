@@ -1,6 +1,8 @@
-# Plantilla de Apuntes — Doble Grado Matemáticas + Ingeniería Informática (UCM)
+# Métodos Numéricos
 
-Esta es una plantilla LaTeX pensada para tomar apuntes, recopilar ejercicios y ordenar exámenes de las asignaturas de Matemáticas del Doble Grado Matemáticas + Ingeniería Informática de la UCM. Está organizada para que puedas mantener un esquema limpio por temas, separar teoría de ejercicios/exámenes y reutilizar preámbulos y recursos comunes (comandos, TikZ, imágenes, apéndices).
+Apuntes de la asignatura de Métodos Numéricos del Doble Grado en Matemáticas e Ingeniería Informática de la Universidad Complutense de Madrid. El material está basado en las clases del profesor Valeri Makarov y ha sido elaborado por Pau Frangi Mahiques, Diego Rodríguez Cubero y Jaime Nieto Petinal.
+
+El repositorio reúne la teoría de la asignatura, hojas de ejercicios, exámenes resueltos y códigos de MATLAB relacionados con las prácticas y los métodos estudiados.
 
 ## Requisitos
 
@@ -10,34 +12,24 @@ Esta es una plantilla LaTeX pensada para tomar apuntes, recopilar ejercicios y o
 
 ## Estructura del proyecto
 
-- [main.tex](main.tex): punto de entrada. Incluye preámbulo y agrega teoría, ejercicios y apéndices.
-- [Preamble/](Preamble): preámbulo y comandos comunes.
-	- [Preamble/Preamble.tex](Preamble/Preamble.tex): paquetes, opciones de documento y configuración global.
-	- [Preamble/Diagonal Matrix Command.tex](Preamble/Diagonal%20Matrix%20Command.tex): ejemplo de comando matemático personalizado.
-- [Theory/](Theory): teoría organizada por temas.
-	- Índice: [Theory/Theory.tex](Theory/Theory.tex)
-	- Ejemplo: [Theory/1 - Nombre primer tema.tex](Theory/1%20-%20Nombre%20primer%20tema.tex).
-- [Exercises/](Exercises): hojas de ejercicios.
-	- Índice: [Exercises/Hojas.tex](Exercises/Hojas.tex)
-	- Ejemplo: [Exercises/Hoja1.tex](Exercises/Hoja1.tex).
-- [Exams/](Exams): exámenes y resoluciones.
-	- Índice: [Exams/Examenes Resueltos.tex](Exams/Examenes%20Resueltos.tex)
-	- Ejemplo: [Exams/Examen 1.tex](Exams/Examen%201.tex).
-- [Appendix/](Appendix): apéndices y agradecimientos.
-	- Índice: [Appendix/Appendix.tex](Appendix/Appendix.tex)
-	- Ejemplo: [Appendix/Agradecimientos.tex](Appendix/Agradecimientos.tex)
-- [TikZ/](TikZ): dibujos TikZ reutilizables.
-- [images/](images): figuras e imágenes.
-
-Nota: en teoría, ejercicios, exámenes y apéndices, el primer archivo general listado es el índice y el segundo es un archivo de ejemplo.
+- [main.tex](main.tex): documento principal y punto de entrada de la compilación.
+- [Preamble/](Preamble): preámbulo, comandos y texto introductorio.
+- [Theory/Theory.tex](Theory/Theory.tex): índice de los siete temas de teoría.
+- [Theory/](Theory): matrices, sistemas lineales, métodos iterativos, interpolación, diferenciación, integración y ecuaciones no lineales.
+- [Exercises/Hojas.tex](Exercises/Hojas.tex): índice de las hojas de ejercicios incluidas.
+- [Exercises/](Exercises): hojas de ejercicios de la asignatura.
+- [Exams/Examenes Resueltos.tex](Exams/Examenes%20Resueltos.tex): índice de los exámenes resueltos.
+- [Exams/](Exams): exámenes y sus resoluciones.
+- [Appendix/](Appendix): normas, agradecimientos y material complementario.
+- [Matlab Codes/](Matlab%20Codes): implementaciones en MATLAB de métodos y prácticas.
+- [images/](images): imágenes y recursos gráficos utilizados en el documento.
 
 ## Uso rápido
 
-1. Abre [main.tex](main.tex) y compila para verificar que el proyecto genera el PDF.
-2. Duplica un tema en [Theory/](Theory) (por ejemplo, usa como plantilla [Theory/1 - Nombre primer tema.tex](Theory/1%20-%20Nombre%20primer%20tema.tex)) y cámbiale el nombre.
-3. Incluye el nuevo tema desde [Theory/Theory.tex](Theory/Theory.tex) usando `\input{...}` o `\include{...}`.
-4. Añade tus ejercicios en [Exercises/](Exercises) y, si quieres, vincúlalos desde [Exercises/Hojas.tex](Exercises/Hojas.tex).
-5. Guarda dibujos en [TikZ/](TikZ) y figuras en [images/](images), inclúyelos con `\input{...}` o `\includegraphics{...}`.
+1. Abre [main.tex](main.tex) y compila para generar el documento completo.
+2. Para añadir teoría, crea o modifica el archivo correspondiente en [Theory/](Theory) y enlázalo desde [Theory/Theory.tex](Theory/Theory.tex).
+3. Para añadir ejercicios o exámenes, incorpora el archivo en [Exercises/](Exercises) o [Exams/](Exams) y actualiza su índice.
+4. Guarda las implementaciones numéricas y las prácticas en [Matlab Codes/](Matlab%20Codes).
 
 ## Compilación
 
@@ -56,25 +48,17 @@ pdflatex main.tex  # ejecutar dos veces para referencias
 
 En Overleaf: sube toda la carpeta y establece [main.tex](main.tex) como archivo principal.
 
-## Personalización
+## Convenciones
 
-- Preámbulo: edita [Preamble/Preamble.tex](Preamble/Preamble.tex) para paquetes, estilos y opciones de idioma.
-- Comandos propios: añade comandos nuevos (por ejemplo, para matrices, entornos de teoremas, etc.) en [Preamble/Diagonal Matrix Command.tex](Preamble/Diagonal%20Matrix%20Command.tex) o crea archivos específicos dentro de [Preamble/](Preamble) y cárgalos desde el preámbulo.
-- Estructura por asignaturas: puedes crear subcarpetas por asignatura dentro de [Theory/](Theory), [Exercises/](Exercises) y [Exams/](Exams) si prefieres separar por materia/curso.
+- Mantener un archivo por tema de teoría y enlazarlo desde [Theory/Theory.tex](Theory/Theory.tex).
+- Numerar las hojas de ejercicios y conservar el índice de [Exercises/Hojas.tex](Exercises/Hojas.tex) actualizado.
+- Centralizar las figuras en [images/](images) y los códigos de cálculo en [Matlab Codes/](Matlab%20Codes).
 
-## Convenciones sugeridas
+## Licencia
 
-- Un archivo por tema de teoría y su referencia desde [Theory/Theory.tex](Theory/Theory.tex).
-- Hojas de ejercicios numeradas en [Exercises/](Exercises) y referencia desde [Exercises/Hojas.tex](Exercises/Hojas.tex).
-- Exámenes por fecha en [Exams/](Exams), y resoluciones aparte si procede.
-- Recursos gráficos centralizados en [TikZ/](TikZ) e [images/](images) para reutilización.
-
-## Notas
-
-- Esta plantilla es neutral y se adapta a tus preferencias de estilo (fuente, márgenes, encabezados). Ajusta lo necesario en el preámbulo.
-- Si utilizas paquetes que requieren múltiples compilaciones (índices, glosarios, referencias cruzadas), `latexmk` lo gestiona automáticamente.
+El documento se distribuye bajo la licencia [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/): se permite compartirlo con atribución, sin uso comercial y sin distribuir obras derivadas.
 
 ---
 
-¿Sugerencias o mejoras? Abre una incidencia o propone un cambio. ¡Que te sea útil para organizar tus apuntes del Doble Grado en la UCM!
+¿Sugerencias, correcciones o mejoras? Abre una incidencia o envía una contribución mediante un *pull request*.
 
